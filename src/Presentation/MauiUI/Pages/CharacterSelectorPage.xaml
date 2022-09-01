@@ -4,10 +4,19 @@
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterSelectorPage"
              Title="Character Selector">
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
             <Label
                 Text="Welcome to .NET MAUI!"
                 VerticalOptions="Center"
+                HorizontalOptions="Center" />
+
+            <Button
+                Text="To Main"
+                SemanticProperties.Hint="Navigates to Main"
+                Command="{Binding ToMainCommand}"
                 HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>

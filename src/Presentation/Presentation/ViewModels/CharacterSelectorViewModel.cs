@@ -1,8 +1,10 @@
-﻿using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+﻿using CommunityToolkit.Mvvm.Input;
+using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+using System.Diagnostics.Metrics;
 
 namespace RedSpartan.BrimstoneCompanion.Presentation.ViewModels
 {
-    public class CharacterSelectorViewModel : ViewModelBase
+    public partial class CharacterSelectorViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
 
@@ -10,5 +12,8 @@ namespace RedSpartan.BrimstoneCompanion.Presentation.ViewModels
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
         }
+
+        [RelayCommand]
+        private Task ToMain() => _navigationService.NavigateToAsync("main");
     }
 }
