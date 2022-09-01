@@ -1,4 +1,5 @@
 ﻿using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+using CommunityToolkit.Maui.Views;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 {
@@ -9,6 +10,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
             return NavigateToAsync("//MainPage");
         }
 
+        public Task NavigateBackAsync()
+        {
+            return Shell.Current.GoToAsync("..");
+        }
+
         public Task NavigateToAsync(string route, IDictionary<string, object> routeParameters = null)
         {
             return routeParameters != null
@@ -16,9 +22,22 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
                 : Shell.Current.GoToAsync(route);
         }
 
-        public Task PopAsync()
+        private Popup? _currentPopup;
+
+        public void Pop<TResult>(TResult result)
         {
-            return Shell.Current.GoToAsync("..");
+            _currentPopup?.Close(result);
+        }
+
+        public async Task<TResult> PushAsync<TPage, TResult>() where TPage : Popup
+        {
+            var result = await Shell.Current.CurrentPage.ShowPopupAsync(_currentPopup = PopupLocator.Locate<TPage>());
+
+            if (result is TResult model)
+            {
+                return model;
+            }
+            return default;
         }
     }
 }

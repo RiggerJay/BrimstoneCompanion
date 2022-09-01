@@ -1,4 +1,4 @@
-﻿using RedSpartan.BrimstoneCompanion.Presentation.ViewModels;
+﻿using RedSpartan.BrimstoneCompanion.MauiUI.ViewModels;
 
 namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages;
 
