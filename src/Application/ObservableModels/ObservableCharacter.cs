@@ -3,17 +3,19 @@ using RedSpartan.BrimstoneCompanion.Domain.Models;
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
-    public class ObservableCharacter : ObservableObject
+    public class ObservableCharacter : ObservableModel<Character>
     {
         private readonly Character _character;
 
-        public ObservableCharacter() : this(new Character())
-        {
-        }
+        public ObservableCharacter() : this(new Character()) { }
 
-        public ObservableCharacter(Character character)
+        public ObservableCharacter(Character character) : base(character)
+        { }
+
+        public string Id
         {
-            _character = character ?? throw new ArgumentNullException(nameof(character));
+            get => _character.Id;
+            set => SetProperty(_character.Id, value, _character, (model, _value) => model.Id = _value);
         }
 
         public string Name

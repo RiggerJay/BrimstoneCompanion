@@ -17,13 +17,16 @@
                 VerticalOptions="Start"
                 HorizontalOptions="Center" />
 
-            <Picker
-                Title="Select a Character"
-                ItemsSource="{Binding Characters}"
-                ItemDisplayBinding="{Binding Name}"
-                SelectedItem="{Binding SelectedCharacter}"
-                HorizontalOptions="Center" />
-
+            <Frame CornerRadius="5"
+                   Padding="0,5">
+                <Picker
+                    Title="Select a Character"
+                    ItemsSource="{Binding Characters}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCharacter}"
+                    HorizontalOptions="Center" />
+            </Frame>
+            
             <Button
                 Text="Create New"
                 SemanticProperties.Hint="Navigates to Main"

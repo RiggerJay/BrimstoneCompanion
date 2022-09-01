@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
+using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using System.Collections.ObjectModel;
 
@@ -10,13 +11,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class CharacterSelectorViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly IRepository<Character> _repository;
 
         [ObservableProperty]
         private ObservableCharacter? _selectedCharacter;
 
-        public CharacterSelectorViewModel(INavigationService navigationService)
+        public CharacterSelectorViewModel(INavigationService navigationService, IRepository<Character> repository)
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+
+            Task.Run(Initialise);
         }
 
         [RelayCommand]
@@ -30,9 +35,27 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             if (results != null)
             {
                 Characters.Add(results);
+                SelectedCharacter = results;
+                await _repository.SaveAsync(results.GetModel(), results.Id);
             }
         }
 
         public ObservableCollection<ObservableCharacter> Characters { get; } = new();
+
+        private async Task Initialise()
+        {
+            IsBusy = true;
+            try
+            {
+                foreach (var character in await _repository.GetAsync())
+                {
+                    Characters.Add(new ObservableCharacter(character));
+                }
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
     }
 }

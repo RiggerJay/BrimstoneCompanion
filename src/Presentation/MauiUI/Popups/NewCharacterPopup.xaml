@@ -5,16 +5,11 @@
                Color="Transparent"
                x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.NewCharacterPopup">
     <Border
-        StrokeThickness="4"
-        StrokeShape="RoundRectangle 10,10,10,10"
-        Stroke="#2B0B98"
         Padding="10"
         HorizontalOptions="Center">
 
         <VerticalStackLayout>
-            <Frame BorderColor="Red"
-                   Background="#992B0B98"
-                   CornerRadius="5"
+            <Frame CornerRadius="5"
                    Margin="10,5"
                    Padding="5,0">
                 <Entry
@@ -27,9 +22,7 @@
                     HorizontalOptions="Center" />
             </Frame>
 
-            <Frame BorderColor="Red"
-                   Background="#992B0B98"
-                   CornerRadius="5"
+            <Frame CornerRadius="5"
                    Margin="10,5"
                    Padding="5,0">
                 <Picker

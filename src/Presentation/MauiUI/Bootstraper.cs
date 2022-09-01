@@ -6,6 +6,7 @@ using RedSpartan.BrimstoneCompanion.MauiUI.Services;
 using RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
 using RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages;
 using RedSpartan.BrimstoneCompanion.MauiUI.ViewModels;
+using RedSpartan.BrimstoneCompanion.Domain.Models;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI
 {
@@ -14,6 +15,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
         internal static MauiAppBuilder ConfigureApplication(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+            mauiAppBuilder.Services.AddSingleton<IRepository<Character>, CharacterRepository>();
+            mauiAppBuilder.Services.AddSingleton(FileSystem.Current);
 
             mauiAppBuilder.Services.AddTransient<CharacterSelectorViewModel>();
             mauiAppBuilder.Services.AddTransient<MainViewModel>();
