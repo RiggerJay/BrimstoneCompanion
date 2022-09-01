@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiUI", "src\Presentation\MauiUI.csproj", "{97E143F1-0ED5-4085-B9F1-CB7B7BBA0139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiUI", "src\Presentation\MauiUI\MauiUI.csproj", "{97E143F1-0ED5-4085-B9F1-CB7B7BBA0139}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D74C701C-6C9B-47C7-8B9D-49E187561F77}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{3C83633A-1DC4-491D-83A3-0FF81784BA2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{59357BA9-EA0D-4BBA-895F-F721E9292FC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppLayer", "src\Application\AppLayer.csproj", "{59357BA9-EA0D-4BBA-895F-F721E9292FC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{EF7D7B52-EC0C-4854-9C9A-553B0A1C6507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{EF7D7B52-EC0C-4854-9C9A-553B0A1C6507}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7D2A43BD-3AF1-4B4D-8D3C-77A52BED96A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "src\Presentation\Presentation\Presentation.csproj", "{87AC6FCE-D715-41A1-8615-46A2DFB41AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,10 @@ Global
 		{EF7D7B52-EC0C-4854-9C9A-553B0A1C6507}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF7D7B52-EC0C-4854-9C9A-553B0A1C6507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF7D7B52-EC0C-4854-9C9A-553B0A1C6507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87AC6FCE-D715-41A1-8615-46A2DFB41AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87AC6FCE-D715-41A1-8615-46A2DFB41AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87AC6FCE-D715-41A1-8615-46A2DFB41AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87AC6FCE-D715-41A1-8615-46A2DFB41AC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +54,7 @@ Global
 		{3C83633A-1DC4-491D-83A3-0FF81784BA2D} = {D74C701C-6C9B-47C7-8B9D-49E187561F77}
 		{59357BA9-EA0D-4BBA-895F-F721E9292FC7} = {D74C701C-6C9B-47C7-8B9D-49E187561F77}
 		{EF7D7B52-EC0C-4854-9C9A-553B0A1C6507} = {D74C701C-6C9B-47C7-8B9D-49E187561F77}
+		{87AC6FCE-D715-41A1-8615-46A2DFB41AC2} = {D74C701C-6C9B-47C7-8B9D-49E187561F77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

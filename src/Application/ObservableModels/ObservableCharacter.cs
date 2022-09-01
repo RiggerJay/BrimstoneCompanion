@@ -1,6 +1,6 @@
 ﻿using RedSpartan.BrimstoneCompanion.Domain.Models;
 
-namespace RedSpartan.BrimstoneCompanion.Application.ObservableModels
+namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableCharacter
     {
