@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
-using System.Diagnostics.Metrics;
 
 namespace RedSpartan.BrimstoneCompanion.Presentation.ViewModels
 {
@@ -14,6 +13,6 @@ namespace RedSpartan.BrimstoneCompanion.Presentation.ViewModels
         }
 
         [RelayCommand]
-        private Task ToMain() => _navigationService.NavigateToAsync("main");
+        private Task CreateNewCharacter() => _navigationService.NavigateToAsync("main");
     }
 }

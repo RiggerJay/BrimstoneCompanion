@@ -49,6 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\cowboy.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\Presentation\Presentation.csproj" />
 	</ItemGroup>
 
@@ -56,6 +60,10 @@
 	  <MauiXaml Update="Pages\CharacterSelectorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Popups\" />
 	</ItemGroup>
 
 </Project>

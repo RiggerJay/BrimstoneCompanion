@@ -2,21 +2,29 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterSelectorPage"
+             Shell.NavBarIsVisible="False"
              Title="Character Selector">
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
-            <Label
-                Text="Welcome to .NET MAUI!"
-                VerticalOptions="Center"
+
+            <Image
+                Source="cowboy.png"
+                SemanticProperties.Description="Cowboy mascot for the app!"
+                HeightRequest="400"
+                VerticalOptions="Start"
+                HorizontalOptions="Center" />
+
+            <Picker
+                Title="Select a Character"
                 HorizontalOptions="Center" />
 
             <Button
-                Text="To Main"
+                Text="Create New"
                 SemanticProperties.Hint="Navigates to Main"
-                Command="{Binding ToMainCommand}"
+                Command="{Binding CreateNewCharacterCommand}"
                 HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>
