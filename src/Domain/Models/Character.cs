@@ -1,4 +1,4 @@
-﻿namespace BrimstoneCompanion.Domain.Models
+﻿namespace RedSpartan.BrimstoneCompanion.Domain.Models
 {
     public class Character
     {
