@@ -19,6 +19,9 @@
 
             <Picker
                 Title="Select a Character"
+                ItemsSource="{Binding Characters}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedItem="{Binding SelectedCharacter}"
                 HorizontalOptions="Center" />
 
             <Button

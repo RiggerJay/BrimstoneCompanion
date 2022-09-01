@@ -2,11 +2,50 @@
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.NewCharacterPopup">
-    <VerticalStackLayout>
-        <Label
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center"
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+               Color="Transparent"
+               x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.NewCharacterPopup"
+               x:Name="ThisNewCharacterPopup">
+    <Border
+        StrokeThickness="4"
+        StrokeShape="RoundRectangle 10,10,10,10"
+        Stroke="#2B0B98"
+        Padding="10"
+        HorizontalOptions="Center">
+
+        <VerticalStackLayout>
+            <Frame BorderColor="Red"
+                   Background="#992B0B98"
+                   CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0">
+                <Entry
+                    x:Name="CharacterName"
+                    Keyboard="Chat"
+                    WidthRequest="200"
+                    Text="{Binding Name}"
+                    Placeholder="Name your character"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+            </Frame>
+
+            <Frame BorderColor="Red"
+                   Background="#992B0B98"
+                   CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0">
+                <Picker
+                    x:Name="CharacterClass"
+                    WidthRequest="200"
+                    Title="Enter your class"
+                    ItemsSource="{Binding Classes, Source={x:Reference ThisNewCharacterPopup}}"
+                    SelectedItem="{Binding Class}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+            </Frame>
+
+            <Button Text="Create"
+                    Command="{Binding CreateCommand, Source={x:Reference ThisNewCharacterPopup}}"
+                    Margin="10,5" />
+        </VerticalStackLayout>
+    </Border>
 </toolkit:Popup>

@@ -1,21 +1,29 @@
 using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using RedSpartan.BrimstoneCompanion.Presentation.ViewModels;
 using CommunityToolkit.Maui.Views;
+using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Pages;
 
 public partial class CharacterSelectorPage : ContentPage
 {
+    private readonly CharacterSelectorViewModel _viewModel;
+
     public CharacterSelectorPage(CharacterSelectorViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        BindingContext = _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
         var popup = new NewCharacterPopup();
 
-        this.ShowPopup(popup);
+        var result = await this.ShowPopupAsync(popup);
+
+        if (result is ObservableCharacter character)
+        {
+            _viewModel.Characters.Add(character);
+        }
     }
 }
