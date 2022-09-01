@@ -1,4 +1,5 @@
 ﻿using RedSpartan.BrimstoneCompanion.MauiUI;
+using CommunityToolkit.Maui;
 
 namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
 
@@ -10,6 +11,7 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .Configure()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

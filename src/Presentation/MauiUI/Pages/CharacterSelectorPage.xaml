@@ -24,7 +24,7 @@
             <Button
                 Text="Create New"
                 SemanticProperties.Hint="Navigates to Main"
-                Command="{Binding CreateNewCharacterCommand}"
+                Clicked="Button_Clicked"
                 HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>

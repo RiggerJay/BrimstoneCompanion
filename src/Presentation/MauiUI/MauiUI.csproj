@@ -53,6 +53,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\Presentation\Presentation.csproj" />
 	</ItemGroup>
 
@@ -60,10 +64,9 @@
 	  <MauiXaml Update="Pages\CharacterSelectorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Popups\" />
+	  <MauiXaml Update="Popups\NewCharacterPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
