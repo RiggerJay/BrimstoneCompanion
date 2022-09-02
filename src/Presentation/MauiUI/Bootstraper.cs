@@ -21,15 +21,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddTransient<CharacterSelectorViewModel>();
             mauiAppBuilder.Services.AddTransient<MainViewModel>();
             mauiAppBuilder.Services.AddTransient<NewCharacterViewModel>();
+            mauiAppBuilder.Services.AddTransient<CharacterViewModel>();
 
-            mauiAppBuilder.Services.AddTransient<CharacterSelectorPage>();
-            mauiAppBuilder.Services.AddTransient<MainPage>();
             mauiAppBuilder.Services.AddTransient<AppShell>();
 
-            mauiAppBuilder.RegisterPopup<NewCharacterPopup>("NewCharacter");
+            mauiAppBuilder.RegisterPage<MainPage>("main");
+            mauiAppBuilder.RegisterPage<CharacterPage>("character");
+            mauiAppBuilder.RegisterPage<CharacterSelectorPage>("characterselector");
 
-            Routing.RegisterRoute("main", typeof(MainPage));
-            Routing.RegisterRoute("characterselector", typeof(CharacterSelectorPage));
+            mauiAppBuilder.RegisterPopup<NewCharacterPopup>();
 
             return mauiAppBuilder;
         }
@@ -40,10 +40,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             return mauiApp;
         }
 
-        private static void RegisterPopup<T>(this MauiAppBuilder mauiAppBuilder, string route)
+        private static void RegisterPopup<T>(this MauiAppBuilder mauiAppBuilder)
             where T : class, IPopup
         {
             mauiAppBuilder.Services.AddTransient<T>();
+        }
+
+        private static void RegisterPage<T>(this MauiAppBuilder mauiAppBuilder, string route)
+            where T : ContentPage
+        {
+            mauiAppBuilder.Services.AddTransient<T>();
+            Routing.RegisterRoute(route, typeof(T));
         }
     }
 }

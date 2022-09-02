@@ -27,11 +27,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 
         public virtual async Task SaveAsync(T model, string key)
         {
-            if (!Directory.Exists(GetFolderName()))
-            {
-                Directory.CreateDirectory(GetFolderName());
-            }
-
             var json = JsonConvert.SerializeObject(model);
 
             await File.WriteAllTextAsync(GetFilePath(key), json, Encoding.UTF8);
@@ -44,7 +39,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 
         protected string GetFolderName()
         {
-            return Path.Combine(_fileSystem.AppDataDirectory, typeof(T).Name);
+            var path = Path.Combine(_fileSystem.AppDataDirectory, typeof(T).Name);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            return path;
         }
     }
 }

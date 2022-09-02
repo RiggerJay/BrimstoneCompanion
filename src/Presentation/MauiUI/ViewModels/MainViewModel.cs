@@ -5,6 +5,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     public partial class MainViewModel : ViewModelBase
     {
+        public MainViewModel()
+        {
+            Title = "Main";
+        }
+
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(TextValue))]
         private int _counter;

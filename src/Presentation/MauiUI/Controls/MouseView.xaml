@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Controls.MouseView"
+      xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+      Margin="10"
+      x:Name="ThisMouse">
+    <Grid.Resources>
+        <ResourceDictionary>
+            <toolkit:IsNotNullConverter x:Key="IsNotNullConverter" />
+            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="200" FalseObject="0" />
+        </ResourceDictionary>
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+        <RowDefinition Height=".5*" />
+        <RowDefinition Height=".5*" />
+    </Grid.RowDefinitions>
+
+    <Label
+        Text="{Binding TitleText, Source={x:Reference ThisMouse}}"
+        TextColor="{DynamicResource Key=Primary}"
+        VerticalTextAlignment="Center"
+        HorizontalTextAlignment="Center"
+        FontSize="{Binding TitleTextSize, Source={x:Reference ThisMouse}}"
+        Grid.Row="0" />
+
+    <Frame
+        Grid.Row="1"
+        CornerRadius="{Binding IsCircle, Source={x:Reference ThisMouse}, Converter={StaticResource BoolToObjectConverter}}"
+        Padding="0"
+        Margin="0,0"
+        BackgroundColor="{DynamicResource Key=Primary}">
+        <Label
+            Text="{Binding MainValue, Source={x:Reference ThisMouse}}"
+            TextColor="{DynamicResource Key=Secondary}"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            FontSize="{Binding MainFontSize, Source={x:Reference ThisMouse}}" />
+    </Frame>
+
+    <Frame
+        Grid.Row="0"
+        Grid.RowSpan="2"
+        CornerRadius="20"
+        HeightRequest="10"
+        WidthRequest="10"
+        IsVisible="{Binding LeftValue, Source={x:Reference ThisMouse}, Converter={StaticResource IsNotNullConverter}}"
+        Padding="0"
+        Margin="0"
+        HorizontalOptions="Start"
+        BackgroundColor="{DynamicResource Key=Tertiary}">
+        <Label
+            Text="{Binding LeftValue, Source={x:Reference ThisMouse}}"
+            TextColor="{DynamicResource Key=Secondary}"
+            Margin="0"
+            Padding="0"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            FontSize="{Binding MiniValueSize, Source={x:Reference ThisMouse}}" />
+    </Frame>
+
+    <Frame
+        Grid.Row="0"
+        Grid.RowSpan="2"
+        CornerRadius="20"
+        HeightRequest="10"
+        WidthRequest="10"
+        IsVisible="{Binding RightValue, Source={x:Reference ThisMouse}, Converter={StaticResource IsNotNullConverter}}"
+        Padding="0"
+        Margin="0"
+        HorizontalOptions="End"
+        BackgroundColor="{DynamicResource Key=Tertiary}">
+        <Label
+            Text="{Binding RightValue, Source={x:Reference ThisMouse}}"
+            TextColor="{DynamicResource Key=Secondary}"
+            Margin="0"
+            Padding="0"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            FontSize="{Binding MiniValueSize, Source={x:Reference ThisMouse}}" />
+    </Frame>
+</Grid>

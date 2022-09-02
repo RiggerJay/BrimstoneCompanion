@@ -21,10 +21,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            Title = "Character Selector";
         }
 
         [RelayCommand]
-        private Task CreateNewCharacter() => _navigationService.NavigateToAsync("main");
+        private Task CreateNewCharacter() => _navigationService.NavigateToAsync("characterselector");
 
         [RelayCommand]
         private async Task NewCharacter()
@@ -64,7 +65,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             if (e.PropertyName == nameof(SelectedCharacter)
                 && SelectedCharacter != null)
             {
-                await _navigationService.NavigateToAsync("main");
+                var param = new Dictionary<string, object>()
+                {
+                    { nameof(Character), SelectedCharacter }
+                };
+                await _navigationService.NavigateToAsync("character", param);
                 SelectedCharacter = null;
             }
         }

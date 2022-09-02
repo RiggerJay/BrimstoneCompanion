@@ -28,5 +28,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             get => Model.Class;
             set => SetProperty(Model.Class, value, Model, (model, _value) => model.Class = _value);
         }
+
+        public byte Level
+        {
+            get => Model.Level;
+            set => SetProperty(Model.Level, value, Model, (model, _value) => model.Level = _value);
+        }
     }
 }
