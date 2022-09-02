@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+using System.Text;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 {
@@ -12,22 +13,13 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
             _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
         }
 
-        public virtual async Task<T> GetAsync(string key)
-        {
-            using StreamReader reader = new(GetFilePath(key));
-
-            return JsonConvert.DeserializeObject<T>(await reader.ReadToEndAsync());
-        }
-
         public virtual async Task<IList<T>> GetAsync()
         {
             var list = new List<T>();
 
             foreach (var file in Directory.GetFiles(GetFolderName()))
             {
-                using StreamReader reader = new(file);
-                
-                list.Add(JsonConvert.DeserializeObject<T>(await reader.ReadToEndAsync()));
+                list.Add(JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(file, Encoding.UTF8)));
             }
 
             return list;
@@ -35,11 +27,14 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 
         public virtual async Task SaveAsync(T model, string key)
         {
+            if (!Directory.Exists(GetFolderName()))
+            {
+                Directory.CreateDirectory(GetFolderName());
+            }
+
             var json = JsonConvert.SerializeObject(model);
 
-            using StreamWriter writer = new(GetFilePath(key), false);
-
-            await writer.WriteAsync(json);
+            await File.WriteAllTextAsync(GetFilePath(key), json, Encoding.UTF8);
         }
 
         protected string GetFilePath(string key)

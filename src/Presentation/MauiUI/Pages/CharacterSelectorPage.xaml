@@ -2,8 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterSelectorPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Shell.NavBarIsVisible="False"
+             IsBusy="{Binding IsBusy}"
              Title="Character Selector">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Loaded"
+            Command="{Binding InitialiseCommand}" />
+    </ContentPage.Behaviors>
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
@@ -26,7 +33,7 @@
                     SelectedItem="{Binding SelectedCharacter}"
                     HorizontalOptions="Center" />
             </Frame>
-            
+
             <Button
                 Text="Create New"
                 SemanticProperties.Hint="Navigates to Main"

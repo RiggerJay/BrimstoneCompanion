@@ -5,6 +5,7 @@ using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -20,8 +21,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
-
-            Task.Run(Initialise);
         }
 
         [RelayCommand]
@@ -42,7 +41,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public ObservableCollection<ObservableCharacter> Characters { get; } = new();
 
-        private async Task Initialise()
+        [RelayCommand]
+        public async Task Initialise()
         {
             IsBusy = true;
             try
@@ -55,6 +55,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        protected override async void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            if (e.PropertyName == nameof(SelectedCharacter)
+                && SelectedCharacter != null)
+            {
+                await _navigationService.NavigateToAsync("main");
+                SelectedCharacter = null;
             }
         }
     }

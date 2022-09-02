@@ -18,6 +18,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             return _model;
         }
 
+        protected TObservedModel Model => _model;
+
         public bool SetProperty<TModel, T>(T oldValue, T newValue, TModel model, Action<TModel, T> callback, Action action, [CallerMemberName] string? propertyName = null)
             where TModel : class
         {
