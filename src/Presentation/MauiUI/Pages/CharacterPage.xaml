@@ -4,32 +4,640 @@
              xmlns:controls="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Controls"
              x:Class="RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages.CharacterPage"
              Title="{Binding Title}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="1*" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="6*" />
+        </Grid.RowDefinitions>
+        <!-- First Row -->
+        <Label
+            Text="XP"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            Grid.Row="0" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="0"
+            Grid.ColumnSpan="5"
+            Grid.Row="1">
+            <Label
+                Text="40000"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
 
-            <controls:MainLineStatsController
-                Grid.Column="0"
-                Grid.Row="0" />
+        <Label
+            Text="Grit"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="5"
+            Grid.ColumnSpan="5"
+            Grid.Row="0" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Margin="0"
+            Padding="0"
+            VerticalOptions="Start"
+            Grid.Column="5"
+            Grid.ColumnSpan="5"
+            Grid.Row="1">
+            <Label
+                Text="2"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
 
-            <controls:StatsView
-                Grid.Column="0"
-                Grid.Row="1" />
+        <Frame
+            CornerRadius="20"
+            HeightRequest="30"
+            WidthRequest="30"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Grid.Column="5"
+            Grid.ColumnSpan="5"
+            Grid.Row="1">
+            <Label
+                Text="3"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
 
-            <controls:HealthSanityController
-                Grid.Column="0"
-                Grid.Row="2" />
+        <Label
+            Text="Corrupt"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="10"
+            Grid.ColumnSpan="5"
+            Grid.Row="0" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="10"
+            Grid.ColumnSpan="5"
+            Grid.Row="1">
+            <Label
+                Text="1"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
 
-            <controls:EquipmentControl
-                Grid.Column="0"
-                Grid.Row="3" />
-        </Grid>
+        <Frame
+            CornerRadius="20"
+            HeightRequest="30"
+            WidthRequest="30"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Grid.Column="10"
+            Grid.ColumnSpan="5"
+            Grid.Row="1">
+            <Label
+                Text="2"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Heavy"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="15"
+            Grid.ColumnSpan="5"
+            Grid.Row="0" />
+        <Frame
+            CornerRadius="200"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="15"
+            Grid.ColumnSpan="5"
+            Grid.Row="1">
+            <Label
+                Text="1"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+        <!-- First Row -->
+
+        <!-- Second Row -->
+
+        <Label
+            Text="Agility"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.Row="2" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.Row="3">
+            <Label
+                Text="4"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Cunning"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="4"
+            Grid.ColumnSpan="4"
+            Grid.Row="2" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="4"
+            Grid.ColumnSpan="4"
+            Grid.Row="3">
+            <Label
+                Text="3"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Spirit"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="8"
+            Grid.ColumnSpan="4"
+            Grid.Row="2" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="8"
+            Grid.ColumnSpan="4"
+            Grid.Row="3">
+            <Label
+                Text="2"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Combat"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="12"
+            Grid.ColumnSpan="4"
+            Grid.Row="2" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="12"
+            Grid.ColumnSpan="4"
+            Grid.Row="3">
+            <Label
+                Text="1"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Range"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="16"
+            Grid.ColumnSpan="4"
+            Grid.Row="2" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="16"
+            Grid.ColumnSpan="4"
+            Grid.Row="3">
+            <Label
+                Text="4+"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <!-- Second Row -->
+
+        <!-- Third Row -->
+
+        <Label
+            Text="Strength"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.Row="4" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Grid.Row="5">
+            <Label
+                Text="4"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Lore"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="4"
+            Grid.ColumnSpan="4"
+            Grid.Row="4" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="4"
+            Grid.ColumnSpan="4"
+            Grid.Row="5">
+            <Label
+                Text="3"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Luck"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="8"
+            Grid.ColumnSpan="4"
+            Grid.Row="4" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="8"
+            Grid.ColumnSpan="4"
+            Grid.Row="5">
+            <Label
+                Text="2"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Initiative"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="12"
+            Grid.ColumnSpan="4"
+            Grid.Row="4" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="12"
+            Grid.ColumnSpan="4"
+            Grid.Row="5">
+            <Label
+                Text="1"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Melee"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="16"
+            Grid.ColumnSpan="4"
+            Grid.Row="4" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="16"
+            Grid.ColumnSpan="4"
+            Grid.Row="5">
+            <Label
+                Text="4+"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <!-- Third Row -->
+
+        <!-- Forth Row -->
+
+        <Label
+            Text="Wounds"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.ColumnSpan="5"
+            Grid.Column="0"
+            Grid.Row="6" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.ColumnSpan="5"
+            Grid.Column="0"
+            Grid.Row="7">
+            <Label
+                Text="0"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Health"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="5"
+            Grid.ColumnSpan="5"
+            Grid.Row="6" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="5"
+            Grid.ColumnSpan="5"
+            Grid.Row="7">
+            <Label
+                Text="22"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Horror"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.ColumnSpan="5"
+            Grid.Column="10"
+            Grid.Row="6" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.ColumnSpan="5"
+            Grid.Column="10"
+            Grid.Row="7">
+            <Label
+                Text="0"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Sanity"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="15"
+            Grid.ColumnSpan="5"
+            Grid.Row="6" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            Grid.Column="15"
+            Grid.ColumnSpan="5"
+            Grid.Row="7">
+            <Label
+                Text="22"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <!-- Forth Row -->
+
+        <!-- Fifth Row -->
+
+        <Label
+            Text="Defence"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.ColumnSpan="10"
+            Grid.Column="0"
+            Grid.Row="8" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Grid.ColumnSpan="10"
+            Grid.Column="0"
+            Grid.Row="9">
+            <Label
+                Text="4+"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Label
+            Text="Willpower"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.ColumnSpan="10"
+            Grid.Column="10"
+            Grid.Row="8" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Grid.Column="10"
+            Grid.ColumnSpan="10"
+            Grid.Row="9">
+            <Label
+                Text="4+"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <!-- Fifth Row -->
+
+        <!-- Sixth Row -->
+
+        <Label
+            Text="Gold"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="0"
+            Grid.ColumnSpan="6"
+            Grid.Row="10" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="End"
+            Grid.Column="0"
+            Grid.ColumnSpan="6"
+            Grid.Row="11">
+            <Label
+                Text="1000"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <Button
+            Text="Items"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Grid.Column="6"
+            Grid.ColumnSpan="8"
+            Grid.Row="10"
+            Grid.RowSpan="2" />
+
+        <Label
+            Text="Dark Stone"
+            Margin="0"
+            VerticalOptions="End"
+            HorizontalOptions="Center"
+            Grid.Column="14"
+            Grid.ColumnSpan="6"
+            Grid.Row="10" />
+        <Frame
+            CornerRadius="50"
+            HeightRequest="50"
+            WidthRequest="50"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            Grid.Column="14"
+            Grid.ColumnSpan="6"
+            Grid.Row="11">
+            <Label
+                Text="5"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
+
+        <!-- Sixth Row-->
+
+    </Grid>
 </ContentPage>
