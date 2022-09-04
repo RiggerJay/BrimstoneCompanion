@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
+using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -10,6 +12,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class CharacterViewModel : ViewModelBase
     {
         private readonly IRepository<Character> _repository;
+        private readonly INavigationService _navigationService;
 
         #region Fields
 
@@ -43,9 +46,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         #endregion Fields
 
-        public CharacterViewModel(IRepository<Character> repository)
+        public CharacterViewModel(INavigationService navigationService, IRepository<Character> repository)
         {
             Title = "Character";
+            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
@@ -90,28 +94,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         public ObservableAttribute Experience => GetAttribute(AttributeNames.XP, ref _experience);
-
         public ObservableAttribute Grit => GetAttribute(AttributeNames.GRIT, ref _grit);
-
         public ObservableAttribute Corruption => GetAttribute(AttributeNames.CORRUPTION, ref _corruption);
-
         public ObservableAttribute Heavy => GetAttribute(AttributeNames.HEAVY, ref _heavy);
 
-        #region Stats
-
         public ObservableAttribute Agility => GetAttribute(AttributeNames.AGILITY, ref _agility);
-
         public ObservableAttribute Cunning => GetAttribute(AttributeNames.CUNNING, ref _cunning);
-
         public ObservableAttribute Spirit => GetAttribute(AttributeNames.SPIRIT, ref _spirit);
-
         public ObservableAttribute Strength => GetAttribute(AttributeNames.STRENGTH, ref _cunning);
-
         public ObservableAttribute Lore => GetAttribute(AttributeNames.LORE, ref _lore);
-
         public ObservableAttribute Luck => GetAttribute(AttributeNames.LUCK, ref _luck);
-
-        #endregion Stats
 
         public ObservableAttribute Combat => GetAttribute(AttributeNames.COMBAT, ref _combat);
         public ObservableAttribute Range => GetAttribute(AttributeNames.RANGE, ref _range);
@@ -127,6 +119,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public ObservableAttribute Dollars => GetAttribute(AttributeNames.DOLLARS, ref _dollars);
         public ObservableAttribute DarkStone => GetAttribute(AttributeNames.DARKSTONE, ref _darkStone);
+
+        [RelayCommand]
+        public async Task UpdateAttribute(ObservableAttribute attribute)
+        {
+            if (await _navigationService.PushAsync<UpdateAttributePopup, bool>(new Dictionary<string, object> { { nameof(Attribute), attribute } }))
+            {
+                await _repository.SaveAsync(_character.GetModel(), _character.Id);
+            }
+        }
 
         private ObservableAttribute GetAttribute(string name, ref ObservableAttribute attribute)
         {

@@ -39,5 +39,22 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
             }
             return default;
         }
+
+        public async Task<TResult> PushAsync<TPage, TResult>(IDictionary<string, object> data) where TPage : Popup, IInitialisePopup
+        {
+            var page = PopupLocator.Locate<TPage>();
+
+            if (page is IInitialisePopup init)
+            {
+                init.Initialise(data);
+            }
+            var result = await Shell.Current.CurrentPage.ShowPopupAsync(_currentPopup = page);
+
+            if (result is TResult model)
+            {
+                return model;
+            }
+            return default;
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
         public virtual async Task SaveAsync(T model, string key)
         {
             var json = JsonConvert.SerializeObject(model);
-
+            System.Diagnostics.Debug.Write(json);
             await File.WriteAllTextAsync(GetFilePath(key), json, Encoding.UTF8);
         }
 

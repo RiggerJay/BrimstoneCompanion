@@ -6,6 +6,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
     {
         Task<TResult> PushAsync<TPage, TResult>() where TPage : Popup;
 
+        Task<TResult> PushAsync<TPage, TResult>(IDictionary<string, object> data) where TPage : Popup, IInitialisePopup;
+
         void Pop<TResult>(TResult result);
     }
 }

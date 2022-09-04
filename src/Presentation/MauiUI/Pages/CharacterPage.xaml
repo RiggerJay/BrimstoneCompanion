@@ -67,6 +67,9 @@
                 Text="{Binding Experience.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Experience}" />
+            </Frame.GestureRecognizers>
         </Frame>
 
         <Label

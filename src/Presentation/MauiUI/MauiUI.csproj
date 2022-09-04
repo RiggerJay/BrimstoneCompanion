@@ -71,6 +71,9 @@
 	  <MauiXaml Update="Pages\CharacterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\UpdateAttributePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popups\NewCharacterPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -79,6 +82,9 @@
 	<ItemGroup>
 	  <Compile Update="Pages\CharacterPage.xaml.cs">
 	    <DependentUpon>CharacterPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\UpdateAttributePopup.xaml.cs">
+	    <DependentUpon>UpdateAttributePopup.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

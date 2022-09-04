@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               Color="Transparent"
+               x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.UpdateAttributePopup">
+    <Border
+        Padding="10"
+        HorizontalOptions="Center">
+
+        <Grid RowDefinitions="2*,2*,2*" ColumnDefinitions="2*,4*,2*">
+
+            <Label
+                Text="{Binding Value}"
+                HorizontalOptions="Center"
+                VerticalOptions="StartAndExpand"
+                Grid.Row="0"
+                Grid.Column="1" />
+
+            <Button
+                Text="-"
+                Command="{Binding UpdateAttributeCommand}"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="StartAndExpand"
+                Grid.Row="1"
+                Grid.Column="0" />
+
+            <Entry
+                Text="{Binding UpdateValue}"
+                Keyboard="Numeric"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="StartAndExpand"
+                WidthRequest="50"
+                Grid.Row="1"
+                Grid.Column="1" />
+
+            <Button
+                Text="+"
+                Command="{Binding UpdateAttributeCommand}"
+                HorizontalOptions="EndAndExpand"
+                VerticalOptions="StartAndExpand"
+                Grid.Row="1"
+                Grid.Column="3" />
+
+            <Button
+                Text="Close"
+                VerticalOptions="StartAndExpand"
+                Command="{Binding SaveAndCloseCommand}"
+                Grid.Row="2"
+                Grid.Column="1" />
+        </Grid>
+    </Border>
+</toolkit:Popup>
