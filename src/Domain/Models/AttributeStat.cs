@@ -1,8 +1,9 @@
 ﻿namespace RedSpartan.BrimstoneCompanion.Domain.Models
 {
-    public class Attribute
+    public class AttributeStat
     {
-        public string Name { get; set; } = string.Empty;
         public int Value { get; set; }
+
+        public int? MaxValue { get; set; } = null;
     }
 }

@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using RedSpartan.BrimstoneCompanion.Domain.Models;
+﻿using RedSpartan.BrimstoneCompanion.Domain.Models;
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
@@ -9,7 +8,12 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         { }
 
         public ObservableCharacter(Character character) : base(character)
-        { }
+        {
+            foreach (var attribute in Model.Attributes)
+            {
+                Attributes.Add(attribute.Key, new ObservableAttribute(attribute.Value));
+            }
+        }
 
         public string Id
         {
@@ -33,6 +37,15 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             get => Model.Level;
             set => SetProperty(Model.Level, value, Model, (model, _value) => model.Level = _value);
+        }
+
+        public IDictionary<string, ObservableAttribute> Attributes { get; } = new Dictionary<string, ObservableAttribute>();
+
+        public ObservableAttribute AddAttribute(string key, ObservableAttribute attribute)
+        {
+            Attributes.Add(key, attribute);
+            Model.Attributes.Add(key, attribute.GetModel());
+            return attribute;
         }
     }
 }

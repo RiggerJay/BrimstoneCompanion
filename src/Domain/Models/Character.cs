@@ -8,7 +8,7 @@
         public string Class { get; set; } = string.Empty;
         public byte Level { get; set; } = 1;
 
-        public IDictionary<string, Attribute> Attributes { get; set; }
-            = new Dictionary<string, Attribute>();
+        public IDictionary<string, AttributeStat> Attributes { get; set; }
+            = new Dictionary<string, AttributeStat>();
     }
 }

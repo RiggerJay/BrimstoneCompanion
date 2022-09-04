@@ -43,6 +43,7 @@
             <RowDefinition Height="4*" />
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
+
         <!-- First Row -->
         <Label
             Text="XP"
@@ -63,7 +64,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="40000"
+                Text="{Binding Experience.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -87,7 +88,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="2"
+                Text="{Binding Grit.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -104,7 +105,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="3"
+                Text="{Binding Grit.MaxValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -128,7 +129,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="1"
+                Text="{Binding Corruption.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -145,7 +146,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="2"
+                Text="{Binding Corruption.MaxValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -169,7 +170,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="1"
+                Text="{Binding Heavy.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -196,7 +197,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="4"
+                Text="{Binding Agility.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -220,7 +221,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="3"
+                Text="{Binding Cunning.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -244,7 +245,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="2"
+                Text="{Binding Spirit.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -268,7 +269,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="1"
+                Text="{Binding Combat.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -292,7 +293,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="4+"
+                Text="{Binding Range.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -320,7 +321,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="4"
+                Text="{Binding Strength.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -344,7 +345,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="3"
+                Text="{Binding Lore.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -368,7 +369,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="2"
+                Text="{Binding Luck.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -392,7 +393,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="1"
+                Text="{Binding Initiative.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -416,7 +417,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="4+"
+                Text="{Binding Melee.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -444,7 +445,7 @@
             Grid.Column="0"
             Grid.Row="7">
             <Label
-                Text="0"
+                Text="{Binding Wounds.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -468,7 +469,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
-                Text="22"
+                Text="{Binding Health.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -492,7 +493,7 @@
             Grid.Column="10"
             Grid.Row="7">
             <Label
-                Text="0"
+                Text="{Binding Horror.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -516,7 +517,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
-                Text="22"
+                Text="{Binding Sanity.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -545,7 +546,7 @@
             Grid.Column="0"
             Grid.Row="9">
             <Label
-                Text="4+"
+                Text="{Binding Defence.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -570,7 +571,7 @@
             Grid.ColumnSpan="10"
             Grid.Row="9">
             <Label
-                Text="4+"
+                Text="{Binding Willpower.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -580,7 +581,7 @@
         <!-- Sixth Row -->
 
         <Label
-            Text="Gold"
+            Text="Dollars"
             Margin="0"
             VerticalOptions="End"
             HorizontalOptions="Center"
@@ -598,7 +599,7 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
-                Text="1000"
+                Text="{Binding Dollars.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -632,12 +633,11 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
-                Text="5"
+                Text="{Binding DarkStone.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
 
         <!-- Sixth Row-->
-
     </Grid>
 </ContentPage>
