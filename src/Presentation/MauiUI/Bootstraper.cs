@@ -17,6 +17,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
         {
             mauiAppBuilder.Services.AddSingleton<INavigationService, MauiNavigationService>();
             mauiAppBuilder.Services.AddSingleton<ITextResource, TextResourceService>();
+            mauiAppBuilder.Services.AddSingleton<ICharacterService, CharacterService>();
             mauiAppBuilder.Services.AddSingleton<IRepository<Character>, CharacterRepository>();
             mauiAppBuilder.Services.AddSingleton(FileSystem.Current);
 

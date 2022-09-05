@@ -13,13 +13,26 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
             _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
         }
 
+        public bool Delete(string key)
+        {
+            var file = GetFilePath(key);
+            if (File.Exists(file))
+            {
+                File.Delete(file);
+                return true;
+            }
+            return false;
+        }
+
         public virtual async Task<IList<T>> GetAsync()
         {
             var list = new List<T>();
 
             foreach (var file in Directory.GetFiles(GetFolderName()))
             {
-                list.Add(JsonConvert.DeserializeObject<T>(await File.ReadAllTextAsync(file, Encoding.UTF8)));
+                var json = await File.ReadAllTextAsync(file, Encoding.UTF8);
+                var model = JsonConvert.DeserializeObject<T>(json);
+                list.Add(model);
             }
 
             return list;

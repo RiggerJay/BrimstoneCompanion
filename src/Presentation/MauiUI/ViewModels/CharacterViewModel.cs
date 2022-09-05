@@ -2,7 +2,6 @@
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
-using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
@@ -10,9 +9,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     [QueryProperty(nameof(Character), nameof(Character))]
     public partial class CharacterViewModel : ViewModelBase
     {
-        private readonly IRepository<Character> _repository;
         private readonly INavigationService _navigationService;
         private readonly ITextResource _textResource;
+        private readonly ICharacterService _characterService;
 
         #region Fields
 
@@ -47,13 +46,13 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         #endregion Fields
 
         public CharacterViewModel(INavigationService navigationService
-            , IRepository<Character> repository
+            , ICharacterService characterService
             , ITextResource textResource)
         {
             Title = "Character";
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
+            _characterService = characterService ?? throw new ArgumentNullException(nameof(characterService));
 
             _experience = ObservableAttribute.New(_textResource.GetValue(AttributeNames.XP), 0);
 
@@ -120,7 +119,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 OnPropertyChanged(nameof(Dollars));
                 OnPropertyChanged(nameof(DarkStone));
 
-                Task.Run(async () => await _repository.SaveAsync(_character.GetModel(), _character.Id));
+                Task.Run(async () => await _characterService.SaveAsync(_character));
             }
         }
 
@@ -156,14 +155,14 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (await _navigationService.PushAsync<UpdateAttributePopup, bool>(new Dictionary<string, object> { { nameof(Attribute), attribute } }))
             {
-                await _repository.SaveAsync(_character.GetModel(), _character.Id);
+                await _characterService.SaveAsync(_character);
             }
         }
 
         [RelayCommand]
         public async Task DeleteCharacter()
         {
-            //TODO: add messaging to delete the character
+            _characterService.Delete(Character);
             await _navigationService.NavigateBackAsync();
         }
 

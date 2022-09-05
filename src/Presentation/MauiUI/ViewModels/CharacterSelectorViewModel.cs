@@ -12,15 +12,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class CharacterSelectorViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly IRepository<Character> _repository;
+        private readonly ICharacterService _characterService;
 
         [ObservableProperty]
         private ObservableCharacter? _selectedCharacter;
 
-        public CharacterSelectorViewModel(INavigationService navigationService, IRepository<Character> repository)
+        public CharacterSelectorViewModel(INavigationService navigationService
+            , ICharacterService characterService)
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _characterService = characterService ?? throw new ArgumentNullException(nameof(characterService));
             Title = "Character Selector";
         }
 
@@ -36,11 +37,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 Characters.Add(results);
                 SelectedCharacter = results;
-                await _repository.SaveAsync(results.GetModel(), results.Id);
+                await _characterService.SaveAsync(results);
             }
         }
 
-        public ObservableCollection<ObservableCharacter> Characters { get; } = new();
+        public ObservableCollection<ObservableCharacter> Characters { get; set; } = new();
 
         [RelayCommand]
         public async Task Initialise()
@@ -48,10 +49,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             IsBusy = true;
             try
             {
-                foreach (var character in await _repository.GetAsync())
-                {
-                    Characters.Add(new ObservableCharacter(character));
-                }
+                Characters = await _characterService.GetAllAsync();
+                OnPropertyChanged(nameof(Characters));
             }
             finally
             {
