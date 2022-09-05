@@ -22,7 +22,7 @@
         public const string SANITY = "SAN";
         public const string DEFENCE = "DEF";
         public const string WILLPOWER = "WIL";
-        public const string DOLLARS = "$$$";
+        public const string DOLLARS = "DLR";
         public const string DARKSTONE = "DKS";
     }
 }

@@ -4,8 +4,16 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableAttribute : ObservableModel<AttributeStat>
     {
-        public ObservableAttribute(AttributeStat model) : base(model)
+        public string _name = string.Empty;
+
+        public ObservableAttribute(string name, AttributeStat model) : base(model)
         { }
+
+        public string Name
+        {
+            get => _name;
+            set => SetProperty(ref _name, value);
+        }
 
         public int Value
         {
@@ -19,7 +27,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.MaxValue, value, Model, (model, _value) => model.MaxValue = _value);
         }
 
-        public static ObservableAttribute New(int value, int? maxvalue = null) => new(new AttributeStat()
+        public static ObservableAttribute New(string name, int value, int? maxvalue = null) => new(name, new AttributeStat()
         {
             Value = value,
             MaxValue = maxvalue

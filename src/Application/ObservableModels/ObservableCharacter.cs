@@ -1,4 +1,5 @@
-﻿using RedSpartan.BrimstoneCompanion.Domain.Models;
+﻿using RedSpartan.BrimstoneCompanion.AppLayer.Resources;
+using RedSpartan.BrimstoneCompanion.Domain.Models;
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
@@ -11,7 +12,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             foreach (var attribute in Model.Attributes)
             {
-                Attributes.Add(attribute.Key, new ObservableAttribute(attribute.Value));
+                Attributes.Add(attribute.Key, new ObservableAttribute(TextResource.ResourceManager.GetString(attribute.Key) ?? string.Empty, attribute.Value));
             }
         }
 

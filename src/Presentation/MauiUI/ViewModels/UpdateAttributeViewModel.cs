@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
+using static Java.Util.Jar.Attributes;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -9,9 +10,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly INavigationService _navigationService;
 
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Value))]
         private ObservableAttribute _attribute;
+
+        private int _originalValue;
 
         [ObservableProperty]
         private int? _updateValue;
@@ -21,23 +22,51 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
         }
 
-        public int Value => Attribute.Value;
+        public int Value => Attribute?.Value ?? 0;
+
+        public ObservableAttribute Attribute
+        {
+            get => _attribute;
+            set
+            {
+                SetProperty(ref _attribute, value);
+                _originalValue = _attribute.Value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
+
+        public void Reset()
+        {
+            _attribute.Value = _originalValue;
+        }
 
         [RelayCommand]
-        public void SaveAndClose()
+        private void SaveAndClose()
         {
             _navigationService.Pop(true);
         }
 
         [RelayCommand]
-        public void UpdateAttribute()
+        private void Overwrite()
         {
             if (UpdateValue == null)
             {
                 return;
             }
 
-            if (true)
+            Attribute.Value = (int)UpdateValue;
+            OnPropertyChanged(nameof(Value));
+        }
+
+        [RelayCommand]
+        private void UpdateAttribute(bool addition = true)
+        {
+            if (UpdateValue == null)
+            {
+                return;
+            }
+
+            if (addition)
             {
                 Attribute.Value += (int)UpdateValue;
             }
@@ -45,6 +74,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 Attribute.Value -= (int)UpdateValue;
             }
+            UpdateValue = null;
+            OnPropertyChanged(nameof(Value));
         }
     }
 }

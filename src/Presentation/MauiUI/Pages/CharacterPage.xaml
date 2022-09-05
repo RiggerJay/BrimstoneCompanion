@@ -4,6 +4,12 @@
              xmlns:controls="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Controls"
              x:Class="RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages.CharacterPage"
              Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Delete Character"
+            IconImageSource="icon_bin.png"
+            Command="{Binding DeleteCharacterCommand}" />
+    </ContentPage.ToolbarItems>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />

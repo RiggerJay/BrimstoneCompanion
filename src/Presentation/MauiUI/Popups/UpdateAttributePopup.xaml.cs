@@ -25,4 +25,10 @@ public partial class UpdateAttributePopup : CommunityToolkit.Maui.Views.Popup, I
         }
         return false;
     }
+
+    protected override void OnDismissedByTappingOutsideOfPopup()
+    {
+        base.OnDismissedByTappingOutsideOfPopup();
+        _viewModel.Reset();
+    }
 }

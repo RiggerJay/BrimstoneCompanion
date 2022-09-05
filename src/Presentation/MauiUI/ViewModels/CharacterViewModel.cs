@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
@@ -13,44 +12,76 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly IRepository<Character> _repository;
         private readonly INavigationService _navigationService;
+        private readonly ITextResource _textResource;
 
         #region Fields
 
         private ObservableCharacter _character;
-        private ObservableAttribute _experience = ObservableAttribute.New(0);
-        private ObservableAttribute _grit = ObservableAttribute.New(1, 2);
-        private ObservableAttribute _corruption = ObservableAttribute.New(0, 5);
-        private ObservableAttribute _heavy = ObservableAttribute.New(5);
+        private ObservableAttribute _experience;
+        private ObservableAttribute _grit;
+        private ObservableAttribute _corruption;
+        private ObservableAttribute _heavy;
 
-        private ObservableAttribute _agility = ObservableAttribute.New(2);
-        private ObservableAttribute _cunning = ObservableAttribute.New(2);
-        private ObservableAttribute _spirit = ObservableAttribute.New(2);
-        private ObservableAttribute _strength = ObservableAttribute.New(2);
-        private ObservableAttribute _lore = ObservableAttribute.New(2);
-        private ObservableAttribute _luck = ObservableAttribute.New(2);
+        private ObservableAttribute _agility;
+        private ObservableAttribute _cunning;
+        private ObservableAttribute _spirit;
+        private ObservableAttribute _strength;
+        private ObservableAttribute _lore;
+        private ObservableAttribute _luck;
 
-        private ObservableAttribute _combat = ObservableAttribute.New(2);
-        private ObservableAttribute _range = ObservableAttribute.New(4);
-        private ObservableAttribute _iniative = ObservableAttribute.New(5);
-        private ObservableAttribute _melee = ObservableAttribute.New(4);
+        private ObservableAttribute _combat;
+        private ObservableAttribute _range;
+        private ObservableAttribute _iniative;
+        private ObservableAttribute _melee;
 
-        private ObservableAttribute _wounds = ObservableAttribute.New(0);
-        private ObservableAttribute _health = ObservableAttribute.New(10);
-        private ObservableAttribute _horror = ObservableAttribute.New(0);
-        private ObservableAttribute _sanity = ObservableAttribute.New(10);
-        private ObservableAttribute _defence = ObservableAttribute.New(4);
-        private ObservableAttribute _willpower = ObservableAttribute.New(4);
+        private ObservableAttribute _wounds;
+        private ObservableAttribute _health;
+        private ObservableAttribute _horror;
+        private ObservableAttribute _sanity;
+        private ObservableAttribute _defence;
+        private ObservableAttribute _willpower;
 
-        private ObservableAttribute _dollars = ObservableAttribute.New(0);
-        private ObservableAttribute _darkStone = ObservableAttribute.New(0);
+        private ObservableAttribute _dollars;
+        private ObservableAttribute _darkStone;
 
         #endregion Fields
 
-        public CharacterViewModel(INavigationService navigationService, IRepository<Character> repository)
+        public CharacterViewModel(INavigationService navigationService
+            , IRepository<Character> repository
+            , ITextResource textResource)
         {
             Title = "Character";
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
+
+            _experience = ObservableAttribute.New(_textResource.GetValue(AttributeNames.XP), 0);
+
+            _grit = ObservableAttribute.New(_textResource.GetValue(AttributeNames.GRIT), 1, 2);
+            _corruption = ObservableAttribute.New(_textResource.GetValue(AttributeNames.CORRUPTION), 0, 5);
+            _heavy = ObservableAttribute.New(_textResource.GetValue(AttributeNames.HEAVY), 5);
+
+            _agility = ObservableAttribute.New(_textResource.GetValue(AttributeNames.AGILITY), 2);
+            _cunning = ObservableAttribute.New(_textResource.GetValue(AttributeNames.CUNNING), 2);
+            _spirit = ObservableAttribute.New(_textResource.GetValue(AttributeNames.SPIRIT), 2);
+            _strength = ObservableAttribute.New(_textResource.GetValue(AttributeNames.STRENGTH), 2);
+            _lore = ObservableAttribute.New(_textResource.GetValue(AttributeNames.LORE), 2);
+            _luck = ObservableAttribute.New(_textResource.GetValue(AttributeNames.LUCK), 2);
+
+            _combat = ObservableAttribute.New(_textResource.GetValue(AttributeNames.COMBAT), 2);
+            _range = ObservableAttribute.New(_textResource.GetValue(AttributeNames.RANGE), 4);
+            _iniative = ObservableAttribute.New(_textResource.GetValue(AttributeNames.INITIATIVE), 5);
+            _melee = ObservableAttribute.New(_textResource.GetValue(AttributeNames.MELEE), 4);
+
+            _wounds = ObservableAttribute.New(_textResource.GetValue(AttributeNames.WOUNDS), 0);
+            _health = ObservableAttribute.New(_textResource.GetValue(AttributeNames.HEALTH), 10);
+            _horror = ObservableAttribute.New(_textResource.GetValue(AttributeNames.HORROR), 0);
+            _sanity = ObservableAttribute.New(_textResource.GetValue(AttributeNames.SANITY), 10);
+            _defence = ObservableAttribute.New(_textResource.GetValue(AttributeNames.DEFENCE), 4);
+            _willpower = ObservableAttribute.New(_textResource.GetValue(AttributeNames.WILLPOWER), 4);
+
+            _dollars = ObservableAttribute.New(_textResource.GetValue(AttributeNames.DOLLARS), 0);
+            _darkStone = ObservableAttribute.New(_textResource.GetValue(AttributeNames.DARKSTONE), 0);
         }
 
         public ObservableCharacter Character
@@ -127,6 +158,13 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 await _repository.SaveAsync(_character.GetModel(), _character.Id);
             }
+        }
+
+        [RelayCommand]
+        public async Task DeleteCharacter()
+        {
+            //TODO: add messaging to delete the character
+            await _navigationService.NavigateBackAsync();
         }
 
         private ObservableAttribute GetAttribute(string name, ref ObservableAttribute attribute)
