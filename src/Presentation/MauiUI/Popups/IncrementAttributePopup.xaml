@@ -20,26 +20,70 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Label
+                Text="{Binding Name}"
                 HorizontalOptions="CenterAndExpand"
                 Grid.Row="0"
                 Grid.Column="0"
-                Grid.ColumnSpan="2">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span
-                            Text="{Binding Name}" />
-                        <Span
-                            Text="{Binding Value, StringFormat=' ({0})'}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                Grid.ColumnSpan="3" />
 
             <Button
                 Text="-"
-                Command="{Binding UpdateAttributeCommand}"
+                Command="{Binding IncrementMaxValueCommand}"
+                IsVisible="{Binding HasMaxValue}"
+                HorizontalOptions="Center"
+                Padding="20,10"
+                Margin="2"
+                Grid.Row="1"
+                Grid.Column="0">
+                <Button.CommandParameter>
+                    <s:Boolean>False</s:Boolean>
+                </Button.CommandParameter>
+            </Button>
+
+            <Label
+                Text="Max Value"
+                IsVisible="{Binding HasMaxValue}"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Grid.Row="1"
+                Grid.Column="1" />
+
+            <Frame
+                CornerRadius="5"
+                IsVisible="{Binding HasMaxValue}"
+                Margin="10,5"
+                Padding="5,0"
+                Grid.Row="1"
+                Grid.Column="2">
+                <Label
+                    Text="{Binding MaxValue}"
+                    IsVisible="{Binding HasMaxValue}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+            </Frame>
+
+            <Button
+                Text="+"
+                Command="{Binding IncrementMaxValueCommand}"
+                IsVisible="{Binding HasMaxValue}"
+                HorizontalOptions="Center"
+                Padding="20,10"
+                Margin="2"
+                Grid.Row="1"
+                Grid.Column="3">
+                <Button.CommandParameter>
+                    <s:Boolean>True</s:Boolean>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button
+                Text="-"
+                Command="{Binding IncrementValueCommand}"
                 HorizontalOptions="Center"
                 Padding="20,10"
                 Margin="2"
@@ -50,9 +94,29 @@
                 </Button.CommandParameter>
             </Button>
 
+            <Label
+                Text="Value"
+                IsVisible="{Binding MaxValue}"
+                HorizontalOptions="Start"
+                VerticalOptions="CenterAndExpand"
+                Grid.Row="2"
+                Grid.Column="1" />
+
+            <Frame
+                CornerRadius="5"
+                Margin="10,5"
+                Padding="5,0"
+                Grid.Row="2"
+                Grid.Column="2">
+                <Label
+                    Text="{Binding Value}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+            </Frame>
+
             <Button
                 Text="+"
-                Command="{Binding UpdateAttributeCommand}"
+                Command="{Binding IncrementValueCommand}"
                 HorizontalOptions="Center"
                 Padding="20,10"
                 Margin="2"
@@ -64,22 +128,14 @@
             </Button>
 
             <Button
-                Text="Overwrite"
-                WidthRequest="100"
-                Padding="0,5"
-                Margin="2"
-                Command="{Binding OverwriteCommand}"
-                Grid.Row="3"
-                Grid.Column="0" />
-
-            <Button
                 Text="Save"
                 WidthRequest="100"
                 Padding="0,5"
                 Margin="2"
                 Command="{Binding SaveAndCloseCommand}"
                 Grid.Row="3"
-                Grid.Column="1" />
+                Grid.Column="1"
+                Grid.ColumnSpan="2" />
         </Grid>
     </Border>
 </toolkit:Popup>

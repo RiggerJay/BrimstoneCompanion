@@ -120,6 +120,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
+        #region Observable Attribute
+
         public ObservableAttribute Experience => GetAttribute(AttributeNames.XP, ref _experience);
         public ObservableAttribute Grit => GetAttribute(AttributeNames.GRIT, ref _grit);
         public ObservableAttribute Corruption => GetAttribute(AttributeNames.CORRUPTION, ref _corruption);
@@ -147,10 +149,21 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public ObservableAttribute Dollars => GetAttribute(AttributeNames.DOLLARS, ref _dollars);
         public ObservableAttribute DarkStone => GetAttribute(AttributeNames.DARKSTONE, ref _darkStone);
 
+        #endregion Observable Attribute
+
         [RelayCommand]
         public async Task UpdateAttribute(ObservableAttribute attribute)
         {
             if (await _navigationService.PushAsync<UpdateAttributePopup, bool>(new Dictionary<string, object> { { nameof(Attribute), attribute } }))
+            {
+                await _characterService.SaveAsync(_character);
+            }
+        }
+
+        [RelayCommand]
+        public async Task IncrementAttribute(ObservableAttribute attribute)
+        {
+            if (await _navigationService.PushAsync<IncrementAttributePopup, bool>(new Dictionary<string, object> { { nameof(Attribute), attribute } }))
             {
                 await _characterService.SaveAsync(_character);
             }
