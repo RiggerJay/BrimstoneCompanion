@@ -26,6 +26,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddTransient<NewCharacterViewModel>();
             mauiAppBuilder.Services.AddTransient<CharacterViewModel>();
             mauiAppBuilder.Services.AddTransient<UpdateAttributeViewModel>();
+            mauiAppBuilder.Services.AddTransient<IncrementAttributeViewModel>();
 
             mauiAppBuilder.Services.AddTransient<AppShell>();
 
@@ -35,6 +36,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
 
             mauiAppBuilder.RegisterPopup<NewCharacterPopup>();
             mauiAppBuilder.RegisterPopup<UpdateAttributePopup>();
+            mauiAppBuilder.RegisterPopup<IncrementAttributePopup>();
 
             return mauiAppBuilder;
         }
