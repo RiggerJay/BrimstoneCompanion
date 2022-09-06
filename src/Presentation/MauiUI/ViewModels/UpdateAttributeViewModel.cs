@@ -47,6 +47,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         private void SaveAndClose()
         {
+            if (UpdateValue != null)
+            {
+                Attribute.Value += (int)UpdateValue;
+            }
             _navigationService.Pop(true);
         }
 
