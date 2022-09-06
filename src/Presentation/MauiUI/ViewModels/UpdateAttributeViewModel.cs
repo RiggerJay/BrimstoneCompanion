@@ -65,19 +65,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         private void UpdateAttribute(bool addition = true)
         {
-            if (UpdateValue == null)
-            {
-                return;
-            }
+            Attribute.Value += GetValue(UpdateValue, addition);
 
-            if (addition)
-            {
-                Attribute.Value += (int)UpdateValue;
-            }
-            else
-            {
-                Attribute.Value -= (int)UpdateValue;
-            }
             ResetValue();
         }
 
@@ -85,6 +74,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             UpdateValue = null;
             OnPropertyChanged(nameof(Value));
+        }
+
+        private static int GetValue(int? updateValue, bool addition)
+        {
+            if (updateValue == null)
+            {
+                return addition ? 1 : -1;
+            }
+
+            return addition ? (int)updateValue : (int)updateValue * -1;
         }
     }
 }
