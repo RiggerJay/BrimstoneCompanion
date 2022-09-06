@@ -19,7 +19,7 @@
                     Text="{Binding Name}"
                     Placeholder="Name your character"
                     VerticalOptions="Center"
-                    HorizontalOptions="Center" />
+                    HorizontalOptions="Center"/>
             </Frame>
 
             <Frame CornerRadius="5"

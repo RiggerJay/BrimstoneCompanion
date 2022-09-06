@@ -55,7 +55,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
 
             Attribute.Value = (int)UpdateValue;
-            OnPropertyChanged(nameof(Value));
+            ResetValue();
         }
 
         [RelayCommand]
@@ -74,6 +74,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 Attribute.Value -= (int)UpdateValue;
             }
+            ResetValue();
+        }
+
+        private void ResetValue()
+        {
             UpdateValue = null;
             OnPropertyChanged(nameof(Value));
         }
