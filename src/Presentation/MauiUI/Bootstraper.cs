@@ -27,16 +27,20 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddTransient<CharacterViewModel>();
             mauiAppBuilder.Services.AddTransient<UpdateAttributeViewModel>();
             mauiAppBuilder.Services.AddTransient<IncrementAttributeViewModel>();
+            mauiAppBuilder.Services.AddTransient<CharacterNotesViewModel>();
+            mauiAppBuilder.Services.AddTransient<AddFeatureViewModel>();
 
             mauiAppBuilder.Services.AddTransient<AppShell>();
 
             mauiAppBuilder.RegisterPage<MainPage>("main");
             mauiAppBuilder.RegisterPage<CharacterPage>("character");
             mauiAppBuilder.RegisterPage<CharacterSelectorPage>("characterselector");
+            mauiAppBuilder.RegisterPage<CharacterNotesPage>("characternotes");
 
             mauiAppBuilder.RegisterPopup<NewCharacterPopup>();
             mauiAppBuilder.RegisterPopup<UpdateAttributePopup>();
             mauiAppBuilder.RegisterPopup<IncrementAttributePopup>();
+            mauiAppBuilder.RegisterPopup<AddFeaturePopup>();
 
             return mauiAppBuilder;
         }

@@ -66,6 +66,9 @@
 	  <MauiXaml Update="Controls\MouseView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\CharacterNotesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\CharacterSelectorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -73,6 +76,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\IncrementAttributePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\AddFeaturePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\UpdateAttributePopup.xaml">
@@ -89,6 +95,9 @@
 	  </Compile>
 	  <Compile Update="Popups\IncrementAttributePopup.xaml.cs">
 	    <DependentUpon>IncrementAttributePopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\AddFeaturePopup.xaml.cs">
+	    <DependentUpon>AddFeaturePopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\UpdateAttributePopup.xaml.cs">
 	    <DependentUpon>UpdateAttributePopup.xaml</DependentUpon>

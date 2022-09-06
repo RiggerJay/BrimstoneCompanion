@@ -179,6 +179,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task ShowNotes()
+        {
+            await _navigationService.NavigateToAsync("characternotes", new Dictionary<string, object>
+            {
+                { nameof(Character.Features), Character.Features }
+            });
+        }
+
         private ObservableAttribute GetAttribute(string name, ref ObservableAttribute attribute)
         {
             if (Character == null)

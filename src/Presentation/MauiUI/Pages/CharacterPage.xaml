@@ -674,7 +674,8 @@
         </Frame>
 
         <Button
-            Text="Items"
+            Text="Notes"
+            Command="{Binding ShowNotesCommand}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
             Grid.Column="6"

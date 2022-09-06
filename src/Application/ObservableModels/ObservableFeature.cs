@@ -1,9 +1,4 @@
 ﻿using RedSpartan.BrimstoneCompanion.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
@@ -56,5 +51,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         }
 
         public IDictionary<string, int> Properties => Model.Properties;
+
+        public static ObservableFeature New() => new(new Feature());
     }
 }
