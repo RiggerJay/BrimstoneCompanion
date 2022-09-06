@@ -10,7 +10,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class CharacterViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly ITextResource _textResource;
         private readonly ICharacterService _characterService;
 
         #region Fields
@@ -46,41 +45,39 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         #endregion Fields
 
         public CharacterViewModel(INavigationService navigationService
-            , ICharacterService characterService
-            , ITextResource textResource)
+            , ICharacterService characterService)
         {
             Title = "Character";
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
             _characterService = characterService ?? throw new ArgumentNullException(nameof(characterService));
 
-            _experience = ObservableAttribute.New(_textResource.GetValue(AttributeNames.XP), 0);
+            _experience = ObservableAttribute.New(AttributeNames.XP, 0);
 
-            _grit = ObservableAttribute.New(_textResource.GetValue(AttributeNames.GRIT), 1, 2);
-            _corruption = ObservableAttribute.New(_textResource.GetValue(AttributeNames.CORRUPTION), 0, 5);
-            _heavy = ObservableAttribute.New(_textResource.GetValue(AttributeNames.HEAVY), 5);
+            _grit = ObservableAttribute.New(AttributeNames.GRIT, 1, 2);
+            _corruption = ObservableAttribute.New(AttributeNames.CORRUPTION, 0, 5);
+            _heavy = ObservableAttribute.New(AttributeNames.HEAVY, 5);
 
-            _agility = ObservableAttribute.New(_textResource.GetValue(AttributeNames.AGILITY), 2);
-            _cunning = ObservableAttribute.New(_textResource.GetValue(AttributeNames.CUNNING), 2);
-            _spirit = ObservableAttribute.New(_textResource.GetValue(AttributeNames.SPIRIT), 2);
-            _strength = ObservableAttribute.New(_textResource.GetValue(AttributeNames.STRENGTH), 2);
-            _lore = ObservableAttribute.New(_textResource.GetValue(AttributeNames.LORE), 2);
-            _luck = ObservableAttribute.New(_textResource.GetValue(AttributeNames.LUCK), 2);
+            _agility = ObservableAttribute.New(AttributeNames.AGILITY, 2);
+            _cunning = ObservableAttribute.New(AttributeNames.CUNNING, 2);
+            _spirit = ObservableAttribute.New(AttributeNames.SPIRIT, 2);
+            _strength = ObservableAttribute.New(AttributeNames.STRENGTH, 2);
+            _lore = ObservableAttribute.New(AttributeNames.LORE, 2);
+            _luck = ObservableAttribute.New(AttributeNames.LUCK, 2);
 
-            _combat = ObservableAttribute.New(_textResource.GetValue(AttributeNames.COMBAT), 2);
-            _range = ObservableAttribute.New(_textResource.GetValue(AttributeNames.RANGE), 4);
-            _iniative = ObservableAttribute.New(_textResource.GetValue(AttributeNames.INITIATIVE), 5);
-            _melee = ObservableAttribute.New(_textResource.GetValue(AttributeNames.MELEE), 4);
+            _combat = ObservableAttribute.New(AttributeNames.COMBAT, 2);
+            _range = ObservableAttribute.New(AttributeNames.RANGE, 4);
+            _iniative = ObservableAttribute.New(AttributeNames.INITIATIVE, 5);
+            _melee = ObservableAttribute.New(AttributeNames.MELEE, 4);
 
-            _wounds = ObservableAttribute.New(_textResource.GetValue(AttributeNames.WOUNDS), 0);
-            _health = ObservableAttribute.New(_textResource.GetValue(AttributeNames.HEALTH), 10);
-            _horror = ObservableAttribute.New(_textResource.GetValue(AttributeNames.HORROR), 0);
-            _sanity = ObservableAttribute.New(_textResource.GetValue(AttributeNames.SANITY), 10);
-            _defence = ObservableAttribute.New(_textResource.GetValue(AttributeNames.DEFENCE), 4);
-            _willpower = ObservableAttribute.New(_textResource.GetValue(AttributeNames.WILLPOWER), 4);
+            _wounds = ObservableAttribute.New(AttributeNames.WOUNDS, 0);
+            _health = ObservableAttribute.New(AttributeNames.HEALTH, 10);
+            _horror = ObservableAttribute.New(AttributeNames.HORROR, 0);
+            _sanity = ObservableAttribute.New(AttributeNames.SANITY, 10);
+            _defence = ObservableAttribute.New(AttributeNames.DEFENCE, 4);
+            _willpower = ObservableAttribute.New(AttributeNames.WILLPOWER, 4);
 
-            _dollars = ObservableAttribute.New(_textResource.GetValue(AttributeNames.DOLLARS), 0);
-            _darkStone = ObservableAttribute.New(_textResource.GetValue(AttributeNames.DARKSTONE), 0);
+            _dollars = ObservableAttribute.New(AttributeNames.DOLLARS, 0);
+            _darkStone = ObservableAttribute.New(AttributeNames.DARKSTONE, 0);
         }
 
         public ObservableCharacter Character

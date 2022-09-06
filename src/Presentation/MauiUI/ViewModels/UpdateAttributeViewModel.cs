@@ -2,13 +2,13 @@
 using CommunityToolkit.Mvvm.Input;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
-using static Java.Util.Jar.Attributes;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     public partial class UpdateAttributeViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly ITextResource _textResource;
 
         private ObservableAttribute _attribute;
 
@@ -17,12 +17,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [ObservableProperty]
         private int? _updateValue;
 
-        public UpdateAttributeViewModel(INavigationService navigationService)
+        public UpdateAttributeViewModel(INavigationService navigationService
+            , ITextResource textResource)
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
         }
 
         public int Value => Attribute?.Value ?? 0;
+        public string Name => _textResource.GetValue(Attribute?.Key ?? string.Empty);
 
         public ObservableAttribute Attribute
         {
@@ -32,6 +35,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 SetProperty(ref _attribute, value);
                 _originalValue = _attribute.Value;
                 OnPropertyChanged(nameof(Value));
+                OnPropertyChanged(nameof(Name));
             }
         }
 

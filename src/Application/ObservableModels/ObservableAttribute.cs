@@ -4,15 +4,17 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableAttribute : ObservableModel<AttributeStat>
     {
-        public string _name = string.Empty;
+        public string _key = string.Empty;
 
-        public ObservableAttribute(string name, AttributeStat model) : base(model)
-        { }
-
-        public string Name
+        public ObservableAttribute(string key, AttributeStat model) : base(model)
         {
-            get => _name;
-            set => SetProperty(ref _name, value);
+            Key = key;
+        }
+
+        public string Key
+        {
+            get => _key;
+            set => SetProperty(ref _key, value);
         }
 
         public int Value
