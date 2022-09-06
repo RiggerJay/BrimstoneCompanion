@@ -2,11 +2,11 @@
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
-    public class ObservableAttribute : ObservableModel<AttributeStat>
+    public class ObservableAttribute : ObservableModel<AttributeValue>
     {
         public string _key = string.Empty;
 
-        public ObservableAttribute(string key, AttributeStat model) : base(model)
+        public ObservableAttribute(string key, AttributeValue model) : base(model)
         {
             Key = key;
         }
@@ -29,7 +29,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.MaxValue, value, Model, (model, _value) => model.MaxValue = _value);
         }
 
-        public static ObservableAttribute New(string name, int value, int? maxvalue = null) => new(name, new AttributeStat()
+        public static ObservableAttribute New(string name, int value, int? maxvalue = null) => new(name, new AttributeValue()
         {
             Value = value,
             MaxValue = maxvalue

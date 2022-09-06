@@ -1,6 +1,6 @@
 ﻿namespace RedSpartan.BrimstoneCompanion.Domain.Models
 {
-    public class AttributeStat
+    public class AttributeValue
     {
         public int Value { get; set; }
 

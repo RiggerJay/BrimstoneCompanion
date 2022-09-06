@@ -1,4 +1,6 @@
 ﻿using RedSpartan.BrimstoneCompanion.Domain.Models;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
@@ -13,6 +15,13 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             {
                 Attributes.Add(attribute.Key, new ObservableAttribute(attribute.Key, attribute.Value));
             }
+
+            foreach (var feature in Model.Features)
+            {
+                Features.Add(new ObservableFeature(feature));
+            }
+
+            Features.CollectionChanged += Features_CollectionChanged;
         }
 
         public string Id
@@ -41,11 +50,47 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public IDictionary<string, ObservableAttribute> Attributes { get; } = new Dictionary<string, ObservableAttribute>();
 
+        public ObservableCollection<ObservableFeature> Features { get; set; } = new ObservableCollection<ObservableFeature>();
+
         public ObservableAttribute AddAttribute(string key, ObservableAttribute attribute)
         {
             Attributes.Add(key, attribute);
             Model.Attributes.Add(key, attribute.GetModel());
             return attribute;
+        }
+
+        private void Features_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+        {
+            switch (args.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    if (args.NewItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.NewItems)
+                    {
+                        if (item is ObservableFeature feature)
+                        {
+                            Model.Features.Add(feature.GetModel());
+                        }
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    if (args.NewItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.NewItems)
+                    {
+                        if (item is ObservableFeature feature)
+                        {
+                            Model.Features.Remove(feature.GetModel());
+                        }
+                    }
+                    break;
+            }
         }
     }
 }
