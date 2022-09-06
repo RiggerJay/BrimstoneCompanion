@@ -162,8 +162,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task DeleteCharacter()
         {
-            _characterService.Delete(Character);
-            await _navigationService.NavigateBackAsync();
+            if (await _navigationService.DisplayAlert("Are you sure?", "This will delete the character and all progress.", "Yes", "No"))
+            {
+                _characterService.Delete(Character);
+                await _navigationService.NavigateBackAsync();
+            }
         }
 
         private ObservableAttribute GetAttribute(string name, ref ObservableAttribute attribute)

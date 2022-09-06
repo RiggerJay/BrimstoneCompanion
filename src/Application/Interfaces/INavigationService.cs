@@ -1,6 +1,6 @@
 ﻿namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 {
-    public interface INavigationService : IPopupService
+    public interface INavigationService : IPopupService, IAlertService
     {
         Task InitializeAsync();
 
