@@ -4,7 +4,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableAttribute : ObservableModel<AttributeValue>
     {
-        public string _key = string.Empty;
+        private string _key = string.Empty;
 
         public ObservableAttribute(string key, AttributeValue model) : base(model)
         {

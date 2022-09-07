@@ -1,4 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using RedSpartan.BrimstoneCompanion.Domain.Models;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -17,6 +20,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
+        }
+
+        protected bool SetProperty<T>([NotNullIfNotNull("newValue")] ref T field, T newValue, Action action, [CallerMemberName] string? propertyName = null)
+        {
+            var isSuccess = SetProperty(ref field, newValue, propertyName);
+            if (isSuccess)
+            {
+                action?.Invoke();
+            }
+            return isSuccess;
         }
     }
 }

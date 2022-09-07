@@ -4,9 +4,10 @@
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterNotesPage"
              Title="Character Notes">
     <VerticalStackLayout>
-        <ListView ItemsSource="{Binding Features}" />
+        <ListView 
+            ItemsSource="{Binding Features}" />
         <Button
             Text="Add Feature"
-            Command="{Binding AddFeature}" />
+            Command="{Binding AddFeatureCommand}" />
     </VerticalStackLayout>
 </ContentPage>

@@ -1,16 +1,13 @@
-﻿using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+﻿using CommunityToolkit.Mvvm.Input;
+using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
-using System;
-using System.Collections.Generic;
+using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     [QueryProperty(nameof(Features), nameof(Features))]
-    public class CharacterNotesViewModel : ViewModelBase
+    public partial class CharacterNotesViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
         private ObservableCollection<ObservableFeature> _features;
@@ -26,8 +23,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             set => SetProperty(ref _features, value);
         }
 
-        public void AddFeature()
+        [RelayCommand]
+        public async Task AddFeature()
         {
+            var feature = await _navigationService.PushAsync<NewFeaturePopup, ObservableFeature?>();
+
+            if (feature != null)
+            {
+                Features.Add(feature);
+            }
         }
     }
 }
