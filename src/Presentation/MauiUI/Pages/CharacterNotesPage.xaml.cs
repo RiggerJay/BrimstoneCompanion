@@ -4,7 +4,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Pages;
 
 public partial class CharacterNotesPage : ContentPage
 {
-    public CharacterNotesPage(CharacterViewModel viewModel)
+    public CharacterNotesPage(CharacterNotesViewModel viewModel)
     {
         BindingContext = viewModel;
 

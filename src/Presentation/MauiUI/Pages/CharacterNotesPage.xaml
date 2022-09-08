@@ -3,11 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterNotesPage"
              Title="Character Notes">
-    <VerticalStackLayout>
-        <ListView 
-            ItemsSource="{Binding Features}" />
+    <VerticalStackLayout
+        VerticalOptions="FillAndExpand">
+        <ListView
+            ItemsSource="{Binding Features}"
+            VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid
+                            Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                Text="{Binding Name}"
+                                FontAttributes="Bold" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding Details}"
+                                FontAttributes="Italic"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Text="{Binding FallbackValue, StringFormat='${0}'}"
+                                FontAttributes="Bold" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button
             Text="Add Feature"
-            Command="{Binding AddFeatureCommand}" />
+            Command="{Binding AddFeatureCommand}"
+            VerticalOptions="End" />
     </VerticalStackLayout>
 </ContentPage>

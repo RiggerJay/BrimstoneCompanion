@@ -2,6 +2,7 @@
 <toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
                xmlns:s="clr-namespace:System;assembly=mscorlib"
                Color="Transparent"
                x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.NewFeaturePopup">
@@ -15,6 +16,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -22,20 +26,18 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span
-                            Text="{Binding Name}" />
-                        <Span
-                            Text="{Binding Value, StringFormat=' ({0})'}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+                <Entry
+                    Text="{Binding Feature.Name}"
+                    WidthRequest="200"
+                    Keyboard="Chat"
+                    Placeholder="Name" />
+            </Frame>
 
             <Frame CornerRadius="5"
                    Margin="10,5"
@@ -43,56 +45,83 @@
                    Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="2">
-                <Entry
-                    Text="{Binding UpdateValue}"
+                <Editor
+                    Text="{Binding Feature.Details}"
                     WidthRequest="200"
+                    HeightRequest="100"
+                    Keyboard="Chat"
+                    Placeholder="Details" />
+            </Frame>
+
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="1">
+                <Entry
+                    Text="{Binding Feature.Value, StringFormat='${0}'}"
                     Keyboard="Numeric"
                     Placeholder="Value" />
             </Frame>
 
-            <Button
-                Text="-"
-                Command="{Binding UpdateAttributeCommand}"
-                HorizontalOptions="Center"
-                Padding="20,10"
-                Margin="2"
-                Grid.Row="2"
-                Grid.Column="0">
-                <Button.CommandParameter>
-                    <s:Boolean>False</s:Boolean>
-                </Button.CommandParameter>
-            </Button>
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="1">
+                <Entry
+                    Text="{Binding Feature.Quantity}"
+                    Keyboard="Numeric"
+                    Placeholder="Quantity" />
+            </Frame>
 
-            <Button
-                Text="+"
-                Command="{Binding UpdateAttributeCommand}"
-                HorizontalOptions="Center"
-                Padding="20,10"
-                Margin="2"
-                Grid.Row="2"
-                Grid.Column="3">
-                <Button.CommandParameter>
-                    <s:Boolean>True</s:Boolean>
-                </Button.CommandParameter>
-            </Button>
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+                <Picker Title="Type"
+                        ItemsSource="{Binding Types}"
+                        SelectedItem="{Binding Feature.FeatureType, Converter={x:StaticResource StringToEnumConverter}}" />
+            </Frame>
 
-            <Button
-                Text="Overwrite"
-                WidthRequest="100"
-                Padding="0,5"
-                Margin="2"
-                Command="{Binding OverwriteCommand}"
-                Grid.Row="3"
-                Grid.Column="0" />
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="4"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+                <Entry
+                    Text="{Binding Feature.Keywords}"
+                    WidthRequest="200"
+                    Keyboard="Chat"
+                    Placeholder="Keywords" />
+            </Frame>
+
+            <Label
+                Text="Next Adventure?"
+                VerticalOptions="Center"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="1" />
+
+            <Switch
+                IsToggled="{Binding Feature.NextAdventure}"
+                Grid.Row="5"
+                Grid.Column="1"
+                Grid.ColumnSpan="1" />
 
             <Button
                 Text="Save"
-                WidthRequest="100"
                 Padding="0,5"
                 Margin="2"
                 Command="{Binding SaveAndCloseCommand}"
-                Grid.Row="3"
-                Grid.Column="1" />
+                Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="2" />
         </Grid>
     </Border>
 </toolkit:Popup>

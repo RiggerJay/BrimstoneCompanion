@@ -6,7 +6,7 @@
 
         public string Details { get; set; } = string.Empty;
 
-        public int Quantity { get; set; }
+        public int Quantity { get; set; } = 1;
 
         public IDictionary<string, int> Properties { get; set; }
             = new Dictionary<string, int>();
