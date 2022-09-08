@@ -78,7 +78,7 @@
 	  <MauiXaml Update="Popups\IncrementAttributePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Popups\AddFeaturePopup.xaml">
+	  <MauiXaml Update="Popups\NewFeaturePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\UpdateAttributePopup.xaml">
@@ -96,8 +96,8 @@
 	  <Compile Update="Popups\IncrementAttributePopup.xaml.cs">
 	    <DependentUpon>IncrementAttributePopup.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Popups\AddFeaturePopup.xaml.cs">
-	    <DependentUpon>AddFeaturePopup.xaml</DependentUpon>
+	  <Compile Update="Popups\NewFeaturePopup.xaml.cs">
+	    <DependentUpon>NewFeaturePopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\UpdateAttributePopup.xaml.cs">
 	    <DependentUpon>UpdateAttributePopup.xaml</DependentUpon>

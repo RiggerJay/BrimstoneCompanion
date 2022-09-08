@@ -40,7 +40,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.RegisterPopup<NewCharacterPopup>();
             mauiAppBuilder.RegisterPopup<UpdateAttributePopup>();
             mauiAppBuilder.RegisterPopup<IncrementAttributePopup>();
-            mauiAppBuilder.RegisterPopup<AddFeaturePopup>();
+            mauiAppBuilder.RegisterPopup<NewFeaturePopup>();
 
             return mauiAppBuilder;
         }
