@@ -8,6 +8,7 @@ using RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages;
 using RedSpartan.BrimstoneCompanion.MauiUI.ViewModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.AppLayer.Services;
+using MediatR;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI
 {
@@ -15,6 +16,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
     {
         internal static MauiAppBuilder ConfigureApplication(this MauiAppBuilder mauiAppBuilder)
         {
+            mauiAppBuilder.Services.AddMediatR(typeof(App));
+
             mauiAppBuilder.Services.AddSingleton<INavigationService, MauiNavigationService>();
             mauiAppBuilder.Services.AddSingleton<ITextResource, TextResourceService>();
             mauiAppBuilder.Services.AddSingleton<ICharacterService, CharacterService>();

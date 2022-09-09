@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
+using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,16 +14,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class CharacterSelectorViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        private readonly ICharacterService _characterService;
+        private readonly IMediator _mediator;
 
         [ObservableProperty]
         private ObservableCharacter? _selectedCharacter;
 
         public CharacterSelectorViewModel(INavigationService navigationService
-            , ICharacterService characterService)
+            , IMediator mediator)
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            _characterService = characterService ?? throw new ArgumentNullException(nameof(characterService));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             Title = "Character Selector";
         }
 
@@ -37,7 +39,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 Characters.Add(results);
                 SelectedCharacter = results;
-                await _characterService.SaveAsync(results);
+                await _mediator.Send(SaveCharacterRequest.WithCharacter(results));
             }
         }
 
@@ -49,7 +51,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             IsBusy = true;
             try
             {
-                Characters = await _characterService.GetAllAsync();
+                Characters = await _mediator.Send(QueryCharacterRequest.All());
                 OnPropertyChanged(nameof(Characters));
             }
             finally

@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using RedSpartan.BrimstoneCompanion.Domain.Models;
+using MediatR;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 

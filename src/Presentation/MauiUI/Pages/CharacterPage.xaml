@@ -70,11 +70,11 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Experience.Value}"
+                Text="{Binding Character.Experience.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Experience}" />
+                <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Character.Experience}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -97,11 +97,11 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Grit.Value}"
+                Text="{Binding Character.Grit.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Grit}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Grit}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -117,7 +117,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Grit.MaxValue}"
+                Text="{Binding Character.Grit.MaxValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -141,11 +141,11 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Corruption.Value}"
+                Text="{Binding Character.Corruption.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Corruption}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Corruption}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -161,7 +161,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Corruption.MaxValue}"
+                Text="{Binding Character.Corruption.MaxValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
         </Frame>
@@ -185,11 +185,11 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Heavy.Value}"
+                Text="{Binding Character.Heavy.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Heavy}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Heavy}" />
             </Frame.GestureRecognizers>
         </Frame>
         <!-- First Row -->
@@ -215,11 +215,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Agility.Value}"
+                Text="{Binding Character.Agility.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Agility}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Agility}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -242,11 +242,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Cunning.Value}"
+                Text="{Binding Character.Cunning.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Cunning}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Cunning}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -269,11 +269,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Spirit.Value}"
+                Text="{Binding Character.Spirit.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Spirit}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Spirit}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -296,11 +296,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Combat.Value}"
+                Text="{Binding Character.Combat.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Combat}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Combat}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -323,11 +323,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Range.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Range.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Range}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Range}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -354,11 +354,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Strength.Value}"
+                Text="{Binding Character.Strength.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Strength}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Strength}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -381,11 +381,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Lore.Value}"
+                Text="{Binding Character.Lore.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Lore}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Lore}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -408,11 +408,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Luck.Value}"
+                Text="{Binding Character.Luck.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Luck}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Luck}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -435,11 +435,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Initiative.Value}"
+                Text="{Binding Character.Initiative.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Initiative}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Initiative}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -462,11 +462,11 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Melee.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Melee.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Melee}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Melee}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -493,11 +493,11 @@
             Grid.Column="0"
             Grid.Row="7">
             <Label
-                Text="{Binding Wounds.Value}"
+                Text="{Binding Character.Wounds.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Wounds}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Wounds}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -520,11 +520,11 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
-                Text="{Binding Health.Value}"
+                Text="{Binding Character.Health.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Health}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Health}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -547,11 +547,11 @@
             Grid.Column="10"
             Grid.Row="7">
             <Label
-                Text="{Binding Horror.Value}"
+                Text="{Binding Character.Horror.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Horror}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Horror}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -574,11 +574,11 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
-                Text="{Binding Sanity.Value}"
+                Text="{Binding Character.Sanity.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Sanity}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Sanity}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -606,11 +606,11 @@
             Grid.Column="0"
             Grid.Row="9">
             <Label
-                Text="{Binding Defence.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Defence.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Defence}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Defence}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -634,11 +634,11 @@
             Grid.ColumnSpan="10"
             Grid.Row="9">
             <Label
-                Text="{Binding Willpower.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Willpower.Value, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Willpower}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.Willpower}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -665,11 +665,11 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
-                Text="{Binding Dollars.Value}"
+                Text="{Binding Character.Dollars.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Dollars}" />
+                <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Character.Dollars}" />
             </Frame.GestureRecognizers>
         </Frame>
 
@@ -703,11 +703,11 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
-                Text="{Binding DarkStone.Value}"
+                Text="{Binding Character.DarkStone.Value}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding DarkStone}" />
+                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Character.DarkStone}" />
             </Frame.GestureRecognizers>
         </Frame>
 
