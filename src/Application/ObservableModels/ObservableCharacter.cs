@@ -15,7 +15,9 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             foreach (var attribute in Model.Attributes)
             {
-                Attributes.Add(attribute.Key, new ObservableAttribute(attribute.Key, attribute.Value));
+                var obAtt = new ObservableAttribute(attribute.Key, attribute.Value);
+                obAtt.CurrentValue += Model.Features.SelectMany(x => x.Properties.Where(p => p.Key == attribute.Key).Select(p => p.Value)).Sum();
+                Attributes.Add(attribute.Key, obAtt);
             }
 
             foreach (var feature in Model.Features)

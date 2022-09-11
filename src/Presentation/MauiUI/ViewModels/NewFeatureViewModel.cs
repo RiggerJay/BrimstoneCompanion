@@ -9,6 +9,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class NewFeatureViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private string? _selectedProperty;
+        private int? _value;
 
         public NewFeatureViewModel(INavigationService navigationService)
         {
@@ -21,11 +23,19 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public IList<string> Properties { get; } = AttributeNames.Strings;
 
-        public int? Value { get; set; }
+        public string? SelectedProperty { get => _selectedProperty; set => SetProperty(ref _selectedProperty, value); }
+
+        public int? Value { get => _value; set => SetProperty(ref _value, value); }
 
         [RelayCommand]
         public void SaveAndClose()
         {
+            if (!string.IsNullOrEmpty(SelectedProperty)
+                && (Value != null && Value != 0))
+            {
+                Feature.Properties.Add(SelectedProperty, (int)Value);
+            }
+
             _navigationService.Pop(Feature);
         }
     }

@@ -70,7 +70,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Character.Experience.Value}"
+                Text="{Binding Character.Experience.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -97,7 +97,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Character.Grit.Value}"
+                Text="{Binding Character.Grit.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -141,7 +141,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Character.Corruption.Value}"
+                Text="{Binding Character.Corruption.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -185,7 +185,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
-                Text="{Binding Character.Heavy.Value}"
+                Text="{Binding Character.Heavy.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -215,7 +215,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Character.Agility.Value}"
+                Text="{Binding Character.Agility.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -242,7 +242,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Character.Cunning.Value}"
+                Text="{Binding Character.Cunning.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -269,7 +269,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Character.Spirit.Value}"
+                Text="{Binding Character.Spirit.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -296,7 +296,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Character.Combat.Value}"
+                Text="{Binding Character.Combat.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -323,7 +323,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
-                Text="{Binding Character.Range.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Range.CurrentValue, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -354,7 +354,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Character.Strength.Value}"
+                Text="{Binding Character.Strength.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -381,7 +381,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Character.Lore.Value}"
+                Text="{Binding Character.Lore.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -408,7 +408,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Character.Luck.Value}"
+                Text="{Binding Character.Luck.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -435,7 +435,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Character.Initiative.Value}"
+                Text="{Binding Character.Initiative.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -462,7 +462,7 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
-                Text="{Binding Character.Melee.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Melee.CurrentValue, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -493,7 +493,7 @@
             Grid.Column="0"
             Grid.Row="7">
             <Label
-                Text="{Binding Character.Wounds.Value}"
+                Text="{Binding Character.Wounds.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -520,7 +520,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
-                Text="{Binding Character.Health.Value}"
+                Text="{Binding Character.Health.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -547,7 +547,7 @@
             Grid.Column="10"
             Grid.Row="7">
             <Label
-                Text="{Binding Character.Horror.Value}"
+                Text="{Binding Character.Horror.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -574,7 +574,7 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
-                Text="{Binding Character.Sanity.Value}"
+                Text="{Binding Character.Sanity.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -606,7 +606,7 @@
             Grid.Column="0"
             Grid.Row="9">
             <Label
-                Text="{Binding Character.Defence.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Defence.CurrentValue, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -634,7 +634,7 @@
             Grid.ColumnSpan="10"
             Grid.Row="9">
             <Label
-                Text="{Binding Character.Willpower.Value, StringFormat='{0}+'}"
+                Text="{Binding Character.Willpower.CurrentValue, StringFormat='{0}+'}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -665,7 +665,7 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
-                Text="{Binding Character.Dollars.Value}"
+                Text="{Binding Character.Dollars.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
@@ -703,7 +703,7 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
-                Text="{Binding Character.DarkStone.Value}"
+                Text="{Binding Character.DarkStone.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
