@@ -60,7 +60,7 @@
                    Grid.Column="0"
                    Grid.ColumnSpan="1">
                 <Entry
-                    Text="{Binding Feature.Value, StringFormat='${0}'}"
+                    Text="{Binding Feature.Value}"
                     Keyboard="Numeric"
                     Placeholder="Value" />
             </Frame>
@@ -92,13 +92,20 @@
                    Margin="10,5"
                    Padding="5,0"
                    Grid.Row="4"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2">
+                   Grid.Column="0">
+                <Picker Title="Type"
+                        ItemsSource="{Binding Properties}" />
+            </Frame>
+
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="4"
+                   Grid.Column="1">
                 <Entry
-                    Text="{Binding Feature.Keywords}"
-                    WidthRequest="200"
-                    Keyboard="Chat"
-                    Placeholder="Keywords" />
+                    Text="{Binding Value}"
+                    Keyboard="Numeric"
+                    Placeholder="Value" />
             </Frame>
 
             <Label

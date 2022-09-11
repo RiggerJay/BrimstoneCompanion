@@ -31,7 +31,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddTransient<UpdateAttributeViewModel>();
             mauiAppBuilder.Services.AddTransient<IncrementAttributeViewModel>();
             mauiAppBuilder.Services.AddTransient<CharacterNotesViewModel>();
-            mauiAppBuilder.Services.AddTransient<AddFeatureViewModel>();
+            mauiAppBuilder.Services.AddTransient<NewFeatureViewModel>();
 
             mauiAppBuilder.Services.AddTransient<AppShell>();
 

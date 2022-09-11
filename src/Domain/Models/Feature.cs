@@ -11,7 +11,7 @@
         public IDictionary<string, int> Properties { get; set; }
             = new Dictionary<string, int>();
 
-        public int Value { get; set; }
+        public int? Value { get; set; }
 
         public FeatureTypes FeatureType { get; set; } = FeatureTypes.Gear;
 

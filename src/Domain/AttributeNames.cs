@@ -1,4 +1,6 @@
-﻿namespace RedSpartan.BrimstoneCompanion.Domain
+﻿using RedSpartan.BrimstoneCompanion.Domain.Utilities;
+
+namespace RedSpartan.BrimstoneCompanion.Domain
 {
     public static class AttributeNames
     {
@@ -24,5 +26,38 @@
         public const string WILLPOWER = "WIL";
         public const string DOLLARS = "DLR";
         public const string DARKSTONE = "DKS";
+
+        public static IList<string> Strings { get; } = new Lazy<IList<string>>(StringValues()).Value;
+
+        private static IList<string> StringValues()
+        {
+            return typeof(AttributeNames).GetAllPublicConstantValues<string>();
+        }
+
+        /*return new List<string>
+        {
+            XP,
+            GRIT,
+            CORRUPTION,
+            HEAVY,
+            AGILITY,
+            CUNNING,
+            SPIRIT,
+            STRENGTH,
+            LORE,
+            LUCK,
+            COMBAT,
+            INITIATIVE,
+            MELEE,
+            RANGE,
+            WOUNDS,
+            HEALTH,
+            HORROR,
+            SANITY,
+            DEFENCE,
+            WILLPOWER,
+            DOLLARS,
+            DARKSTONE
+        };*/
     }
 }

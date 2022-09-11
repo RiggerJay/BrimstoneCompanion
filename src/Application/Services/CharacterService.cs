@@ -8,7 +8,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
     public class CharacterService : ICharacterService
     {
         private readonly IRepository<Character> _repository;
-        private readonly ObservableCollection<ObservableCharacter> _characters = new ObservableCollection<ObservableCharacter>();
+        private readonly ObservableCollection<ObservableCharacter> _characters = new();
 
         public CharacterService(IRepository<Character> repository)
         {

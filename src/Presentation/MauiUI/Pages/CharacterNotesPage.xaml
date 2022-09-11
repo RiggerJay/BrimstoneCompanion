@@ -38,7 +38,7 @@
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
                                 Grid.Column="1"
-                                Text="{Binding FallbackValue, StringFormat='${0}'}"
+                                Text="{Binding Value, StringFormat='${0}'}"
                                 FontAttributes="Bold" />
                         </Grid>
                     </ViewCell>
@@ -48,6 +48,7 @@
         <Button
             Text="Add Feature"
             Command="{Binding AddFeatureCommand}"
-            VerticalOptions="End" />
+            Clicked="Button_Clicked"
+            VerticalOptions="EndAndExpand" />
     </VerticalStackLayout>
 </ContentPage>

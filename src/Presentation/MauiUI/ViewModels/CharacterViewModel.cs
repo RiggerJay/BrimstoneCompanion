@@ -70,7 +70,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             await _navigationService.NavigateToAsync("characternotes", new Dictionary<string, object>
             {
-                { nameof(Character.Features), Character.Features }
+                { nameof(Character), Character }
             });
         }
     }

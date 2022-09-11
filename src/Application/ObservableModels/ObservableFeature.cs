@@ -26,7 +26,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Quantity, value, Model, (model, _value) => model.Quantity = _value);
         }
 
-        public int Value
+        public int? Value
         {
             get => Model.Value;
             set => SetProperty(Model.Value, value, Model, (model, _value) => model.Value = _value);

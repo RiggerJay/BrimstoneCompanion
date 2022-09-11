@@ -5,10 +5,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 
 public partial class NewFeaturePopup : CommunityToolkit.Maui.Views.Popup
 {
-    private readonly AddFeatureViewModel _viewModel;
+    private readonly NewFeatureViewModel _viewModel;
     private readonly ObservableFeature _feature = ObservableFeature.New();
 
-    public NewFeaturePopup(AddFeatureViewModel viewModel)
+    public NewFeaturePopup(NewFeatureViewModel viewModel)
     {
         BindingContext = _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 
