@@ -5,24 +5,16 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
     public class ObservableAttribute : ObservableModel<AttributeValue>
     {
         private string _key = string.Empty;
-        private int _currentValue;
 
         public ObservableAttribute(string key, AttributeValue model) : base(model)
         {
             Key = key;
-            CurrentValue = Value;
         }
 
         public string Key
         {
             get => _key;
             set => SetProperty(ref _key, value);
-        }
-
-        public int CurrentValue
-        {
-            get => _currentValue;
-            set => SetProperty(ref _currentValue, value);
         }
 
         public int Value
