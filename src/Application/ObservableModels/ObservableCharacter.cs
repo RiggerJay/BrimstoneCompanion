@@ -96,14 +96,19 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public ObservableAttribute GetAttribute(string name)
         {
+            SetAttribute(name, 0);
+
+            return Attributes[name];
+        }
+
+        public void SetAttribute(string name, int value, int? maxValue = null)
+        {
             if (!Attributes.ContainsKey(name))
             {
-                ObservableAttribute attribute = ObservableAttribute.New(this, name, 0);
+                ObservableAttribute attribute = ObservableAttribute.New(this, name, value, maxValue);
                 Attributes.Add(name, attribute);
                 Model.Attributes.Add(name, attribute.GetModel());
             }
-
-            return Attributes[name];
         }
 
         public void ValueChanged(string key)
