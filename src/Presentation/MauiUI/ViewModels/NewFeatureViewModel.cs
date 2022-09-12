@@ -1,20 +1,21 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
+using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     public partial class NewFeatureViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
+        private readonly IMediator _mediator;
         private string? _selectedProperty;
         private int? _value;
 
-        public NewFeatureViewModel(INavigationService navigationService)
+        public NewFeatureViewModel(IMediator mediator)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         public ObservableFeature Feature { get; } = ObservableFeature.New();
@@ -28,7 +29,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public int? Value { get => _value; set => SetProperty(ref _value, value); }
 
         [RelayCommand]
-        public void SaveAndClose()
+        public async Task SaveAndClose()
         {
             if (!string.IsNullOrEmpty(SelectedProperty)
                 && (Value != null && Value != 0))
@@ -36,7 +37,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 Feature.Properties.Add(SelectedProperty, (int)Value);
             }
 
-            _navigationService.Pop(Feature);
+            await _mediator.Send(NavRequest.Close(Feature));
         }
     }
 }
