@@ -10,5 +10,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
         {
             return (T)ServiceProvider.GetService(typeof(T));
         }
+
+        internal static IPopup Locate(Type type)
+        {
+            return (IPopup)ServiceProvider.GetService(type);
+        }
     }
 }

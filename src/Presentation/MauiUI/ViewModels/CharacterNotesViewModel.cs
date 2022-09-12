@@ -3,7 +3,6 @@ using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
-using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using System.Collections.ObjectModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
@@ -11,14 +10,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     [QueryProperty(nameof(Character), nameof(Character))]
     public partial class CharacterNotesViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
         private readonly IMediator _mediator;
         private ObservableCharacter _character;
 
-        public CharacterNotesViewModel(INavigationService navigationService
-            , IMediator mediator)
+        public CharacterNotesViewModel(IMediator mediator)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
@@ -33,7 +29,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         private async Task AddFeature()
         {
-            var feature = await _navigationService.PushAsync<NewFeaturePopup, ObservableFeature?>();
+            var feature = await _mediator.Send(NavRequest.CreateFeature());
 
             if (feature != null)
             {

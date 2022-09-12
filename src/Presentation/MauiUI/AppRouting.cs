@@ -6,6 +6,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
     {
         private static readonly Dictionary<string, (Type Page, Type ViewModel, bool IsPopup)> _mapper = new();
 
+        internal static Type GetPage(string route)
+        {
+            return _mapper[route].Page;
+        }
+
+        internal static bool IsPopup(string route)
+        {
+            return _mapper[route].IsPopup;
+        }
+
         internal static void RegisterPage<TPage, TViewModel>(this MauiAppBuilder mauiAppBuilder, string route)
             where TPage : ContentPage
             where TViewModel : class
@@ -25,7 +35,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddTransient<TPage>();
             mauiAppBuilder.Services.AddTransient<TViewModel>();
 
-            Register(route, typeof(TPage), typeof(TViewModel), false);
+            Register(route, typeof(TPage), typeof(TViewModel), true);
         }
 
         private static void Register(string route, Type page, Type viewModel, bool IsPopup)
