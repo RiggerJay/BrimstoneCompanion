@@ -15,7 +15,14 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Handlers
 
         public async Task<Unit> Handle(NavRequest request, CancellationToken cancellationToken)
         {
-            await _service.NavigateToAsync(request.Route, request.Paramaters);
+            if (request.Route == NavigationKeys.BACK)
+            {
+                await _service.NavigateBackAsync();
+            }
+            else
+            {
+                await _service.NavigateToAsync(request.Route, request.Paramaters);
+            }
             return Unit.Value;
         }
     }

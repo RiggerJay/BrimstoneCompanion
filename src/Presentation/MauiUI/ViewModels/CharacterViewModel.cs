@@ -4,23 +4,19 @@ using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
-using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     [QueryProperty(nameof(Character), nameof(Character))]
     public partial class CharacterViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
         private readonly IMediator _mediator;
 
         private ObservableCharacter _character;
 
-        public CharacterViewModel(INavigationService navigationService
-            , IMediator mediator)
+        public CharacterViewModel(IMediator mediator)
         {
             Title = "Character";
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
@@ -73,7 +69,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task UpdateAttribute(ObservableAttribute attribute)
         {
-            if (await _navigationService.PushAsync<UpdateAttributePopup, bool>(new Dictionary<string, object> { { nameof(Attribute), attribute } }))
+            if (await _mediator.Send(NavRequest.UpdateAttribute(attribute)))
             {
                 await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
             }
@@ -82,7 +78,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task IncrementAttribute(ObservableAttribute attribute)
         {
-            if (await _navigationService.PushAsync<IncrementAttributePopup, bool>(new Dictionary<string, object> { { nameof(Attribute), attribute } }))
+            if (await _mediator.Send(NavRequest.IncrementAttribute(attribute)))
             {
                 await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
             }
@@ -91,20 +87,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task DeleteCharacter()
         {
-            if (await _navigationService.DisplayAlert("Are you sure?", "This will delete the character and all progress.", "Yes", "No"))
+            if (await _mediator.Send(AlertRequest.WithTitleAndMessage("Are you sure?", "This will delete the character and all progress.")))
             {
                 await _mediator.Send(DeleteCharacterRequest.WithCharacter(Character));
-                await _navigationService.NavigateBackAsync();
+                await _mediator.Send(NavRequest.Close());
             }
         }
 
         [RelayCommand]
         public async Task ShowNotes()
         {
-            await _navigationService.NavigateToAsync(NavigationKeys.CHARACTER_NOTES, new Dictionary<string, object>
-            {
-                { nameof(Character), Character }
-            });
+            await _mediator.Send(NavRequest.ShowNotes(Character));
         }
 
         public void AttributesChanged()

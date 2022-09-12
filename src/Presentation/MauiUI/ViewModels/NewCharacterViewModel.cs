@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
+using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     public partial class NewCharacterViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
+        private readonly IMediator _mediator;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CreateCommand))]
@@ -17,10 +18,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [NotifyCanExecuteChangedFor(nameof(CreateCommand))]
         private string _class;
 
-        public NewCharacterViewModel(INavigationService navigationService)
+        public NewCharacterViewModel(IMediator mediator)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            CreateCommand = new RelayCommand(Create, CanCreate);
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            CreateCommand = new AsyncRelayCommand(CreateAsync, CanCreate);
         }
 
         public IList<string> Classes { get; } = new List<string>
@@ -50,15 +51,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             "Wandering Samurai"
         };
 
-        public RelayCommand CreateCommand { get; }
+        public AsyncRelayCommand CreateCommand { get; }
 
-        public void Create()
+        public async Task CreateAsync()
         {
-            _navigationService.Pop(new ObservableCharacter
+            await _mediator.Send(NavRequest.Close(new ObservableCharacter
             {
                 Name = _name,
                 Class = _class,
-            });
+            }));
         }
 
         public bool CanCreate()

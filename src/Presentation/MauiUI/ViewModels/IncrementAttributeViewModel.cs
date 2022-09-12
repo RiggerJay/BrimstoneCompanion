@@ -2,12 +2,13 @@
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
+using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     public partial class IncrementAttributeViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
+        private readonly IMediator _mediator;
         private readonly ITextResource _textResource;
 
         private ObservableAttribute? _attribute;
@@ -15,10 +16,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private int _originalValue;
         private int? _originalMaxValue;
 
-        public IncrementAttributeViewModel(INavigationService navigationService
+        public IncrementAttributeViewModel(IMediator mediator
             , ITextResource textResource)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
         }
 
@@ -57,9 +58,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        private void SaveAndClose()
+        private async Task SaveAndClose()
         {
-            _navigationService.Pop(true);
+            await _mediator.Send(NavRequest.Close(true));
         }
 
         [RelayCommand]

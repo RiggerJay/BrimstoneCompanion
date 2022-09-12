@@ -2,6 +2,7 @@
 {
     internal static class NavigationKeys
     {
+        internal const string BACK = "..";
         internal const string CHARACTER = "character";
         internal const string CHARACTER_SELECTOR = "characterselector";
         internal const string CHARACTER_NOTES = "characternotes";

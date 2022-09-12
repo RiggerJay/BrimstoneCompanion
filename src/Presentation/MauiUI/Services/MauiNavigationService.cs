@@ -40,22 +40,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
             return default;
         }
 
-        public async Task<TResult> PushAsync<TResult>(Type pageType)
+        public async Task<TResult> PushAsync<TResult>(Type pageType, IDictionary<string, object> data = null)
         {
-            var result = await Shell.Current.CurrentPage.ShowPopupAsync(_currentPopup = (Popup)PopupLocator.Locate(pageType));
+            var page = (Popup)PopupLocator.Locate(pageType);
 
-            if (result is TResult model)
-            {
-                return model;
-            }
-            return default;
-        }
-
-        public async Task<TResult> PushAsync<TPage, TResult>(IDictionary<string, object> data) where TPage : Popup, IInitialisePopup
-        {
-            var page = PopupLocator.Locate<TPage>();
-
-            if (page is IInitialisePopup init)
+            if (data != null
+                && page is IInitialisePopup init)
             {
                 init.Initialise(data);
             }

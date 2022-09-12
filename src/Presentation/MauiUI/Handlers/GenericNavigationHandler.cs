@@ -15,9 +15,14 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Handlers
 
         public async Task<TResponse> Handle(NavRequest<TResponse> request, CancellationToken cancellationToken)
         {
-            if (AppRouting.IsPopup(request.Route))
+            if (request.Route == NavigationKeys.BACK)
             {
-                return await _service.PushAsync<TResponse>(AppRouting.GetPage(request.Route));
+                _service.Pop(request.Response);
+                return request.Response;
+            }
+            else if (AppRouting.IsPopup(request.Route))
+            {
+                return await _service.PushAsync<TResponse>(AppRouting.GetPage(request.Route), request.Paramaters);
             }
 
             //TODO: use specific Exception

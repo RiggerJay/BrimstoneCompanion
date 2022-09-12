@@ -3,9 +3,9 @@ using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Handlers
 {
-    public class CreateFeatureNavigationHandler : GenericNavigationHandler<ObservableFeature>
+    public class ObservableFeatureNavigationHandler : GenericNavigationHandler<ObservableFeature>
     {
-        public CreateFeatureNavigationHandler(INavigationService service) : base(service)
+        public ObservableFeatureNavigationHandler(INavigationService service) : base(service)
         {
         }
     }
