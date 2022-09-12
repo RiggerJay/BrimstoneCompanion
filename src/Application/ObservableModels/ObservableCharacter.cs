@@ -113,8 +113,5 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                 Attributes[key].OnValueChanged();
             }
         }
-
-        public int GetCalculatedValue(ObservableAttribute attribute) =>
-            attribute.Value + Features.SelectMany(x => x.Properties.Where(p => p.Key == attribute.Key).Select(p => p.Value)).Sum();
     }
 }

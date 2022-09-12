@@ -11,11 +11,6 @@
             IconImageSource="icon_bin.png"
             Command="{Binding DeleteCharacterCommand}" />
     </ContentPage.ToolbarItems>
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:CalculatedAttributeConverter x:Key="CalculatedAttribute" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -103,15 +98,9 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
+                Text="{Binding Grit.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Grit" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Grit}" />
             </Frame.GestureRecognizers>
@@ -153,15 +142,9 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
+                Text="{Binding Corruption.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Corruption" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Corruption}" />
             </Frame.GestureRecognizers>
@@ -203,15 +186,9 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
+                Text="{Binding Heavy.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Heavy" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Heavy}" />
             </Frame.GestureRecognizers>
@@ -239,15 +216,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
+                Text="{Binding Agility.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Agility" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Agility}" />
             </Frame.GestureRecognizers>
@@ -272,15 +243,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
+                Text="{Binding Cunning.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Cunning" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Cunning}" />
             </Frame.GestureRecognizers>
@@ -305,14 +270,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
+                Text="{Binding Spirit.CurrentValue}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Spirit" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
             </Label>
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Spirit}" />
@@ -338,15 +298,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
+                Text="{Binding Combat.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Combat" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Combat}" />
             </Frame.GestureRecognizers>
@@ -371,15 +325,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
+                Text="{Binding Range.CurrentValue, StringFormat='+{0}'}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Range" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Range}" />
             </Frame.GestureRecognizers>
@@ -408,15 +356,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
+                Text="{Binding Strength.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Strength" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Strength}" />
             </Frame.GestureRecognizers>
@@ -441,15 +383,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
+                Text="{Binding Lore.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Lore" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Lore}" />
             </Frame.GestureRecognizers>
@@ -474,15 +410,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
+                Text="{Binding Luck.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Luck" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Luck}" />
             </Frame.GestureRecognizers>
@@ -507,15 +437,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
+                Text="{Binding Initiative.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Initiative" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Initiative}" />
             </Frame.GestureRecognizers>
@@ -540,15 +464,9 @@
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
+                Text="{Binding Melee.CurrentValue, StringFormat='+{0}'}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Melee" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Melee}" />
             </Frame.GestureRecognizers>
@@ -577,15 +495,9 @@
             Grid.Column="0"
             Grid.Row="7">
             <Label
+                Text="{Binding Wounds.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Wounds" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Wounds}" />
             </Frame.GestureRecognizers>
@@ -610,15 +522,9 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
+                Text="{Binding Health.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Health" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Health}" />
             </Frame.GestureRecognizers>
@@ -643,15 +549,9 @@
             Grid.Column="10"
             Grid.Row="7">
             <Label
+                Text="{Binding Horror.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Horror" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Horror}" />
             </Frame.GestureRecognizers>
@@ -676,15 +576,9 @@
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
+                Text="{Binding Sanity.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Sanity" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Sanity}" />
             </Frame.GestureRecognizers>
@@ -714,15 +608,9 @@
             Grid.Column="0"
             Grid.Row="9">
             <Label
+                Text="{Binding Defence.CurrentValue, StringFormat='+{0}'}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Defence" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Defence}" />
             </Frame.GestureRecognizers>
@@ -748,15 +636,9 @@
             Grid.ColumnSpan="10"
             Grid.Row="9">
             <Label
+                Text="{Binding Willpower.CurrentValue, StringFormat='+{0}'}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Willpower" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Willpower}" />
             </Frame.GestureRecognizers>
@@ -785,15 +667,9 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
+                Text="{Binding Dollars.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Dollars" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Dollars}" />
             </Frame.GestureRecognizers>
@@ -829,15 +705,9 @@
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
+                Text="{Binding DarkStone.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="DarkStone" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding DarkStone}" />
             </Frame.GestureRecognizers>
