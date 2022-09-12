@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
-using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 using System.Collections.ObjectModel;
@@ -34,6 +33,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             if (feature != null)
             {
                 Features.Add(feature);
+                await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteFeature(ObservableFeature? feature)
+        {
+            if (feature != null)
+            {
+                Features.Remove(feature);
                 await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
             }
         }

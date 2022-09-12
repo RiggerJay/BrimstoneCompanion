@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterNotesPage"
-             Title="Character Notes">
+             Title="Character Notes"
+             x:Name="TheseNotes">
     <VerticalStackLayout
         VerticalOptions="FillAndExpand">
         <ListView
@@ -17,9 +18,11 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
+
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
                             </Grid.ColumnDefinitions>
 
                             <Label
@@ -38,8 +41,23 @@
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
                                 Grid.Column="1"
+                                VerticalOptions="CenterAndExpand"
                                 Text="{Binding Value, StringFormat='${0}'}"
                                 FontAttributes="Bold" />
+
+                            <Image
+                                Source="icon_bin.png"
+                                VerticalOptions="CenterAndExpand"
+                                HeightRequest="30"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="2">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding BindingContext.DeleteFeatureCommand, Source={Reference TheseNotes}}"
+                                        CommandParameter="{Binding .}" />
+                                </Image.GestureRecognizers>
+                            </Image>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

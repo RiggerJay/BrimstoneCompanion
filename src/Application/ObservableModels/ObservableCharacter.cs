@@ -75,11 +75,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    if (args.NewItems == null)
+                    if (args.OldItems == null)
                     {
                         return;
                     }
-                    foreach (var item in args.NewItems)
+                    foreach (var item in args.OldItems)
                     {
                         if (item is ObservableFeature feature)
                         {
