@@ -76,15 +76,9 @@
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
+                Text="{Binding Experience.CurrentValue}"
                 VerticalOptions="Center"
-                HorizontalOptions="Center">
-                <Label.Text>
-                    <MultiBinding Converter="{StaticResource Key=CalculatedAttribute}">
-                        <Binding Path="Experience" />
-                        <Binding Path="Character" />
-                    </MultiBinding>
-                </Label.Text>
-            </Label>
+                HorizontalOptions="Center" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Experience}" />
             </Frame.GestureRecognizers>

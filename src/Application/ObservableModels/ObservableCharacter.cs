@@ -13,7 +13,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             foreach (var attribute in Model.Attributes)
             {
-                Attributes.Add(attribute.Key, new ObservableAttribute(attribute.Key, attribute.Value));
+                Attributes.Add(attribute.Key, ObservableAttribute.New(this, attribute.Key, attribute.Value));
             }
 
             foreach (var feature in Model.Features)
@@ -66,6 +66,10 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                         if (item is ObservableFeature feature)
                         {
                             Model.Features.Add(feature.GetModel());
+                            foreach (var prop in feature.Properties)
+                            {
+                                ValueChanged(prop.Key);
+                            }
                         }
                     }
                     break;
@@ -80,6 +84,10 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                         if (item is ObservableFeature feature)
                         {
                             Model.Features.Remove(feature.GetModel());
+                            foreach (var prop in feature.Properties)
+                            {
+                                ValueChanged(prop.Key);
+                            }
                         }
                     }
                     break;
@@ -90,12 +98,20 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             if (!Attributes.ContainsKey(name))
             {
-                ObservableAttribute attribute = ObservableAttribute.New(name, 0);
+                ObservableAttribute attribute = ObservableAttribute.New(this, name, 0);
                 Attributes.Add(name, attribute);
                 Model.Attributes.Add(name, attribute.GetModel());
             }
 
             return Attributes[name];
+        }
+
+        public void ValueChanged(string key)
+        {
+            if (Attributes.ContainsKey(key))
+            {
+                Attributes[key].OnValueChanged();
+            }
         }
 
         public int GetCalculatedValue(ObservableAttribute attribute) =>
