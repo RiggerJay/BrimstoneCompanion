@@ -3,7 +3,6 @@
     internal static class NavigationKeys
     {
         internal const string CHARACTER = "character";
-        internal const string MAIN = "main";
         internal const string CHARACTER_SELECTOR = "characterselector";
         internal const string CHARACTER_NOTES = "characternotes";
         internal const string CHARACTER_CREATE = "charactercreate";

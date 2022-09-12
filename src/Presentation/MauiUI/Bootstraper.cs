@@ -25,7 +25,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
 
             mauiAppBuilder.Services.AddTransient<AppShell>();
 
-            mauiAppBuilder.RegisterPage<MainPage, MainViewModel>(NavigationKeys.MAIN);
             mauiAppBuilder.RegisterPage<CharacterPage, CharacterViewModel>(NavigationKeys.CHARACTER);
             mauiAppBuilder.RegisterPage<CharacterSelectorPage, CharacterSelectorViewModel>(NavigationKeys.CHARACTER_SELECTOR);
             mauiAppBuilder.RegisterPage<CharacterNotesPage, CharacterNotesViewModel>(NavigationKeys.CHARACTER_NOTES);

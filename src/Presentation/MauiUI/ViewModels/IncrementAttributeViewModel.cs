@@ -2,7 +2,6 @@
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
-using RedSpartan.BrimstoneCompanion.MauiUI.Notifications;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -10,7 +9,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly ITextResource _textResource;
-        private readonly IMediator _mediator;
 
         private ObservableAttribute? _attribute;
 
@@ -18,12 +16,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private int? _originalMaxValue;
 
         public IncrementAttributeViewModel(INavigationService navigationService
-            , ITextResource textResource
-            , IMediator mediator)
+            , ITextResource textResource)
         {
             _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         public int Value => Attribute?.Value ?? 0;
@@ -58,7 +54,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             Attribute.Value = _originalValue;
             Attribute.MaxValue = _originalMaxValue;
-            _mediator.Publish(AttributeValueChangedNotification.WithName(_textResource.GetValue(Attribute?.Key ?? string.Empty)));
         }
 
         [RelayCommand]
@@ -86,7 +81,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             Attribute.Value = value;
 
             OnPropertyChanged(nameof(Value));
-            _mediator.Publish(AttributeValueChangedNotification.WithName(_textResource.GetValue(Attribute?.Key ?? string.Empty)));
         }
 
         [RelayCommand]
@@ -106,7 +100,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             OnPropertyChanged(nameof(MaxValue));
             OnPropertyChanged(nameof(Value));
-            _mediator.Publish(AttributeValueChangedNotification.WithName(_textResource.GetValue(Attribute?.Key ?? string.Empty)));
         }
     }
 }
