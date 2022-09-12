@@ -101,7 +101,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task ShowNotes()
         {
-            await _navigationService.NavigateToAsync("characternotes", new Dictionary<string, object>
+            await _navigationService.NavigateToAsync(NavigationKeys.CHARACTER_NOTES, new Dictionary<string, object>
             {
                 { nameof(Character), Character }
             });

@@ -28,7 +28,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        private Task CreateNewCharacter() => _navigationService.NavigateToAsync("characterselector");
+        private Task CreateNewCharacter() => _navigationService.NavigateToAsync(NavigationKeys.CHARACTER_SELECTOR);
 
         [RelayCommand]
         private async Task NewCharacter()
@@ -70,7 +70,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 {
                     { nameof(Character), SelectedCharacter }
                 };
-                await _navigationService.NavigateToAsync("character", param);
+                await _navigationService.NavigateToAsync(NavigationKeys.CHARACTER, param);
                 SelectedCharacter = null;
             }
         }

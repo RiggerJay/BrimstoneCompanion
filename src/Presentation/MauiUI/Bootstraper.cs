@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui.Core;
-using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+﻿using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.MauiUI.Pages;
 using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using RedSpartan.BrimstoneCompanion.MauiUI.Services;
@@ -24,26 +23,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddSingleton<IRepository<Character>, CharacterRepository>();
             mauiAppBuilder.Services.AddSingleton(FileSystem.Current);
 
-            mauiAppBuilder.Services.AddTransient<CharacterSelectorViewModel>();
-            mauiAppBuilder.Services.AddTransient<MainViewModel>();
-            mauiAppBuilder.Services.AddTransient<NewCharacterViewModel>();
-            mauiAppBuilder.Services.AddTransient<CharacterViewModel>();
-            mauiAppBuilder.Services.AddTransient<UpdateAttributeViewModel>();
-            mauiAppBuilder.Services.AddTransient<IncrementAttributeViewModel>();
-            mauiAppBuilder.Services.AddTransient<CharacterNotesViewModel>();
-            mauiAppBuilder.Services.AddTransient<NewFeatureViewModel>();
-
             mauiAppBuilder.Services.AddTransient<AppShell>();
 
-            mauiAppBuilder.RegisterPage<MainPage>("main");
-            mauiAppBuilder.RegisterPage<CharacterPage>("character");
-            mauiAppBuilder.RegisterPage<CharacterSelectorPage>("characterselector");
-            mauiAppBuilder.RegisterPage<CharacterNotesPage>("characternotes");
+            mauiAppBuilder.RegisterPage<MainPage, MainViewModel>(NavigationKeys.MAIN);
+            mauiAppBuilder.RegisterPage<CharacterPage, CharacterViewModel>(NavigationKeys.CHARACTER);
+            mauiAppBuilder.RegisterPage<CharacterSelectorPage, CharacterSelectorViewModel>(NavigationKeys.CHARACTER_SELECTOR);
+            mauiAppBuilder.RegisterPage<CharacterNotesPage, CharacterNotesViewModel>(NavigationKeys.CHARACTER_NOTES);
 
-            mauiAppBuilder.RegisterPopup<NewCharacterPopup>();
-            mauiAppBuilder.RegisterPopup<UpdateAttributePopup>();
-            mauiAppBuilder.RegisterPopup<IncrementAttributePopup>();
-            mauiAppBuilder.RegisterPopup<NewFeaturePopup>();
+            mauiAppBuilder.RegisterPopup<NewCharacterPopup, NewCharacterViewModel>(NavigationKeys.CHARACTER_CREATE);
+            mauiAppBuilder.RegisterPopup<UpdateAttributePopup, UpdateAttributeViewModel>(NavigationKeys.ATTRIBUTE_UPDATE);
+            mauiAppBuilder.RegisterPopup<IncrementAttributePopup, IncrementAttributeViewModel>(NavigationKeys.ATTRIBUTE_INCREMENT);
+            mauiAppBuilder.RegisterPopup<NewFeaturePopup, NewFeatureViewModel>(NavigationKeys.FEATURE_CREATE);
 
             return mauiAppBuilder;
         }
@@ -52,19 +42,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
         {
             PopupLocator.ServiceProvider = mauiApp.Services;
             return mauiApp;
-        }
-
-        private static void RegisterPopup<T>(this MauiAppBuilder mauiAppBuilder)
-            where T : class, IPopup
-        {
-            mauiAppBuilder.Services.AddTransient<T>();
-        }
-
-        private static void RegisterPage<T>(this MauiAppBuilder mauiAppBuilder, string route)
-            where T : ContentPage
-        {
-            mauiAppBuilder.Services.AddTransient<T>();
-            Routing.RegisterRoute(route, typeof(T));
         }
     }
 }
