@@ -62,5 +62,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
         {
             return Shell.Current.DisplayAlert(title, body, accept, cancel);
         }
+
+        public Task DisplayAlert(string title, string body, string cancel)
+        {
+            return Shell.Current.DisplayAlert(title, body, cancel);
+        }
     }
 }

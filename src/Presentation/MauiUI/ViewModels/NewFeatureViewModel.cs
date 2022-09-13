@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
@@ -12,9 +13,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly ITextResource _textResource;
-        private string? _selectedProperty;
-        private int? _value;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
+
+        [ObservableProperty]
+        private int? _weight = null;
+
+        [ObservableProperty]
+        private int? _value;
+
+        [ObservableProperty]
+        private string? _selectedProperty;
 
         public NewFeatureViewModel(IMediator mediator
             , ITextResource textResource)
@@ -40,10 +48,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public IList<string> Properties { get; } = new List<string>();
 
-        public string? SelectedProperty { get => _selectedProperty; set => SetProperty(ref _selectedProperty, value); }
-
-        public int? Value { get => _value; set => SetProperty(ref _value, value); }
-
         [RelayCommand]
         public async Task SaveAndClose()
         {
@@ -51,6 +55,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 && (Value != null && Value != 0))
             {
                 Feature.Properties.Add(_properties[SelectedProperty], (int)Value);
+            }
+
+            if (Weight != null)
+            {
+                Feature.Properties.Add(AttributeNames.HEAVY, (int)Weight);
             }
 
             await _mediator.Send(NavRequest.Close(Feature));

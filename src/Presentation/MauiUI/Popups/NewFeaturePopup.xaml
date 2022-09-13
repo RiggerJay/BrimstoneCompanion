@@ -110,6 +110,24 @@
             </Frame>
 
             <Label
+                Text="Weight"
+                VerticalOptions="Center"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="1" />
+
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="5"
+                   Grid.Column="1">
+                <Entry
+                    Text="{Binding Weight}"
+                    Keyboard="Numeric"
+                    Placeholder="Value" />
+            </Frame>
+
+            <!--<Label
                 Text="Next Adventure?"
                 VerticalOptions="Center"
                 Grid.Row="5"
@@ -120,7 +138,7 @@
                 IsToggled="{Binding Feature.NextAdventure}"
                 Grid.Row="5"
                 Grid.Column="1"
-                Grid.ColumnSpan="1" />
+                Grid.ColumnSpan="1" />-->
 
             <Button
                 Text="Save"

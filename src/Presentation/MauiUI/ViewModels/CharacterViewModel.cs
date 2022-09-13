@@ -87,7 +87,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task DeleteCharacter()
         {
-            if (await _mediator.Send(AlertRequest.WithTitleAndMessage("Are you sure?", "This will delete the character and all progress.")))
+            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "This will delete the character and all progress.")))
             {
                 await _mediator.Send(DeleteCharacterRequest.WithCharacter(Character));
                 await _mediator.Send(NavRequest.Close());
@@ -97,7 +97,14 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task ShowNotes()
         {
-            await _mediator.Send(NavRequest.ShowNotes(Character));
+            try
+            {
+                await _mediator.Send(NavRequest.ShowNotes(Character));
+            }
+            catch (Exception ex)
+            {
+                await _mediator.Send(AlertRequest.WithTitleAndMessage("Error", ex.Message));
+            }
         }
 
         public void AttributesChanged()

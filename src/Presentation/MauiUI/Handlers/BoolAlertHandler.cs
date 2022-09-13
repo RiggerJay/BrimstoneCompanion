@@ -4,16 +4,16 @@ using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Handlers
 {
-    public class AlertNavigationHandler : IRequestHandler<AlertRequest, bool>
+    public class BoolAlertHandler : IRequestHandler<BoolAlertRequest, bool>
     {
-        private readonly INavigationService _service;
+        private readonly IAlertService _service;
 
-        public AlertNavigationHandler(INavigationService service)
+        public BoolAlertHandler(IAlertService service)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public async Task<bool> Handle(AlertRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(BoolAlertRequest request, CancellationToken cancellationToken)
         {
             return await _service.DisplayAlert(request.Title, request.Message, request.Accept, request.Cancel);
         }

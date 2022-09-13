@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
@@ -7,12 +8,12 @@ using System.Collections.ObjectModel;
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     [QueryProperty(nameof(Character), nameof(Character))]
-    public partial class CharacterNotesViewModel : ViewModelBase
+    public partial class FeatureViewModel : ViewModelBase
     {
-        private readonly IMediator _mediator;
         private ObservableCharacter _character;
+        private readonly IMediator _mediator;
 
-        public CharacterNotesViewModel(IMediator mediator)
+        public FeatureViewModel(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
@@ -23,10 +24,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             set => SetProperty(ref _character, value, OnCharacterUpdated);
         }
 
-        public ObservableCollection<ObservableFeature> Features => Character.Features;
+        public ObservableCollection<ObservableFeature> Features => Character?.Features;
 
         [RelayCommand]
-        private async Task AddFeature()
+        public async Task AddFeature()
         {
             var feature = await _mediator.Send(NavRequest.CreateFeature());
 
@@ -40,7 +41,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         private async Task DeleteFeature(ObservableFeature? feature)
         {
-            if (feature != null)
+            if (feature != null
+                && await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
             {
                 Features.Remove(feature);
                 await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));

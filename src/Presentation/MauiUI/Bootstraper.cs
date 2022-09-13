@@ -18,6 +18,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddMediatR(typeof(App));
 
             mauiAppBuilder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+            mauiAppBuilder.Services.AddSingleton<IAlertService, MauiNavigationService>();
+            mauiAppBuilder.Services.AddSingleton<IPopupService, MauiNavigationService>();
             mauiAppBuilder.Services.AddSingleton<ITextResource, TextResourceService>();
             mauiAppBuilder.Services.AddSingleton<ICharacterService, CharacterService>();
             mauiAppBuilder.Services.AddSingleton<IRepository<Character>, CharacterRepository>();
@@ -27,7 +29,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
 
             mauiAppBuilder.RegisterPage<CharacterPage, CharacterViewModel>(NavigationKeys.CHARACTER);
             mauiAppBuilder.RegisterPage<CharacterSelectorPage, CharacterSelectorViewModel>(NavigationKeys.CHARACTER_SELECTOR);
-            mauiAppBuilder.RegisterPage<CharacterNotesPage, CharacterNotesViewModel>(NavigationKeys.CHARACTER_NOTES);
+            mauiAppBuilder.RegisterPage<FeaturePage, FeatureViewModel>(NavigationKeys.CHARACTER_NOTES);
 
             mauiAppBuilder.RegisterPopup<NewCharacterPopup, NewCharacterViewModel>(NavigationKeys.CHARACTER_CREATE);
             mauiAppBuilder.RegisterPopup<UpdateAttributePopup, UpdateAttributeViewModel>(NavigationKeys.ATTRIBUTE_UPDATE);
