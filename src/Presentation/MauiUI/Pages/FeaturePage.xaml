@@ -2,62 +2,128 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.FeaturePage"
+             xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
              Title="Feature Page"
              x:Name="TheseNotes">
-    <VerticalStackLayout
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IntToStringConverter x:Key="IntToString" />
+            <converters:KeyToStringConverter TextResource="{Binding TextResource, Source={Reference TheseNotes}}" x:Key="KeyToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
         VerticalOptions="FillAndExpand">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <ListView
             ItemsSource="{Binding Features}"
-            VerticalOptions="FillAndExpand">
+            SelectedItem="{Binding SelectedFeature}"
+            VerticalOptions="FillAndExpand"
+            HasUnevenRows="True"
+            Header="Mixed Bag">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid
-                            Padding="10">
+                            Padding="2">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
                             </Grid.ColumnDefinitions>
 
                             <Label
+                                Grid.Row="0"
                                 Grid.Column="0"
+                                Grid.ColumnSpan="2"
                                 Text="{Binding Name}"
+                                FontAttributes="Bold" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                VerticalOptions="CenterAndExpand"
+                                Text="{Binding Value, StringFormat='${0}'}"
                                 FontAttributes="Bold" />
 
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="0"
+                                Grid.ColumnSpan="2"
                                 Text="{Binding Details}"
                                 FontAttributes="Italic"
                                 VerticalOptions="End" />
 
                             <Label
-                                Grid.Row="0"
-                                Grid.RowSpan="2"
-                                Grid.Column="1"
+                                Grid.Row="1"
+                                Grid.Column="2"
                                 VerticalOptions="CenterAndExpand"
-                                Text="{Binding Value, StringFormat='${0}'}"
+                                Text="{Binding Quantity, StringFormat='Qty {0}'}"
                                 FontAttributes="Bold" />
 
                             <Image
                                 Source="icon_bin.png"
                                 VerticalOptions="CenterAndExpand"
-                                HeightRequest="30"
+                                HeightRequest="40"
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
-                                Grid.Column="2">
+                                Grid.Column="3">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding BindingContext.DeleteFeatureCommand, Source={Reference TheseNotes}}"
-                                        CommandParameter="{Binding .}" />
+                                        CommandParameter="{Binding .}"
+                                        Tapped="TapGestureRecognizer_Tapped" />
                                 </Image.GestureRecognizers>
                             </Image>
+
+                            <CollectionView
+                                ItemsSource="{Binding Properties}"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                SelectionMode="None"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame
+                                                Background="#33333333"
+                                                Padding="5,2"
+                                                Margin="2"
+                                                HorizontalOptions="Start">
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Key, Converter={StaticResource KeyToString}}" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding Value, Converter={StaticResource IntToString}}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="3"
+                                VerticalOptions="CenterAndExpand"
+                                Text="{Binding FeatureType, Converter={StaticResource StringToEnumConverter}}"
+                                FontAttributes="Bold" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
@@ -67,6 +133,8 @@
         <Button
             Text="Add Feature"
             Command="{Binding AddFeatureCommand}"
+            Margin="0,10"
+            Grid.Row="1"
             HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

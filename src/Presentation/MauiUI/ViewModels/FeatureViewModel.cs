@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
@@ -11,6 +10,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class FeatureViewModel : ViewModelBase
     {
         private ObservableCharacter _character;
+        private ObservableFeature _selectedFeature;
         private readonly IMediator _mediator;
 
         public FeatureViewModel(IMediator mediator)
@@ -25,6 +25,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         public ObservableCollection<ObservableFeature> Features => Character?.Features;
+
+        public ObservableFeature? SelectedFeature
+        {
+            get => _selectedFeature;
+            set => SetProperty(ref _selectedFeature, value);
+        }
 
         [RelayCommand]
         public async Task AddFeature()
