@@ -53,9 +53,7 @@
             <Button
                 Text="-"
                 Command="{Binding UpdateAttributeCommand}"
-                HorizontalOptions="Center"
-                Padding="20,10"
-                Margin="2"
+                Style="{StaticResource Incrementer}"
                 Grid.Row="2"
                 Grid.Column="0">
                 <Button.CommandParameter>
@@ -66,9 +64,7 @@
             <Button
                 Text="+"
                 Command="{Binding UpdateAttributeCommand}"
-                HorizontalOptions="Center"
-                Padding="20,10"
-                Margin="2"
+                Style="{StaticResource Incrementer}"
                 Grid.Row="2"
                 Grid.Column="3">
                 <Button.CommandParameter>

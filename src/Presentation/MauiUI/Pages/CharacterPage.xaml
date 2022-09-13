@@ -54,26 +54,19 @@
         <!-- First Row -->
         <Label
             Text="XP"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Grid.Row="0" />
+
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="0"
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
                 Text="{Binding Experience.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Experience}" />
             </Frame.GestureRecognizers>
@@ -81,26 +74,18 @@
 
         <Label
             Text="Grit"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="5"
             Grid.ColumnSpan="5"
             Grid.Row="0" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Margin="0"
-            Padding="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="5"
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
                 Text="{Binding Grit.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Grit}" />
             </Frame.GestureRecognizers>
@@ -125,26 +110,18 @@
 
         <Label
             Text="Corrupt"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="10"
             Grid.ColumnSpan="5"
             Grid.Row="0" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="10"
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
                 Text="{Binding Corruption.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Corruption}" />
             </Frame.GestureRecognizers>
@@ -169,26 +146,18 @@
 
         <Label
             Text="Heavy"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="15"
             Grid.ColumnSpan="5"
             Grid.Row="0" />
         <Frame
-            CornerRadius="200"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="15"
             Grid.ColumnSpan="5"
             Grid.Row="1">
             <Label
                 Text="{Binding Heavy.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Heavy}" />
             </Frame.GestureRecognizers>
@@ -199,26 +168,18 @@
 
         <Label
             Text="Agility"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="0"
             Grid.ColumnSpan="4"
             Grid.Row="2" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="0"
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
                 Text="{Binding Agility.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Agility}" />
             </Frame.GestureRecognizers>
@@ -226,26 +187,18 @@
 
         <Label
             Text="Cunning"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="4"
             Grid.ColumnSpan="4"
             Grid.Row="2" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="4"
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
                 Text="{Binding Cunning.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Cunning}" />
             </Frame.GestureRecognizers>
@@ -253,26 +206,18 @@
 
         <Label
             Text="Spirit"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="8"
             Grid.ColumnSpan="4"
             Grid.Row="2" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="8"
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
                 Text="{Binding Spirit.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center">
+                Style="{StaticResource mickeyMouseBody}">
             </Label>
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Spirit}" />
@@ -281,26 +226,18 @@
 
         <Label
             Text="Combat"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="12"
             Grid.ColumnSpan="4"
             Grid.Row="2" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="12"
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
                 Text="{Binding Combat.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Combat}" />
             </Frame.GestureRecognizers>
@@ -308,26 +245,18 @@
 
         <Label
             Text="Range"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="16"
             Grid.ColumnSpan="4"
             Grid.Row="2" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="16"
             Grid.ColumnSpan="4"
             Grid.Row="3">
             <Label
                 Text="{Binding Range.CurrentValue, StringFormat='+{0}'}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Range}" />
             </Frame.GestureRecognizers>
@@ -339,26 +268,18 @@
 
         <Label
             Text="Strength"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="0"
             Grid.ColumnSpan="4"
             Grid.Row="4" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="0"
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
                 Text="{Binding Strength.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Strength}" />
             </Frame.GestureRecognizers>
@@ -366,26 +287,18 @@
 
         <Label
             Text="Lore"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="4"
             Grid.ColumnSpan="4"
             Grid.Row="4" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="4"
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
                 Text="{Binding Lore.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Lore}" />
             </Frame.GestureRecognizers>
@@ -393,26 +306,18 @@
 
         <Label
             Text="Luck"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="8"
             Grid.ColumnSpan="4"
             Grid.Row="4" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="8"
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
                 Text="{Binding Luck.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Luck}" />
             </Frame.GestureRecognizers>
@@ -420,26 +325,18 @@
 
         <Label
             Text="Initiative"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="12"
             Grid.ColumnSpan="4"
             Grid.Row="4" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="12"
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
                 Text="{Binding Initiative.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Initiative}" />
             </Frame.GestureRecognizers>
@@ -447,26 +344,18 @@
 
         <Label
             Text="Melee"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="16"
             Grid.ColumnSpan="4"
             Grid.Row="4" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="16"
             Grid.ColumnSpan="4"
             Grid.Row="5">
             <Label
                 Text="{Binding Melee.CurrentValue, StringFormat='+{0}'}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Melee}" />
             </Frame.GestureRecognizers>
@@ -478,26 +367,18 @@
 
         <Label
             Text="Wounds"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.ColumnSpan="5"
             Grid.Column="0"
             Grid.Row="6" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.ColumnSpan="5"
             Grid.Column="0"
             Grid.Row="7">
             <Label
                 Text="{Binding Wounds.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Wounds}" />
             </Frame.GestureRecognizers>
@@ -505,26 +386,18 @@
 
         <Label
             Text="Health"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="5"
             Grid.ColumnSpan="5"
             Grid.Row="6" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="5"
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
                 Text="{Binding Health.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Health}" />
             </Frame.GestureRecognizers>
@@ -532,26 +405,18 @@
 
         <Label
             Text="Horror"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.ColumnSpan="5"
             Grid.Column="10"
             Grid.Row="6" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.ColumnSpan="5"
             Grid.Column="10"
             Grid.Row="7">
             <Label
                 Text="{Binding Horror.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Horror}" />
             </Frame.GestureRecognizers>
@@ -559,26 +424,18 @@
 
         <Label
             Text="Sanity"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
+            Style="{StaticResource mickeyMouseTitle}"
             Grid.Column="15"
             Grid.ColumnSpan="5"
             Grid.Row="6" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
+            Style="{StaticResource mickeyMouseFrame}"
             Grid.Column="15"
             Grid.ColumnSpan="5"
             Grid.Row="7">
             <Label
                 Text="{Binding Sanity.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Sanity}" />
             </Frame.GestureRecognizers>
@@ -590,27 +447,18 @@
 
         <Label
             Text="Defence"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
-            Grid.ColumnSpan="10"
-            Grid.Column="0"
+            Style="{StaticResource mickeyMouseTitle}"
+            Grid.Column="2"
+            Grid.ColumnSpan="6"
             Grid.Row="8" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Center"
-            Grid.ColumnSpan="10"
-            Grid.Column="0"
+            Style="{StaticResource mickeyMouseFrame}"
+            Grid.Column="2"
+            Grid.ColumnSpan="6"
             Grid.Row="9">
             <Label
                 Text="{Binding Defence.CurrentValue, StringFormat='+{0}'}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Defence}" />
             </Frame.GestureRecognizers>
@@ -618,27 +466,18 @@
 
         <Label
             Text="Willpower"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
-            Grid.ColumnSpan="10"
-            Grid.Column="10"
+            Style="{StaticResource mickeyMouseTitle}"
+            Grid.Column="12"
+            Grid.ColumnSpan="6"
             Grid.Row="8" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Center"
-            Grid.Column="10"
-            Grid.ColumnSpan="10"
+            Style="{StaticResource mickeyMouseFrame}"
+            Grid.Column="12"
+            Grid.ColumnSpan="6"
             Grid.Row="9">
             <Label
                 Text="{Binding Willpower.CurrentValue, StringFormat='+{0}'}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Willpower}" />
             </Frame.GestureRecognizers>
@@ -650,26 +489,18 @@
 
         <Label
             Text="Dollars"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
-            Grid.Column="0"
+            Style="{StaticResource mickeyMouseTitle}"
+            Grid.Column="1"
             Grid.ColumnSpan="6"
             Grid.Row="10" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="End"
-            Grid.Column="0"
+            Style="{StaticResource mickeyMouseFrame}"
+            Grid.Column="1"
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
                 Text="{Binding Dollars.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding UpdateAttributeCommand}" CommandParameter="{Binding Dollars}" />
             </Frame.GestureRecognizers>
@@ -682,32 +513,31 @@
             HorizontalOptions="Center"
             Grid.Column="6"
             Grid.ColumnSpan="8"
-            Grid.Row="10"
-            Grid.RowSpan="2" />
+            Grid.Row="10" />
+
+        <Button
+            Text="Level Up"
+            Command="{Binding LevelUpCommand}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Grid.Column="6"
+            Grid.ColumnSpan="8"
+            Grid.Row="11" />
 
         <Label
             Text="Dark Stone"
-            Margin="0"
-            VerticalOptions="End"
-            HorizontalOptions="Center"
-            Grid.Column="14"
+            Style="{StaticResource mickeyMouseTitle}"
+            Grid.Column="13"
             Grid.ColumnSpan="6"
             Grid.Row="10" />
         <Frame
-            CornerRadius="50"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Center"
-            Grid.Column="14"
+            Style="{StaticResource mickeyMouseFrame}"
+            Grid.Column="13"
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
                 Text="{Binding DarkStone.CurrentValue}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource mickeyMouseBody}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding DarkStone}" />
             </Frame.GestureRecognizers>

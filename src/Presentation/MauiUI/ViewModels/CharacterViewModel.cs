@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
-using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
@@ -105,6 +104,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 await _mediator.Send(AlertRequest.WithTitleAndMessage("Error", ex.Message));
             }
+        }
+
+        [RelayCommand]
+        public async Task LevelUp()
+        {
         }
 
         public void AttributesChanged()
