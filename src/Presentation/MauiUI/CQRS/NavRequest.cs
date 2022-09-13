@@ -5,6 +5,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
 {
     public class NavRequest<T> : IRequest<T>
     {
+        internal const string CHARACTER = "Character";
+        internal const string ATTRIBUTE = "Attribute";
         internal string Route { get; }
 
         internal IDictionary<string, object>? Paramaters { get; }
@@ -25,13 +27,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
             => new(NavigationKeys.FEATURE_CREATE, null);
 
         internal static NavRequest<bool> UpdateAttribute(ObservableAttribute attribute)
-            => new(NavigationKeys.ATTRIBUTE_UPDATE, new Dictionary<string, object> { { "Attribute", attribute } });
+            => new(NavigationKeys.ATTRIBUTE_UPDATE, new Dictionary<string, object> { { ATTRIBUTE, attribute } });
 
         internal static NavRequest<bool> IncrementAttribute(ObservableAttribute attribute)
-            => new(NavigationKeys.ATTRIBUTE_INCREMENT, new Dictionary<string, object> { { "Attribute", attribute } });
+            => new(NavigationKeys.ATTRIBUTE_INCREMENT, new Dictionary<string, object> { { ATTRIBUTE, attribute } });
 
         internal static NavRequest<TResponse> Close<TResponse>(TResponse result)
             => new(NavigationKeys.BACK, null, result);
+
+        internal static NavRequest<bool> LevelUp(ObservableCharacter character)
+            => new(NavigationKeys.CHARACTER_LEVELUP, new Dictionary<string, object> { { CHARACTER, character } });
     }
 
     public class NavRequest : NavRequest<Unit>
@@ -40,10 +45,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
         { }
 
         internal static NavRequest LoadCharacter(ObservableCharacter character)
-            => new(NavigationKeys.CHARACTER, new Dictionary<string, object> { { "Character", character } });
+            => new(NavigationKeys.CHARACTER, new Dictionary<string, object> { { CHARACTER, character } });
 
         internal static NavRequest ShowNotes(ObservableCharacter character)
-            => new(NavigationKeys.CHARACTER_NOTES, new Dictionary<string, object> { { "Character", character } });
+            => new(NavigationKeys.CHARACTER_NOTES, new Dictionary<string, object> { { CHARACTER, character } });
 
         internal static NavRequest Close()
             => new(NavigationKeys.BACK, null);

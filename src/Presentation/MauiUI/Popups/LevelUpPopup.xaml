@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
+               xmlns:s="clr-namespace:System;assembly=mscorlib"
+               Color="Transparent"
+               x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.LevelUpPopup">
+    <Border
+        Padding="10"
+        HorizontalOptions="Center">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Style="{StaticResource mickeyMouseTitle}"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Character.Name}" />
+                        <Span Text="{Binding Character.Level, StringFormat=' Level ({0})'}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label
+                Text="{Binding CurrentXP.Value, StringFormat='Current XP {0}'}"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2" />
+
+            <Label
+                Text="Required XP"
+                VerticalOptions="CenterAndExpand"
+                Grid.Row="2"
+                Grid.Column="0" />
+
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="2"
+                   Grid.Column="1">
+                <Entry
+                    Text="{Binding RequiredXP}"
+                    Keyboard="Numeric"
+                    Placeholder="Required XP" />
+            </Frame>
+
+            <Button
+                Text="Cancel"
+                Padding="0,5"
+                Margin="2"
+                Command="{Binding CancelAndCloseCommand}"
+                Grid.Row="3"
+                Grid.Column="0" />
+
+            <Button
+                Text="Save"
+                Padding="0,5"
+                Margin="2"
+                Command="{Binding SaveAndCloseCommand}"
+                Grid.Row="3"
+                Grid.Column="1" />
+        </Grid>
+    </Border>
+</toolkit:Popup>

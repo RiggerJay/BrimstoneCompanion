@@ -90,6 +90,9 @@
 	  <MauiXaml Update="Popups\AddFeaturePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\LevelUpPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popups\UpdateAttributePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -110,6 +113,9 @@
 	  </Compile>
 	  <Compile Update="Popups\AddFeaturePopup.xaml.cs">
 	    <DependentUpon>AddFeaturePopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\LevelUpPopup.xaml.cs">
+	    <DependentUpon>LevelUpPopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\UpdateAttributePopup.xaml.cs">
 	    <DependentUpon>UpdateAttributePopup.xaml</DependentUpon>

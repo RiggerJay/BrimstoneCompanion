@@ -30,7 +30,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                     AttributesChanged();
                 }
 
-                Task.Run(async () => await _mediator.Send(SaveCharacterRequest.WithCharacter(_character)));
+                Task.Run(async () => await SaveCharacterAsync());
             }
         }
 
@@ -70,7 +70,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (await _mediator.Send(NavRequest.UpdateAttribute(attribute)))
             {
-                await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
+                await SaveCharacterAsync();
             }
         }
 
@@ -79,7 +79,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (await _mediator.Send(NavRequest.IncrementAttribute(attribute)))
             {
-                await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
+                await SaveCharacterAsync();
             }
         }
 
@@ -109,6 +109,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task LevelUp()
         {
+            if (await _mediator.Send(NavRequest.LevelUp(Character)))
+            {
+                Title = $"{_character.Name} a level {_character.Level} {_character.Class}";
+                await SaveCharacterAsync();
+            }
         }
 
         public void AttributesChanged()
@@ -150,5 +155,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             return Character.GetAttribute(name);
         }
+
+        private Task SaveCharacterAsync() =>
+            _mediator.Send(SaveRequest<ObservableCharacter>.With(Character));
     }
 }

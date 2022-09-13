@@ -34,7 +34,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             if (feature != null)
             {
                 Features.Add(feature);
-                await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
+                await SaveCharacter();
             }
         }
 
@@ -45,9 +45,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 && await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
             {
                 Features.Remove(feature);
-                await _mediator.Send(SaveCharacterRequest.WithCharacter(Character));
+                await SaveCharacter();
             }
         }
+
+        private Task SaveCharacter() =>
+            _mediator.Send(SaveRequest<ObservableCharacter>.With(Character));
 
         private void OnCharacterUpdated()
         {
