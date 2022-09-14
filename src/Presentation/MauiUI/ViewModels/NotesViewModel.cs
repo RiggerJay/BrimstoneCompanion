@@ -8,43 +8,40 @@ using System.Collections.ObjectModel;
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     [QueryProperty(nameof(Character), nameof(Character))]
-    public partial class FeatureViewModel : ViewModelBase
+    public partial class NotesViewModel : ViewModelBase
     {
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Features))]
+        [NotifyPropertyChangedFor(nameof(Notes))]
         private ObservableCharacter _character;
-
-        [ObservableProperty]
-        private ObservableFeature? _selectedFeature;
 
         private readonly IMediator _mediator;
 
-        public FeatureViewModel(IMediator mediator)
+        public NotesViewModel(IMediator mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
-        public ObservableCollection<ObservableFeature> Features => Character?.Features;
+        public ObservableCollection<ObservableNote> Notes => Character?.Notes;
 
         [RelayCommand]
-        public async Task AddFeature()
+        public async Task AddNote()
         {
-            var feature = await _mediator.Send(NavRequest.CreateFeature());
+            var note = await _mediator.Send(NavRequest.CreateNote());
 
-            if (feature != null)
+            if (note != null)
             {
-                Features.Add(feature);
+                Notes.Add(note);
                 await SaveCharacter();
             }
         }
 
         [RelayCommand]
-        private async Task DeleteFeature(ObservableFeature? feature)
+        private async Task DeleteNote(ObservableNote? note)
         {
-            if (feature != null
-                && await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
+            if (note != null
+                && await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Note for good.")))
             {
-                Features.Remove(feature);
+                Notes.Remove(note);
                 await SaveCharacter();
             }
         }

@@ -42,6 +42,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             CurrentXP.Value -= RequiredXP;
             Character.Level += 1;
+            Character.AddNote($"Made it to Level {Character.Level}");
             await _mediator.Send(NavRequest.Close(true));
         }
 

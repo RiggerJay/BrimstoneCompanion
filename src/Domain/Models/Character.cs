@@ -17,5 +17,7 @@
             = new Dictionary<string, AttributeValue>();
 
         public IList<Feature> Features { get; set; } = new List<Feature>();
+
+        public IList<Note> Notes { get; set; } = new List<Note>();
     }
 }

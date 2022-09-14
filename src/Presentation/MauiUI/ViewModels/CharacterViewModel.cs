@@ -98,7 +98,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             try
             {
-                await _mediator.Send(NavRequest.ShowNotes(Character));
+                await _mediator.Send(NavRequest.ShowFeatures(Character));
             }
             catch (Exception ex)
             {
@@ -115,6 +115,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 await SaveCharacterAsync();
             }
         }
+
+        [RelayCommand]
+        public async Task Notes() => await _mediator.Send(NavRequest.ShowNotes(Character));
 
         public void AttributesChanged()
         {

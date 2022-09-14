@@ -18,10 +18,17 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
             foreach (var feature in Model.Features)
             {
-                Features.Add(new ObservableFeature(feature));
+                Features.Add(ObservableFeature.New(feature));
             }
 
             Features.CollectionChanged += Features_CollectionChanged;
+
+            foreach (var note in Model.Notes)
+            {
+                Notes.Add(ObservableNote.New(note));
+            }
+
+            Notes.CollectionChanged += Notes_CollectionChanged;
         }
 
         public string Id
@@ -94,6 +101,42 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
         }
 
+        public ObservableCollection<ObservableNote> Notes { get; set; } = new ObservableCollection<ObservableNote>();
+
+        private void Notes_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+        {
+            switch (args.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    if (args.NewItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.NewItems)
+                    {
+                        if (item is ObservableNote note)
+                        {
+                            Model.Notes.Add(note.GetModel());
+                        }
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    if (args.OldItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.OldItems)
+                    {
+                        if (item is ObservableNote note)
+                        {
+                            Model.Notes.Remove(note.GetModel());
+                        }
+                    }
+                    break;
+            }
+        }
+
         public ObservableAttribute GetAttribute(string name)
         {
             SetAttribute(name, 0);
@@ -117,6 +160,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             {
                 Attributes[key].OnValueChanged();
             }
+        }
+
+        public void AddNote(string note)
+        {
+            Notes.Add(ObservableNote.New(note));
         }
     }
 }

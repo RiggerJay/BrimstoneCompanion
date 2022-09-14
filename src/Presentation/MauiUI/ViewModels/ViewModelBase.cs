@@ -30,5 +30,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
             return isSuccess;
         }
+
+        protected bool SetProperty<TModel, T>(T oldValue, T newValue, TModel model, Action<TModel, T> callback, Action action, [CallerMemberName] string? propertyName = null)
+            where TModel : class
+        {
+            var isSuccess = SetProperty(oldValue, newValue, model, callback, propertyName);
+            if (isSuccess)
+            {
+                action?.Invoke();
+            }
+            return isSuccess;
+        }
     }
 }

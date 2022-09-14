@@ -26,6 +26,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
         internal static NavRequest<ObservableFeature> CreateFeature()
             => new(NavigationKeys.FEATURE_CREATE, null);
 
+        internal static NavRequest<ObservableNote> CreateNote()
+            => new(NavigationKeys.NOTE_CREATE, null);
+
         internal static NavRequest<bool> UpdateAttribute(ObservableAttribute attribute)
             => new(NavigationKeys.ATTRIBUTE_UPDATE, new Dictionary<string, object> { { ATTRIBUTE, attribute } });
 
@@ -46,6 +49,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
 
         internal static NavRequest LoadCharacter(ObservableCharacter character)
             => new(NavigationKeys.CHARACTER, new Dictionary<string, object> { { CHARACTER, character } });
+
+        internal static NavRequest ShowFeatures(ObservableCharacter character)
+            => new(NavigationKeys.CHARACTER_FEATURES, new Dictionary<string, object> { { CHARACTER, character } });
 
         internal static NavRequest ShowNotes(ObservableCharacter character)
             => new(NavigationKeys.CHARACTER_NOTES, new Dictionary<string, object> { { CHARACTER, character } });

@@ -38,16 +38,22 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
+
             <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
+
             <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
+
             <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
+
             <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
-            <RowDefinition Height="6*" />
+
+            <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
+
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
@@ -490,12 +496,12 @@
         <Label
             Text="Dollars"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Column="1"
+            Grid.Column="2"
             Grid.ColumnSpan="6"
             Grid.Row="10" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
-            Grid.Column="1"
+            Grid.Column="2"
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
@@ -506,33 +512,15 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <Button
-            Text="Features"
-            Command="{Binding ShowNotesCommand}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Grid.Column="6"
-            Grid.ColumnSpan="8"
-            Grid.Row="10" />
-
-        <Button
-            Text="Level Up"
-            Command="{Binding LevelUpCommand}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Grid.Column="6"
-            Grid.ColumnSpan="8"
-            Grid.Row="11" />
-
         <Label
             Text="Dark Stone"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Column="13"
+            Grid.Column="12"
             Grid.ColumnSpan="6"
             Grid.Row="10" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
-            Grid.Column="13"
+            Grid.Column="12"
             Grid.ColumnSpan="6"
             Grid.Row="11">
             <Label
@@ -544,5 +532,36 @@
         </Frame>
 
         <!-- Sixth Row-->
+
+        <!-- Seventh Row-->
+
+        <Button
+            Text="Level Up"
+            Command="{Binding LevelUpCommand}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Grid.Column="0"
+            Grid.ColumnSpan="6"
+            Grid.Row="12" />
+
+        <Button
+            Text="Notes"
+            Command="{Binding NotesCommand}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Grid.Column="6"
+            Grid.ColumnSpan="8"
+            Grid.Row="12" />
+
+        <Button
+            Text="Features"
+            Command="{Binding ShowNotesCommand}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Grid.Column="14"
+            Grid.ColumnSpan="6"
+            Grid.Row="12" />
+
+        <!-- Seventh Row-->
     </Grid>
 </ContentPage>

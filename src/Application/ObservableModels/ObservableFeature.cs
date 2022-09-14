@@ -4,7 +4,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableFeature : ObservableModel<Feature>
     {
-        public ObservableFeature(Feature model) : base(model)
+        private ObservableFeature(Feature model) : base(model)
         {
         }
 
@@ -53,5 +53,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public IDictionary<string, int> Properties => Model.Properties;
 
         public static ObservableFeature New() => new(new Feature());
+
+        public static ObservableFeature New(Feature model) => new(model);
     }
 }
