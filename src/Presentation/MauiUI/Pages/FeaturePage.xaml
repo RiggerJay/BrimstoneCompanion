@@ -93,17 +93,17 @@
                                 SelectionMode="None"
                                 Grid.Row="2"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="3">
+                                Grid.ColumnSpan="2">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Horizontal" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Frame
-                                                Background="#33333333"
-                                                Padding="5,2"
-                                                Margin="2"
-                                                HorizontalOptions="Start">
+                                            Background="#33333333"
+                                            Padding="5,2"
+                                            Margin="2"
+                                            HorizontalOptions="Start">
                                             <Label>
                                                 <Label.FormattedText>
                                                     <FormattedString>
@@ -120,7 +120,8 @@
 
                             <Label
                                 Grid.Row="2"
-                                Grid.Column="3"
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
                                 VerticalOptions="CenterAndExpand"
                                 Text="{Binding FeatureType, Converter={StaticResource StringToEnumConverter}}"
                                 FontAttributes="Bold" />

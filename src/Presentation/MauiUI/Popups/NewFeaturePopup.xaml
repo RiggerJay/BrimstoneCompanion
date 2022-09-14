@@ -34,7 +34,7 @@
                    Grid.ColumnSpan="2">
                 <Entry
                     Text="{Binding Feature.Name}"
-                    WidthRequest="200"
+                    WidthRequest="300"
                     Keyboard="Chat"
                     Placeholder="Name" />
             </Frame>
@@ -47,7 +47,7 @@
                    Grid.ColumnSpan="2">
                 <Editor
                     Text="{Binding Feature.Details}"
-                    WidthRequest="200"
+                    WidthRequest="300"
                     HeightRequest="100"
                     Keyboard="Chat"
                     Placeholder="Details" />
@@ -93,7 +93,7 @@
                    Padding="5,0"
                    Grid.Row="4"
                    Grid.Column="0">
-                <Picker Title="Type"
+                <Picker Title="Attributes"
                         ItemsSource="{Binding Properties}"
                         SelectedItem="{Binding SelectedProperty}" />
             </Frame>
@@ -112,6 +112,7 @@
             <Label
                 Text="Weight"
                 VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
                 Grid.Row="5"
                 Grid.Column="0"
                 Grid.ColumnSpan="1" />

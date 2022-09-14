@@ -45,7 +45,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             await _mediator.Send(NavRequest.Close(true));
         }
 
-        private bool CanSave() => CurrentXP.Value >= RequiredXP;
+        private bool CanSave() => CurrentXP?.Value >= RequiredXP;
 
         [RelayCommand]
         public async Task CancelAndClose() => await _mediator.Send(NavRequest.Close(false));

@@ -507,7 +507,7 @@
         </Frame>
 
         <Button
-            Text="Notes"
+            Text="Features"
             Command="{Binding ShowNotesCommand}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
