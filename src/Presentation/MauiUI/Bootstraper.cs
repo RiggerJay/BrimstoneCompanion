@@ -37,6 +37,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.RegisterPopup<IncrementAttributePopup, IncrementAttributeViewModel>(NavigationKeys.ATTRIBUTE_INCREMENT);
             mauiAppBuilder.RegisterPopup<NewFeaturePopup, NewFeatureViewModel>(NavigationKeys.FEATURE_CREATE);
             mauiAppBuilder.RegisterPopup<NewNotePopup, NewNoteViewModel>(NavigationKeys.NOTE_CREATE);
+            mauiAppBuilder.RegisterPopup<EditNotePopup, EditNoteViewModel>(NavigationKeys.NOTE_EDIT);
             mauiAppBuilder.RegisterPopup<LevelUpPopup, LevelUpViewModel>(NavigationKeys.CHARACTER_LEVELUP);
 
             return mauiAppBuilder;

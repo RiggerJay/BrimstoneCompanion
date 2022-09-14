@@ -17,12 +17,18 @@
             SelectionMode="None"
             VerticalOptions="FillAndExpand"
             HasUnevenRows="True"
-            Header="His-Story">
+            Header="History">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid
                             Padding="2">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.EditNoteCommand, Source={Reference TheseNotes}}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

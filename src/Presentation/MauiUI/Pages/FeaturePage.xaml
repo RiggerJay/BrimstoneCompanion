@@ -4,11 +4,11 @@
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.FeaturePage"
              xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
              Title="Features"
-             x:Name="TheseNotes">
+             x:Name="TheseFeatures">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:IntToStringConverter x:Key="IntToString" />
-            <converters:KeyToStringConverter TextResource="{Binding TextResource, Source={Reference TheseNotes}}" x:Key="KeyToString" />
+            <converters:KeyToStringConverter TextResource="{Binding TextResource, Source={Reference TheseFeatures}}" x:Key="KeyToString" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid
@@ -81,7 +81,7 @@
                                 Grid.Column="3">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Command="{Binding BindingContext.DeleteFeatureCommand, Source={Reference TheseNotes}}"
+                                        Command="{Binding BindingContext.DeleteFeatureCommand, Source={Reference TheseFeatures}}"
                                         CommandParameter="{Binding .}"
                                         Tapped="TapGestureRecognizer_Tapped" />
                                 </Image.GestureRecognizers>

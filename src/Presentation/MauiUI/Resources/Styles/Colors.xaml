@@ -8,6 +8,7 @@
     <Color x:Key="Secondary">#d5ae93</Color>
     <Color x:Key="Tertiary">#3e0003</Color>
     <Color x:Key="White">#d9c8bc</Color>
+
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
     <Color x:Key="Gray200">#C8C8C8</Color>
@@ -18,6 +19,7 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
     <Color x:Key="GrayTrans">#776E6E6E</Color>
+
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
