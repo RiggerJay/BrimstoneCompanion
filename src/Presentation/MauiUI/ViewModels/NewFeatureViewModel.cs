@@ -16,10 +16,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         [ObservableProperty]
-        private int? _weight = null;
+        private string? _weight = null;
 
         [ObservableProperty]
-        private int? _value;
+        private string? _value;
 
         [ObservableProperty]
         private string? _selectedProperty;
@@ -52,14 +52,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public async Task SaveAndClose()
         {
             if (!string.IsNullOrWhiteSpace(SelectedProperty)
-                && (Value != null && Value != 0))
+                && !string.IsNullOrWhiteSpace(Value)
+                && int.TryParse(Value, out int value))
             {
-                Feature.Properties.Add(_properties[SelectedProperty], (int)Value);
+                Feature.AddProperty(_properties[SelectedProperty], value);
             }
 
-            if (Weight != null)
+            if (!string.IsNullOrWhiteSpace(Weight)
+                && int.TryParse(Weight, out int weight))
             {
-                Feature.Properties.Add(AttributeNames.HEAVY, (int)Weight);
+                Feature.AddProperty(AttributeNames.HEAVY, weight);
             }
 
             await _mediator.Send(NavRequest.Close(Feature));

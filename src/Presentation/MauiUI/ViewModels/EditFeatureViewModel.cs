@@ -16,10 +16,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         [ObservableProperty]
-        private int? _weight = null;
+        private string? _weight = null;
 
         [ObservableProperty]
-        private int? _value;
+        private string? _value;
 
         [ObservableProperty]
         private string? _selectedProperty;
@@ -38,7 +38,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public ObservableFeature Feature
         {
             get => _feature;
-            set => SetProperty(ref _feature, value, () => { SaveState(_feature, _backup); });
+            set => SetProperty(ref _feature, value, NewFeatureAdded);
         }
 
         public IList<string> Types => Enum.GetNames(typeof(FeatureTypes));
@@ -48,18 +48,21 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task SaveAndClose()
         {
+            Feature.Properties.Clear();
             if (!string.IsNullOrWhiteSpace(SelectedProperty)
-                && (Value != null && Value != 0))
+                && !string.IsNullOrWhiteSpace(Value)
+                && int.TryParse(Value, out int value))
             {
-                Feature.Properties.Add(_properties[SelectedProperty], (int)Value);
+                Feature.AddProperty(_properties[SelectedProperty], value);
             }
 
-            if (Weight != null)
+            if (!string.IsNullOrWhiteSpace(Weight)
+                && int.TryParse(Weight, out int weight))
             {
-                Feature.Properties.Add(AttributeNames.HEAVY, (int)Weight);
+                Feature.AddProperty(AttributeNames.HEAVY, weight);
             }
 
-            await _mediator.Send(NavRequest.Close(Feature));
+            await _mediator.Send(NavRequest.Close(true));
         }
 
         public void Reset()
@@ -75,7 +78,25 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 Properties.Add(_textResource.GetValue(item));
                 _properties.Add(_textResource.GetValue(item), item);
             }
-            OnPropertyChanged(nameof(Properties));
+        }
+
+        private void NewFeatureAdded()
+        {
+            if (_feature.Properties.Any(x => x.Key == AttributeNames.HEAVY))
+            {
+                Weight = _feature.Properties.First(x => x.Key == AttributeNames.HEAVY).Value.ToString();
+            }
+
+            foreach (var prop in _feature.Properties)
+            {
+                if (prop.Key != AttributeNames.HEAVY)
+                {
+                    SelectedProperty = _textResource.GetValue(prop.Key);
+                    Value = prop.Value.ToString();
+                }
+            }
+
+            SaveState(_feature, _backup);
         }
 
         public static void SaveState(ObservableFeature from, ObservableFeature to)

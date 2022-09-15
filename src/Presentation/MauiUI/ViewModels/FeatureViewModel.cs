@@ -33,18 +33,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             if (feature != null)
             {
+                var keys = feature.Properties.Select(x => x.Key).ToList();
+                keys.AddRange(feature.Properties.Select(x => x.Key));
+                UpdateProperties(keys);
                 Features.Add(feature);
-                await SaveCharacter();
-            }
-        }
-
-        [RelayCommand]
-        private async Task DeleteFeature(ObservableFeature? feature)
-        {
-            if (feature != null
-                && await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
-            {
-                Features.Remove(feature);
                 await SaveCharacter();
             }
         }
@@ -52,9 +44,36 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task EditFeature(ObservableFeature feature)
         {
+            var keys = feature.Properties.Select(x => x.Key).ToList();
             if (await _mediator.Send(NavRequest.EditFeature(feature)))
             {
+                keys.AddRange(feature.Properties.Select(x => x.Key));
+                UpdateProperties(keys);
                 await SaveCharacter();
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteFeature(ObservableFeature? feature)
+        {
+            if (feature == null)
+            {
+                return;
+            }
+
+            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
+            {
+                UpdateProperties(feature.Properties.Select(x => x.Key));
+                Features.Remove(feature);
+                await SaveCharacter();
+            }
+        }
+
+        private void UpdateProperties(IEnumerable<string> keys)
+        {
+            foreach (var key in keys)
+            {
+                Character.ValueChanged(key);
             }
         }
 

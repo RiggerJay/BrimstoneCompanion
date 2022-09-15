@@ -6,7 +6,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
     public class ObservableModel<TObservedModel> : ObservableObject
     {
         protected readonly TObservedModel _model;
-        protected bool _isBusy = false;
 
         public ObservableModel(TObservedModel model)
         {
