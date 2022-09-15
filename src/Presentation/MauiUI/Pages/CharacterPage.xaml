@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Controls"
              xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
              x:Class="RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages.CharacterPage"
-             Title="{Binding Title}">
+             Title="{Binding Character.Name}">
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Delete Character"
@@ -38,6 +38,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+
             <RowDefinition Height="2*" />
             <RowDefinition Height="4*" />
 
@@ -113,22 +115,42 @@
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             Grid.Row="0"
-            Grid.RowSpan="2"
             Grid.Column="0"
             Grid.ColumnSpan="22" />
 
         <Label
+            FontAttributes="Bold"
+            Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="22">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding Character.Class}" />
+                    <Span Text=" at Level  " />
+                    <Span Text="{Binding Character.Level}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <!-- First Row -->
+
+        <!-- Second Row -->
+
+        <Label
             Text="XP"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="1"
             Grid.Column="1"
-            Grid.ColumnSpan="6"
-            Grid.Row="0" />
+            Grid.ColumnSpan="6" />
 
         <Frame
             Style="{StaticResource baseFrame}"
+            BackgroundColor="{StaticResource PurpleLight}"
+            BorderColor="{StaticResource PurpleDark}"
+            Grid.Row="2"
             Grid.Column="1"
-            Grid.ColumnSpan="6"
-            Grid.Row="1">
+            Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Experience.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -140,14 +162,16 @@
         <Label
             Text="Dollars"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="1"
             Grid.Column="8"
-            Grid.ColumnSpan="6"
-            Grid.Row="0" />
+            Grid.ColumnSpan="6" />
         <Frame
             Style="{StaticResource baseFrame}"
+            BackgroundColor="{StaticResource GreenLight}"
+            BorderColor="{StaticResource GreenDark}"
+            Grid.Row="2"
             Grid.Column="8"
-            Grid.ColumnSpan="6"
-            Grid.Row="1">
+            Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Dollars.CurrentValue, StringFormat='${0}'}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -159,14 +183,16 @@
         <Label
             Text="Heavy"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="1"
             Grid.Column="15"
-            Grid.ColumnSpan="6"
-            Grid.Row="0" />
+            Grid.ColumnSpan="6" />
         <Frame
             Style="{StaticResource baseFrame}"
+            BackgroundColor="{StaticResource BrownLight}"
+            BorderColor="{StaticResource BrownDark}"
+            Grid.Row="2"
             Grid.Column="15"
-            Grid.ColumnSpan="6"
-            Grid.Row="1">
+            Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Heavy.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -175,34 +201,63 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <!-- First Row -->
-
-        <!-- Second Row -->
-
-        <Label
-            Text="Skillz"
-            FontAttributes="Bold"
-            Style="{StaticResource mickeyMouseTitle}"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Grid.Row="2" />
+        <Frame
+            CornerRadius="20"
+            HeightRequest="30"
+            WidthRequest="30"
+            BackgroundColor="{StaticResource BrownDark}"
+            BorderColor="{StaticResource BrownLight}"
+            Padding="0"
+            Margin="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Grid.Row="2"
+            Grid.Column="15"
+            Grid.ColumnSpan="6">
+            <Label
+                Text="{Binding Heavy.MaxValue}"
+                TextColor="{StaticResource BrownLight}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center" />
+        </Frame>
 
         <!-- Second Row -->
 
         <!-- Third Row -->
 
+        <Rectangle
+            Fill="{StaticResource GrayTrans}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Row="3"
+            Grid.RowSpan="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="22" />
+
+        <Label
+            Text="Skillz"
+            FontAttributes="Bold"
+            Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="22" />
+
+        <!-- Third Row -->
+
+        <!-- Forth Row -->
+
         <Label
             Text="Agility"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="4"
             Grid.Column="3"
-            Grid.ColumnSpan="4"
-            Grid.Row="3" />
+            Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource YellowLight}"
+            Grid.Row="5"
             Grid.Column="3"
-            Grid.ColumnSpan="4"
-            Grid.Row="4">
+            Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Agility.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -214,15 +269,15 @@
         <Label
             Text="Cunning"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="4"
             Grid.Column="9"
-            Grid.ColumnSpan="4"
-            Grid.Row="3" />
+            Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource YellowLight}"
+            Grid.Row="5"
             Grid.Column="9"
-            Grid.ColumnSpan="4"
-            Grid.Row="4">
+            Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Cunning.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -234,15 +289,15 @@
         <Label
             Text="Spirit"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="4"
             Grid.Column="15"
-            Grid.ColumnSpan="4"
-            Grid.Row="3" />
+            Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource YellowLight}"
+            Grid.Row="5"
             Grid.Column="15"
-            Grid.ColumnSpan="4"
-            Grid.Row="4">
+            Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Spirit.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}">
@@ -252,22 +307,22 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <!-- Third Row -->
-
         <!-- Forth Row -->
+
+        <!-- Fifth Row -->
 
         <Label
             Text="Strength"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="6"
             Grid.Column="3"
-            Grid.ColumnSpan="4"
-            Grid.Row="5" />
+            Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource YellowLight}"
+            Grid.Row="7"
             Grid.Column="3"
-            Grid.ColumnSpan="4"
-            Grid.Row="6">
+            Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Strength.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -279,15 +334,15 @@
         <Label
             Text="Lore"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="6"
             Grid.Column="9"
-            Grid.ColumnSpan="4"
-            Grid.Row="5" />
+            Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource YellowLight}"
+            Grid.Row="7"
             Grid.Column="9"
-            Grid.ColumnSpan="4"
-            Grid.Row="6">
+            Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Lore.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -299,15 +354,15 @@
         <Label
             Text="Luck"
             Style="{StaticResource mickeyMouseTitle}"
+            Grid.Row="6"
             Grid.Column="15"
-            Grid.ColumnSpan="4"
-            Grid.Row="5" />
+            Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource YellowLight}"
+            Grid.Row="7"
             Grid.Column="15"
-            Grid.ColumnSpan="4"
-            Grid.Row="6">
+            Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Luck.CurrentValue}"
                 Style="{StaticResource mickeyMouseBody}" />
@@ -316,40 +371,31 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <!-- Forth Row -->
-
         <!-- Fifth Row -->
 
-        <Rectangle
-            Fill="{StaticResource GrayTrans}"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="7"
-            Grid.RowSpan="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="22" />
+        <!-- Sixth Row -->
 
         <Label
             Text="Fightin'"
             FontAttributes="Bold"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="7"
+            Grid.Row="8"
             Grid.Column="0"
             Grid.ColumnSpan="22" />
 
-        <!-- Fifth Row -->
+        <!-- Sixth Row -->
 
-        <!-- Sixth Row-->
+        <!-- Seventh Row-->
 
         <Label
             Text="Range"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="1"
             Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
-            Grid.Row="9"
+            Grid.Row="10"
             Grid.Column="1"
             Grid.ColumnSpan="4">
             <Label
@@ -363,12 +409,12 @@
         <Label
             Text="Melee"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="6"
             Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
-            Grid.Row="9"
+            Grid.Row="10"
             Grid.Column="6"
             Grid.ColumnSpan="4">
             <Label
@@ -382,12 +428,12 @@
         <Label
             Text="Combat"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="11"
             Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
-            Grid.Row="9"
+            Grid.Row="10"
             Grid.Column="11"
             Grid.ColumnSpan="4">
             <Label
@@ -401,12 +447,12 @@
         <Label
             Text="Initiative"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="16"
             Grid.ColumnSpan="4" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
-            Grid.Row="9"
+            Grid.Row="10"
             Grid.Column="16"
             Grid.ColumnSpan="4">
             <Label
@@ -417,21 +463,30 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <!-- Sixth Row -->
+        <!-- Seventh Row -->
 
-        <!-- Seventh Row-->
+        <!-- Eighth Row-->
+
+        <Rectangle
+            Fill="{StaticResource GrayTrans}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Row="11"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="22" />
 
         <Label
             Text="Health"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="10"
+            Grid.Row="11"
             Grid.Column="1"
             Grid.ColumnSpan="5" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource RedLight}"
             BorderColor="{StaticResource RedDark}"
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="1"
             Grid.ColumnSpan="5">
             <Label
@@ -452,7 +507,7 @@
             Margin="0"
             VerticalOptions="Start"
             HorizontalOptions="Start"
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="1"
             Grid.ColumnSpan="5">
             <Label
@@ -465,14 +520,14 @@
         <Label
             Text="Defence"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="10"
+            Grid.Row="11"
             Grid.Column="6"
             Grid.ColumnSpan="5" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
             BackgroundColor="{StaticResource RedLight}"
             BorderColor="{StaticResource RedDark}"
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="6"
             Grid.ColumnSpan="4">
             <Label
@@ -486,14 +541,14 @@
         <Label
             Text="Sanity"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="10"
+            Grid.Row="11"
             Grid.Column="11"
             Grid.ColumnSpan="6" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource BlueLight}"
             BorderColor="{StaticResource BlueDark}"
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="12"
             Grid.ColumnSpan="5">
             <Label
@@ -514,7 +569,7 @@
             Margin="0"
             VerticalOptions="Start"
             HorizontalOptions="Start"
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="12"
             Grid.ColumnSpan="5">
             <Label
@@ -527,14 +582,14 @@
         <Label
             Text="Willpower"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="10"
+            Grid.Row="11"
             Grid.Column="16"
             Grid.ColumnSpan="6" />
         <Frame
             Style="{StaticResource mickeyMouseFrame}"
             BackgroundColor="{StaticResource BlueLight}"
             BorderColor="{StaticResource BlueDark}"
-            Grid.Row="11"
+            Grid.Row="12"
             Grid.Column="17"
             Grid.ColumnSpan="4">
             <Label
@@ -545,30 +600,21 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <!-- Seventh Row-->
-
         <!-- Eighth Row-->
 
-        <Rectangle
-            Fill="{StaticResource GrayTrans}"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="12"
-            Grid.RowSpan="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="22" />
+        <!-- Ninth Row-->
 
         <Label
             Text="Grit"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="12"
+            Grid.Row="13"
             Grid.Column="2"
             Grid.ColumnSpan="6" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource BrownLight}"
             BorderColor="{StaticResource BrownDark}"
-            Grid.Row="13"
+            Grid.Row="14"
             Grid.Column="2"
             Grid.ColumnSpan="6">
             <Label
@@ -589,7 +635,7 @@
             Margin="0"
             VerticalOptions="Start"
             HorizontalOptions="Start"
-            Grid.Row="13"
+            Grid.Row="14"
             Grid.Column="2"
             Grid.ColumnSpan="6">
             <Label
@@ -602,14 +648,14 @@
         <Label
             Text="Corrupt"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="12"
+            Grid.Row="13"
             Grid.Column="8"
             Grid.ColumnSpan="6" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource GreenLight}"
             BorderColor="{StaticResource GreenDark}"
-            Grid.Row="13"
+            Grid.Row="14"
             Grid.Column="8"
             Grid.ColumnSpan="6">
             <Label
@@ -630,7 +676,7 @@
             Margin="0"
             VerticalOptions="Start"
             HorizontalOptions="Start"
-            Grid.Row="13"
+            Grid.Row="14"
             Grid.Column="8"
             Grid.ColumnSpan="6">
             <Label
@@ -643,14 +689,14 @@
         <Label
             Text="Dark Stone"
             Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="12"
+            Grid.Row="13"
             Grid.Column="14"
             Grid.ColumnSpan="6" />
         <Frame
             Style="{StaticResource baseFrame}"
             BackgroundColor="{StaticResource PurpleLight}"
             BorderColor="{StaticResource PurpleDark}"
-            Grid.Row="13"
+            Grid.Row="14"
             Grid.Column="14"
             Grid.ColumnSpan="6">
             <Label
@@ -661,36 +707,24 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <Frame
-            CornerRadius="20"
-            HeightRequest="30"
-            WidthRequest="30"
-            BackgroundColor="{StaticResource PurpleDark}"
-            BorderColor="{StaticResource PurpleLight}"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
-            Grid.Row="13"
-            Grid.Column="14"
-            Grid.ColumnSpan="6">
-            <Label
-                Text="{Binding DarkStone.MaxValue}"
-                TextColor="{StaticResource PurpleLight}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
-        </Frame>
-
-        <!-- Eighth Row-->
-
         <!-- Ninth Row-->
+
+        <!-- Tenth Row-->
+
+        <Rectangle
+            Fill="{StaticResource GrayTrans}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Row="15"
+            Grid.Column="0"
+            Grid.ColumnSpan="22" />
 
         <Button
             Text="Level Up"
             Command="{Binding LevelUpCommand}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            Grid.Row="14"
+            Grid.Row="15"
             Grid.Column="2"
             Grid.ColumnSpan="6" />
 
@@ -699,7 +733,7 @@
             Command="{Binding NotesCommand}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            Grid.Row="14"
+            Grid.Row="15"
             Grid.Column="8"
             Grid.ColumnSpan="6" />
 
@@ -708,10 +742,10 @@
             Command="{Binding ShowNotesCommand}"
             VerticalOptions="Center"
             HorizontalOptions="Center"
-            Grid.Row="14"
+            Grid.Row="15"
             Grid.Column="14"
             Grid.ColumnSpan="6" />
 
-        <!-- Ninth Row-->
+        <!-- Tenth Row-->
     </Grid>
 </ContentPage>

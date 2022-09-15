@@ -79,7 +79,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
             character.SetAttribute(AttributeNames.DEFENCE, 4);
             character.SetAttribute(AttributeNames.WILLPOWER, 4);
             character.SetAttribute(AttributeNames.DOLLARS, 0);
-            character.SetAttribute(AttributeNames.DARKSTONE, 0, 5);
+            character.SetAttribute(AttributeNames.DARKSTONE, 0);
         }
     }
 }
