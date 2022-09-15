@@ -19,19 +19,24 @@
     </Style>
 
     <Style TargetType="Frame"
-           x:Key="mickeyMouseFrame">
-        <Setter Property="CornerRadius" Value="200" />
+           x:Key="baseFrame">
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="10,5" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
 
+    <Style TargetType="Frame"
+           BasedOn="{StaticResource baseFrame}"
+           x:Key="mickeyMouseFrame">
+        <Setter Property="CornerRadius" Value="200" />
+    </Style>
+
     <Style TargetType="Button"
            x:Key="Incrementer">
         <Setter Property="FontSize" Value="26" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="Padding" Value="20,5" />
+        <Setter Property="Padding" Value="15,5" />
         <Setter Property="Margin" Value="5" />
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>

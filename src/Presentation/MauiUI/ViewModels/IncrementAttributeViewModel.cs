@@ -27,7 +27,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public int? MaxValue => Attribute?.MaxValue;
 
-        public bool HasMaxValue => Attribute?.MaxValue != null;
+        public bool HasMaxValue => Attribute?.HasMaxValue ?? false;
 
         public string Name => _textResource.GetValue(Attribute?.Key ?? string.Empty);
 
@@ -71,15 +71,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 return;
             }
 
-            var value = Attribute.Value + (addition ? 1 : -1);
-
-            if (Attribute.MaxValue != null
-                && value > Attribute.MaxValue)
-            {
-                return;
-            }
-
-            Attribute.Value = value;
+            Attribute.Value += addition ? 1 : -1;
 
             OnPropertyChanged(nameof(Value));
         }
@@ -93,11 +85,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
 
             Attribute.MaxValue += addition ? 1 : -1;
-
-            if (Attribute.Value > Attribute.MaxValue)
-            {
-                Attribute.Value = (int)Attribute.MaxValue;
-            }
 
             OnPropertyChanged(nameof(MaxValue));
             OnPropertyChanged(nameof(Value));

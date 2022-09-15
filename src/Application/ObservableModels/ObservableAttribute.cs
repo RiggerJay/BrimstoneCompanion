@@ -5,6 +5,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
     public class ObservableAttribute : ObservableModel<AttributeValue>
     {
         private string _key = string.Empty;
+        private bool _hasMaxValue;
         private readonly ObservableCharacter _parent;
 
         private ObservableAttribute(ObservableCharacter parent, string key, AttributeValue model) : base(model)
@@ -22,7 +23,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public int Value
         {
             get => Model.Value;
-            set => SetProperty(Model.Value, value, Model, (model, _value) => model.Value = _value, OnValueChanged);
+            set => SetProperty(Model.Value, value, Model, ValueChanged, OnValueChanged);
         }
 
         public int CurrentValue => Value + _parent.Features.SelectMany(x => x.Properties.Where(prop => prop.Key == Key).Select(prop => prop.Value)).Sum();
@@ -32,13 +33,31 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public int? MaxValue
         {
             get => Model.MaxValue;
-            set => SetProperty(Model.MaxValue, value, Model, (model, _value) => model.MaxValue = _value);
+            set => SetProperty(Model.MaxValue, value, Model, (model, _value) => model.MaxValue = _value, MaxValueChanged);
         }
+
+        public bool HasMaxValue => MaxValue != null;
 
         internal void OnValueChanged()
         {
             OnPropertyChanged(nameof(CurrentValue));
             OnPropertyChanged(nameof(HasCurrentValue));
+        }
+
+        private void MaxValueChanged()
+        {
+            if (MaxValue < Value)
+            {
+                Value = MaxValue.Value;
+            }
+        }
+
+        private void ValueChanged(AttributeValue model, int value)
+        {
+            if (MaxValue == null || value <= MaxValue.Value)
+            {
+                model.Value = value;
+            }
         }
 
         internal static ObservableAttribute New(ObservableCharacter parent, string name, AttributeValue attribute) => new(parent, name, attribute);

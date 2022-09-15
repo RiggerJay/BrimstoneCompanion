@@ -10,5 +10,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
         bool Delete(ObservableCharacter character);
 
         Task<ObservableCollection<ObservableCharacter>> GetAllAsync();
+
+        Task<ObservableCharacter> NewAsync(string name, string role);
     }
 }

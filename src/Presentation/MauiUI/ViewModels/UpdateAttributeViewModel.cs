@@ -57,7 +57,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        private void Overwrite()
+        private async Task Overwrite()
         {
             if (UpdateValue == null)
             {
@@ -65,7 +65,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
 
             Attribute.Value = (int)UpdateValue;
-            ResetValue();
+            await _mediator.Send(NavRequest.Close(true));
         }
 
         [RelayCommand]

@@ -7,6 +7,7 @@
                Color="Transparent">
     <Border
         Padding="10"
+        WidthRequest="300"
         HorizontalOptions="Center">
 
         <Grid>
@@ -27,6 +28,7 @@
             <Label
                 Text="{Binding Name}"
                 Style="{StaticResource mickeyMouseTitle}"
+                HorizontalOptions="CenterAndExpand"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="4" />
@@ -34,7 +36,7 @@
             <Button
                 Text="-"
                 Command="{Binding IncrementMaxValueCommand}"
-                IsVisible="{Binding HasMaxValue}"
+                IsVisible="{Binding Attribute.HasMaxValue}"
                 Style="{StaticResource Incrementer}"
                 Grid.Row="1"
                 Grid.Column="0">
@@ -44,8 +46,8 @@
             </Button>
 
             <Label
-                Text="Max Value"
-                IsVisible="{Binding HasMaxValue}"
+                Text="Max"
+                IsVisible="{Binding Attribute.HasMaxValue}"
                 HorizontalOptions="StartAndExpand"
                 VerticalOptions="CenterAndExpand"
                 Grid.Row="1"
@@ -53,14 +55,14 @@
 
             <Frame
                 CornerRadius="5"
-                IsVisible="{Binding HasMaxValue}"
+                IsVisible="{Binding Attribute.HasMaxValue}"
                 Margin="10,5"
                 Padding="5,0"
                 Grid.Row="1"
                 Grid.Column="2">
                 <Label
-                    Text="{Binding MaxValue}"
-                    IsVisible="{Binding HasMaxValue}"
+                    Text="{Binding Attribute.MaxValue}"
+                    IsVisible="{Binding Attribute.HasMaxValue}"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand" />
             </Frame>
@@ -68,7 +70,7 @@
             <Button
                 Text="+"
                 Command="{Binding IncrementMaxValueCommand}"
-                IsVisible="{Binding HasMaxValue}"
+                IsVisible="{Binding Attribute.HasMaxValue}"
                 Style="{StaticResource Incrementer}"
                 Grid.Row="1"
                 Grid.Column="3">
@@ -89,8 +91,7 @@
             </Button>
 
             <Label
-                Text="Value"
-                IsVisible="{Binding MaxValue}"
+                Text="Current"
                 HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand"
                 Grid.Row="2"
@@ -103,7 +104,7 @@
                 Grid.Row="2"
                 Grid.Column="2">
                 <Label
-                    Text="{Binding Value}"
+                    Text="{Binding Attribute.Value}"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand" />
             </Frame>

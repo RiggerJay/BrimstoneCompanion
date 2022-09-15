@@ -23,6 +23,7 @@
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
+
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}" />
     <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}" />
@@ -34,13 +35,22 @@
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}" />
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}" />
 
-    <Color x:Key="Yellow100Accent">#F7B548</Color>
-    <Color x:Key="Yellow200Accent">#FFD590</Color>
-    <Color x:Key="Yellow300Accent">#FFE5B9</Color>
-    <Color x:Key="Cyan100Accent">#28C2D1</Color>
-    <Color x:Key="Cyan200Accent">#7BDDEF</Color>
-    <Color x:Key="Cyan300Accent">#C3F2F4</Color>
-    <Color x:Key="Blue100Accent">#3E8EED</Color>
-    <Color x:Key="Blue200Accent">#72ACF1</Color>
-    <Color x:Key="Blue300Accent">#A7CBF6</Color>
+    <Color x:Key="RedLight">#ffcfcf</Color>
+    <Color x:Key="RedDark">#6a0000</Color>
+
+    <Color x:Key="BlueLight">#dbe3ff</Color>
+    <Color x:Key="BlueDark">#001975</Color>
+
+    <Color x:Key="BrownLight">#deb38b</Color>
+    <Color x:Key="BrownDark">#5d3005</Color>
+
+    <Color x:Key="GreenLight">#b0c59e</Color>
+    <Color x:Key="GreenDark">#295305</Color>
+
+    <Color x:Key="PurpleLight">#cebedc</Color>
+    <Color x:Key="PurpleDark">#4d0987</Color>
+
+    <Color x:Key="YellowLight">#dcda97</Color>
+    <Color x:Key="YellowDark">#646100</Color>
+
 </ResourceDictionary>

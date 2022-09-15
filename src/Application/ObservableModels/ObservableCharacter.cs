@@ -9,7 +9,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public ObservableCharacter() : this(new Character())
         { }
 
-        public ObservableCharacter(Character character) : base(character)
+        private ObservableCharacter(Character character) : base(character)
         {
             foreach (var attribute in Model.Attributes)
             {
@@ -166,5 +166,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             Notes.Add(ObservableNote.New(note));
         }
+
+        internal static ObservableCharacter New(Character character) => new(character);
     }
 }
