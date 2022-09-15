@@ -9,7 +9,7 @@
 
         public string Class { get; set; } = string.Empty;
 
-        public string Keywords { get; set; } = string.Empty;
+        public IList<Keyword> Keywords { get; set; } = new List<Keyword>();
 
         public byte Level { get; set; } = 1;
 

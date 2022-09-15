@@ -32,6 +32,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
         internal static NavRequest<ObservableNote> CreateNote()
             => new(NavigationKeys.NOTE_CREATE, null);
 
+        internal static NavRequest<string> Keyword()
+            => new(NavigationKeys.KEYWORD, null);
+
         internal static NavRequest<bool> EditNote(ObservableNote note)
             => new(NavigationKeys.NOTE_EDIT, new Dictionary<string, object> { { NOTE, note } });
 

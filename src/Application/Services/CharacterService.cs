@@ -45,18 +45,14 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
 
         public Task<ObservableCharacter> NewAsync(string name, string role)
         {
-            var character = new ObservableCharacter
-            {
-                Name = name,
-                Class = role,
-            };
+            var character = new ObservableCharacter(name, role);
 
             SetAttributes(character);
 
             return Task.FromResult(character);
         }
 
-        private void SetAttributes(ObservableCharacter character)
+        private static void SetAttributes(ObservableCharacter character)
         {
             character.SetAttribute(AttributeNames.XP, 0);
             character.SetAttribute(AttributeNames.GRIT, 1, 2);

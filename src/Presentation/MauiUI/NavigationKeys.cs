@@ -15,5 +15,6 @@
         internal const string FEATURE_EDIT = "featureedit";
         internal const string NOTE_CREATE = "notecreate";
         internal const string NOTE_EDIT = "noteedit";
+        internal const string KEYWORD = "keyword";
     }
 }

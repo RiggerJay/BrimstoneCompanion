@@ -59,6 +59,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\cowboy.png" />
 	  <None Remove="Resources\Images\icon_bin.png" />
+	  <None Remove="Resources\Images\key.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -93,6 +94,9 @@
 	  <MauiXaml Update="Popups\AddFeaturePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\KeywordPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popups\LevelUpPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -125,6 +129,9 @@
 	  </Compile>
 	  <Compile Update="Popups\AddFeaturePopup.xaml.cs">
 	    <DependentUpon>AddFeaturePopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\KeywordPopup.xaml.cs">
+	    <DependentUpon>KeywordPopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\LevelUpPopup.xaml.cs">
 	    <DependentUpon>LevelUpPopup.xaml</DependentUpon>

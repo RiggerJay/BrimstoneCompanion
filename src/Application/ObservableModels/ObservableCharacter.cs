@@ -6,7 +6,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableCharacter : ObservableModel<Character>
     {
-        public ObservableCharacter() : this(new Character())
+        public ObservableCharacter(string name, string role) : this(new Character { Name = name, Class = role })
         { }
 
         private ObservableCharacter(Character character) : base(character)
@@ -29,6 +29,18 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
 
             Notes.CollectionChanged += Notes_CollectionChanged;
+
+            if (Model.Keywords == null)
+            {
+                Model.Keywords = new List<Keyword>();
+            }
+
+            foreach (var keyword in Model.Keywords)
+            {
+                Keywords.Add(ObservableKeyword.New(keyword));
+            }
+
+            Keywords.CollectionChanged += Keywords_CollectionChanged; ;
         }
 
         public string Id
@@ -55,9 +67,43 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Level, value, Model, (model, _value) => model.Level = _value);
         }
 
+        public ObservableCollection<ObservableKeyword> Keywords { get; } = new ObservableCollection<ObservableKeyword>();
+
         public IDictionary<string, ObservableAttribute> Attributes { get; } = new Dictionary<string, ObservableAttribute>();
 
         public ObservableCollection<ObservableFeature> Features { get; set; } = new ObservableCollection<ObservableFeature>();
+
+        public ObservableCollection<ObservableNote> Notes { get; set; } = new ObservableCollection<ObservableNote>();
+
+        public ObservableAttribute GetAttribute(string name)
+        {
+            SetAttribute(name, 0);
+
+            return Attributes[name];
+        }
+
+        public void SetAttribute(string name, int value, int? maxValue = null)
+        {
+            if (!Attributes.ContainsKey(name))
+            {
+                ObservableAttribute attribute = ObservableAttribute.New(this, name, value, maxValue);
+                Attributes.Add(name, attribute);
+                Model.Attributes.Add(name, attribute.GetModel());
+            }
+        }
+
+        public void ValueChanged(string key)
+        {
+            if (Attributes.ContainsKey(key))
+            {
+                Attributes[key].OnValueChanged();
+            }
+        }
+
+        public void AddNote(string note)
+        {
+            Notes.Add(ObservableNote.New(note));
+        }
 
         private void Features_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
         {
@@ -101,9 +147,18 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
         }
 
-        public ObservableCollection<ObservableNote> Notes { get; set; } = new ObservableCollection<ObservableNote>();
-
         private void Notes_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+        {
+            SubscribeToCollection<Note, ObservableModel<Note>>(args, Model.Notes);
+        }
+
+        private void Keywords_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+        {
+            SubscribeToCollection<Keyword, ObservableModel<Keyword>>(args, Model.Keywords);
+        }
+
+        private static void SubscribeToCollection<T, TModel>(NotifyCollectionChangedEventArgs args, IList<T> list)
+            where TModel : ObservableModel<T>
         {
             switch (args.Action)
             {
@@ -114,9 +169,9 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                     }
                     foreach (var item in args.NewItems)
                     {
-                        if (item is ObservableNote note)
+                        if (item is TModel model)
                         {
-                            Model.Notes.Add(note.GetModel());
+                            list.Add(model.GetModel());
                         }
                     }
                     break;
@@ -128,43 +183,13 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                     }
                     foreach (var item in args.OldItems)
                     {
-                        if (item is ObservableNote note)
+                        if (item is TModel model)
                         {
-                            Model.Notes.Remove(note.GetModel());
+                            list.Remove(model.GetModel());
                         }
                     }
                     break;
             }
-        }
-
-        public ObservableAttribute GetAttribute(string name)
-        {
-            SetAttribute(name, 0);
-
-            return Attributes[name];
-        }
-
-        public void SetAttribute(string name, int value, int? maxValue = null)
-        {
-            if (!Attributes.ContainsKey(name))
-            {
-                ObservableAttribute attribute = ObservableAttribute.New(this, name, value, maxValue);
-                Attributes.Add(name, attribute);
-                Model.Attributes.Add(name, attribute.GetModel());
-            }
-        }
-
-        public void ValueChanged(string key)
-        {
-            if (Attributes.ContainsKey(key))
-            {
-                Attributes[key].OnValueChanged();
-            }
-        }
-
-        public void AddNote(string note)
-        {
-            Notes.Add(ObservableNote.New(note));
         }
 
         internal static ObservableCharacter New(Character character) => new(character);

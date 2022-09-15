@@ -111,7 +111,28 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (await _mediator.Send(NavRequest.LevelUp(Character)))
             {
-                Title = $"{_character.Name} a level {_character.Level} {_character.Class}";
+                await SaveCharacterAsync();
+            }
+        }
+
+        [RelayCommand]
+        public async Task AddKeyword()
+        {
+            var keyword = await _mediator.Send(NavRequest.Keyword());
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                Character.Keywords.Add(ObservableKeyword.New(keyword, true));
+                await SaveCharacterAsync();
+            }
+        }
+
+        [RelayCommand]
+        public async Task DeleteKeyword(ObservableKeyword keyword)
+        {
+            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", $"You are deleting keyword '{keyword.Word}'."))
+                && Character.Keywords.Contains(keyword))
+            {
+                Character.Keywords.Remove(keyword);
                 await SaveCharacterAsync();
             }
         }

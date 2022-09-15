@@ -7,8 +7,7 @@
                Color="Transparent">
     <Border
         Padding="10"
-        WidthRequest="300"
-        HorizontalOptions="Center">
+        HorizontalOptions="CenterAndExpand">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -28,7 +27,9 @@
             <Label
                 Text="{Binding Name}"
                 Style="{StaticResource mickeyMouseTitle}"
+                WidthRequest="300"
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="4" />

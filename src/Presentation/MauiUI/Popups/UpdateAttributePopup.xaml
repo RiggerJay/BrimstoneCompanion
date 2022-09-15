@@ -7,7 +7,7 @@
                x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.UpdateAttributePopup">
     <Border
         Padding="10"
-        HorizontalOptions="Center">
+        HorizontalOptions="CenterAndExpand">
 
         <Grid>
             <Grid.RowDefinitions>
@@ -24,6 +24,8 @@
 
             <Label
                 HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                WidthRequest="300"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2">
@@ -45,7 +47,6 @@
                    Grid.ColumnSpan="2">
                 <Entry
                     Text="{Binding UpdateValue}"
-                    WidthRequest="200"
                     Keyboard="Numeric"
                     Placeholder="Value" />
             </Frame>

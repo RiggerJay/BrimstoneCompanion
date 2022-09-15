@@ -30,9 +30,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 
             foreach (var file in Directory.GetFiles(GetFolderName()))
             {
-                var json = await File.ReadAllTextAsync(file, Encoding.UTF8);
-                var model = JsonConvert.DeserializeObject<T>(json);
-                list.Add(model);
+                try
+                {
+                    var json = await File.ReadAllTextAsync(file, Encoding.UTF8);
+                    var model = JsonConvert.DeserializeObject<T>(json);
+                    list.Add(model);
+                }
+                catch
+                {
+                    File.Delete(file);
+                }
             }
 
             return list;
