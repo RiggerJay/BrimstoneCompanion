@@ -36,9 +36,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        public async Task EditNote(ObservableNote Note)
+        public async Task EditNote(ObservableNote note)
         {
-            if (await _mediator.Send(NavRequest.EditNote(Note)))
+            if (await _mediator.Send(NavRequest.EditNote(note)))
             {
                 await SaveCharacter();
             }

@@ -30,6 +30,12 @@
                     <ViewCell>
                         <Grid
                             Padding="2">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.EditFeatureCommand, Source={Reference TheseFeatures}}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />

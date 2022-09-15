@@ -99,6 +99,9 @@
 	  <MauiXaml Update="Popups\EditNotePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\EditFeaturePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popups\NewNotePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -128,6 +131,9 @@
 	  </Compile>
 	  <Compile Update="Popups\EditNotePopup.xaml.cs">
 	    <DependentUpon>EditNotePopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\EditFeaturePopup.xaml.cs">
+	    <DependentUpon>EditFeaturePopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\NewNotePopup.xaml.cs">
 	    <DependentUpon>NewNotePopup.xaml</DependentUpon>

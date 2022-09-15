@@ -52,6 +52,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public IDictionary<string, int> Properties => Model.Properties;
 
+        public void PropertiesChanged() => OnPropertyChanged(nameof(Properties));
+
         public static ObservableFeature New() => new(new Feature());
 
         public static ObservableFeature New(Feature model) => new(model);

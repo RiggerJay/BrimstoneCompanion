@@ -49,6 +49,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task EditFeature(ObservableFeature feature)
+        {
+            if (await _mediator.Send(NavRequest.EditFeature(feature)))
+            {
+                await SaveCharacter();
+            }
+        }
+
         private Task SaveCharacter() =>
             _mediator.Send(SaveRequest<ObservableCharacter>.With(Character));
     }

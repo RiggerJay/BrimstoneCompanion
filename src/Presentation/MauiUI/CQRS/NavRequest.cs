@@ -8,6 +8,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
         internal const string CHARACTER = "Character";
         internal const string ATTRIBUTE = "Attribute";
         internal const string NOTE = "Note";
+        internal const string FEATURE = "Feature";
+
         internal string Route { get; }
 
         internal IDictionary<string, object>? Paramaters { get; }
@@ -32,6 +34,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
 
         internal static NavRequest<bool> EditNote(ObservableNote note)
             => new(NavigationKeys.NOTE_EDIT, new Dictionary<string, object> { { NOTE, note } });
+
+        internal static NavRequest<bool> EditFeature(ObservableFeature feature)
+            => new(NavigationKeys.FEATURE_EDIT, new Dictionary<string, object> { { FEATURE, feature } });
 
         internal static NavRequest<bool> UpdateAttribute(ObservableAttribute attribute)
             => new(NavigationKeys.ATTRIBUTE_UPDATE, new Dictionary<string, object> { { ATTRIBUTE, attribute } });

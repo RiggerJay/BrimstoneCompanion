@@ -12,6 +12,7 @@
         internal const string ATTRIBUTE_UPDATE = "attributeupdate";
         internal const string ATTRIBUTE_INCREMENT = "attributeincrement";
         internal const string FEATURE_CREATE = "featurecreate";
+        internal const string FEATURE_EDIT = "featureedit";
         internal const string NOTE_CREATE = "notecreate";
         internal const string NOTE_EDIT = "noteedit";
     }
