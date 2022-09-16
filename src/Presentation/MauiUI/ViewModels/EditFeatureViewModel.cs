@@ -24,6 +24,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [ObservableProperty]
         private string? _selectedProperty;
 
+        private string _keyword;
+
         private ObservableFeature _feature = ObservableFeature.New();
         private readonly ObservableFeature _backup = ObservableFeature.New();
 
@@ -99,6 +101,28 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             SaveState(_feature, _backup);
         }
 
+        public string Keyword
+        {
+            get => _keyword;
+            set => SetProperty(ref _keyword, value, EnterKeyword);
+        }
+
+        private void EnterKeyword()
+        {
+            if (!string.IsNullOrWhiteSpace(Keyword)
+                && Keyword.EndsWith(' '))
+            {
+                Feature.Keywords.Add(ObservableKeyword.New(Keyword.Trim(), false));
+                Keyword = string.Empty;
+            }
+        }
+
+        [RelayCommand]
+        public void DeleteKeyword(ObservableKeyword keyword)
+        {
+            Feature.Keywords.Remove(keyword);
+        }
+
         public static void SaveState(ObservableFeature from, ObservableFeature to)
         {
             to.Name = from.Name;
@@ -106,7 +130,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             to.Quantity = from.Quantity;
             to.Value = from.Value;
             to.FeatureType = from.FeatureType;
-            to.Keywords = from.Keywords;
             to.NextAdventure = from.NextAdventure;
             to.Properties.Clear();
             foreach (var item in from.Properties)

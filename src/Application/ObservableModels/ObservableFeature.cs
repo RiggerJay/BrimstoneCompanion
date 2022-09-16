@@ -14,6 +14,13 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
 
             Properties.CollectionChanged += Properties_CollectionChanged;
+
+            foreach (var keyword in Model.Keywords)
+            {
+                Keywords.Add(ObservableKeyword.New(keyword));
+            }
+
+            Keywords.CollectionChanged += Keywords_CollectionChanged; ;
         }
 
         public string Name
@@ -46,12 +53,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.FeatureType, value, Model, (model, _value) => model.FeatureType = _value);
         }
 
-        public string Keywords
-        {
-            get => Model.Keywords;
-            set => SetProperty(Model.Keywords, value, Model, (model, _value) => model.Keywords = _value);
-        }
-
         public bool NextAdventure
         {
             get => Model.NextAdventure;
@@ -59,6 +60,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         }
 
         public ObservableCollection<ObservableProp> Properties { get; } = new();
+
+        public ObservableCollection<ObservableKeyword> Keywords { get; } = new();
 
         public void PropertiesChanged() => OnPropertyChanged(nameof(Properties));
 
@@ -104,6 +107,46 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
                 case NotifyCollectionChangedAction.Reset:
                     Model.Properties.Clear();
+                    break;
+            }
+        }
+
+        private void Keywords_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+        {
+            SubscribeToCollection<Keyword, ObservableModel<Keyword>>(args, Model.Keywords);
+        }
+
+        private static void SubscribeToCollection<T, TModel>(NotifyCollectionChangedEventArgs args, IList<T> list)
+            where TModel : ObservableModel<T>
+        {
+            switch (args.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    if (args.NewItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.NewItems)
+                    {
+                        if (item is TModel model)
+                        {
+                            list.Add(model.GetModel());
+                        }
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    if (args.OldItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.OldItems)
+                    {
+                        if (item is TModel model)
+                        {
+                            list.Remove(model.GetModel());
+                        }
+                    }
                     break;
             }
         }

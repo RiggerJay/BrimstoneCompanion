@@ -26,7 +26,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             await _mediator.Send(NavRequest.Close(Keyword));
         }
 
-        private bool CanSave() => !string.IsNullOrWhiteSpace(Keyword)
-            && !Keyword.Any(x => x == ' ');
+        private bool CanSave() => !string.IsNullOrWhiteSpace(Keyword);
     }
 }

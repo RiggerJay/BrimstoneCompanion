@@ -5,6 +5,7 @@
                xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
                xmlns:s="clr-namespace:System;assembly=mscorlib"
                Color="Transparent"
+               x:Name="ThisFeature"
                x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.EditFeaturePopup">
     <Border
         Padding="10"
@@ -12,6 +13,8 @@
 
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -128,25 +131,63 @@
                     Placeholder="Value" />
             </Frame>
 
-            <!--<Label
-                Text="Next Adventure?"
-                VerticalOptions="Center"
-                Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="1" />
+            <Frame CornerRadius="5"
+                   Margin="10,5"
+                   Padding="5,0"
+                   Grid.Row="6"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+                <Entry
+                    Text="{Binding Keyword}"
+                    Keyboard="Text"
+                    Placeholder="Keyword" />
+            </Frame>
 
-            <Switch
-                IsToggled="{Binding Feature.NextAdventure}"
-                Grid.Row="5"
-                Grid.Column="1"
-                Grid.ColumnSpan="1" />-->
+            <CollectionView
+                ItemsSource="{Binding Feature.Keywords}"
+                ItemsLayout="HorizontalGrid, 2"
+                HeightRequest="60"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                SelectionMode="None"
+                Margin="10,0"
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            BackgroundColor="{StaticResource YellowLight}"
+                            BorderColor="{StaticResource YellowDark}"
+                            CornerRadius="3"
+                            Padding="5,0,0,0"
+                            Margin="2"
+                            HorizontalOptions="Start">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Text="{Binding Word}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center" />
+                                <Button
+                                    Text="X"
+                                    Command="{Binding BindingContext.DeleteKeywordCommand, Source={Reference ThisFeature}}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="{StaticResource YellowDark}"
+                                    CornerRadius="0"
+                                    Padding="2,0"
+                                    Margin="5,0,0,0" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <Button
                 Text="Save"
                 Padding="0,5"
                 Margin="2"
                 Command="{Binding SaveAndCloseCommand}"
-                Grid.Row="6"
+                Grid.Row="8"
                 Grid.Column="0"
                 Grid.ColumnSpan="2" />
         </Grid>

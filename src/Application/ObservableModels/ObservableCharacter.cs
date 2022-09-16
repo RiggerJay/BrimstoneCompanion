@@ -1,4 +1,5 @@
 ﻿using RedSpartan.BrimstoneCompanion.Domain.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -73,6 +74,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public ObservableCollection<ObservableFeature> Features { get; set; } = new ObservableCollection<ObservableFeature>();
 
+        public IList<ObservableKeyword> ConcatKeywords => Keywords.Concat(Features.SelectMany(x=>x.Keywords)).ToList();
+
         public ObservableCollection<ObservableNote> Notes { get; set; } = new ObservableCollection<ObservableNote>();
 
         public ObservableAttribute GetAttribute(string name)
@@ -80,6 +83,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             SetAttribute(name, 0);
 
             return Attributes[name];
+        }
+
+        public void UpdateKeywords()
+        {
+            OnPropertyChanged(nameof(ConcatKeywords));
         }
 
         public void SetAttribute(string name, int value, int? maxValue = null)
@@ -155,6 +163,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         private void Keywords_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
         {
             SubscribeToCollection<Keyword, ObservableModel<Keyword>>(args, Model.Keywords);
+            OnPropertyChanged(nameof(ConcatKeywords));
         }
 
         private static void SubscribeToCollection<T, TModel>(NotifyCollectionChangedEventArgs args, IList<T> list)

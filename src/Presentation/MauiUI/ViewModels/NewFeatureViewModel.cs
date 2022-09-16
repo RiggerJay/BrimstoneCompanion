@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Android.Telephony;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
@@ -24,6 +25,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [ObservableProperty]
         private string? _selectedProperty;
 
+        private string _keyword;
+
         public NewFeatureViewModel(IMediator mediator
             , ITextResource textResource)
         {
@@ -47,6 +50,28 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public IList<string> Types => Enum.GetNames(typeof(FeatureTypes));
 
         public IList<string> Properties { get; } = new List<string>();
+
+        public string Keyword
+        {
+            get => _keyword;
+            set => SetProperty(ref _keyword, value, EnterKeyword);
+        }
+
+        private void EnterKeyword()
+        {
+            if (!string.IsNullOrWhiteSpace(Keyword)
+                && Keyword.EndsWith(' '))
+            {
+                Feature.Keywords.Add(ObservableKeyword.New(Keyword.Trim(), false));
+                Keyword = string.Empty;
+            }
+        }
+
+        [RelayCommand]
+        public void DeleteKeyword(ObservableKeyword keyword)
+        {
+            Feature.Keywords.Remove(keyword);
+        }
 
         [RelayCommand]
         public async Task SaveAndClose()

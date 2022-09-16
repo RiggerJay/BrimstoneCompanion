@@ -15,7 +15,7 @@
 
         public FeatureTypes FeatureType { get; set; } = FeatureTypes.Gear;
 
-        public string Keywords { get; set; } = string.Empty;
+        public IList<Keyword> Keywords { get; set; } = new List<Keyword>();
 
         public bool NextAdventure { get; set; } = false;
     }

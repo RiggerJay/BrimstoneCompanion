@@ -37,6 +37,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 keys.AddRange(feature.Properties.Select(x => x.Key));
                 UpdateProperties(keys);
                 Features.Add(feature);
+                Character.UpdateKeywords();
                 await SaveCharacter();
             }
         }
@@ -49,6 +50,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 keys.AddRange(feature.Properties.Select(x => x.Key));
                 UpdateProperties(keys);
+                Character.UpdateKeywords();
                 await SaveCharacter();
             }
         }

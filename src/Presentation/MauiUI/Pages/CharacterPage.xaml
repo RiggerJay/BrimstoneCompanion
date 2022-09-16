@@ -118,12 +118,20 @@
         <!-- First Row -->
 
         <Rectangle
-            Fill="{StaticResource GrayTrans}"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="22" />
+            Grid.ColumnSpan="22">
+            <Rectangle.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource Secondary}"
+                          Offset="0.1" />
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Background>
+        </Rectangle>
 
         <Label
             FontAttributes="Bold"
@@ -143,6 +151,23 @@
         <!-- First Row -->
 
         <!-- Second Row -->
+
+        <Rectangle
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="22">
+            <Rectangle.Background>
+                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                    <GradientStop Color="{StaticResource Secondary}"
+                          Offset="0.1" />
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Background>
+        </Rectangle>
 
         <Label
             Text="XP"
@@ -246,11 +271,10 @@
             Grid.Column="0"
             Grid.ColumnSpan="22">
             <Rectangle.Background>
-                <!-- StartPoint defaults to (0,0) -->
-                <LinearGradientBrush EndPoint="1,0">
-                    <GradientStop Color="{StaticResource GreenLight}"
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource Secondary}"
                           Offset="0.1" />
-                    <GradientStop Color="{StaticResource BrownLight}"
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
                           Offset="1.0" />
                 </LinearGradientBrush>
             </Rectangle.Background>
@@ -409,6 +433,23 @@
 
         <!-- Sixth Row -->
 
+        <Rectangle
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Row="8"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="22">
+            <Rectangle.Background>
+                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                    <GradientStop Color="{StaticResource Secondary}"
+                          Offset="0.1" />
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Background>
+        </Rectangle>
+        
         <Label
             Text="Fightin'"
             FontAttributes="Bold"
@@ -517,11 +558,10 @@
             Grid.Column="0"
             Grid.ColumnSpan="22">
             <Rectangle.Background>
-                <!-- StartPoint defaults to (0,0) -->
-                <LinearGradientBrush EndPoint="1,0">
-                    <GradientStop Color="{StaticResource BlueLight}"
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource Secondary}"
                           Offset="0.1" />
-                    <GradientStop Color="{StaticResource RedLight}"
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
                           Offset="1.0" />
                 </LinearGradientBrush>
             </Rectangle.Background>
@@ -663,6 +703,23 @@
 
         <!-- Ninth Row-->
 
+        <Rectangle
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Row="13"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="22">
+            <Rectangle.Background>
+                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                    <GradientStop Color="{StaticResource Secondary}"
+                          Offset="0.1" />
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Background>
+        </Rectangle>
+        
         <Label
             Text="Grit"
             Style="{StaticResource mickeyMouseTitle}"
@@ -777,12 +834,20 @@
         <!-- Tenth Row-->
 
         <Rectangle
-            Fill="{StaticResource GrayTrans}"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             Grid.Row="15"
             Grid.Column="0"
-            Grid.ColumnSpan="22" />
+            Grid.ColumnSpan="22">
+            <Rectangle.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="{StaticResource Secondary}"
+                          Offset="0.1" />
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Background>
+        </Rectangle>
 
         <Button
             Text="Level Up"
@@ -814,9 +879,25 @@
         <!-- Tenth Row-->
 
         <!-- Eleventh -->
-
+        
+        <Rectangle
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Grid.Row="16"
+            Grid.Column="0"
+            Grid.ColumnSpan="22">
+            <Rectangle.Background>
+                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                    <GradientStop Color="{StaticResource Secondary}"
+                          Offset="0.1" />
+                    <GradientStop Color="{StaticResource SecondaryHighlight}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Background>
+        </Rectangle>
+        
         <CollectionView
-            ItemsSource="{Binding Character.Keywords}"
+            ItemsSource="{Binding Character.ConcatKeywords}"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             ItemsLayout="HorizontalGrid, 2"
@@ -835,9 +916,10 @@
                         HorizontalOptions="Start">
                         <StackLayout Orientation="Horizontal">
                             <Label
-                            Text="{Binding Word}"
-                            VerticalOptions="Center"
-                            HorizontalOptions="Center" />
+                                Text="{Binding Word}"
+                                Margin="0,0,5,0"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
                             <Button
                                 Text="X"
                                 Command="{Binding BindingContext.DeleteKeywordCommand, Source={Reference ThisCharacterPage}}"
@@ -845,8 +927,7 @@
                                 IsVisible="{Binding CanDelete}"
                                 BackgroundColor="{StaticResource YellowDark}"
                                 CornerRadius="0"
-                                Padding="2,0"
-                                Margin="5,0,0,0" />
+                                Padding="2,0" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
