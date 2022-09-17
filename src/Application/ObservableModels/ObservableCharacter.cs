@@ -74,7 +74,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public ObservableCollection<ObservableFeature> Features { get; set; } = new ObservableCollection<ObservableFeature>();
 
-        public IList<ObservableKeyword> ConcatKeywords => Keywords.Concat(Features.SelectMany(x=>x.Keywords)).ToList();
+        public IList<ObservableKeyword> ConcatKeywords => Keywords.Concat(Features.SelectMany(x => x.Keywords)).ToList();
 
         public ObservableCollection<ObservableNote> Notes { get; set; } = new ObservableCollection<ObservableNote>();
 

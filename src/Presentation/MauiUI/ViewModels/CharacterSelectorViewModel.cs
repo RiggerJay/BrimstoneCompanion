@@ -57,7 +57,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             if (e.PropertyName == nameof(SelectedCharacter)
                 && SelectedCharacter != null)
             {
-                await _mediator.Send(NavRequest.LoadCharacter(SelectedCharacter));
+                await _mediator.Send(LoadCharacterRequest.With(SelectedCharacter));
                 SelectedCharacter = null;
             }
         }

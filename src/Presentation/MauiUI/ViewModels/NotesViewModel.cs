@@ -1,27 +1,27 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
+using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 using System.Collections.ObjectModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
-    [QueryProperty(nameof(Character), nameof(Character))]
     public partial class NotesViewModel : ViewModelBase
     {
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Notes))]
-        private ObservableCharacter _character;
-
+        private readonly IApplicationState _state;
         private readonly IMediator _mediator;
 
-        public NotesViewModel(IMediator mediator)
+        public NotesViewModel(IMediator mediator, IApplicationState state)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _state = state ?? throw new ArgumentNullException(nameof(state));
         }
 
-        public ObservableCollection<ObservableNote> Notes => Character?.Notes;
+        public ObservableCollection<ObservableNote> Notes => Character.Notes;
+
+        public ObservableCharacter Character => _state.Character;
 
         [RelayCommand]
         public async Task AddNote()

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
+using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
@@ -10,29 +11,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class CharacterViewModel : ViewModelBase
     {
         private readonly IMediator _mediator;
+        private readonly IApplicationState _state;
 
-        private ObservableCharacter _character;
-
-        public CharacterViewModel(IMediator mediator)
+        public CharacterViewModel(IMediator mediator, IApplicationState state)
         {
             Title = "Character";
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _state = state ?? throw new ArgumentNullException(nameof(state));
         }
 
-        public ObservableCharacter Character
-        {
-            get => _character;
-            set
-            {
-                if (SetProperty(ref _character, value))
-                {
-                    Title = $"{_character.Name} a level {_character.Level} {_character.Class}";
-                    AttributesChanged();
-                }
-
-                Task.Run(async () => await SaveCharacterAsync());
-            }
-        }
+        public ObservableCharacter Character => _state.Character;
 
         #region Observable Attribute
 

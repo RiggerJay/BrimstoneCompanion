@@ -1,30 +1,30 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
+using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 using System.Collections.ObjectModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
-    [QueryProperty(nameof(Character), nameof(Character))]
     public partial class FeatureViewModel : ViewModelBase
     {
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Features))]
-        private ObservableCharacter _character;
+        private readonly IMediator _mediator;
+        private readonly IApplicationState _state;
 
         [ObservableProperty]
         private ObservableFeature? _selectedFeature;
 
-        private readonly IMediator _mediator;
-
-        public FeatureViewModel(IMediator mediator)
+        public FeatureViewModel(IMediator mediator, IApplicationState state)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _state = state ?? throw new ArgumentNullException(nameof(state));
         }
 
-        public ObservableCollection<ObservableFeature> Features => Character?.Features;
+        public ObservableCollection<ObservableFeature> Features => Character.Features;
+
+        public ObservableCharacter Character => _state.Character;
 
         [RelayCommand]
         public async Task AddFeature()

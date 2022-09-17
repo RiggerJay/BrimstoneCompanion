@@ -69,52 +69,6 @@
             <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
 
-        <!-- Zero Row
-
-        <Label
-            Text="Wounds"
-            Style="{StaticResource mickeyMouseTitle}"
-            Grid.ColumnSpan="6"
-            Grid.Column="3"
-            Grid.Row="0" />
-        <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource RedLight}"
-            BorderColor="{StaticResource RedDark}"
-            Grid.Row="1"
-            Grid.ColumnSpan="6"
-            Grid.Column="3">
-            <Label
-                Text="{Binding Wounds.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Wounds}" />
-            </Frame.GestureRecognizers>
-        </Frame>
-
-        <Label
-            Text="Horror"
-            Style="{StaticResource mickeyMouseTitle}"
-            Grid.Row="0"
-            Grid.ColumnSpan="6"
-            Grid.Column="13" />
-        <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource BlueLight}"
-            BorderColor="{StaticResource BlueDark}"
-            Grid.Row="1"
-            Grid.ColumnSpan="6"
-            Grid.Column="13">
-            <Label
-                Text="{Binding Horror.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding IncrementAttributeCommand}" CommandParameter="{Binding Horror}" />
-            </Frame.GestureRecognizers>
-        </Frame>
-
-         Zero Row -->
-
         <!-- First Row -->
 
         <Rectangle
@@ -449,7 +403,7 @@
                 </LinearGradientBrush>
             </Rectangle.Background>
         </Rectangle>
-        
+
         <Label
             Text="Fightin'"
             FontAttributes="Bold"
@@ -719,7 +673,7 @@
                 </LinearGradientBrush>
             </Rectangle.Background>
         </Rectangle>
-        
+
         <Label
             Text="Grit"
             Style="{StaticResource mickeyMouseTitle}"
@@ -879,7 +833,7 @@
         <!-- Tenth Row-->
 
         <!-- Eleventh -->
-        
+
         <Rectangle
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
@@ -895,7 +849,7 @@
                 </LinearGradientBrush>
             </Rectangle.Background>
         </Rectangle>
-        
+
         <CollectionView
             ItemsSource="{Binding Character.ConcatKeywords}"
             VerticalOptions="FillAndExpand"
@@ -903,8 +857,8 @@
             ItemsLayout="HorizontalGrid, 2"
             SelectionMode="None"
             Grid.Row="16"
-            Grid.Column="0"
-            Grid.ColumnSpan="22">
+            Grid.Column="1"
+            Grid.ColumnSpan="20">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame
