@@ -5,6 +5,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 {
     public interface IApplicationState : INotifyPropertyChanged, INotifyPropertyChanging
     {
-        ObservableCharacter? Character { get; }
+        ObservableCharacter Character { get; }
+        bool CharacterLoaded { get; }
     }
 }

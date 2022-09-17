@@ -2,8 +2,6 @@
 using RedSpartan.BrimstoneCompanion.MauiUI.Pages;
 using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using RedSpartan.BrimstoneCompanion.MauiUI.Services;
-using RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
-using RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages;
 using RedSpartan.BrimstoneCompanion.MauiUI.ViewModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.AppLayer.Services;
@@ -30,6 +28,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddSingleton(FileSystem.Current);
 
             mauiAppBuilder.Services.AddTransient<AppShell>();
+            mauiAppBuilder.Services.AddTransient<TabAppShell>();
+            mauiAppBuilder.Services.AddTransient<Page1>();
+            mauiAppBuilder.Services.AddTransient<Page2>();
+
+            Routing.RegisterRoute("page1", typeof(Page1));
+            Routing.RegisterRoute("page2", typeof(Page2));
 
             mauiAppBuilder.RegisterPage<CharacterPage, CharacterViewModel>(NavigationKeys.CHARACTER);
             mauiAppBuilder.RegisterPage<CharacterSelectorPage, CharacterSelectorViewModel>(NavigationKeys.CHARACTER_SELECTOR);

@@ -30,7 +30,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 Characters.Add(results);
                 SelectedCharacter = results;
-                await _mediator.Send(SaveRequest<ObservableCharacter>.With(results));
+                await _mediator.Send(SaveCharacterRequest.Save());
             }
         }
 

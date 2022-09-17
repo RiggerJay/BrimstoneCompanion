@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -17,11 +17,14 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _state = state ?? throw new ArgumentNullException(nameof(state));
+            _state.PropertyChanged += State_PropertyChanged;
         }
 
         public ObservableCollection<ObservableNote> Notes => Character.Notes;
 
         public ObservableCharacter Character => _state.Character;
+
+        public bool CharacterLoaded => _state.CharacterLoaded;
 
         [RelayCommand]
         public async Task AddNote()
@@ -56,6 +59,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         private Task SaveCharacter() =>
-            _mediator.Send(SaveRequest<ObservableCharacter>.With(Character));
+            _mediator.Send(SaveCharacterRequest.Save());
+
+        private void State_PropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "Character")
+            {
+                OnPropertyChanged(nameof(Character));
+                OnPropertyChanged(nameof(CharacterLoaded));
+                OnPropertyChanged(nameof(Notes));
+            }
+        }
     }
 }

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Controls"
              xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
-             x:Class="RedSpartan.BrimstoneCompanion.Presentation.MauiUI.Pages.CharacterPage"
+             x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterPage"
              x:Name="ThisCharacterPage"
              Title="{Binding Character.Name}">
     <ContentPage.ToolbarItems>

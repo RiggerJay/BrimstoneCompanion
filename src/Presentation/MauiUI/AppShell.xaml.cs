@@ -1,6 +1,6 @@
 ﻿using RedSpartan.BrimstoneCompanion.MauiUI.Pages;
 
-namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
+namespace RedSpartan.BrimstoneCompanion.MauiUI;
 
 public partial class AppShell : Shell
 {

@@ -56,17 +56,20 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
 
     public class NavRequest : NavRequest<Unit>
     {
-        internal NavRequest(string route, IDictionary<string, object>? paramaters) : base(route, paramaters)
+        internal NavRequest(string route, IDictionary<string, object>? paramaters = null) : base(route, paramaters)
         { }
 
         internal static NavRequest LoadCharacter(ObservableCharacter character)
-            => new(NavigationKeys.CHARACTER, new Dictionary<string, object> { { CHARACTER, character } });
+            => new(NavigationKeys.CHARACTER);
 
         internal static NavRequest ShowFeatures(ObservableCharacter character)
-            => new(NavigationKeys.CHARACTER_FEATURES, new Dictionary<string, object> { { CHARACTER, character } });
+            => new(NavigationKeys.CHARACTER_FEATURES);
 
-        internal static NavRequest ShowNotes(ObservableCharacter character)
-            => new(NavigationKeys.CHARACTER_NOTES, new Dictionary<string, object> { { CHARACTER, character } });
+        internal static NavRequest ShowNotes()
+            => new(NavigationKeys.CHARACTER_NOTES);
+
+        internal static NavRequest CharacterSelector()
+            => new(NavigationKeys.CHARACTER_SELECTOR);
 
         internal static NavRequest Close()
             => new(NavigationKeys.BACK, null);

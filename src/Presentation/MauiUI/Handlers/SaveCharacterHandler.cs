@@ -1,31 +1,32 @@
 ﻿using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
-using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Handlers
 {
-    public class SaveCharacterHandler : IRequestHandler<SaveRequest<ObservableCharacter>, ObservableCharacter>
+    public class SaveCharacterHandler : IRequestHandler<SaveCharacterRequest, Unit>
     {
         private readonly ICharacterService _service;
+        private readonly IApplicationState _state;
 
-        public SaveCharacterHandler(ICharacterService service)
+        public SaveCharacterHandler(ICharacterService service, IApplicationState state)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
+            _state = state ?? throw new ArgumentNullException(nameof(state));
         }
 
-        public async Task<ObservableCharacter> Handle(SaveRequest<ObservableCharacter> request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(SaveCharacterRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                await _service.SaveAsync(request.Model);
+                await _service.SaveAsync(_state.Character);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
 
-            return request.Model;
+            return Unit.Value;
         }
     }
 }

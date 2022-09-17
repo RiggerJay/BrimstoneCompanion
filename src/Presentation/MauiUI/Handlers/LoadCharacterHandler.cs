@@ -19,7 +19,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Handlers
         {
             _updateApplicationState.UpdateCharacter(request.Character);
 
-            await _service.NavigateToAsync(NavigationKeys.CHARACTER);
+            await _service.NavigateToAsync(NavigationKeys.BACK);
 
             return Unit.Value;
         }

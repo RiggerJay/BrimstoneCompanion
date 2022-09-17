@@ -4,6 +4,7 @@ using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
+using System.ComponentModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -18,9 +19,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             Title = "Character";
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _state = state ?? throw new ArgumentNullException(nameof(state));
+            _state.PropertyChanged += State_PropertyChanged;
         }
 
         public ObservableCharacter Character => _state.Character;
+
+        public bool CharacterLoaded => _state.CharacterLoaded;
 
         #region Observable Attribute
 
@@ -126,7 +130,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        public async Task Notes() => await _mediator.Send(NavRequest.ShowNotes(Character));
+        public async Task Notes() => await _mediator.Send(NavRequest.ShowNotes());
 
         public void AttributesChanged()
         {
@@ -169,6 +173,16 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         private Task SaveCharacterAsync() =>
-            _mediator.Send(SaveRequest<ObservableCharacter>.With(Character));
+            _mediator.Send(SaveCharacterRequest.Save());
+
+        private void State_PropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "Character")
+            {
+                OnPropertyChanged(nameof(Character));
+                OnPropertyChanged(nameof(CharacterLoaded));
+                AttributesChanged();
+            }
+        }
     }
 }

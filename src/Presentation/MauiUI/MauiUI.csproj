@@ -73,6 +73,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Page1.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Page2.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="TabAppShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\MouseView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -121,6 +130,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="TabAppShell.xaml.cs">
+	    <DependentUpon>TabAppShell.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\CharacterPage.xaml.cs">
 	    <DependentUpon>CharacterPage.xaml</DependentUpon>
 	  </Compile>

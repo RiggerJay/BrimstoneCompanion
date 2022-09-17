@@ -1,8 +1,8 @@
-﻿namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
+﻿namespace RedSpartan.BrimstoneCompanion.MauiUI;
 
 public partial class App : Application
 {
-    public App(AppShell appShell)
+    public App(TabAppShell appShell)
     {
         InitializeComponent();
         MainPage = appShell;

@@ -6,19 +6,25 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
 {
     public class ApplicationState : ObservableObject, IApplicationState, IUpdateApplicationState
     {
-        private ObservableCharacter? _character;
+        private ObservableCharacter _character = ObservableCharacter.New();
+        private bool _characterLoaded = false;
 
-        public ObservableCharacter? Character
+        public ObservableCharacter Character
         {
             get => _character;
             private set => SetProperty(ref _character, value);
         }
 
+        public bool CharacterLoaded
+        {
+            get => _characterLoaded;
+            private set => SetProperty(ref _characterLoaded, value);
+        }
+
         public bool UpdateCharacter(ObservableCharacter character)
         {
             Character = character;
-
-            return true;
+            return CharacterLoaded = true;
         }
     }
 }
