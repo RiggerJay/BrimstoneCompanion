@@ -22,11 +22,11 @@ public partial class FeaturePage : ContentPage
         InitializeComponent();
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         if (!_viewModel.CharacterLoaded)
         {
-            await _mediator.Send(NavRequest.CharacterSelector());
+            Task.Run(() => _mediator.Send(NavRequest.CharacterSelector()));
         }
         base.OnAppearing();
     }
