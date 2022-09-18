@@ -13,6 +13,14 @@
     </ContentPage.Resources>
     <Grid
         VerticalOptions="FillAndExpand">
+        <Grid.GestureRecognizers>
+            <SwipeGestureRecognizer
+                Direction="Right"
+                Command="{Binding ShowCharacterCommand}" />
+            <SwipeGestureRecognizer
+                Direction="Left"
+                Command="{Binding ShowNotesCommand}" />
+        </Grid.GestureRecognizers>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -23,8 +31,17 @@
             ItemsSource="{Binding Features}"
             SelectedItem="{Binding SelectedFeature}"
             VerticalOptions="FillAndExpand"
+            IsPullToRefreshEnabled="False"
             HasUnevenRows="True"
             Header="Mixed Bag">
+            <ListView.GestureRecognizers>
+                <SwipeGestureRecognizer
+                    Direction="Right"
+                    Command="{Binding ShowCharacterCommand}" />
+                <SwipeGestureRecognizer
+                    Direction="Left"
+                    Command="{Binding ShowNotesCommand}" />
+            </ListView.GestureRecognizers>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

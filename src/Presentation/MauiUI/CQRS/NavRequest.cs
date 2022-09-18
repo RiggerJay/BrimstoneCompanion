@@ -59,17 +59,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
         internal NavRequest(string route, IDictionary<string, object>? paramaters = null) : base(route, paramaters)
         { }
 
-        internal static NavRequest LoadCharacter(ObservableCharacter character)
-            => new(NavigationKeys.CHARACTER);
+        internal static NavRequest ShowCharacter()
+            => new($"//tabbar/{NavigationKeys.CHARACTER}");
 
-        internal static NavRequest ShowFeatures(ObservableCharacter character)
-            => new(NavigationKeys.CHARACTER_FEATURES);
+        internal static NavRequest ShowFeatures()
+            => new($"//tabbar/{NavigationKeys.CHARACTER_FEATURES}");
 
         internal static NavRequest ShowNotes()
-            => new(NavigationKeys.CHARACTER_NOTES);
+            => new($"//tabbar/{NavigationKeys.CHARACTER_NOTES}");
 
         internal static NavRequest CharacterSelector()
-            => new(NavigationKeys.CHARACTER_SELECTOR);
+            => new($"//tabbar/{NavigationKeys.CHARACTER_SELECTOR}");
 
         internal static NavRequest Close()
             => new(NavigationKeys.BACK, null);

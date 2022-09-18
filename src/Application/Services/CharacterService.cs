@@ -8,6 +8,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
 {
     public class CharacterService : ICharacterService
     {
+        private bool _initialising = false;
+        private bool _initialised = false;
         private readonly IRepository<Character> _repository;
         private readonly ObservableCollection<ObservableCharacter> _characters = new();
 
@@ -28,19 +30,13 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
 
         public async Task<ObservableCollection<ObservableCharacter>> GetAllAsync()
         {
+            while (_initialising)
+            {
+                await Task.Delay(100);
+            }
             if (_characters.Count == 0)
             {
-                foreach (var character in await _repository.GetAsync())
-                {
-                    try
-                    {
-                        _characters.Add(ObservableCharacter.New(character));
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine(ex.Message);
-                    }
-                }
+                await Initialise();
             }
             return _characters;
         }
@@ -83,6 +79,28 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
             character.SetAttribute(AttributeNames.WILLPOWER, 4);
             character.SetAttribute(AttributeNames.DOLLARS, 0);
             character.SetAttribute(AttributeNames.DARKSTONE, 0);
+        }
+
+        public async Task Initialise()
+        {
+            if (_initialised)
+            {
+                return;
+            }
+            _initialising = true;
+            foreach (var character in await _repository.GetAsync())
+            {
+                try
+                {
+                    _characters.Add(ObservableCharacter.New(character));
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+            _initialising = false;
+            _initialised = true;
         }
     }
 }

@@ -11,6 +11,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 
         Task<ObservableCollection<ObservableCharacter>> GetAllAsync();
 
+        Task Initialise();
+
         Task<ObservableCharacter> NewAsync(string name, string role);
     }
 }

@@ -75,6 +75,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task ShowCharacter() => await _mediator.Send(NavRequest.ShowCharacter());
+
+        [RelayCommand]
+        public async Task ShowNotes() => await _mediator.Send(NavRequest.ShowNotes());
+
         private void UpdateProperties(IEnumerable<string> keys)
         {
             foreach (var key in keys)

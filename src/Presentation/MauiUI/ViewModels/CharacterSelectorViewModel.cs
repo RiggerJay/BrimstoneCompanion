@@ -46,6 +46,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             IsBusy = true;
             try
             {
+                await _mediator.Send(InitialiseRequest.Go());
                 Characters = await _mediator.Send(QueryCharacterRequest.All());
                 OnPropertyChanged(nameof(Characters));
             }

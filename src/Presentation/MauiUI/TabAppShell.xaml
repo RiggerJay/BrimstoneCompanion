@@ -4,27 +4,30 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Pages">
-    <TabBar>
-        <Tab>
-            <ShellContent
-                Title="Notes"
-                Icon="icon_journal.png"
-                ContentTemplate="{DataTemplate pages:NotesPage}"
-                Route="characternotes" />
-        </Tab>
-        <Tab>
-            <ShellContent
-                Title="Character"
-                Icon="icon_cowboy.png"
-                ContentTemplate="{DataTemplate pages:CharacterPage}"
-                Route="character" />
-        </Tab>
-        <Tab>
-            <ShellContent
-                Title="Feature"
-                Icon="icon_saddle.png"
-                ContentTemplate="{DataTemplate pages:FeaturePage}"
-                Route="characterfeatures" />
-        </Tab>
+    <TabBar Route="tabbar">
+        <ShellContent
+            Title="Selector"
+            IsVisible="{Binding ShowSelectorTab}"
+            Icon="icon_change.png"
+            ContentTemplate="{DataTemplate pages:CharacterSelectorPage}"
+            Route="characterselector" />
+        <ShellContent
+            Title="Notes"
+            IsVisible="True"
+            Icon="icon_journal.png"
+            ContentTemplate="{DataTemplate pages:NotesPage}"
+            Route="characternotes" />
+        <ShellContent
+            Title="Character"
+            IsVisible="True"
+            Icon="icon_cowboy.png"
+            ContentTemplate="{DataTemplate pages:CharacterPage}"
+            Route="character" />
+        <ShellContent
+            Title="Feature"
+            IsVisible="True"
+            Icon="icon_saddle.png"
+            ContentTemplate="{DataTemplate pages:FeaturePage}"
+            Route="characterfeatures" />
     </TabBar>
 </Shell>

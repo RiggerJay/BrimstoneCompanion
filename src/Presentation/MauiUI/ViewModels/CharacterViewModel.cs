@@ -86,19 +86,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        public async Task ShowNotes()
-        {
-            try
-            {
-                await _mediator.Send(NavRequest.ShowFeatures(Character));
-            }
-            catch (Exception ex)
-            {
-                await _mediator.Send(AlertRequest.WithTitleAndMessage("Error", ex.Message));
-            }
-        }
-
-        [RelayCommand]
         public async Task LevelUp()
         {
             if (await _mediator.Send(NavRequest.LevelUp(Character)))
@@ -136,7 +123,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        public async Task Notes() => await _mediator.Send(NavRequest.ShowNotes());
+        public async Task ShowFeatures() => await _mediator.Send(NavRequest.ShowFeatures());
+
+        [RelayCommand]
+        public async Task ShowNotes() => await _mediator.Send(NavRequest.ShowNotes());
 
         public void AttributesChanged()
         {

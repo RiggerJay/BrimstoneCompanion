@@ -1,9 +1,12 @@
-﻿namespace RedSpartan.BrimstoneCompanion.MauiUI;
+﻿using RedSpartan.BrimstoneCompanion.MauiUI.ViewModels;
+
+namespace RedSpartan.BrimstoneCompanion.MauiUI;
 
 public partial class TabAppShell : Shell
 {
-    public TabAppShell()
+    public TabAppShell(ShellViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
     }
 }

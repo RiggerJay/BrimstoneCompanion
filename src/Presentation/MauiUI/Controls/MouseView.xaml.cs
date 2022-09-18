@@ -1,5 +1,3 @@
-using AndroidX.Core.Text;
-
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Controls;
 
 public partial class MouseView : Grid

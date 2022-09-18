@@ -9,9 +9,4 @@ public partial class CharacterSelectorPage : ContentPage
         InitializeComponent();
         BindingContext = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
     }
-
-    protected override bool OnBackButtonPressed()
-    {
-        return false;
-    }
 }

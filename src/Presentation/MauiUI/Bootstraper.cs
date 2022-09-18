@@ -21,6 +21,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddSingleton<ITextResource, TextResourceService>();
             mauiAppBuilder.Services.AddSingleton<ICharacterService, CharacterService>();
             mauiAppBuilder.Services.AddSingleton<ApplicationState>();
+            mauiAppBuilder.Services.AddSingleton<ShellViewModel>();
 
             mauiAppBuilder.Services.AddSingleton<IApplicationState>(x => x.GetRequiredService<ApplicationState>());
             mauiAppBuilder.Services.AddSingleton<IUpdateApplicationState>(x => x.GetRequiredService<ApplicationState>());

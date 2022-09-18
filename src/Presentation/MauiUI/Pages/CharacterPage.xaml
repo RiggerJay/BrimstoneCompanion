@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Controls"
              xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterPage"
              x:Name="ThisCharacterPage"
              Title="{Binding Character.Name}">
@@ -10,7 +11,12 @@
         <ToolbarItem
             Text="Delete Character"
             IconImageSource="icon_bin.png"
-            Command="{Binding DeleteCharacterCommand}" />
+            Command="{Binding DeleteCharacterCommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Text="Level Up"
+            IconImageSource="icon_lvlup.png"
+            Command="{Binding LevelUpCommand}" />
         <ToolbarItem
             Text="Add Keyword"
             IconImageSource="key.png"
@@ -21,6 +27,14 @@
             Command="{Binding SelectorCommand}" />
     </ContentPage.ToolbarItems>
     <Grid>
+        <Grid.GestureRecognizers>
+            <SwipeGestureRecognizer
+                Direction="Left"
+                Command="{Binding ShowFeaturesCommand}" />
+            <SwipeGestureRecognizer
+                Direction="Right"
+                Command="{Binding ShowNotesCommand}" />
+        </Grid.GestureRecognizers>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
@@ -66,8 +80,6 @@
             <RowDefinition Height="4*" />
 
             <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
-
             <RowDefinition Height="4*" />
 
             <RowDefinition Height="4*" />
@@ -789,7 +801,7 @@
 
         <!-- Ninth Row-->
 
-        <!-- Tenth Row-->
+        <!-- Tenth Row
 
         <Rectangle
             VerticalOptions="FillAndExpand"
@@ -834,18 +846,18 @@
             Grid.Column="14"
             Grid.ColumnSpan="6" />
 
-        <!-- Tenth Row-->
+         Tenth Row-->
 
         <!-- Eleventh -->
 
         <Rectangle
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
-            Grid.Row="16"
+            Grid.Row="15"
             Grid.Column="0"
             Grid.ColumnSpan="22">
             <Rectangle.Background>
-                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="{StaticResource Secondary}"
                           Offset="0.1" />
                     <GradientStop Color="{StaticResource SecondaryHighlight}"
@@ -860,7 +872,7 @@
             HorizontalOptions="FillAndExpand"
             ItemsLayout="HorizontalGrid, 2"
             SelectionMode="None"
-            Grid.Row="16"
+            Grid.Row="15"
             Grid.Column="1"
             Grid.ColumnSpan="20">
             <CollectionView.ItemTemplate>

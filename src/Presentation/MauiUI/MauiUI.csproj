@@ -62,6 +62,7 @@
 	  <None Remove="Resources\Images\icon_change.png" />
 	  <None Remove="Resources\Images\icon_cowboy.png" />
 	  <None Remove="Resources\Images\icon_journal.png" />
+	  <None Remove="Resources\Images\icon_lvlup.png" />
 	  <None Remove="Resources\Images\icon_saddle.png" />
 	  <None Remove="Resources\Images\key.png" />
 	</ItemGroup>

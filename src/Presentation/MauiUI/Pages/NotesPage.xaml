@@ -6,6 +6,14 @@
              x:Name="TheseNotes">
     <Grid
         VerticalOptions="FillAndExpand">
+        <Grid.GestureRecognizers>
+            <SwipeGestureRecognizer
+                Direction="Right"
+                Command="{Binding ShowFeaturesCommand}" />
+            <SwipeGestureRecognizer
+                Direction="Left"
+                Command="{Binding ShowCharacterCommand}" />
+        </Grid.GestureRecognizers>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -16,8 +24,17 @@
             ItemsSource="{Binding Notes}"
             SelectionMode="None"
             VerticalOptions="FillAndExpand"
+            IsPullToRefreshEnabled="False"
             HasUnevenRows="True"
             Header="History">
+            <ListView.GestureRecognizers>
+                <SwipeGestureRecognizer
+                    Direction="Right"
+                    Command="{Binding ShowFeaturesCommand}" />
+                <SwipeGestureRecognizer
+                    Direction="Left"
+                    Command="{Binding ShowCharacterCommand}" />
+            </ListView.GestureRecognizers>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
