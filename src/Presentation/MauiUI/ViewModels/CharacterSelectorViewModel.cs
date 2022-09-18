@@ -39,6 +39,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task Initialise()
         {
+            if (IsBusy)
+            {
+                return;
+            }
             IsBusy = true;
             try
             {

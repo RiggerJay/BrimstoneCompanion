@@ -8,18 +8,21 @@
         <Tab>
             <ShellContent
                 Title="Notes"
+                Icon="icon_journal.png"
                 ContentTemplate="{DataTemplate pages:NotesPage}"
                 Route="characternotes" />
         </Tab>
         <Tab>
             <ShellContent
                 Title="Character"
+                Icon="icon_cowboy.png"
                 ContentTemplate="{DataTemplate pages:CharacterPage}"
                 Route="character" />
         </Tab>
         <Tab>
             <ShellContent
                 Title="Feature"
+                Icon="icon_saddle.png"
                 ContentTemplate="{DataTemplate pages:FeaturePage}"
                 Route="characterfeatures" />
         </Tab>

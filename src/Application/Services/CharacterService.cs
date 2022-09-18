@@ -32,7 +32,14 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Services
             {
                 foreach (var character in await _repository.GetAsync())
                 {
-                    _characters.Add(ObservableCharacter.New(character));
+                    try
+                    {
+                        _characters.Add(ObservableCharacter.New(character));
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                    }
                 }
             }
             return _characters;

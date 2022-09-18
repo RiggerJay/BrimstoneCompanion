@@ -5,8 +5,12 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Shell.NavBarIsVisible="False"
              Shell.PresentationMode="ModalAnimated"
-             IsBusy="{Binding IsBusy}"
              Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
             EventName="Loaded"
@@ -29,14 +33,18 @@
                    Padding="0,5">
                 <Picker
                     Title="Select a Character"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
                     ItemsSource="{Binding Characters}"
                     ItemDisplayBinding="{Binding Name}"
                     SelectedItem="{Binding SelectedCharacter}"
                     HorizontalOptions="Center" />
             </Frame>
 
+            <ActivityIndicator IsRunning="{Binding IsBusy}" />
+
             <Button
                 Text="Create New"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
                 SemanticProperties.Hint="Navigates to Main"
                 Command="{Binding NewCharacterCommand}"
                 HorizontalOptions="Center" />

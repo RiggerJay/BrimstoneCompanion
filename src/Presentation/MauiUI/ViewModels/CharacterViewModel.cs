@@ -81,7 +81,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "This will delete the character and all progress.")))
             {
                 await _mediator.Send(DeleteCharacterRequest.WithCharacter(Character));
-                await _mediator.Send(NavRequest.Close());
+                await _mediator.Send(NavRequest.CharacterSelector());
             }
         }
 
@@ -116,6 +116,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 Character.Keywords.Add(ObservableKeyword.New(keyword, true));
                 await SaveCharacterAsync();
             }
+        }
+
+        [RelayCommand]
+        public async Task Selector()
+        {
+            await _mediator.Send(NavRequest.CharacterSelector());
         }
 
         [RelayCommand]

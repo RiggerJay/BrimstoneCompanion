@@ -33,11 +33,13 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
                 try
                 {
                     var json = await File.ReadAllTextAsync(file, Encoding.UTF8);
+                    System.Diagnostics.Debug.WriteLine(json);
                     var model = JsonConvert.DeserializeObject<T>(json);
                     list.Add(model);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
                     File.Delete(file);
                 }
             }

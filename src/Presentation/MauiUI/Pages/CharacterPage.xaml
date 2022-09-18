@@ -15,6 +15,10 @@
             Text="Add Keyword"
             IconImageSource="key.png"
             Command="{Binding AddKeywordCommand}" />
+        <ToolbarItem
+            Text="Change"
+            IconImageSource="icon_change.png"
+            Command="{Binding SelectorCommand}" />
     </ContentPage.ToolbarItems>
     <Grid>
         <Grid.ColumnDefinitions>
