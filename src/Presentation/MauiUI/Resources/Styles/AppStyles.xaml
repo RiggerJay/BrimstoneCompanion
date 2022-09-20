@@ -4,32 +4,250 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Style TargetType="Label"
-           x:Key="mickeyMouseTitle">
+    <Style 
+        x:Key="BaseTitleLabel"
+        TargetType="Label">
         <Setter Property="Margin" Value="0" />
         <Setter Property="VerticalOptions" Value="End" />
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
 
-    <Style TargetType="Label"
-           x:Key="mickeyMouseBody">
-        <Setter Property="FontSize" Value="26" />
+    <Style 
+        x:Key="BaseBodyLabel"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
 
-    <Style TargetType="Frame"
-           x:Key="baseFrame">
+    <Style 
+        x:Key="SmallBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource BaseBodyLabel}">
+        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+    </Style>
+
+    <Style 
+        x:Key="BlueBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource BaseBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource BlueDark}, Dark={StaticResource BlueLight}}" />
+    </Style>
+
+    <Style 
+        x:Key="SmallBlueBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource SmallBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource BlueLight}, Dark={StaticResource BlueDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="RedBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource BaseBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource RedDark}, Dark={StaticResource RedLight}}" />
+    </Style>
+
+    <Style 
+        x:Key="SmallRedBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource SmallBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource RedLight}, Dark={StaticResource RedDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="GreenBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource BaseBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource GreenDark}, Dark={StaticResource GreenLight}}" />
+    </Style>
+
+    <Style 
+        x:Key="SmallGreenBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource SmallBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource GreenLight}, Dark={StaticResource GreenDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="PurpleBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource BaseBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PurpleDark}, Dark={StaticResource PurpleLight}}" />
+    </Style>
+
+    <Style 
+        x:Key="SmallPurpleBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource SmallBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PurpleLight}, Dark={StaticResource PurpleDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="BrownBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource BaseBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource BrownDark}, Dark={StaticResource BrownLight}}" />
+    </Style>
+
+    <Style 
+        x:Key="SmallBrownBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource SmallBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource BrownLight}, Dark={StaticResource BrownDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="YellowBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource BaseBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}" />
+    </Style>
+
+    <Style 
+        x:Key="SmallYellowBodyLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource SmallBodyLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource YellowLight}, Dark={StaticResource YellowDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="ChipLabel"
+        TargetType="Label"
+        BasedOn="{StaticResource YellowBodyLabel}">
+        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style 
+        x:Key="BaseFrame"
+        TargetType="Frame">
         <Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="10,5" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
     </Style>
+    
+    <Style
+        x:Key="SmallFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource BaseFrame}">
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="WidthRequest" Value="30" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+    
+    <Style 
+        x:Key="BlueFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource BaseFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BlueLight}, Dark={StaticResource BlueDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource BlueDark}, Dark={StaticResource BlueLight}}" />
+    </Style>
 
-    <Style TargetType="Frame"
-           BasedOn="{StaticResource baseFrame}"
-           x:Key="mickeyMouseFrame">
-        <Setter Property="CornerRadius" Value="200" />
+    <Style
+        x:Key="SmallBlueFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource SmallFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BlueDark}, Dark={StaticResource BlueLight}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource BlueLight}, Dark={StaticResource BlueDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="RedFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource BaseFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource RedLight}, Dark={StaticResource RedDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource RedDark}, Dark={StaticResource RedLight}}" />
+    </Style>
+
+    <Style
+        x:Key="SmallRedFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource SmallFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource RedDark}, Dark={StaticResource RedLight}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource RedLight}, Dark={StaticResource RedDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="GreenFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource BaseFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource GreenLight}, Dark={StaticResource GreenDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource GreenDark}, Dark={StaticResource GreenLight}}" />
+    </Style>
+
+    <Style
+        x:Key="SmallGreenFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource SmallFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource GreenDark}, Dark={StaticResource GreenLight}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource GreenLight}, Dark={StaticResource GreenDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="PurpleFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource BaseFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PurpleLight}, Dark={StaticResource PurpleDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource PurpleDark}, Dark={StaticResource PurpleLight}}" />
+    </Style>
+
+    <Style
+        x:Key="SmallPurpleFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource SmallFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PurpleDark}, Dark={StaticResource PurpleLight}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource PurpleLight}, Dark={StaticResource PurpleDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="BrownFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource BaseFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BrownLight}, Dark={StaticResource BrownDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource BrownDark}, Dark={StaticResource BrownLight}}" />
+    </Style>
+
+    <Style
+        x:Key="SmallBrownFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource SmallFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BrownDark}, Dark={StaticResource BrownLight}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource BrownLight}, Dark={StaticResource BrownDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="YellowFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource BaseFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource YellowLight}, Dark={StaticResource YellowDark}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}" />
+    </Style>
+
+    <Style
+        x:Key="SmallYellowFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource SmallFrame}">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource YellowLight}, Dark={StaticResource YellowDark}}" />
+    </Style>
+
+    <Style 
+        x:Key="ChipFrame"
+        TargetType="Frame"
+        BasedOn="{StaticResource YellowFrame}">
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Padding" Value="5,1,5,1" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="HorizontalOptions" Value="Start" />
     </Style>
 
     <Style TargetType="Button"
@@ -40,4 +258,13 @@
         <Setter Property="Margin" Value="5" />
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
+
+    <Style TargetType="Button"
+           x:Key="ChipButton">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource YellowLight}, Dark={StaticResource YellowDark}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}" />
+        <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+    
 </ResourceDictionary>

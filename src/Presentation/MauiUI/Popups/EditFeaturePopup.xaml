@@ -157,25 +157,16 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame
-                            BackgroundColor="{StaticResource YellowLight}"
-                            BorderColor="{StaticResource YellowDark}"
-                            CornerRadius="3"
-                            Padding="5,0,0,0"
-                            Margin="2"
-                            HorizontalOptions="Start">
+                            Style="{StaticResource ChipFrame}">
                             <StackLayout Orientation="Horizontal">
                                 <Label
                                     Text="{Binding Word}"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center" />
+                                    Style="{StaticResource ChipLabel}"/>
                                 <Button
-                                    Text="X"
+                                    Text="[x]"
                                     Command="{Binding BindingContext.DeleteKeywordCommand, Source={Reference ThisFeature}}"
                                     CommandParameter="{Binding .}"
-                                    BackgroundColor="{StaticResource YellowDark}"
-                                    CornerRadius="0"
-                                    Padding="2,0"
-                                    Margin="5,0,0,0" />
+                                    Style="{StaticResource ChipButton}" />
                             </StackLayout>
                         </Frame>
                     </DataTemplate>

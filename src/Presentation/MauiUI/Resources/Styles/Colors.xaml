@@ -4,12 +4,19 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#710005</Color>
-    <Color x:Key="Secondary">#ffd3b5</Color>
-    <Color x:Key="SecondaryHighlight">#ffeadd</Color>
-    <Color x:Key="Tertiary">#3e0003</Color>
+    <Color x:Key="Primary">#7B5738</Color>
+    <Color x:Key="Secondary">#A1816B</Color>
+    <Color x:Key="Tertiary">#BAA098</Color>
 
-    <Color x:Key="White">#d9c8bc</Color>
+    <Color x:Key="Light">#EAE3E0</Color>
+    <Color x:Key="Dark">#3D2D29</Color>
+
+    <Color x:Key="LightHighlight">#F1ECEA</Color>
+    <Color x:Key="DarkHighlight">#513D36</Color>
+    <Color x:Key="LightLowlight">#E3D9D6</Color>
+    <Color x:Key="DarkLowlight">#281E1B</Color>
+    
+    <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
 
     <Color x:Key="Gray100">#E1E1E1</Color>
@@ -26,6 +33,26 @@
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
 
+    <LinearGradientBrush 
+        x:Key="GradientOdd"
+        StartPoint="0,0" 
+        EndPoint="1,1">
+        <GradientStop Color="{AppThemeBinding Light={StaticResource LightLowlight}, Dark={StaticResource DarkLowlight}}"
+                          Offset="0.1" />
+        <GradientStop Color="{AppThemeBinding Light={StaticResource LightHighlight}, Dark={StaticResource DarkHighlight}}"
+                          Offset="1.0" />
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush 
+        x:Key="GradientEven"
+        StartPoint="0,0" 
+        EndPoint="1,1">
+        <GradientStop Color="{AppThemeBinding Light={StaticResource LightHighlight}, Dark={StaticResource DarkHighlight}}"
+                          Offset="0.1" />
+        <GradientStop Color="{AppThemeBinding Light={StaticResource LightLowlight}, Dark={StaticResource DarkLowlight}}"
+                          Offset="1.0" />
+    </LinearGradientBrush>
+
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}" />
     <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}" />
@@ -37,20 +64,20 @@
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}" />
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}" />
 
-    <Color x:Key="RedLight">#ffcfcf</Color>
-    <Color x:Key="RedDark">#6a0000</Color>
+    <Color x:Key="RedLight">#DEA5A5</Color>
+    <Color x:Key="RedDark">#aa3e3e</Color>
 
-    <Color x:Key="BlueLight">#dbe3ff</Color>
-    <Color x:Key="BlueDark">#001975</Color>
+    <Color x:Key="BlueLight">#98b2ba</Color>
+    <Color x:Key="BlueDark">#364b51</Color>
 
     <Color x:Key="BrownLight">#deb38b</Color>
-    <Color x:Key="BrownDark">#5d3005</Color>
+    <Color x:Key="BrownDark">#5E4B39</Color>
 
     <Color x:Key="GreenLight">#b0c59e</Color>
-    <Color x:Key="GreenDark">#295305</Color>
+    <Color x:Key="GreenDark">#5B6B4E</Color>
 
-    <Color x:Key="PurpleLight">#cebedc</Color>
-    <Color x:Key="PurpleDark">#4d0987</Color>
+    <Color x:Key="PurpleLight">#C2AFD3</Color>
+    <Color x:Key="PurpleDark">#71617F</Color>
 
     <Color x:Key="YellowLight">#dcda97</Color>
     <Color x:Key="YellowDark">#646100</Color>

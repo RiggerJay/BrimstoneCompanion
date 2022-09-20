@@ -92,20 +92,11 @@
             HorizontalOptions="FillAndExpand"
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
-
+            Grid.ColumnSpan="22"
+            Background="{StaticResource GradientOdd}" />
         <Label
             FontAttributes="Bold"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="22">
@@ -128,34 +119,24 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
+            Grid.ColumnSpan="22"
+            Background="{StaticResource GradientEven}" />
 
         <Label
             Text="XP"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="1"
             Grid.Column="1"
             Grid.ColumnSpan="6" />
 
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource PurpleLight}"
-            BorderColor="{StaticResource PurpleDark}"
+            Style="{StaticResource PurpleFrame}"
             Grid.Row="2"
             Grid.Column="1"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Experience.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource PurpleBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding UpdateAttributeCommand}"
@@ -165,20 +146,18 @@
 
         <Label
             Text="Dollars"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="1"
             Grid.Column="8"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource GreenLight}"
-            BorderColor="{StaticResource GreenDark}"
+            Style="{StaticResource GreenFrame}"
             Grid.Row="2"
             Grid.Column="8"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Dollars.CurrentValue, StringFormat='${0}'}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource GreenBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding UpdateAttributeCommand}"
@@ -188,20 +167,18 @@
 
         <Label
             Text="Heavy"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="1"
             Grid.Column="15"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource BrownLight}"
-            BorderColor="{StaticResource BrownDark}"
+            Style="{StaticResource BrownFrame}"
             Grid.Row="2"
             Grid.Column="15"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Heavy.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource BrownBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -210,23 +187,13 @@
         </Frame>
 
         <Frame
-            CornerRadius="20"
-            HeightRequest="30"
-            WidthRequest="30"
-            BackgroundColor="{StaticResource BrownDark}"
-            BorderColor="{StaticResource BrownLight}"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
+            Style="{StaticResource SmallBrownFrame}"
             Grid.Row="2"
             Grid.Column="15"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Heavy.MaxValue}"
-                TextColor="{StaticResource BrownLight}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource SmallBrownBodyLabel}" />
         </Frame>
 
         <!-- Second Row -->
@@ -239,21 +206,12 @@
             Grid.Row="3"
             Grid.RowSpan="5"
             Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
+            Grid.ColumnSpan="22"
+            Background="{StaticResource GradientOdd}" />
 
         <Label
             Text="Skillz"
-            FontAttributes="Bold"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="22" />
@@ -264,19 +222,18 @@
 
         <Label
             Text="Agility"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="4"
             Grid.Column="2"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource YellowLight}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="5"
             Grid.Column="3"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Agility.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -286,19 +243,18 @@
 
         <Label
             Text="Cunning"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="4"
             Grid.Column="8"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource YellowLight}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="5"
             Grid.Column="9"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Cunning.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -308,19 +264,18 @@
 
         <Label
             Text="Spirit"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="4"
             Grid.Column="14"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource YellowLight}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="5"
             Grid.Column="15"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Spirit.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}">
+                Style="{StaticResource YellowBodyLabel}">
             </Label>
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
@@ -335,19 +290,18 @@
 
         <Label
             Text="Strength"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="6"
             Grid.Column="2"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource YellowLight}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="7"
             Grid.Column="3"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Strength.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -357,19 +311,18 @@
 
         <Label
             Text="Lore"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="6"
             Grid.Column="8"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource YellowLight}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="7"
             Grid.Column="9"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Lore.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -379,19 +332,18 @@
 
         <Label
             Text="Luck"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="6"
             Grid.Column="14"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource YellowLight}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="7"
             Grid.Column="15"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Luck.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -409,21 +361,13 @@
             Grid.Row="8"
             Grid.RowSpan="3"
             Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
+            Grid.ColumnSpan="22"
+            Background="{StaticResource GradientEven}" />
 
         <Label
             Text="Fightin'"
             FontAttributes="Bold"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="8"
             Grid.Column="0"
             Grid.ColumnSpan="22" />
@@ -434,18 +378,19 @@
 
         <Label
             Text="Range"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="9"
             Grid.Column="1"
             Grid.ColumnSpan="4" />
         <Frame
-            Style="{StaticResource mickeyMouseFrame}"
+            Style="{StaticResource YellowFrame}"
+            CornerRadius="200"
             Grid.Row="10"
             Grid.Column="1"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Range.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -455,18 +400,19 @@
 
         <Label
             Text="Melee"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="9"
             Grid.Column="6"
             Grid.ColumnSpan="4" />
         <Frame
-            Style="{StaticResource mickeyMouseFrame}"
+            Style="{StaticResource YellowFrame}"
+            CornerRadius="200"
             Grid.Row="10"
             Grid.Column="6"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Melee.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -476,18 +422,18 @@
 
         <Label
             Text="Combat"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="9"
             Grid.Column="12"
             Grid.ColumnSpan="4" />
         <Frame
-            Style="{StaticResource mickeyMouseFrame}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="10"
             Grid.Column="12"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Combat.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -497,18 +443,18 @@
 
         <Label
             Text="Initiative"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="9"
             Grid.Column="16"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource mickeyMouseFrame}"
+            Style="{StaticResource YellowFrame}"
             Grid.Row="10"
             Grid.Column="17"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Initiative.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource YellowBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -526,33 +472,23 @@
             Grid.Row="11"
             Grid.RowSpan="2"
             Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
+            Grid.ColumnSpan="22"
+            Background="{StaticResource GradientOdd}" />
 
         <Label
             Text="Health"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="11"
             Grid.Column="0"
             Grid.ColumnSpan="7" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource RedLight}"
-            BorderColor="{StaticResource RedDark}"
+            Style="{StaticResource RedFrame}"
             Grid.Row="12"
             Grid.Column="1"
             Grid.ColumnSpan="5">
             <Label
                 Text="{Binding Health.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource RedBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -561,41 +497,30 @@
         </Frame>
 
         <Frame
-            CornerRadius="20"
-            HeightRequest="30"
-            WidthRequest="30"
-            BackgroundColor="{StaticResource RedDark}"
-            BorderColor="{StaticResource RedLight}"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
+            Style="{StaticResource SmallRedFrame}"
             Grid.Row="12"
             Grid.Column="1"
             Grid.ColumnSpan="5">
             <Label
                 Text="{Binding Health.MaxValue}"
-                TextColor="{StaticResource PurpleLight}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource SmallRedBodyLabel}"/>
         </Frame>
 
         <Label
             Text="Def"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="11"
             Grid.Column="5"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource mickeyMouseFrame}"
-            BackgroundColor="{StaticResource RedLight}"
-            BorderColor="{StaticResource RedDark}"
+            Style="{StaticResource RedFrame}"
+            CornerRadius="200"
             Grid.Row="12"
             Grid.Column="6"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Defence.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource RedBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -605,20 +530,18 @@
 
         <Label
             Text="Sanity"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource TitleLabel}"
             Grid.Row="11"
             Grid.Column="11"
             Grid.ColumnSpan="7" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource BlueLight}"
-            BorderColor="{StaticResource BlueDark}"
+            Style="{StaticResource BlueFrame}"
             Grid.Row="12"
             Grid.Column="12"
             Grid.ColumnSpan="5">
             <Label
                 Text="{Binding Sanity.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource BlueBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -627,11 +550,10 @@
         </Frame>
 
         <Frame
+            Style="{StaticResource SmallBlueFrame}"
             CornerRadius="20"
             HeightRequest="30"
             WidthRequest="30"
-            BackgroundColor="{StaticResource BlueDark}"
-            BorderColor="{StaticResource BlueLight}"
             Padding="0"
             Margin="0"
             VerticalOptions="Start"
@@ -641,27 +563,24 @@
             Grid.ColumnSpan="5">
             <Label
                 Text="{Binding Sanity.MaxValue}"
-                TextColor="{StaticResource PurpleLight}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource SmallBlueBodyLabel}"/>
         </Frame>
 
         <Label
             Text="Will"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource TitleLabel}"
             Grid.Row="11"
             Grid.Column="16"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource mickeyMouseFrame}"
-            BackgroundColor="{StaticResource BlueLight}"
-            BorderColor="{StaticResource BlueDark}"
+            Style="{StaticResource BlueFrame}"
+            CornerRadius="200"
             Grid.Row="12"
             Grid.Column="17"
             Grid.ColumnSpan="4">
             <Label
                 Text="{Binding Willpower.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource BlueBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -679,33 +598,23 @@
             Grid.Row="13"
             Grid.RowSpan="2"
             Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
+            Grid.ColumnSpan="22"
+            Background="{StaticResource GradientEven}" />
 
         <Label
             Text="Grit"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="13"
             Grid.Column="2"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource BrownLight}"
-            BorderColor="{StaticResource BrownDark}"
+            Style="{StaticResource BrownFrame}"
             Grid.Row="14"
             Grid.Column="2"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Grit.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource BrownBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -714,41 +623,29 @@
         </Frame>
 
         <Frame
-            CornerRadius="20"
-            HeightRequest="30"
-            WidthRequest="30"
-            BackgroundColor="{StaticResource BrownDark}"
-            BorderColor="{StaticResource BrownLight}"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
+            Style="{StaticResource SmallBrownFrame}"
             Grid.Row="14"
             Grid.Column="2"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Grit.MaxValue}"
-                TextColor="{StaticResource BrownLight}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource SmallBrownBodyLabel}" />
         </Frame>
 
         <Label
             Text="Corrupt"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="13"
             Grid.Column="8"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource GreenLight}"
-            BorderColor="{StaticResource GreenDark}"
+            Style="{StaticResource GreenFrame}"
             Grid.Row="14"
             Grid.Column="8"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Corruption.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource GreenBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -757,41 +654,29 @@
         </Frame>
 
         <Frame
-            CornerRadius="20"
-            HeightRequest="30"
-            WidthRequest="30"
-            BackgroundColor="{StaticResource GreenDark}"
-            BorderColor="{StaticResource GreenLight}"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
+            Style="{StaticResource SmallGreenFrame}"
             Grid.Row="14"
             Grid.Column="8"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding Corruption.MaxValue}"
-                TextColor="{StaticResource GreenLight}"
-                VerticalOptions="Center"
-                HorizontalOptions="Center" />
+                Style="{StaticResource SmallGreenBodyLabel}" />
         </Frame>
 
         <Label
             Text="Dark Stone"
-            Style="{StaticResource mickeyMouseTitle}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="13"
             Grid.Column="14"
             Grid.ColumnSpan="6" />
         <Frame
-            Style="{StaticResource baseFrame}"
-            BackgroundColor="{StaticResource PurpleLight}"
-            BorderColor="{StaticResource PurpleDark}"
+            Style="{StaticResource PurpleFrame}"
             Grid.Row="14"
             Grid.Column="14"
             Grid.ColumnSpan="6">
             <Label
                 Text="{Binding DarkStone.CurrentValue}"
-                Style="{StaticResource mickeyMouseBody}" />
+                Style="{StaticResource PurpleBodyLabel}" />
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer
                     Command="{Binding IncrementAttributeCommand}"
@@ -801,70 +686,15 @@
 
         <!-- Ninth Row-->
 
-        <!-- Tenth Row
+        <!-- Tenth -->
 
         <Rectangle
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             Grid.Row="15"
             Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
-
-        <Button
-            Text="Level Up"
-            Command="{Binding LevelUpCommand}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Grid.Row="15"
-            Grid.Column="2"
-            Grid.ColumnSpan="6" />
-
-        <Button
-            Text="Notes"
-            Command="{Binding NotesCommand}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Grid.Row="15"
-            Grid.Column="8"
-            Grid.ColumnSpan="6" />
-
-        <Button
-            Text="Features"
-            Command="{Binding ShowNotesCommand}"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Grid.Row="15"
-            Grid.Column="14"
-            Grid.ColumnSpan="6" />
-
-         Tenth Row-->
-
-        <!-- Eleventh -->
-
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="15"
-            Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Rectangle.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource Secondary}"
-                          Offset="0.1" />
-                    <GradientStop Color="{StaticResource SecondaryHighlight}"
-                          Offset="1.0" />
-                </LinearGradientBrush>
-            </Rectangle.Background>
-        </Rectangle>
+            Grid.ColumnSpan="22"
+            Background="{StaticResource GradientOdd}" />
 
         <CollectionView
             ItemsSource="{Binding Character.ConcatKeywords}"
@@ -878,32 +708,23 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame
-                        BackgroundColor="{StaticResource YellowLight}"
-                        BorderColor="{StaticResource YellowDark}"
-                        CornerRadius="3"
-                        Padding="5,0,0,0"
-                        Margin="2"
-                        HorizontalOptions="Start">
+                        Style="{StaticResource ChipFrame}">
                         <StackLayout Orientation="Horizontal">
                             <Label
                                 Text="{Binding Word}"
-                                Margin="0,0,5,0"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center" />
+                                Style="{StaticResource ChipLabel}" />
                             <Button
-                                Text="X"
+                                Text="[x]"
                                 Command="{Binding BindingContext.DeleteKeywordCommand, Source={Reference ThisCharacterPage}}"
                                 CommandParameter="{Binding .}"
                                 IsVisible="{Binding CanDelete}"
-                                BackgroundColor="{StaticResource YellowDark}"
-                                CornerRadius="0"
-                                Padding="2,0" />
+                                Style="{StaticResource ChipButton}" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Eleventh -->
+        <!-- Tenth -->
     </Grid>
 </ContentPage>
