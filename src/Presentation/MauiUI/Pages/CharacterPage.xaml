@@ -26,705 +26,707 @@
             IconImageSource="icon_change.png"
             Command="{Binding SelectorCommand}" />
     </ContentPage.ToolbarItems>
-    <Grid>
-        <Grid.GestureRecognizers>
-            <SwipeGestureRecognizer
-                Direction="Left"
-                Command="{Binding ShowFeaturesCommand}" />
-            <SwipeGestureRecognizer
-                Direction="Right"
-                Command="{Binding ShowNotesCommand}" />
-        </Grid.GestureRecognizers>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
+    <ScrollView>
+        <Grid>
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer
+                    Direction="Left"
+                    Command="{Binding ShowFeaturesCommand}" />
+                <SwipeGestureRecognizer
+                    Direction="Right"
+                    Command="{Binding ShowNotesCommand}" />
+            </Grid.GestureRecognizers>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
 
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="4*" />
 
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="4*" />
 
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="4*" />
 
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="4*" />
 
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="4*" />
 
-            <RowDefinition Height="4*" />
-        </Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
 
-        <!-- First Row -->
+            <!-- First Row -->
 
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Background="{StaticResource GradientOdd}" />
-        <Label
-            FontAttributes="Bold"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="22">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="{Binding Character.Class}" />
-                    <Span Text=" at Level  " />
-                    <Span Text="{Binding Character.Level}" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-
-        <!-- First Row -->
-
-        <!-- Second Row -->
-
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Background="{StaticResource GradientEven}" />
-
-        <Label
-            Text="XP"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="1"
-            Grid.Column="1"
-            Grid.ColumnSpan="6" />
-
-        <Frame
-            Style="{StaticResource PurpleFrame}"
-            Grid.Row="2"
-            Grid.Column="1"
-            Grid.ColumnSpan="6">
+            <Rectangle
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="22"
+                Background="{StaticResource GradientOdd}" />
             <Label
-                Text="{Binding Experience.CurrentValue}"
-                Style="{StaticResource PurpleBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding UpdateAttributeCommand}"
-                    CommandParameter="{Binding Experience}" />
-            </Frame.GestureRecognizers>
-        </Frame>
-
-        <Label
-            Text="Dollars"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="1"
-            Grid.Column="8"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource GreenFrame}"
-            Grid.Row="2"
-            Grid.Column="8"
-            Grid.ColumnSpan="6">
-            <Label
-                Text="{Binding Dollars.CurrentValue, StringFormat='${0}'}"
-                Style="{StaticResource GreenBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding UpdateAttributeCommand}"
-                    CommandParameter="{Binding Dollars}" />
-            </Frame.GestureRecognizers>
-        </Frame>
-
-        <Label
-            Text="Heavy"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="1"
-            Grid.Column="15"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource BrownFrame}"
-            Grid.Row="2"
-            Grid.Column="15"
-            Grid.ColumnSpan="6">
-            <Label
-                Text="{Binding Heavy.CurrentValue}"
-                Style="{StaticResource BrownBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Heavy}" />
-            </Frame.GestureRecognizers>
-        </Frame>
-
-        <Frame
-            Style="{StaticResource SmallBrownFrame}"
-            Grid.Row="2"
-            Grid.Column="15"
-            Grid.ColumnSpan="6">
-            <Label
-                Text="{Binding Heavy.MaxValue}"
-                Style="{StaticResource SmallBrownBodyLabel}" />
-        </Frame>
-
-        <!-- Second Row -->
-
-        <!-- Third Row -->
-
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="3"
-            Grid.RowSpan="5"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Background="{StaticResource GradientOdd}" />
-
-        <Label
-            Text="Skillz"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="22" />
-
-        <!-- Third Row -->
-
-        <!-- Forth Row -->
-
-        <Label
-            Text="Agility"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="4"
-            Grid.Column="2"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="5"
-            Grid.Column="3"
-            Grid.ColumnSpan="4">
-            <Label
-                Text="{Binding Agility.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Agility}" />
-            </Frame.GestureRecognizers>
-        </Frame>
-
-        <Label
-            Text="Cunning"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="4"
-            Grid.Column="8"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="5"
-            Grid.Column="9"
-            Grid.ColumnSpan="4">
-            <Label
-                Text="{Binding Cunning.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Cunning}" />
-            </Frame.GestureRecognizers>
-        </Frame>
-
-        <Label
-            Text="Spirit"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="4"
-            Grid.Column="14"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="5"
-            Grid.Column="15"
-            Grid.ColumnSpan="4">
-            <Label
-                Text="{Binding Spirit.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}">
+                FontAttributes="Bold"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="22">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Character.Class}" />
+                        <Span Text=" at Level  " />
+                        <Span Text="{Binding Character.Level}" />
+                    </FormattedString>
+                </Label.FormattedText>
             </Label>
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Spirit}" />
-            </Frame.GestureRecognizers>
-        </Frame>
 
-        <!-- Forth Row -->
+            <!-- First Row -->
 
-        <!-- Fifth Row -->
+            <!-- Second Row -->
 
-        <Label
-            Text="Strength"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="6"
-            Grid.Column="2"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="7"
-            Grid.Column="3"
-            Grid.ColumnSpan="4">
+            <Rectangle
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="22"
+                Background="{StaticResource GradientEven}" />
+
             <Label
-                Text="{Binding Strength.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Strength}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="XP"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="6" />
 
-        <Label
-            Text="Lore"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="6"
-            Grid.Column="8"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="7"
-            Grid.Column="9"
-            Grid.ColumnSpan="4">
+            <Frame
+                Style="{StaticResource PurpleFrame}"
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Experience.CurrentValue}"
+                    Style="{StaticResource PurpleBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding UpdateAttributeCommand}"
+                        CommandParameter="{Binding Experience}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
             <Label
-                Text="{Binding Lore.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Lore}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Dollars"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="1"
+                Grid.Column="8"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource GreenFrame}"
+                Grid.Row="2"
+                Grid.Column="8"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Dollars.CurrentValue, StringFormat='${0}'}"
+                    Style="{StaticResource GreenBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding UpdateAttributeCommand}"
+                        CommandParameter="{Binding Dollars}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Luck"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="6"
-            Grid.Column="14"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="7"
-            Grid.Column="15"
-            Grid.ColumnSpan="4">
             <Label
-                Text="{Binding Luck.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Luck}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Heavy"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="1"
+                Grid.Column="15"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource BrownFrame}"
+                Grid.Row="2"
+                Grid.Column="15"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Heavy.CurrentValue}"
+                    Style="{StaticResource BrownBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Heavy}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <!-- Fifth Row -->
+            <Frame
+                Style="{StaticResource SmallBrownFrame}"
+                Grid.Row="2"
+                Grid.Column="15"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Heavy.MaxValue}"
+                    Style="{StaticResource SmallBrownBodyLabel}" />
+            </Frame>
 
-        <!-- Sixth Row -->
+            <!-- Second Row -->
 
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="8"
-            Grid.RowSpan="3"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Background="{StaticResource GradientEven}" />
+            <!-- Third Row -->
 
-        <Label
-            Text="Fightin'"
-            FontAttributes="Bold"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="8"
-            Grid.Column="0"
-            Grid.ColumnSpan="22" />
+            <Rectangle
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="3"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="22"
+                Background="{StaticResource GradientOdd}" />
 
-        <!-- Sixth Row -->
-
-        <!-- Seventh Row-->
-
-        <Label
-            Text="Range"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="9"
-            Grid.Column="1"
-            Grid.ColumnSpan="4" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            CornerRadius="200"
-            Grid.Row="10"
-            Grid.Column="1"
-            Grid.ColumnSpan="4">
             <Label
-                Text="{Binding Range.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Range}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Skillz"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="22" />
 
-        <Label
-            Text="Melee"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="9"
-            Grid.Column="6"
-            Grid.ColumnSpan="4" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            CornerRadius="200"
-            Grid.Row="10"
-            Grid.Column="6"
-            Grid.ColumnSpan="4">
+            <!-- Third Row -->
+
+            <!-- Forth Row -->
+
             <Label
-                Text="{Binding Melee.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Melee}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Agility"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="4"
+                Grid.Column="2"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="5"
+                Grid.Column="3"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Agility.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Agility}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Combat"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="9"
-            Grid.Column="12"
-            Grid.ColumnSpan="4" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="10"
-            Grid.Column="12"
-            Grid.ColumnSpan="4">
             <Label
-                Text="{Binding Combat.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Combat}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Cunning"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="4"
+                Grid.Column="8"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="5"
+                Grid.Column="9"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Cunning.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Cunning}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Initiative"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="9"
-            Grid.Column="16"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource YellowFrame}"
-            Grid.Row="10"
-            Grid.Column="17"
-            Grid.ColumnSpan="4">
             <Label
-                Text="{Binding Initiative.CurrentValue}"
-                Style="{StaticResource YellowBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Initiative}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Spirit"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="4"
+                Grid.Column="14"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="5"
+                Grid.Column="15"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Spirit.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}">
+                </Label>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Spirit}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <!-- Seventh Row -->
+            <!-- Forth Row -->
 
-        <!-- Eighth Row-->
+            <!-- Fifth Row -->
 
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="11"
-            Grid.RowSpan="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Background="{StaticResource GradientOdd}" />
-
-        <Label
-            Text="Health"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="11"
-            Grid.Column="0"
-            Grid.ColumnSpan="7" />
-        <Frame
-            Style="{StaticResource RedFrame}"
-            Grid.Row="12"
-            Grid.Column="1"
-            Grid.ColumnSpan="5">
             <Label
-                Text="{Binding Health.CurrentValue}"
-                Style="{StaticResource RedBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Health}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Strength"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="6"
+                Grid.Column="2"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="7"
+                Grid.Column="3"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Strength.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Strength}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Frame
-            Style="{StaticResource SmallRedFrame}"
-            Grid.Row="12"
-            Grid.Column="1"
-            Grid.ColumnSpan="5">
             <Label
-                Text="{Binding Health.MaxValue}"
-                Style="{StaticResource SmallRedBodyLabel}" />
-        </Frame>
+                Text="Lore"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="6"
+                Grid.Column="8"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="7"
+                Grid.Column="9"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Lore.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Lore}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Def"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="11"
-            Grid.Column="5"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource RedFrame}"
-            CornerRadius="200"
-            Grid.Row="12"
-            Grid.Column="6"
-            Grid.ColumnSpan="4">
             <Label
-                Text="{Binding Defence.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource RedBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Defence}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Luck"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="6"
+                Grid.Column="14"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="7"
+                Grid.Column="15"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Luck.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Luck}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Sanity"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="11"
-            Grid.Column="11"
-            Grid.ColumnSpan="7" />
-        <Frame
-            Style="{StaticResource BlueFrame}"
-            Grid.Row="12"
-            Grid.Column="12"
-            Grid.ColumnSpan="5">
+            <!-- Fifth Row -->
+
+            <!-- Sixth Row -->
+
+            <Rectangle
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="8"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="22"
+                Background="{StaticResource GradientEven}" />
+
             <Label
-                Text="{Binding Sanity.CurrentValue}"
-                Style="{StaticResource BlueBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Sanity}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Fightin'"
+                FontAttributes="Bold"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="8"
+                Grid.Column="0"
+                Grid.ColumnSpan="22" />
 
-        <Frame
-            Style="{StaticResource SmallBlueFrame}"
-            CornerRadius="20"
-            HeightRequest="30"
-            WidthRequest="30"
-            Padding="0"
-            Margin="0"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
-            Grid.Row="12"
-            Grid.Column="12"
-            Grid.ColumnSpan="5">
+            <!-- Sixth Row -->
+
+            <!-- Seventh Row-->
+
             <Label
-                Text="{Binding Sanity.MaxValue}"
-                Style="{StaticResource SmallBlueBodyLabel}" />
-        </Frame>
+                Text="Range"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="9"
+                Grid.Column="1"
+                Grid.ColumnSpan="4" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                CornerRadius="200"
+                Grid.Row="10"
+                Grid.Column="1"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Range.CurrentValue, StringFormat='+{0}'}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Range}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Will"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="11"
-            Grid.Column="16"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource BlueFrame}"
-            CornerRadius="200"
-            Grid.Row="12"
-            Grid.Column="17"
-            Grid.ColumnSpan="4">
             <Label
-                Text="{Binding Willpower.CurrentValue, StringFormat='+{0}'}"
-                Style="{StaticResource BlueBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Willpower}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Melee"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="9"
+                Grid.Column="6"
+                Grid.ColumnSpan="4" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                CornerRadius="200"
+                Grid.Row="10"
+                Grid.Column="6"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Melee.CurrentValue, StringFormat='+{0}'}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Melee}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <!-- Eighth Row-->
-
-        <!-- Ninth Row-->
-
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="13"
-            Grid.RowSpan="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Background="{StaticResource GradientEven}" />
-
-        <Label
-            Text="Grit"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="13"
-            Grid.Column="2"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource BrownFrame}"
-            Grid.Row="14"
-            Grid.Column="2"
-            Grid.ColumnSpan="6">
             <Label
-                Text="{Binding Grit.CurrentValue}"
-                Style="{StaticResource BrownBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Grit}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Combat"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="9"
+                Grid.Column="12"
+                Grid.ColumnSpan="4" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="10"
+                Grid.Column="12"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Combat.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Combat}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Frame
-            Style="{StaticResource SmallBrownFrame}"
-            Grid.Row="14"
-            Grid.Column="2"
-            Grid.ColumnSpan="6">
             <Label
-                Text="{Binding Grit.MaxValue}"
-                Style="{StaticResource SmallBrownBodyLabel}" />
-        </Frame>
+                Text="Initiative"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="9"
+                Grid.Column="16"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource YellowFrame}"
+                Grid.Row="10"
+                Grid.Column="17"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Initiative.CurrentValue}"
+                    Style="{StaticResource YellowBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Initiative}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Corrupt"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="13"
-            Grid.Column="8"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource GreenFrame}"
-            Grid.Row="14"
-            Grid.Column="8"
-            Grid.ColumnSpan="6">
+            <!-- Seventh Row -->
+
+            <!-- Eighth Row-->
+
+            <Rectangle
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="11"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="22"
+                Background="{StaticResource GradientOdd}" />
+
             <Label
-                Text="{Binding Corruption.CurrentValue}"
-                Style="{StaticResource GreenBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding Corruption}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Health"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="11"
+                Grid.Column="0"
+                Grid.ColumnSpan="7" />
+            <Frame
+                Style="{StaticResource RedFrame}"
+                Grid.Row="12"
+                Grid.Column="1"
+                Grid.ColumnSpan="5">
+                <Label
+                    Text="{Binding Health.CurrentValue}"
+                    Style="{StaticResource RedBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Health}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Frame
-            Style="{StaticResource SmallGreenFrame}"
-            Grid.Row="14"
-            Grid.Column="8"
-            Grid.ColumnSpan="6">
+            <Frame
+                Style="{StaticResource SmallRedFrame}"
+                Grid.Row="12"
+                Grid.Column="1"
+                Grid.ColumnSpan="5">
+                <Label
+                    Text="{Binding Health.MaxValue}"
+                    Style="{StaticResource SmallRedBodyLabel}" />
+            </Frame>
+
             <Label
-                Text="{Binding Corruption.MaxValue}"
-                Style="{StaticResource SmallGreenBodyLabel}" />
-        </Frame>
+                Text="Def"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="11"
+                Grid.Column="5"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource RedFrame}"
+                CornerRadius="200"
+                Grid.Row="12"
+                Grid.Column="6"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Defence.CurrentValue, StringFormat='+{0}'}"
+                    Style="{StaticResource RedBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Defence}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Label
-            Text="Dark Stone"
-            Style="{StaticResource BaseTitleLabel}"
-            Grid.Row="13"
-            Grid.Column="14"
-            Grid.ColumnSpan="6" />
-        <Frame
-            Style="{StaticResource PurpleFrame}"
-            Grid.Row="14"
-            Grid.Column="14"
-            Grid.ColumnSpan="6">
             <Label
-                Text="{Binding DarkStone.CurrentValue}"
-                Style="{StaticResource PurpleBodyLabel}" />
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer
-                    Command="{Binding IncrementAttributeCommand}"
-                    CommandParameter="{Binding DarkStone}" />
-            </Frame.GestureRecognizers>
-        </Frame>
+                Text="Sanity"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="11"
+                Grid.Column="11"
+                Grid.ColumnSpan="7" />
+            <Frame
+                Style="{StaticResource BlueFrame}"
+                Grid.Row="12"
+                Grid.Column="12"
+                Grid.ColumnSpan="5">
+                <Label
+                    Text="{Binding Sanity.CurrentValue}"
+                    Style="{StaticResource BlueBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Sanity}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <!-- Ninth Row-->
+            <Frame
+                Style="{StaticResource SmallBlueFrame}"
+                CornerRadius="20"
+                HeightRequest="30"
+                WidthRequest="30"
+                Padding="0"
+                Margin="0"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Grid.Row="12"
+                Grid.Column="12"
+                Grid.ColumnSpan="5">
+                <Label
+                    Text="{Binding Sanity.MaxValue}"
+                    Style="{StaticResource SmallBlueBodyLabel}" />
+            </Frame>
 
-        <!-- Tenth -->
+            <Label
+                Text="Will"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="11"
+                Grid.Column="16"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource BlueFrame}"
+                CornerRadius="200"
+                Grid.Row="12"
+                Grid.Column="17"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Willpower.CurrentValue, StringFormat='+{0}'}"
+                    Style="{StaticResource BlueBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Willpower}" />
+                </Frame.GestureRecognizers>
+            </Frame>
 
-        <Rectangle
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            Grid.Row="15"
-            Grid.Column="0"
-            Grid.ColumnSpan="22"
-            Background="{StaticResource GradientOdd}" />
+            <!-- Eighth Row-->
 
-        <CollectionView
-            ItemsSource="{Binding Character.ConcatKeywords}"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand"
-            ItemsLayout="HorizontalGrid, 2"
-            SelectionMode="None"
-            Grid.Row="15"
-            Grid.Column="1"
-            Grid.ColumnSpan="20">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame
-                        Style="{StaticResource ChipFrame}">
-                        <StackLayout Orientation="Horizontal">
-                            <Label
-                                Text="{Binding Word}"
-                                Style="{StaticResource ChipLabel}" />
-                            <Button
-                                Text="[x]"
-                                Command="{Binding BindingContext.DeleteKeywordCommand, Source={Reference ThisCharacterPage}}"
-                                CommandParameter="{Binding .}"
-                                IsVisible="{Binding CanDelete}"
-                                Style="{StaticResource ChipButton}" />
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <!-- Ninth Row-->
 
-        <!-- Tenth -->
-    </Grid>
+            <Rectangle
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="13"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="22"
+                Background="{StaticResource GradientEven}" />
+
+            <Label
+                Text="Grit"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="13"
+                Grid.Column="2"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource BrownFrame}"
+                Grid.Row="14"
+                Grid.Column="2"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Grit.CurrentValue}"
+                    Style="{StaticResource BrownBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Grit}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame
+                Style="{StaticResource SmallBrownFrame}"
+                Grid.Row="14"
+                Grid.Column="2"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Grit.MaxValue}"
+                    Style="{StaticResource SmallBrownBodyLabel}" />
+            </Frame>
+
+            <Label
+                Text="Corrupt"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="13"
+                Grid.Column="8"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource GreenFrame}"
+                Grid.Row="14"
+                Grid.Column="8"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Corruption.CurrentValue}"
+                    Style="{StaticResource GreenBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding Corruption}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame
+                Style="{StaticResource SmallGreenFrame}"
+                Grid.Row="14"
+                Grid.Column="8"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding Corruption.MaxValue}"
+                    Style="{StaticResource SmallGreenBodyLabel}" />
+            </Frame>
+
+            <Label
+                Text="Dark Stone"
+                Style="{StaticResource BaseTitleLabel}"
+                Grid.Row="13"
+                Grid.Column="14"
+                Grid.ColumnSpan="6" />
+            <Frame
+                Style="{StaticResource PurpleFrame}"
+                Grid.Row="14"
+                Grid.Column="14"
+                Grid.ColumnSpan="6">
+                <Label
+                    Text="{Binding DarkStone.CurrentValue}"
+                    Style="{StaticResource PurpleBodyLabel}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding IncrementAttributeCommand}"
+                        CommandParameter="{Binding DarkStone}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <!-- Ninth Row-->
+
+            <!-- Tenth -->
+
+            <Rectangle
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="15"
+                Grid.Column="0"
+                Grid.ColumnSpan="22"
+                Background="{StaticResource GradientOdd}" />
+
+            <CollectionView
+                ItemsSource="{Binding Character.ConcatKeywords}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                ItemsLayout="HorizontalGrid, 2"
+                SelectionMode="None"
+                Grid.Row="15"
+                Grid.Column="1"
+                Grid.ColumnSpan="20">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Style="{StaticResource ChipFrame}">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Text="{Binding Word}"
+                                    Style="{StaticResource ChipLabel}" />
+                                <Button
+                                    Text="[x]"
+                                    Command="{Binding BindingContext.DeleteKeywordCommand, Source={Reference ThisCharacterPage}}"
+                                    CommandParameter="{Binding .}"
+                                    IsVisible="{Binding CanDelete}"
+                                    Style="{StaticResource ChipButton}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Tenth -->
+        </Grid>
+    </ScrollView>
 </ContentPage>

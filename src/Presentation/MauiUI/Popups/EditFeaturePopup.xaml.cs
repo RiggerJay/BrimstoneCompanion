@@ -7,9 +7,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 
 public partial class EditFeaturePopup : CommunityToolkit.Maui.Views.Popup, IInitialisePopup
 {
-    private readonly EditFeatureViewModel _viewModel;
+    private readonly EditFeatureViewModelSafe _viewModel;
 
-    public EditFeaturePopup(EditFeatureViewModel viewModel)
+    public EditFeaturePopup(EditFeatureViewModelSafe viewModel)
     {
         BindingContext = _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 

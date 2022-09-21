@@ -33,30 +33,18 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task AddFeature()
         {
-            var feature = await _mediator.Send(NavRequest.CreateFeature());
-
-            /*if (feature != null)
-            {
-                var keys = feature.Properties.Select(x => x.Key).ToList();
-                keys.AddRange(feature.Properties.Select(x => x.Key));
-                UpdateProperties(keys);
-                Features.Add(feature);
-                Character.UpdateKeywords();
-                await SaveCharacter();
-            }*/
+            await _mediator.Send(NavRequest.CreateFeature());
         }
 
         [RelayCommand]
         public async Task EditFeature(ObservableFeature feature)
         {
             var keys = feature.Properties.Select(x => x.Key).ToList();
-            if (await _mediator.Send(NavRequest.EditFeature(feature)))
-            {
-                keys.AddRange(feature.Properties.Select(x => x.Key));
-                UpdateProperties(keys);
-                Character.UpdateKeywords();
-                await SaveCharacter();
-            }
+            await _mediator.Send(NavRequest.EditFeature(feature));
+
+            keys.AddRange(feature.Properties.Select(x => x.Key));
+            UpdateProperties(keys);
+            Character.UpdateKeywords();
         }
 
         [RelayCommand]

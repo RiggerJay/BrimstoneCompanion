@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.EditFeaturePage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
+             x:Name="ThisFeature"
+             Title="Create Feature">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IntToStringConverter x:Key="IntToString" />
+            <converters:KeyToStringConverter TextResource="{Binding TextResource, Source={Reference ThisFeature}}" x:Key="KeyToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+        <Grid
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="12">
+                <Entry
+                    Text="{Binding Feature.Name}"
+                    Keyboard="Chat"
+                    Placeholder="Name" />
+            </Frame>
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="12">
+                <Editor
+                    Text="{Binding Feature.Details}"
+                    HeightRequest="100"
+                    Keyboard="Chat"
+                    Placeholder="Details"
+                    HorizontalOptions="FillAndExpand" />
+            </Frame>
+
+            <Label
+                Text="Cost"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2" />
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="2"
+                Grid.Column="2"
+                Grid.ColumnSpan="4">
+                <Entry
+                    Text="{Binding Feature.Value}"
+                    Keyboard="Numeric"
+                    Placeholder="Value" />
+            </Frame>
+
+            <Label
+                Text="Qty"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Grid.Row="2"
+                Grid.Column="6"
+                Grid.ColumnSpan="2" />
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="2"
+                Grid.Column="8"
+                Grid.ColumnSpan="4">
+                <Entry
+                    Text="{Binding Feature.Quantity}"
+                    Keyboard="Numeric"
+                    Placeholder="Quantity" />
+            </Frame>
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="12">
+                <Picker
+                    Title="Type"
+                    ItemsSource="{Binding Types}"
+                    SelectedItem="{Binding Feature.FeatureType, Converter={x:StaticResource StringToEnumConverter}}" />
+            </Frame>
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="4"
+                Grid.Column="0"
+                Grid.ColumnSpan="4">
+                <Picker
+                    Title="Attributes"
+                    ItemsSource="{Binding Properties}"
+                    SelectedItem="{Binding SelectedProperty}" />
+            </Frame>
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="4"
+                Grid.Column="4"
+                Grid.ColumnSpan="5">
+                <Entry
+                    Text="{Binding Value}"
+                    Keyboard="Numeric"
+                    Placeholder="Value" />
+            </Frame>
+
+            <Button
+                Text="Add"
+                Command="{Binding EnterPropertyCommand}"
+                Margin="10,5"
+                Grid.Row="4"
+                Grid.Column="9"
+                Grid.ColumnSpan="3" />
+
+            <Frame
+                Margin="10,5"
+                Padding="1"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="12">
+
+                <CollectionView
+                        ItemsSource="{Binding Feature.Properties}"
+                        ItemsLayout="HorizontalGrid, 2"
+                        Margin="10,0"
+                        HeightRequest="60"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Style="{StaticResource ChipFrame}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        Style="{StaticResource ChipLabel}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Key, Converter={StaticResource KeyToString}}" />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding Value, Converter={StaticResource IntToString}}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Button
+                                        Text="[x]"
+                                        Command="{Binding BindingContext.DeletePropertyCommand, Source={Reference ThisFeature}}"
+                                        CommandParameter="{Binding .}"
+                                        Style="{StaticResource ChipButton}" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+            <Label
+                Text="Weight"
+                VerticalOptions="Center"
+                HorizontalOptions="End"
+                Grid.Row="6"
+                Grid.Column="0"
+                Grid.ColumnSpan="4" />
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="6"
+                Grid.Column="4"
+                Grid.ColumnSpan="8">
+                <Entry
+                    Text="{Binding Weight}"
+                    Keyboard="Numeric"
+                    Placeholder="Value" />
+            </Frame>
+
+            <Frame
+                Style="{StaticResource BaseFrame}"
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="9">
+                <Entry
+                    Text="{Binding Keyword}"
+                    Keyboard="Text"
+                    Placeholder="Keyword" />
+            </Frame>
+
+            <Button
+                Text="Add"
+                Command="{Binding EnterKeywordCommand}"
+                Margin="10,5"
+                Grid.Row="7"
+                Grid.Column="9"
+                Grid.ColumnSpan="3" />
+
+            <Frame
+                Margin="10,5"
+                Padding="1"
+                Grid.Row="8"
+                Grid.Column="0"
+                Grid.ColumnSpan="12">
+                <CollectionView
+                        ItemsSource="{Binding Feature.Keywords}"
+                        ItemsLayout="HorizontalGrid, 2"
+                        Margin="10,0"
+                        HeightRequest="60"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Style="{StaticResource ChipFrame}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label
+                                        Text="{Binding Word}"
+                                        Style="{StaticResource ChipLabel}" />
+                                    <Button
+                                        Text="[x]"
+                                        Command="{Binding BindingContext.DeleteKeywordCommand, Source={Reference ThisFeature}}"
+                                        CommandParameter="{Binding .}"
+                                        Style="{StaticResource ChipButton}" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <Button
+                Text="Save"
+                Command="{Binding SaveAndCloseCommand}"
+                VerticalOptions="End"
+                HorizontalOptions="Center"
+                Grid.Row="9"
+                Grid.Column="0"
+                Grid.ColumnSpan="12" />
+        </Grid>
+    </ScrollView>
+</ContentPage>

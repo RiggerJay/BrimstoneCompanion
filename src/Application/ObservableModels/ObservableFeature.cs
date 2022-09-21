@@ -167,5 +167,10 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                 prop.Value = value;
             }
         }
+
+        public void AddKeyword(string keyword)
+        {
+            Keywords.Add(ObservableKeyword.New(keyword));
+        }
     }
 }

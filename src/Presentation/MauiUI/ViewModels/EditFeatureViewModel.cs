@@ -9,19 +9,23 @@ using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
+    [QueryProperty(nameof(Feature), nameof(Feature))]
     public partial class EditFeatureViewModel : ViewModelBase
     {
         private readonly IMediator _mediator;
         private readonly ITextResource _textResource;
+        private readonly IApplicationState _state;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         [ObservableProperty]
         private string? _weight = null;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _value;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _selectedProperty;
 
         private string _keyword;
@@ -30,11 +34,23 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly ObservableFeature _backup = ObservableFeature.New();
 
         public EditFeatureViewModel(IMediator mediator
-            , ITextResource textResource)
+            , ITextResource textResource
+            , IApplicationState state)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
+            _state = state ?? throw new ArgumentNullException(nameof(state));
             UpdateProperties();
+        }
+
+        private void UpdateProperties()
+        {
+            foreach (var item in AttributeNames.Strings)
+            {
+                Properties.Add(_textResource.GetValue(item));
+                _properties.Add(_textResource.GetValue(item), item);
+            }
+            OnPropertyChanged(nameof(Properties));
         }
 
         public ObservableFeature Feature
@@ -47,16 +63,67 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public IList<string> Properties { get; } = new List<string>();
 
-        [RelayCommand]
-        public async Task SaveAndClose()
+        public List<string> Keys { get; } = new List<string>();
+
+        public string Keyword
         {
-            Feature.Properties.Clear();
-            if (!string.IsNullOrWhiteSpace(SelectedProperty)
-                && !string.IsNullOrWhiteSpace(Value)
+            get => _keyword;
+            set => SetProperty(ref _keyword, value, KeywordEntered);
+        }
+
+        private void KeywordEntered()
+        {
+            if (CanEnterKeyword()
+                && Keyword.EndsWith(' '))
+            {
+                EnterKeyword();
+            }
+            EnterKeywordCommand.NotifyCanExecuteChanged();
+        }
+
+        [RelayCommand(CanExecute = nameof(CanEnterKeyword))]
+        private void EnterKeyword()
+        {
+            if (CanEnterKeyword())
+            {
+                Feature.Keywords.Add(ObservableKeyword.New(Keyword.Trim(), false));
+                Keyword = string.Empty;
+            }
+        }
+
+        private bool CanEnterKeyword() => !string.IsNullOrWhiteSpace(Keyword);
+
+        [RelayCommand(CanExecute = nameof(CanEnterProperty))]
+        private void EnterProperty()
+        {
+            if (CanEnterProperty()
                 && int.TryParse(Value, out int value))
             {
                 Feature.AddProperty(_properties[SelectedProperty], value);
+
+                Value = string.Empty;
+                SelectedProperty = string.Empty;
             }
+        }
+
+        private bool CanEnterProperty()
+            => !string.IsNullOrWhiteSpace(Value)
+            && !string.IsNullOrWhiteSpace(SelectedProperty);
+
+        [RelayCommand]
+        public void DeleteProperty(ObservableProp prop)
+            => Feature.Properties.Remove(prop);
+
+        [RelayCommand]
+        public void DeleteKeyword(ObservableKeyword keyword) =>
+            Feature.Keywords.Remove(keyword);
+
+        [RelayCommand]
+        public async Task SaveAndClose()
+        {
+            EnterProperty();
+
+            EnterKeyword();
 
             if (!string.IsNullOrWhiteSpace(Weight)
                 && int.TryParse(Weight, out int weight))
@@ -64,7 +131,22 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 Feature.AddProperty(AttributeNames.HEAVY, weight);
             }
 
-            await _mediator.Send(NavRequest.Close(true));
+            Keys.AddRange(Feature.Properties.Select(x => x.Key));
+
+            UpdateProperties(Keys);
+
+            _state.Character.UpdateKeywords();
+            await _mediator.Send(SaveCharacterRequest.Save());
+
+            await _mediator.Send(NavRequest.Close());
+        }
+
+        private void UpdateProperties(IEnumerable<string> keys)
+        {
+            foreach (var key in keys)
+            {
+                _state.Character.ValueChanged(key);
+            }
         }
 
         public void Reset()
@@ -73,54 +155,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             _feature.PropertiesChanged();
         }
 
-        private void UpdateProperties()
-        {
-            foreach (var item in AttributeNames.Strings)
-            {
-                Properties.Add(_textResource.GetValue(item));
-                _properties.Add(_textResource.GetValue(item), item);
-            }
-        }
-
         private void NewFeatureAdded()
         {
             if (_feature.Properties.Any(x => x.Key == AttributeNames.HEAVY))
             {
                 Weight = _feature.Properties.First(x => x.Key == AttributeNames.HEAVY).Value.ToString();
             }
+            Keys.Clear();
 
-            foreach (var prop in _feature.Properties)
-            {
-                if (prop.Key != AttributeNames.HEAVY)
-                {
-                    SelectedProperty = _textResource.GetValue(prop.Key);
-                    Value = prop.Value.ToString();
-                }
-            }
+            Keys.AddRange(_feature.Properties.Select(x => x.Key));
 
             SaveState(_feature, _backup);
-        }
-
-        public string Keyword
-        {
-            get => _keyword;
-            set => SetProperty(ref _keyword, value, EnterKeyword);
-        }
-
-        private void EnterKeyword()
-        {
-            if (!string.IsNullOrWhiteSpace(Keyword)
-                && Keyword.EndsWith(' '))
-            {
-                Feature.Keywords.Add(ObservableKeyword.New(Keyword.Trim(), false));
-                Keyword = string.Empty;
-            }
-        }
-
-        [RelayCommand]
-        public void DeleteKeyword(ObservableKeyword keyword)
-        {
-            Feature.Keywords.Remove(keyword);
         }
 
         public static void SaveState(ObservableFeature from, ObservableFeature to)
@@ -131,10 +176,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             to.Value = from.Value;
             to.FeatureType = from.FeatureType;
             to.NextAdventure = from.NextAdventure;
+
             to.Properties.Clear();
             foreach (var item in from.Properties)
             {
-                to.Properties.Add(item);
+                to.AddProperty(item.Key, item.Value);
+            }
+
+            to.Keywords.Clear();
+            foreach (var item in from.Keywords)
+            {
+                to.AddKeyword(item.Word);
             }
         }
     }

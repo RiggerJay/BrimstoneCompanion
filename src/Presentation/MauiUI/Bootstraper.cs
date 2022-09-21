@@ -34,13 +34,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.RegisterPage<CharacterSelectorPage, CharacterSelectorViewModel>(NavigationKeys.CHARACTER_SELECTOR);
             mauiAppBuilder.RegisterPage<FeaturesPage, FeaturesViewModel>(NavigationKeys.CHARACTER_FEATURES);
             mauiAppBuilder.RegisterPage<NewFeaturePage, NewFeatureViewModel>(NavigationKeys.FEATURE_CREATE);
+            mauiAppBuilder.RegisterPage<EditFeaturePage, EditFeatureViewModel>(NavigationKeys.FEATURE_EDIT);
             mauiAppBuilder.RegisterPage<NotesPage, NotesViewModel>(NavigationKeys.CHARACTER_NOTES);
 
             mauiAppBuilder.RegisterPopup<NewCharacterPopup, NewCharacterViewModel>(NavigationKeys.CHARACTER_CREATE);
             mauiAppBuilder.RegisterPopup<UpdateAttributePopup, UpdateAttributeViewModel>(NavigationKeys.ATTRIBUTE_UPDATE);
             mauiAppBuilder.RegisterPopup<IncrementAttributePopup, IncrementAttributeViewModel>(NavigationKeys.ATTRIBUTE_INCREMENT);
-            //mauiAppBuilder.RegisterPopup<NewFeaturePopup, NewFeatureViewModel>(NavigationKeys.FEATURE_CREATE);
-            mauiAppBuilder.RegisterPopup<EditFeaturePopup, EditFeatureViewModel>(NavigationKeys.FEATURE_EDIT);
             mauiAppBuilder.RegisterPopup<NewNotePopup, NewNoteViewModel>(NavigationKeys.NOTE_CREATE);
             mauiAppBuilder.RegisterPopup<EditNotePopup, EditNoteViewModel>(NavigationKeys.NOTE_EDIT);
             mauiAppBuilder.RegisterPopup<LevelUpPopup, LevelUpViewModel>(NavigationKeys.CHARACTER_LEVELUP);
