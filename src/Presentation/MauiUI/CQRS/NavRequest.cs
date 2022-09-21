@@ -26,7 +26,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
         internal static NavRequest<ObservableCharacter> CreateCharacter()
             => new(NavigationKeys.CHARACTER_CREATE, null);
 
-        internal static NavRequest<ObservableFeature> CreateFeature()
+        internal static NavRequest CreateFeature()
             => new(NavigationKeys.FEATURE_CREATE, null);
 
         internal static NavRequest<ObservableNote> CreateNote()

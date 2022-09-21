@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
-    public partial class FeatureViewModel : ViewModelBase
+    public partial class FeaturesViewModel : ViewModelBase
     {
         private readonly IMediator _mediator;
         private readonly IApplicationState _state;
@@ -17,7 +17,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [ObservableProperty]
         private ObservableFeature? _selectedFeature;
 
-        public FeatureViewModel(IMediator mediator, IApplicationState state)
+        public FeaturesViewModel(IMediator mediator, IApplicationState state)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _state = state ?? throw new ArgumentNullException(nameof(state));
@@ -35,7 +35,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             var feature = await _mediator.Send(NavRequest.CreateFeature());
 
-            if (feature != null)
+            /*if (feature != null)
             {
                 var keys = feature.Properties.Select(x => x.Key).ToList();
                 keys.AddRange(feature.Properties.Select(x => x.Key));
@@ -43,7 +43,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 Features.Add(feature);
                 Character.UpdateKeywords();
                 await SaveCharacter();
-            }
+            }*/
         }
 
         [RelayCommand]

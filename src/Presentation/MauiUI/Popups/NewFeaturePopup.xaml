@@ -131,19 +131,6 @@
                     Placeholder="Value" />
             </Frame>
 
-            <!--<Label
-                Text="Next Adventure?"
-                VerticalOptions="Center"
-                Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="1" />
-
-            <Switch
-                IsToggled="{Binding Feature.NextAdventure}"
-                Grid.Row="5"
-                Grid.Column="1"
-                Grid.ColumnSpan="1" />-->
-
             <Frame CornerRadius="5"
                    Margin="10,5"
                    Padding="5,0"

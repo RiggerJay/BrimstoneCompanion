@@ -1,5 +1,4 @@
-﻿using Android.Telephony;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
@@ -14,24 +13,29 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly ITextResource _textResource;
+        private readonly IApplicationState _state;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         [ObservableProperty]
         private string? _weight = null;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _value;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _selectedProperty;
 
         private string _keyword;
 
         public NewFeatureViewModel(IMediator mediator
-            , ITextResource textResource)
+            , ITextResource textResource
+            , IApplicationState state)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
+            _state = state ?? throw new ArgumentNullException(nameof(state));
             UpdateProperties();
         }
 
@@ -54,34 +58,62 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public string Keyword
         {
             get => _keyword;
-            set => SetProperty(ref _keyword, value, EnterKeyword);
+            set => SetProperty(ref _keyword, value, KeywordEntered);
         }
 
+        private void KeywordEntered()
+        {
+            if (CanEnterKeyword()
+                && Keyword.EndsWith(' '))
+            {
+                EnterKeyword();
+            }
+            EnterKeywordCommand.NotifyCanExecuteChanged();
+        }
+
+        [RelayCommand(CanExecute = nameof(CanEnterKeyword))]
         private void EnterKeyword()
         {
-            if (!string.IsNullOrWhiteSpace(Keyword)
-                && Keyword.EndsWith(' '))
+            if (CanEnterKeyword())
             {
                 Feature.Keywords.Add(ObservableKeyword.New(Keyword.Trim(), false));
                 Keyword = string.Empty;
             }
         }
 
-        [RelayCommand]
-        public void DeleteKeyword(ObservableKeyword keyword)
+        private bool CanEnterKeyword() => !string.IsNullOrWhiteSpace(Keyword);
+
+        [RelayCommand(CanExecute = nameof(CanEnterProperty))]
+        private void EnterProperty()
         {
-            Feature.Keywords.Remove(keyword);
+            if (CanEnterProperty()
+                && int.TryParse(Value, out int value))
+            {
+                Feature.AddProperty(_properties[SelectedProperty], value);
+
+                Value = string.Empty;
+                SelectedProperty = string.Empty;
+            }
         }
+
+        private bool CanEnterProperty()
+            => !string.IsNullOrWhiteSpace(Value)
+            && !string.IsNullOrWhiteSpace(SelectedProperty);
+
+        [RelayCommand]
+        public void DeleteProperty(ObservableProp prop)
+            => Feature.Properties.Remove(prop);
+
+        [RelayCommand]
+        public void DeleteKeyword(ObservableKeyword keyword) =>
+            Feature.Keywords.Remove(keyword);
 
         [RelayCommand]
         public async Task SaveAndClose()
         {
-            if (!string.IsNullOrWhiteSpace(SelectedProperty)
-                && !string.IsNullOrWhiteSpace(Value)
-                && int.TryParse(Value, out int value))
-            {
-                Feature.AddProperty(_properties[SelectedProperty], value);
-            }
+            EnterProperty();
+
+            EnterKeyword();
 
             if (!string.IsNullOrWhiteSpace(Weight)
                 && int.TryParse(Weight, out int weight))
@@ -89,7 +121,21 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 Feature.AddProperty(AttributeNames.HEAVY, weight);
             }
 
-            await _mediator.Send(NavRequest.Close(Feature));
+            UpdateProperties(Feature.Properties.Select(x => x.Key));
+
+            _state.Character.Features.Add(Feature);
+            _state.Character.UpdateKeywords();
+            await _mediator.Send(SaveCharacterRequest.Save());
+
+            await _mediator.Send(NavRequest.Close());
+        }
+
+        private void UpdateProperties(IEnumerable<string> keys)
+        {
+            foreach (var key in keys)
+            {
+                _state.Character.ValueChanged(key);
+            }
         }
     }
 }

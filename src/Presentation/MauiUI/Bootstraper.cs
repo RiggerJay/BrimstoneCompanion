@@ -28,23 +28,18 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddSingleton<IRepository<Character>, CharacterRepository>();
             mauiAppBuilder.Services.AddSingleton(FileSystem.Current);
 
-            mauiAppBuilder.Services.AddTransient<AppShell>();
             mauiAppBuilder.Services.AddTransient<TabAppShell>();
-            mauiAppBuilder.Services.AddTransient<Page1>();
-            mauiAppBuilder.Services.AddTransient<Page2>();
-
-            Routing.RegisterRoute("page1", typeof(Page1));
-            Routing.RegisterRoute("page2", typeof(Page2));
 
             mauiAppBuilder.RegisterPage<CharacterPage, CharacterViewModel>(NavigationKeys.CHARACTER);
             mauiAppBuilder.RegisterPage<CharacterSelectorPage, CharacterSelectorViewModel>(NavigationKeys.CHARACTER_SELECTOR);
-            mauiAppBuilder.RegisterPage<FeaturePage, FeatureViewModel>(NavigationKeys.CHARACTER_FEATURES);
+            mauiAppBuilder.RegisterPage<FeaturesPage, FeaturesViewModel>(NavigationKeys.CHARACTER_FEATURES);
+            mauiAppBuilder.RegisterPage<NewFeaturePage, NewFeatureViewModel>(NavigationKeys.FEATURE_CREATE);
             mauiAppBuilder.RegisterPage<NotesPage, NotesViewModel>(NavigationKeys.CHARACTER_NOTES);
 
             mauiAppBuilder.RegisterPopup<NewCharacterPopup, NewCharacterViewModel>(NavigationKeys.CHARACTER_CREATE);
             mauiAppBuilder.RegisterPopup<UpdateAttributePopup, UpdateAttributeViewModel>(NavigationKeys.ATTRIBUTE_UPDATE);
             mauiAppBuilder.RegisterPopup<IncrementAttributePopup, IncrementAttributeViewModel>(NavigationKeys.ATTRIBUTE_INCREMENT);
-            mauiAppBuilder.RegisterPopup<NewFeaturePopup, NewFeatureViewModel>(NavigationKeys.FEATURE_CREATE);
+            //mauiAppBuilder.RegisterPopup<NewFeaturePopup, NewFeatureViewModel>(NavigationKeys.FEATURE_CREATE);
             mauiAppBuilder.RegisterPopup<EditFeaturePopup, EditFeatureViewModel>(NavigationKeys.FEATURE_EDIT);
             mauiAppBuilder.RegisterPopup<NewNotePopup, NewNoteViewModel>(NavigationKeys.NOTE_CREATE);
             mauiAppBuilder.RegisterPopup<EditNotePopup, EditNoteViewModel>(NavigationKeys.NOTE_EDIT);

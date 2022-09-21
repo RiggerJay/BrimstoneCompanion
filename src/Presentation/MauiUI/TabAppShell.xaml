@@ -27,7 +27,7 @@
             Title="Feature"
             IsVisible="True"
             Icon="icon_saddle.png"
-            ContentTemplate="{DataTemplate pages:FeaturePage}"
+            ContentTemplate="{DataTemplate pages:FeaturesPage}"
             Route="characterfeatures" />
     </TabBar>
 </Shell>

@@ -20,7 +20,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Converters
             {
                 return TextResource.GetValue((string)value);
             }
-            return null;
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
