@@ -30,14 +30,13 @@
                 HorizontalOptions="Center" />
 
             <Frame CornerRadius="5"
-                   Padding="0,5">
+                   Padding="5">
                 <Picker
                     Title="Select a Character"
                     IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
                     ItemsSource="{Binding Characters}"
                     ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{Binding SelectedCharacter}"
-                    HorizontalOptions="Center" />
+                    SelectedItem="{Binding SelectedCharacter}" />
             </Frame>
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" />
