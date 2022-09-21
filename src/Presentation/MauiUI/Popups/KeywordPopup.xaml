@@ -23,7 +23,7 @@
 
             <Label
                 Text="Keyword"
-                Style="{StaticResource mickeyMouseTitle}"
+                Style="{StaticResource BaseTitleLabel}"
                 Grid.Row="0"
                 Grid.Column="0">
             </Label>

@@ -503,7 +503,7 @@
             Grid.ColumnSpan="5">
             <Label
                 Text="{Binding Health.MaxValue}"
-                Style="{StaticResource SmallRedBodyLabel}"/>
+                Style="{StaticResource SmallRedBodyLabel}" />
         </Frame>
 
         <Label
@@ -530,7 +530,7 @@
 
         <Label
             Text="Sanity"
-            Style="{StaticResource TitleLabel}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="11"
             Grid.Column="11"
             Grid.ColumnSpan="7" />
@@ -563,12 +563,12 @@
             Grid.ColumnSpan="5">
             <Label
                 Text="{Binding Sanity.MaxValue}"
-                Style="{StaticResource SmallBlueBodyLabel}"/>
+                Style="{StaticResource SmallBlueBodyLabel}" />
         </Frame>
 
         <Label
             Text="Will"
-            Style="{StaticResource TitleLabel}"
+            Style="{StaticResource BaseTitleLabel}"
             Grid.Row="11"
             Grid.Column="16"
             Grid.ColumnSpan="6" />

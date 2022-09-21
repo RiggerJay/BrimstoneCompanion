@@ -24,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <Label
-                Style="{StaticResource mickeyMouseTitle}"
+                Style="{StaticResource BaseTitleLabel}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2">
