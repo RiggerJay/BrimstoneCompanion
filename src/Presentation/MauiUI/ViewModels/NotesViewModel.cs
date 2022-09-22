@@ -59,6 +59,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
+        private async Task ExportCharacter()
+            => await _mediator.Send(NavRequest.ExportCharacter(_state.Character));
+
+        [RelayCommand]
         public async Task ShowFeatures() => await _mediator.Send(NavRequest.ShowFeatures());
 
         [RelayCommand]

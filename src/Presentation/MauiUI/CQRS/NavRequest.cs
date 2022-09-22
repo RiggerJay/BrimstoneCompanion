@@ -46,6 +46,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
 
         internal static NavRequest<bool> LevelUp(ObservableCharacter character)
             => new(NavigationKeys.CHARACTER_LEVELUP, new Dictionary<string, object> { { CHARACTER, character } });
+
+        internal static NavRequest<bool> ExportCharacter(ObservableCharacter character)
+            => new(NavigationKeys.CHARACTER_EXPORT, new Dictionary<string, object> { { CHARACTER, character } });
     }
 
     public class NavRequest : NavRequest<Unit>

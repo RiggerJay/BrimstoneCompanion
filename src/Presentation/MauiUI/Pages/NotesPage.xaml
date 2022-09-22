@@ -4,6 +4,13 @@
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.NotesPage"
              Title="Notes"
              x:Name="TheseNotes">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Export Character"
+            IconImageSource="icon_export.png"
+            Command="{Binding ExportCharacterCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <Grid
         VerticalOptions="FillAndExpand">
         <Grid.GestureRecognizers>
