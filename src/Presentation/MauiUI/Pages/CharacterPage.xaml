@@ -97,7 +97,8 @@
                 Background="{StaticResource GradientOdd}" />
             <Label
                 FontAttributes="Bold"
-                Style="{StaticResource BaseTitleLabel}"
+                Style="{StaticResource BaseBodyLabel}"
+                FontSize="{StaticResource LargeFontSize}"
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="22">
@@ -242,6 +243,19 @@
                 </Frame.GestureRecognizers>
             </Frame>
 
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Agility.HasCurrentValue}"
+                Grid.Row="5"
+                Grid.Column="3"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Agility.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
+            </Frame>
+
             <Label
                 Text="Cunning"
                 Style="{StaticResource BaseTitleLabel}"
@@ -261,6 +275,19 @@
                         Command="{Binding IncrementAttributeCommand}"
                         CommandParameter="{Binding Cunning}" />
                 </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Cunning.HasCurrentValue}"
+                Grid.Row="5"
+                Grid.Column="9"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Cunning.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
             <Label
@@ -283,6 +310,19 @@
                         Command="{Binding IncrementAttributeCommand}"
                         CommandParameter="{Binding Spirit}" />
                 </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Spirit.HasCurrentValue}"
+                Grid.Row="5"
+                Grid.Column="15"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Spirit.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
             <!-- Forth Row -->
@@ -310,6 +350,19 @@
                 </Frame.GestureRecognizers>
             </Frame>
 
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Strength.HasCurrentValue}"
+                Grid.Row="7"
+                Grid.Column="3"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Strength.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
+            </Frame>
+
             <Label
                 Text="Lore"
                 Style="{StaticResource BaseTitleLabel}"
@@ -331,6 +384,19 @@
                 </Frame.GestureRecognizers>
             </Frame>
 
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Lore.HasCurrentValue}"
+                Grid.Row="7"
+                Grid.Column="9"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Lore.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
+            </Frame>
+
             <Label
                 Text="Luck"
                 Style="{StaticResource BaseTitleLabel}"
@@ -350,6 +416,19 @@
                         Command="{Binding IncrementAttributeCommand}"
                         CommandParameter="{Binding Luck}" />
                 </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Luck.HasCurrentValue}"
+                Grid.Row="7"
+                Grid.Column="15"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Luck.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
             <!-- Fifth Row -->
@@ -442,6 +521,19 @@
                 </Frame.GestureRecognizers>
             </Frame>
 
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Combat.HasCurrentValue}"
+                Grid.Row="10"
+                Grid.Column="12"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Combat.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
+            </Frame>
+
             <Label
                 Text="Initiative"
                 Style="{StaticResource BaseTitleLabel}"
@@ -461,6 +553,19 @@
                         Command="{Binding IncrementAttributeCommand}"
                         CommandParameter="{Binding Initiative}" />
                 </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame
+                Style="{StaticResource SmallYellowFrame}"
+                HorizontalOptions="End"
+                Margin="-2,-4"
+                IsVisible="{Binding Initiative.HasCurrentValue}"
+                Grid.Row="10"
+                Grid.Column="17"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding Initiative.Value}"
+                    Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
             <!-- Seventh Row -->
