@@ -64,6 +64,23 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
+        private async Task SellFeature(ObservableFeature? feature)
+        {
+            if (feature == null)
+            {
+                return;
+            }
+
+            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", $"You will sell this Feature for ${feature.Value}.")))
+            {
+                UpdateProperties(feature.Properties.Select(x => x.Key));
+                Features.Remove(feature);
+                Character.UpdateMoney(feature.Value);
+                await SaveCharacter();
+            }
+        }
+
+        [RelayCommand]
         public async Task ShowCharacter() => await _mediator.Send(NavRequest.ShowCharacter());
 
         [RelayCommand]

@@ -34,7 +34,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
                 {
                     var json = await File.ReadAllTextAsync(file, Encoding.UTF8);
                     System.Diagnostics.Debug.WriteLine(json);
-                    var model = JsonConvert.DeserializeObject<T>(json);
+                    var model = JsonConvert.DeserializeObject<T>(json, JsonConstants.Settings);
                     list.Add(model);
                 }
                 catch (Exception ex)
@@ -49,7 +49,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 
         public virtual async Task SaveAsync(T model, string key)
         {
-            var json = JsonConvert.SerializeObject(model);
+            var json = JsonConvert.SerializeObject(model, JsonConstants.Settings);
             System.Diagnostics.Debug.Write(json);
             await File.WriteAllTextAsync(GetFilePath(key), json, Encoding.UTF8);
         }

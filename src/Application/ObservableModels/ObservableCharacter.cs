@@ -213,5 +213,16 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         internal static ObservableCharacter New(Character character) => new(character);
 
         internal static ObservableCharacter New() => new(new Character());
+
+        public void UpdateMoney(int? value)
+        {
+            if (!value.HasValue)
+            {
+                return;
+            }
+            GetAttribute(AttributeNames.DOLLARS).Value += (int)value;
+
+            ValueChanged(AttributeNames.DOLLARS);
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public int? Value
         {
             get => Model.Value;
-            set => SetProperty(Model.Value, value, Model, (model, _value) => model.Value = _value);
+            set => SetProperty(Model.Value, value, Model, (model, _value) => model.Value = _value, OnValueChanged);
         }
 
         public int Weight
@@ -64,6 +64,10 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             get => Model.NextAdventure;
             set => SetProperty(Model.NextAdventure, value, Model, (model, _value) => model.NextAdventure = _value);
         }
+
+        public bool HasValue => Value.HasValue && Value > 0;
+
+        public void OnValueChanged() => OnPropertyChanged(nameof(HasValue));
 
         public ObservableCollection<ObservableProp> Properties { get; } = new();
 

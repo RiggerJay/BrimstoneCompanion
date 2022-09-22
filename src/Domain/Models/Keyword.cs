@@ -1,8 +1,14 @@
-﻿namespace RedSpartan.BrimstoneCompanion.Domain.Models
+﻿using System.ComponentModel;
+
+namespace RedSpartan.BrimstoneCompanion.Domain.Models
 {
+    [Serializable]
     public class Keyword
     {
-        public string Word { get; set; }
-        public bool CanDelete { get; set; }
+        [DefaultValue("")]
+        public string Word { get; set; } = string.Empty;
+
+        [DefaultValue(false)]
+        public bool CanDelete { get; set; } = false;
     }
 }
