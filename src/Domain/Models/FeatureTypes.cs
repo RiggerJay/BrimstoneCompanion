@@ -7,6 +7,7 @@
         Mutation,
         Injury,
         Madness,
+        LevelUp,
         Other
     }
 }
