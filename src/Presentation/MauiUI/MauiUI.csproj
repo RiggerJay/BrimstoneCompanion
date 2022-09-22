@@ -86,6 +86,9 @@
 	  <MauiXaml Update="Pages\NewFeaturePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Popups\ImportPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Popups\ExportPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -145,6 +148,9 @@
 	  </Compile>
 	  <Compile Update="Pages\NewFeaturePage.xaml.cs">
 	    <DependentUpon>NewFeaturePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\ImportPopup.xaml.cs">
+	    <DependentUpon>ImportPopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Popups\ExportPopup.xaml.cs">
 	    <DependentUpon>ExportPopup.xaml</DependentUpon>

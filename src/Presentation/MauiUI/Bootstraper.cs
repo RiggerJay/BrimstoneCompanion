@@ -44,6 +44,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.RegisterPopup<EditNotePopup, EditNoteViewModel>(NavigationKeys.NOTE_EDIT);
             mauiAppBuilder.RegisterPopup<LevelUpPopup, LevelUpViewModel>(NavigationKeys.CHARACTER_LEVELUP);
             mauiAppBuilder.RegisterPopup<ExportPopup, ExportViewModel>(NavigationKeys.CHARACTER_EXPORT);
+            mauiAppBuilder.RegisterPopup<ImportPopup, ImportViewModel>(NavigationKeys.CHARACTER_IMPORT);
             mauiAppBuilder.RegisterPopup<KeywordPopup, KeywordViewModel>(NavigationKeys.KEYWORD);
 
             return mauiAppBuilder;

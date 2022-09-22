@@ -10,6 +10,7 @@
         internal const string CHARACTER_CREATE = "charactercreate";
         internal const string CHARACTER_LEVELUP = "characterlevelup";
         internal const string CHARACTER_EXPORT = "characterexport";
+        internal const string CHARACTER_IMPORT = "characterimport";
         internal const string ATTRIBUTE_UPDATE = "attributeupdate";
         internal const string ATTRIBUTE_INCREMENT = "attributeincrement";
         internal const string FEATURE_CREATE = "featurecreate";

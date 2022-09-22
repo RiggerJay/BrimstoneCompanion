@@ -210,7 +210,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
         }
 
-        internal static ObservableCharacter New(Character character) => new(character);
+        public static ObservableCharacter New(Character character) => new(character);
 
         internal static ObservableCharacter New() => new(new Character());
 

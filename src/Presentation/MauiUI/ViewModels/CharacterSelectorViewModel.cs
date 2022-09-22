@@ -34,6 +34,19 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
+        [RelayCommand]
+        private async Task ImportCharacter()
+        {
+            var results = await _mediator.Send(NavRequest.ImportCharacter());
+
+            if (results != null)
+            {
+                Characters.Add(results);
+                SelectedCharacter = results;
+                await _mediator.Send(SaveCharacterRequest.Save());
+            }
+        }
+
         public ObservableCollection<ObservableCharacter> Characters { get; set; } = new();
 
         [RelayCommand]

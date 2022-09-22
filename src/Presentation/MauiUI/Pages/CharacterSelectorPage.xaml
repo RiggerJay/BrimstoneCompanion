@@ -47,6 +47,12 @@
                 SemanticProperties.Hint="Navigates to Main"
                 Command="{Binding NewCharacterCommand}"
                 HorizontalOptions="Center" />
+            <Button
+                Text="Import"
+                IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBoolConverter}}"
+                SemanticProperties.Hint="Navigates to Main"
+                Command="{Binding ImportCharacterCommand}"
+                HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
