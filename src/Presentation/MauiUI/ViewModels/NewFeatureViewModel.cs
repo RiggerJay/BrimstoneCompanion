@@ -24,6 +24,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _selectedProperty;
 
+        [ObservableProperty]
+        private string? _cost;
+
+        [ObservableProperty]
+        private string? _weight;
+
         private string _keyword;
 
         public NewFeatureViewModel(IMediator mediator
@@ -112,6 +118,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 return;
             }
+
+            Feature.Weight = int.TryParse(Weight, out int weight) ? weight : 0;
+
+            Feature.Value = int.TryParse(Cost, out int value) ? value : 0;
+
             EnterProperty();
 
             EnterKeyword();

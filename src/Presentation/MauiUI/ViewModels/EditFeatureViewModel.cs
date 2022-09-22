@@ -30,6 +30,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _selectedProperty;
 
+        [ObservableProperty]
+        private string? _cost;
+
+        [ObservableProperty]
+        private string? _weight;
+
         private string _keyword;
 
         private ObservableFeature _feature = ObservableFeature.New();
@@ -57,19 +63,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             OnPropertyChanged(nameof(Properties));
         }
 
-        private void LoadNewFeature()
-        {
-            Keys.Clear();
-
-            Keys.AddRange(_feature.Properties.Select(x => x.Key));
-
-            SaveState(_feature, _backup);
-        }
-
         public ObservableFeature Feature
         {
             get => _feature;
-            set => SetProperty(ref _feature, value, LoadNewFeature);
+            set => SetFeature(value);
         }
 
         public IList<string> Types => Enum.GetNames(typeof(FeatureTypes));
@@ -134,6 +131,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task SaveAndClose()
         {
+            Feature.Weight = int.TryParse(Weight, out int weight) ? weight : 0;
+
+            Feature.Value = int.TryParse(Cost, out int value) ? value : 0;
+
             EnterProperty();
 
             EnterKeyword();
@@ -215,6 +216,21 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             foreach (var item in from.Keywords)
             {
                 to.AddKeyword(item.Word);
+            }
+        }
+
+        private void SetFeature(ObservableFeature feature)
+        {
+            if (SetProperty(ref _feature, feature, nameof(Feature)))
+            {
+                Weight = feature.Weight == 0 ? string.Empty : feature.Weight.ToString();
+                Cost = feature.Value == 0 ? string.Empty : feature.Value.ToString();
+
+                Keys.Clear();
+
+                Keys.AddRange(_feature.Properties.Select(x => x.Key));
+
+                SaveState(_feature, _backup);
             }
         }
     }

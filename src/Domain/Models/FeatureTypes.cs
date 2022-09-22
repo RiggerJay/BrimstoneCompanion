@@ -7,5 +7,6 @@
         Mutation,
         Injury,
         Madness,
+        Other
     }
 }
