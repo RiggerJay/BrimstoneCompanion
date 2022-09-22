@@ -158,14 +158,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public void AddProperty(string key, int value)
         {
             var prop = Properties.FirstOrDefault(x => x.Key == key);
-            if (prop == null)
+            if (prop != null)
             {
-                Properties.Add(ObservableProp.New(key, value));
+                Properties.Remove(prop);
             }
-            else
-            {
-                prop.Value = value;
-            }
+            Properties.Add(ObservableProp.New(key, value));
         }
 
         public void AddKeyword(string keyword)

@@ -17,6 +17,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly IApplicationState _state;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
 
+        private bool _saved = false;
+
         [ObservableProperty]
         private string? _weight = null;
 
@@ -137,7 +139,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             _state.Character.UpdateKeywords();
             await _mediator.Send(SaveCharacterRequest.Save());
-
+            _saved = true;
             await _mediator.Send(NavRequest.Close());
         }
 
@@ -151,6 +153,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public void Reset()
         {
+            if (_saved)
+            {
+                return;
+            }
             SaveState(_backup, _feature);
             _feature.PropertiesChanged();
         }

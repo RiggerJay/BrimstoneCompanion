@@ -5,7 +5,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
     public class ObservableAttribute : ObservableModel<AttributeValue>
     {
         private string _key = string.Empty;
-        private bool _hasMaxValue;
         private readonly ObservableCharacter _parent;
 
         private ObservableAttribute(ObservableCharacter parent, string key, AttributeValue model) : base(model)
@@ -26,35 +25,42 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Value, value, Model, ValueChanged, OnValueChanged);
         }
 
-        public int CurrentValue => Value + _parent.Features.SelectMany(x => x.Properties.Where(prop => prop.Key == Key).Select(prop => prop.Value)).Sum();
+        public int CurrentValue => HasMaxValue ? Value : Value + _parent.Features.SelectMany(x => x.Properties.Where(prop => prop.Key == Key).Select(prop => prop.Value)).Sum();
+
+        public int? CurrentMaxValue => HasMaxValue ? MaxValue + _parent.Features.SelectMany(x => x.Properties.Where(prop => prop.Key == Key).Select(prop => prop.Value)).Sum() : MaxValue;
 
         public bool HasCurrentValue => Value != CurrentValue;
+
+        public bool HasCurrentMaxValue => HasMaxValue && MaxValue != CurrentMaxValue;
 
         public int? MaxValue
         {
             get => Model.MaxValue;
-            set => SetProperty(Model.MaxValue, value, Model, (model, _value) => model.MaxValue = _value, MaxValueChanged);
+            set => SetProperty(Model.MaxValue, value, Model, (model, _value) => model.MaxValue = _value, OnMaxValueChanged);
         }
 
-        public bool HasMaxValue => MaxValue != null;
+        public bool HasMaxValue => MaxValue.HasValue;
 
         internal void OnValueChanged()
         {
             OnPropertyChanged(nameof(CurrentValue));
             OnPropertyChanged(nameof(HasCurrentValue));
+            OnMaxValueChanged();
         }
 
-        private void MaxValueChanged()
+        private void OnMaxValueChanged()
         {
-            if (MaxValue < Value)
+            if (CurrentMaxValue.Value < Value)
             {
-                Value = MaxValue.Value;
+                Value = CurrentMaxValue.Value;
             }
+            OnPropertyChanged(nameof(CurrentMaxValue));
+            OnPropertyChanged(nameof(HasCurrentMaxValue));
         }
 
         private void ValueChanged(AttributeValue model, int value)
         {
-            if (MaxValue == null || value <= MaxValue.Value)
+            if (!HasMaxValue || value <= CurrentMaxValue.Value)
             {
                 model.Value = value;
             }
