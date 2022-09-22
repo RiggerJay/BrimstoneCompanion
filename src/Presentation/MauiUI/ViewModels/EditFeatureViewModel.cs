@@ -1,11 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
+using RedSpartan.BrimstoneCompanion.MauiUI.Messages;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -13,6 +15,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     public partial class EditFeatureViewModel : ViewModelBase
     {
         private readonly IMediator _mediator;
+        private readonly IMessenger _messenger;
         private readonly ITextResource _textResource;
         private readonly IApplicationState _state;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
@@ -34,9 +37,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public EditFeatureViewModel(IMediator mediator
             , ITextResource textResource
-            , IApplicationState state)
+            , IApplicationState state
+            , IMessenger messenger)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
             _state = state ?? throw new ArgumentNullException(nameof(state));
             LoadProperties();
@@ -142,6 +147,34 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             await _mediator.Send(SaveCharacterRequest.Save());
             _saved = true;
             await _mediator.Send(NavRequest.Close());
+        }
+
+        [RelayCommand]
+        public async Task DeleteFeature()
+        {
+            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
+            {
+                _messenger.Send(RemoveFeature.With(Feature));
+                await _mediator.Send(SaveCharacterRequest.Save());
+                await _mediator.Send(NavRequest.Close());
+            }
+        }
+
+        [RelayCommand]
+        public async Task SellFeature()
+        {
+            if (!Feature.HasValue)
+            {
+                return;
+            }
+
+            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", $"You will sell this Feature for ${Feature.Value}.")))
+            {
+                _messenger.Send(RemoveFeature.With(Feature));
+                _state.Character.UpdateMoney(Feature.Value);
+                await _mediator.Send(SaveCharacterRequest.Save());
+                await _mediator.Send(NavRequest.Close());
+            }
         }
 
         private void UpdateProperties(IEnumerable<string> keys)

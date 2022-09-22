@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
+using RedSpartan.BrimstoneCompanion.MauiUI.Messages;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -13,15 +15,22 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly IApplicationState _state;
+        private readonly IMessenger _messenger;
 
         [ObservableProperty]
         private ObservableFeature? _selectedFeature;
 
-        public FeaturesViewModel(IMediator mediator, IApplicationState state)
+        public FeaturesViewModel(IMediator mediator
+            , IApplicationState state
+            , IMessenger messenger)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _state = state ?? throw new ArgumentNullException(nameof(state));
+            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
+
             _state.PropertyChanged += State_PropertyChanged;
+
+            _messenger.Register<RemoveFeature>(this, HandleRemoveFeature);
         }
 
         public ObservableCollection<ObservableFeature> Features => Character.Features;
@@ -48,39 +57,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        private async Task DeleteFeature(ObservableFeature? feature)
-        {
-            if (feature == null)
-            {
-                return;
-            }
-
-            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
-            {
-                UpdateProperties(feature.Properties.Select(x => x.Key));
-                Features.Remove(feature);
-                await SaveCharacter();
-            }
-        }
-
-        [RelayCommand]
-        private async Task SellFeature(ObservableFeature? feature)
-        {
-            if (feature == null)
-            {
-                return;
-            }
-
-            if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", $"You will sell this Feature for ${feature.Value}.")))
-            {
-                UpdateProperties(feature.Properties.Select(x => x.Key));
-                Features.Remove(feature);
-                Character.UpdateMoney(feature.Value);
-                await SaveCharacter();
-            }
-        }
-
-        [RelayCommand]
         public async Task ShowCharacter() => await _mediator.Send(NavRequest.ShowCharacter());
 
         [RelayCommand]
@@ -94,9 +70,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
-        private Task SaveCharacter() =>
-            _mediator.Send(SaveCharacterRequest.Save());
-
         private void State_PropertyChanged(object sender, PropertyChangedEventArgs args)
         {
             if (args.PropertyName == "Character")
@@ -105,6 +78,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 OnPropertyChanged(nameof(CharacterLoaded));
                 OnPropertyChanged(nameof(Features));
             }
+        }
+
+        private void HandleRemoveFeature(object recipient, RemoveFeature message)
+        {
+            Features.Remove(message.Feature);
         }
     }
 }

@@ -6,6 +6,19 @@
              xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
              x:Name="ThisFeature"
              Title="{Binding Feature.Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Delete"
+            IconImageSource="icon_bin.png"
+            Command="{Binding DeleteFeatureCommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Text="Delete"
+            IsEnabled="{Binding HasValue}"
+            IconImageSource="icon_dollars.png"
+            Command="{Binding SellFeatureCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:IntToStringConverter x:Key="IntToString" />

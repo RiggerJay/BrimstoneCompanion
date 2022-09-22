@@ -44,7 +44,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <SwipeView>
+                        <!--<SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems>
                                     <SwipeItem
@@ -62,32 +62,32 @@
                                         CommandParameter="{Binding .}" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <!-- Content -->
-                            <Grid
+                             Content -->
+                        <Grid
                                 Padding="2"
                                 BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="65" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
 
-                                <Label
+                            <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
                                     Text="{Binding Name}"
                                     FontAttributes="Bold" />
 
-                                <Label
+                            <Label
                                     VerticalOptions="CenterAndExpand"
                                     HorizontalOptions="EndAndExpand"
                                     Margin="5,0"
@@ -97,7 +97,7 @@
                                     Grid.Column="2"
                                     Grid.ColumnSpan="2" />
 
-                                <Label
+                            <Label
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="2"
@@ -105,7 +105,7 @@
                                     FontAttributes="Italic"
                                     VerticalOptions="CenterAndExpand" />
 
-                                <Label
+                            <Label
                                     IsVisible="{Binding HasValue}"
                                     VerticalOptions="CenterAndExpand"
                                     HorizontalOptions="EndAndExpand"
@@ -116,7 +116,7 @@
                                     Grid.Column="2"
                                     Grid.ColumnSpan="2" />
 
-                                <CollectionView
+                            <CollectionView
                                     ItemsSource="{Binding Properties}"
                                     VerticalOptions="FillAndExpand"
                                     HorizontalOptions="FillAndExpand"
@@ -124,38 +124,38 @@
                                     Grid.Row="2"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="3">
-                                    <CollectionView.ItemsLayout>
-                                        <LinearItemsLayout Orientation="Horizontal" />
-                                    </CollectionView.ItemsLayout>
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Frame
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame
                                                 Background="#33333333"
                                                 Padding="5,2"
                                                 Margin="2"
                                                 HorizontalOptions="Start">
-                                                <Label>
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{Binding Key, Converter={StaticResource KeyToString}}" />
-                                                            <Span Text=" " />
-                                                            <Span Text="{Binding Value, Converter={StaticResource IntToString}}" />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
-                                            </Frame>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Key, Converter={StaticResource KeyToString}}" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding Value, Converter={StaticResource IntToString}}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
 
-                                <Label
+                            <Label
                                     Grid.Row="2"
                                     Grid.Column="3"
                                     VerticalOptions="CenterAndExpand"
                                     Text="{Binding Quantity, StringFormat='Qty {0}'}"
                                     FontAttributes="Bold" />
-                            </Grid>
-                        </SwipeView>
+                        </Grid>
+                        <!--</SwipeView>-->
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
