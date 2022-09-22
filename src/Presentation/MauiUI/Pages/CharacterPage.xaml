@@ -178,7 +178,7 @@
                 Grid.Column="15"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Heavy.CurrentValue}"
+                    Text="{Binding Character.CurrentWeight}"
                     Style="{StaticResource BrownBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer

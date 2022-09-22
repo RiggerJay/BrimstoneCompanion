@@ -138,6 +138,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             UpdateProperties(Keys);
 
             _state.Character.UpdateKeywords();
+            _state.Character.WeightChanged();
             await _mediator.Send(SaveCharacterRequest.Save());
             _saved = true;
             await _mediator.Send(NavRequest.Close());
@@ -159,6 +160,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
             SaveState(_backup, _feature);
             _feature.PropertiesChanged();
+            _state.Character.WeightChanged();
         }
 
         public static void SaveState(ObservableFeature from, ObservableFeature to)

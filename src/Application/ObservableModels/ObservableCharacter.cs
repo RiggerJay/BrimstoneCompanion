@@ -1,4 +1,5 @@
-﻿using RedSpartan.BrimstoneCompanion.Domain.Models;
+﻿using RedSpartan.BrimstoneCompanion.Domain;
+using RedSpartan.BrimstoneCompanion.Domain.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -68,6 +69,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Level, value, Model, (model, _value) => model.Level = _value);
         }
 
+        public int CurrentWeight => GetAttribute(AttributeNames.HEAVY).Value + Features.Sum(x => x.Weight);
+
         public ObservableCollection<ObservableKeyword> Keywords { get; } = new ObservableCollection<ObservableKeyword>();
 
         public IDictionary<string, ObservableAttribute> Attributes { get; } = new Dictionary<string, ObservableAttribute>();
@@ -105,8 +108,14 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             if (Attributes.ContainsKey(key))
             {
                 Attributes[key].OnValueChanged();
+                if (key == AttributeNames.HEAVY)
+                {
+                    OnPropertyChanged(nameof(CurrentWeight));
+                }
             }
         }
+
+        public void WeightChanged() => OnPropertyChanged(nameof(CurrentWeight));
 
         public void AddNote(string note)
         {

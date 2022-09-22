@@ -119,6 +119,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             UpdateProperties(Feature.Properties.Select(x => x.Key));
 
             _state.Character.Features.Add(Feature);
+            _state.Character.WeightChanged();
             _state.Character.UpdateKeywords();
             await _mediator.Send(SaveCharacterRequest.Save());
 

@@ -45,6 +45,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             OnPropertyChanged(nameof(CurrentValue));
             OnPropertyChanged(nameof(HasCurrentValue));
+            _parent.WeightChanged();
             OnMaxValueChanged();
         }
 

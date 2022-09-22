@@ -47,18 +47,10 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Value, value, Model, (model, _value) => model.Value = _value);
         }
 
-        public string Weight
+        public int Weight
         {
-            get => Model.Weight == 0 ? string.Empty : Model.Weight.ToString();
-            set => SetProperty(Model.Weight.ToString(), value, Model, UpdateWeight);
-        }
-
-        private static void UpdateWeight(Feature model, string value)
-        {
-            if (int.TryParse(value, out int weight))
-            {
-                model.Weight = weight;
-            }
+            get => Model.Weight;
+            set => SetProperty(Model.Weight, value, Model, (model, weight) => model.Weight = weight);
         }
 
         public FeatureTypes FeatureType
