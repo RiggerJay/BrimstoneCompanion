@@ -4,15 +4,25 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Converters
 {
     public class StringToSizeConverter : IValueConverter
     {
-        public Enum Enum { get; set; }
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is string str)
+            string str = value.ToString();
+            _ = int.TryParse(parameter?.ToString() ?? string.Empty, out int len);
+
+            len += str.Length;
+
+            if (len < 5)
             {
-                return e.ToString();
+                return 28;
             }
-            return 26;
+            else if (len < 6)
+            {
+                return 24;
+            }
+            else
+            {
+                return 20;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -7,6 +7,11 @@
              x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Pages.CharacterPage"
              x:Name="ThisCharacterPage"
              Title="{Binding Character.Name}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringToSizeConverter x:Key="StringToSize" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Delete Character"
@@ -138,6 +143,7 @@
                 Grid.ColumnSpan="6">
                 <Label
                     Text="{Binding Experience.CurrentValue}"
+                    FontSize="{Binding Experience.CurrentValue, Converter={StaticResource StringToSize}}"
                     Style="{StaticResource PurpleBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
@@ -159,6 +165,7 @@
                 Grid.ColumnSpan="6">
                 <Label
                     Text="{Binding Dollars.CurrentValue, StringFormat='${0}'}"
+                    FontSize="{Binding Dollars.CurrentValue, Converter={StaticResource StringToSize},ConverterParameter='1'}"
                     Style="{StaticResource GreenBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
@@ -246,7 +253,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Agility.HasCurrentValue}"
                 Grid.Row="5"
                 Grid.Column="3"
@@ -280,7 +287,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Cunning.HasCurrentValue}"
                 Grid.Row="5"
                 Grid.Column="9"
@@ -315,7 +322,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Spirit.HasCurrentValue}"
                 Grid.Row="5"
                 Grid.Column="15"
@@ -353,7 +360,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Strength.HasCurrentValue}"
                 Grid.Row="7"
                 Grid.Column="3"
@@ -387,7 +394,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Lore.HasCurrentValue}"
                 Grid.Row="7"
                 Grid.Column="9"
@@ -421,7 +428,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Luck.HasCurrentValue}"
                 Grid.Row="7"
                 Grid.Column="15"
@@ -524,7 +531,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Combat.HasCurrentValue}"
                 Grid.Row="10"
                 Grid.Column="12"
@@ -558,7 +565,7 @@
             <Frame
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
-                Margin="-2,-4"
+                Margin="-6,-4"
                 IsVisible="{Binding Initiative.HasCurrentValue}"
                 Grid.Row="10"
                 Grid.Column="17"
