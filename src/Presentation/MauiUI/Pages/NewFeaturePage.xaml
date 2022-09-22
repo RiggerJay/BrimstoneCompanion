@@ -207,7 +207,7 @@
                 Grid.Column="4"
                 Grid.ColumnSpan="8">
                 <Entry
-                    Text="{Binding Weight}"
+                    Text="{Binding Feature.Weight}"
                     Keyboard="Numeric"
                     Placeholder="Value" />
             </Frame>

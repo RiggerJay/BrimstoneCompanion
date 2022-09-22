@@ -17,9 +17,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         [ObservableProperty]
-        private string? _weight = null;
-
-        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _value;
 
@@ -111,15 +108,13 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task SaveAndClose()
         {
+            if (string.IsNullOrWhiteSpace(Feature.Name))
+            {
+                return;
+            }
             EnterProperty();
 
             EnterKeyword();
-
-            if (!string.IsNullOrWhiteSpace(Weight)
-                && int.TryParse(Weight, out int weight))
-            {
-                Feature.AddProperty(AttributeNames.HEAVY, weight);
-            }
 
             UpdateProperties(Feature.Properties.Select(x => x.Key));
 

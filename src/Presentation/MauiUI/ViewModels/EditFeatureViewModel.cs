@@ -20,9 +20,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private bool _saved = false;
 
         [ObservableProperty]
-        private string? _weight = null;
-
-        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(EnterPropertyCommand))]
         private string? _value;
 
@@ -42,10 +39,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
             _state = state ?? throw new ArgumentNullException(nameof(state));
-            UpdateProperties();
+            LoadProperties();
         }
 
-        private void UpdateProperties()
+        private void LoadProperties()
         {
             foreach (var item in AttributeNames.Strings)
             {
@@ -55,10 +52,19 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             OnPropertyChanged(nameof(Properties));
         }
 
+        private void LoadNewFeature()
+        {
+            Keys.Clear();
+
+            Keys.AddRange(_feature.Properties.Select(x => x.Key));
+
+            SaveState(_feature, _backup);
+        }
+
         public ObservableFeature Feature
         {
             get => _feature;
-            set => SetProperty(ref _feature, value, NewFeatureAdded);
+            set => SetProperty(ref _feature, value, LoadNewFeature);
         }
 
         public IList<string> Types => Enum.GetNames(typeof(FeatureTypes));
@@ -76,7 +82,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private void KeywordEntered()
         {
             if (CanEnterKeyword()
-                && Keyword.EndsWith(' '))
+                && _keyword.EndsWith(' '))
             {
                 EnterKeyword();
             }
@@ -93,7 +99,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
-        private bool CanEnterKeyword() => !string.IsNullOrWhiteSpace(Keyword);
+        private bool CanEnterKeyword() => !string.IsNullOrWhiteSpace(_keyword);
 
         [RelayCommand(CanExecute = nameof(CanEnterProperty))]
         private void EnterProperty()
@@ -127,12 +133,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             EnterKeyword();
 
-            if (!string.IsNullOrWhiteSpace(Weight)
-                && int.TryParse(Weight, out int weight))
-            {
-                Feature.AddProperty(AttributeNames.HEAVY, weight);
-            }
-
             Keys.AddRange(Feature.Properties.Select(x => x.Key));
 
             UpdateProperties(Keys);
@@ -159,19 +159,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
             SaveState(_backup, _feature);
             _feature.PropertiesChanged();
-        }
-
-        private void NewFeatureAdded()
-        {
-            if (_feature.Properties.Any(x => x.Key == AttributeNames.HEAVY))
-            {
-                Weight = _feature.Properties.First(x => x.Key == AttributeNames.HEAVY).Value.ToString();
-            }
-            Keys.Clear();
-
-            Keys.AddRange(_feature.Properties.Select(x => x.Key));
-
-            SaveState(_feature, _backup);
         }
 
         public static void SaveState(ObservableFeature from, ObservableFeature to)

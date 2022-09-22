@@ -5,7 +5,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
              x:Name="ThisFeature"
-             Title="Create Feature">
+             Title="{Binding Feature.Name}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:IntToStringConverter x:Key="IntToString" />
@@ -207,7 +207,7 @@
                 Grid.Column="4"
                 Grid.ColumnSpan="8">
                 <Entry
-                    Text="{Binding Weight}"
+                    Text="{Binding Feature.Weight}"
                     Keyboard="Numeric"
                     Placeholder="Value" />
             </Frame>

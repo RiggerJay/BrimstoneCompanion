@@ -50,6 +50,10 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         private void OnMaxValueChanged()
         {
+            if (!CurrentMaxValue.HasValue)
+            {
+                return;
+            }
             if (CurrentMaxValue.Value < Value)
             {
                 Value = CurrentMaxValue.Value;

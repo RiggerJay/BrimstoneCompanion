@@ -13,6 +13,8 @@
 
         public int? Value { get; set; }
 
+        public int Weight { get; set; }
+
         public FeatureTypes FeatureType { get; set; } = FeatureTypes.Gear;
 
         public IList<Keyword> Keywords { get; set; } = new List<Keyword>();
