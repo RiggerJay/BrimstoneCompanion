@@ -14,24 +14,13 @@
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Text="Delete Character"
-            IconImageSource="icon_bin.png"
-            Command="{Binding DeleteCharacterCommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Text="Level Up"
-            IconImageSource="icon_lvlup.png"
-            Command="{Binding LevelUpCommand}" />
-        <ToolbarItem
-            Text="Add Keyword"
-            IconImageSource="key.png"
-            Command="{Binding AddKeywordCommand}" />
-        <ToolbarItem
             Text="Change"
             IconImageSource="icon_change.png"
             Command="{Binding SelectorCommand}" />
     </ContentPage.ToolbarItems>
-    <ScrollView>
+    <ScrollView
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
         <Grid>
             <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer
@@ -67,28 +56,30 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
+                <RowDefinition Height="50" />
 
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="60" />
 
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="4*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="60" />
 
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="60" />
 
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="60" />
 
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="60" />
 
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="60" />
+
+                <RowDefinition Height="70" />
             </Grid.RowDefinitions>
 
             <!-- First Row -->
@@ -839,6 +830,34 @@
             </CollectionView>
 
             <!-- Tenth -->
+
+            <!-- Eleventh -->
+
+            <Button
+                Text="Delete"
+                Command="{Binding DeleteCharacterCommand}"
+                VerticalOptions="Center"
+                Grid.Row="16"
+                Grid.Column="1"
+                Grid.ColumnSpan="6" />
+
+            <Button
+                Text="Keyword"
+                Command="{Binding AddKeywordCommand}"
+                VerticalOptions="Center"
+                Grid.Row="16"
+                Grid.Column="8"
+                Grid.ColumnSpan="6" />
+
+            <Button
+                Text="Level Up"
+                Command="{Binding LevelUpCommand}"
+                VerticalOptions="Center"
+                Grid.Row="16"
+                Grid.Column="15"
+                Grid.ColumnSpan="6" />
+
+            <!-- Eleventh -->
         </Grid>
     </ScrollView>
 </ContentPage>

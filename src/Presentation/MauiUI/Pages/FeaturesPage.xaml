@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <converters:IntToStringConverter x:Key="IntToString" />
             <converters:KeyToStringConverter TextResource="{Binding TextResource, Source={Reference TheseFeatures}}" x:Key="KeyToString" />
+            <converters:NotIntToBoolConverter x:Key="NotIntToBool" />
             <toolkit:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -44,30 +45,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <!--<SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItems>
-                                    <SwipeItem
-                                        Text="Sell"
-                                        IconImageSource="icon_dollars.png"
-                                        IsVisible="{Binding HasValue}"
-                                        BackgroundColor="{StaticResource GreenDark}"
-                                        Command="{Binding BindingContext.SellFeatureCommand, Source={Reference TheseFeatures}}"
-                                        CommandParameter="{Binding .}" />
-                                    <SwipeItem
-                                        Text="Delete"
-                                        IconImageSource="icon_bin.png"
-                                        BackgroundColor="{StaticResource RedDark}"
-                                        Command="{Binding BindingContext.DeleteFeatureCommand, Source={Reference TheseFeatures}}"
-                                        CommandParameter="{Binding .}" />
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                             Content -->
                         <Grid
-                                Padding="2"
-                                BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
+                            Padding="2"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Dark}}">
 
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -75,66 +58,42 @@
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="65" />
-                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="100" />
                             </Grid.ColumnDefinitions>
 
                             <Label
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    Text="{Binding Name}"
-                                    FontAttributes="Bold" />
+                                Text="{Binding Name}"
+                                FontAttributes="Bold"
+                                Grid.Row="0"
+                                Grid.Column="0" />
 
                             <Label
-                                    VerticalOptions="CenterAndExpand"
-                                    HorizontalOptions="EndAndExpand"
-                                    Margin="5,0"
-                                    Text="{Binding FeatureType, Converter={StaticResource StringToEnumConverter}}"
-                                    FontAttributes="Bold"
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    Grid.ColumnSpan="2" />
-
-                            <Label
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    Text="{Binding Details}"
-                                    FontAttributes="Italic"
-                                    VerticalOptions="CenterAndExpand" />
-
-                            <Label
-                                    IsVisible="{Binding HasValue}"
-                                    VerticalOptions="CenterAndExpand"
-                                    HorizontalOptions="EndAndExpand"
-                                    Text="{Binding Value, StringFormat='${0}'}"
-                                    Margin="5,0"
-                                    FontAttributes="Bold"
-                                    Grid.Row="1"
-                                    Grid.Column="2"
-                                    Grid.ColumnSpan="2" />
+                                Text="{Binding Details}"
+                                FontAttributes="Italic"
+                                VerticalOptions="CenterAndExpand"
+                                Grid.Row="1"
+                                Grid.Column="0" />
 
                             <CollectionView
-                                    ItemsSource="{Binding Properties}"
-                                    VerticalOptions="FillAndExpand"
-                                    HorizontalOptions="FillAndExpand"
-                                    SelectionMode="None"
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3">
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                ItemsSource="{Binding Properties}"
+                                IsVisible="{Binding Properties, Converter={StaticResource NotIntToBool}}"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                SelectionMode="None">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Horizontal" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Frame
-                                                Background="#33333333"
-                                                Padding="5,2"
-                                                Margin="2"
-                                                HorizontalOptions="Start">
-                                            <Label>
+                                            Background="{AppThemeBinding Light={StaticResource YellowLight}, Dark={StaticResource YellowDark}}"
+                                            BorderColor="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}"
+                                            Padding="5,2"
+                                            Margin="2"
+                                            HorizontalOptions="Start">
+                                            <Label TextColor="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}">
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span Text="{Binding Key, Converter={StaticResource KeyToString}}" />
@@ -148,14 +107,59 @@
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
-                            <Label
-                                    Grid.Row="2"
-                                    Grid.Column="3"
-                                    VerticalOptions="CenterAndExpand"
+                            <CollectionView
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                ItemsSource="{Binding Keywords}"
+                                IsVisible="{Binding Keywords, Converter={StaticResource NotIntToBool}}"
+                                VerticalOptions="StartAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                SelectionMode="None">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame
+                                            Background="{AppThemeBinding Light={StaticResource YellowLight}, Dark={StaticResource YellowDark}}"
+                                            BorderColor="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}"
+                                            Padding="5,2"
+                                            Margin="2"
+                                            HorizontalOptions="Start">
+                                            <Label
+                                                Text="{Binding Word}"
+                                                TextColor="{AppThemeBinding Light={StaticResource YellowDark}, Dark={StaticResource YellowLight}}" />
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <StackLayout
+                                Grid.Row="0"
+                                Grid.RowSpan="3"
+                                Grid.Column="1">
+                                <Label
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="EndAndExpand"
+                                    Margin="5,0"
+                                    Text="{Binding FeatureType, Converter={StaticResource StringToEnumConverter}}"
+                                    FontAttributes="Bold" />
+
+                                <Label
+                                    Text="{Binding Value, StringFormat='${0}'}"
+                                    IsVisible="{Binding HasValue}"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="EndAndExpand"
+                                    Margin="5,0"
+                                    FontAttributes="Bold" />
+
+                                <Label
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="EndAndExpand"
                                     Text="{Binding Quantity, StringFormat='Qty {0}'}"
                                     FontAttributes="Bold" />
+                            </StackLayout>
                         </Grid>
-                        <!--</SwipeView>-->
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
