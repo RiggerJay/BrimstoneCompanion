@@ -43,7 +43,14 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                 Keywords.Add(ObservableKeyword.New(keyword));
             }
 
-            Keywords.CollectionChanged += Keywords_CollectionChanged; ;
+            Keywords.CollectionChanged += Keywords_CollectionChanged;
+
+            foreach (var token in Model.Tokens)
+            {
+                Tokens.Add(ObservableToken.New(token));
+            }
+
+            Tokens.CollectionChanged += Tokens_CollectionChanged;
         }
 
         public string Id
@@ -73,6 +80,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public int CurrentWeight => GetAttribute(AttributeNames.HEAVY).Value + Features.Sum(x => x.Weight);
 
         public ObservableCollection<ObservableKeyword> Keywords { get; } = new ObservableCollection<ObservableKeyword>();
+
+        public ObservableCollection<ObservableToken> Tokens { get; } = new ObservableCollection<ObservableToken>();
 
         public IDictionary<string, ObservableAttribute> Attributes { get; } = new Dictionary<string, ObservableAttribute>();
 
@@ -174,6 +183,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             SubscribeToCollection<Keyword, ObservableModel<Keyword>>(args, Model.Keywords);
             OnPropertyChanged(nameof(ConcatKeywords));
+        }
+
+        private void Tokens_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+        {
+            SubscribeToCollection<Token, ObservableModel<Token>>(args, Model.Tokens);
         }
 
         private static void SubscribeToCollection<T, TModel>(NotifyCollectionChangedEventArgs args, IList<T> list)

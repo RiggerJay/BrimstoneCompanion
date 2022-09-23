@@ -18,6 +18,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             _state = state ?? throw new ArgumentNullException(nameof(state));
         }
 
+        public ObservableCharacter Character => _state.Character;
+
         public void Reset()
         {
         }

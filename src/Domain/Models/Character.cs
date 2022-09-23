@@ -15,6 +15,8 @@ namespace RedSpartan.BrimstoneCompanion.Domain.Models
 
         public IList<Keyword> Keywords { get; set; } = new List<Keyword>();
 
+        public IList<Token> Tokens { get; set; } = new List<Token>();
+
         [DefaultValue((byte)1)]
         public byte Level { get; set; } = 1;
 
