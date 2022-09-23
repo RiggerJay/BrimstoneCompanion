@@ -128,6 +128,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task ShowNotes() => await _mediator.Send(NavRequest.ShowNotes());
 
+        [RelayCommand]
+        public async Task ShowSidebag() => await _mediator.Send(NavRequest.ShowSidebag());
+
         public void AttributesChanged()
         {
             OnPropertyChanged(nameof(Experience));

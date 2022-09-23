@@ -58,6 +58,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\cowboy.png" />
+	  <None Remove="Resources\Images\icon_bag.png" />
 	  <None Remove="Resources\Images\icon_bin.png" />
 	  <None Remove="Resources\Images\icon_change.png" />
 	  <None Remove="Resources\Images\icon_cowboy.png" />
@@ -90,6 +91,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Popups\ExportPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Popups\SidebagPopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="TabAppShell.xaml">
@@ -154,6 +158,9 @@
 	  </Compile>
 	  <Compile Update="Popups\ExportPopup.xaml.cs">
 	    <DependentUpon>ExportPopup.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Popups\SidebagPopup.xaml.cs">
+	    <DependentUpon>SidebagPopup.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="TabAppShell.xaml.cs">
 	    <DependentUpon>TabAppShell.xaml</DependentUpon>

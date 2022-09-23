@@ -47,6 +47,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.CQRS
         internal static NavRequest<TResponse> Close<TResponse>(TResponse result)
             => new(NavigationKeys.BACK, null, result);
 
+        internal static NavRequest<bool> ShowSidebag()
+            => new(NavigationKeys.CHARACTER_SIDEBAG, null);
+
         internal static NavRequest<bool> LevelUp(ObservableCharacter character)
             => new(NavigationKeys.CHARACTER_LEVELUP, new Dictionary<string, object> { { CHARACTER, character } });
 

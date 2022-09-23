@@ -8,7 +8,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableCharacter : ObservableModel<Character>
     {
-        public ObservableCharacter(string name, string role) : this(new Character { Name = name, Class = role })
+        public ObservableCharacter(string name, string role)
+            : this(new Character { Name = name, Class = role })
         { }
 
         private ObservableCharacter(Character character) : base(character)

@@ -7,6 +7,7 @@
         internal const string CHARACTER_SELECTOR = "characterselector";
         internal const string CHARACTER_FEATURES = "characterfeatures";
         internal const string CHARACTER_NOTES = "characternotes";
+        internal const string CHARACTER_SIDEBAG = "charactersidebag";
         internal const string CHARACTER_CREATE = "charactercreate";
         internal const string CHARACTER_LEVELUP = "characterlevelup";
         internal const string CHARACTER_EXPORT = "characterexport";

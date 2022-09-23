@@ -17,6 +17,10 @@
             Text="Change"
             IconImageSource="icon_change.png"
             Command="{Binding SelectorCommand}" />
+        <ToolbarItem
+            Text="Bag"
+            IconImageSource="icon_bag.png"
+            Command="{Binding ShowSidebagCommand}" />
     </ContentPage.ToolbarItems>
     <ScrollView
         VerticalOptions="FillAndExpand"
