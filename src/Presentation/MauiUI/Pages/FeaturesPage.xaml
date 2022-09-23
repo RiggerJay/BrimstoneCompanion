@@ -10,7 +10,6 @@
         <ResourceDictionary>
             <converters:IntToStringConverter x:Key="IntToString" />
             <converters:KeyToStringConverter TextResource="{Binding TextResource, Source={Reference TheseFeatures}}" x:Key="KeyToString" />
-            <converters:NotIntToBoolConverter x:Key="NotIntToBool" />
             <toolkit:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -70,7 +69,7 @@
                             <Label
                                 Text="{Binding Details}"
                                 FontAttributes="Italic"
-                                VerticalOptions="CenterAndExpand"
+                                VerticalOptions="StartAndExpand"
                                 Grid.Row="1"
                                 Grid.Column="0" />
 
@@ -78,7 +77,6 @@
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 ItemsSource="{Binding Properties}"
-                                IsVisible="{Binding Properties, Converter={StaticResource NotIntToBool}}"
                                 VerticalOptions="StartAndExpand"
                                 HorizontalOptions="FillAndExpand"
                                 SelectionMode="None">
@@ -111,7 +109,6 @@
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 ItemsSource="{Binding Keywords}"
-                                IsVisible="{Binding Keywords, Converter={StaticResource NotIntToBool}}"
                                 VerticalOptions="StartAndExpand"
                                 HorizontalOptions="FillAndExpand"
                                 SelectionMode="None">

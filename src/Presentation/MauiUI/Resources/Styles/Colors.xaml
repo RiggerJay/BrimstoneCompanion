@@ -15,7 +15,7 @@
     <Color x:Key="DarkHighlight">#513D36</Color>
     <Color x:Key="LightLowlight">#E3D9D6</Color>
     <Color x:Key="DarkLowlight">#281E1B</Color>
-    
+
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
 
@@ -33,19 +33,19 @@
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
 
-    <LinearGradientBrush 
+    <LinearGradientBrush
         x:Key="GradientOdd"
-        StartPoint="0,0" 
+        StartPoint="0,0"
         EndPoint="1,1">
         <GradientStop Color="{AppThemeBinding Light={StaticResource LightLowlight}, Dark={StaticResource DarkLowlight}}"
                           Offset="0.1" />
         <GradientStop Color="{AppThemeBinding Light={StaticResource LightHighlight}, Dark={StaticResource DarkHighlight}}"
                           Offset="1.0" />
     </LinearGradientBrush>
-    
-    <LinearGradientBrush 
+
+    <LinearGradientBrush
         x:Key="GradientEven"
-        StartPoint="0,0" 
+        StartPoint="0,0"
         EndPoint="1,1">
         <GradientStop Color="{AppThemeBinding Light={StaticResource LightHighlight}, Dark={StaticResource DarkHighlight}}"
                           Offset="0.1" />
