@@ -54,7 +54,7 @@
             <Button
                 Text="-"
                 Command="{Binding UpdateAttributeCommand}"
-                Style="{StaticResource Incrementer}"
+                Style="{StaticResource RedIncrementer}"
                 Grid.Row="2"
                 Grid.Column="0">
                 <Button.CommandParameter>
@@ -65,7 +65,7 @@
             <Button
                 Text="+"
                 Command="{Binding UpdateAttributeCommand}"
-                Style="{StaticResource Incrementer}"
+                Style="{StaticResource GreenIncrementer}"
                 Grid.Row="2"
                 Grid.Column="3">
                 <Button.CommandParameter>
@@ -80,16 +80,8 @@
                 Margin="2"
                 Command="{Binding OverwriteCommand}"
                 Grid.Row="3"
-                Grid.Column="0" />
-
-            <Button
-                Text="Save"
-                WidthRequest="100"
-                Padding="0,5"
-                Margin="2"
-                Command="{Binding SaveAndCloseCommand}"
-                Grid.Row="3"
-                Grid.Column="1" />
+                Grid.Column="0"
+                Grid.ColumnSpan="2" />
         </Grid>
     </Border>
 </toolkit:Popup>

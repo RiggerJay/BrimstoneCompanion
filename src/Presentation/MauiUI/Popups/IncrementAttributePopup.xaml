@@ -37,8 +37,8 @@
             <Button
                 Text="-"
                 Command="{Binding IncrementMaxValueCommand}"
+                Style="{StaticResource RedIncrementer}"
                 IsVisible="{Binding Attribute.HasMaxValue}"
-                Style="{StaticResource Incrementer}"
                 Grid.Row="1"
                 Grid.Column="0">
                 <Button.CommandParameter>
@@ -72,8 +72,8 @@
             <Button
                 Text="+"
                 Command="{Binding IncrementMaxValueCommand}"
+                Style="{StaticResource GreenIncrementer}"
                 IsVisible="{Binding Attribute.HasMaxValue}"
-                Style="{StaticResource Incrementer}"
                 Grid.Row="1"
                 Grid.Column="3">
                 <Button.CommandParameter>
@@ -83,8 +83,8 @@
 
             <Button
                 Text="-"
-                Style="{StaticResource Incrementer}"
                 Command="{Binding IncrementValueCommand}"
+                Style="{StaticResource RedIncrementer}"
                 Grid.Row="2"
                 Grid.Column="0">
                 <Button.CommandParameter>
@@ -115,7 +115,7 @@
             <Button
                 Text="+"
                 Command="{Binding IncrementValueCommand}"
-                Style="{StaticResource Incrementer}"
+                Style="{StaticResource GreenIncrementer}"
                 Grid.Row="2"
                 Grid.Column="3">
                 <Button.CommandParameter>

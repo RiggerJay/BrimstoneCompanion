@@ -27,6 +27,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         public int Value => Attribute?.Value ?? 0;
+
         public string Name => _textResource.GetValue(Attribute?.Key ?? string.Empty);
 
         public ObservableAttribute Attribute
@@ -47,16 +48,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        private async Task SaveAndClose()
-        {
-            if (UpdateValue != null)
-            {
-                Attribute.Value += (int)UpdateValue;
-            }
-            await _mediator.Send(NavRequest.Close(true));
-        }
-
-        [RelayCommand]
         private async Task Overwrite()
         {
             if (UpdateValue == null)
@@ -69,17 +60,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        private void UpdateAttribute(bool addition = true)
+        private async Task UpdateAttribute(bool addition = true)
         {
             Attribute.Value += GetValue(UpdateValue, addition);
 
-            ResetValue();
-        }
-
-        private void ResetValue()
-        {
-            UpdateValue = null;
-            OnPropertyChanged(nameof(Value));
+            await _mediator.Send(NavRequest.Close(true));
         }
 
         private static int GetValue(int? updateValue, bool addition)
