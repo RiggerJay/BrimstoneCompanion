@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Maui.Views;
-
+﻿
 namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 {
     public interface IPopupService

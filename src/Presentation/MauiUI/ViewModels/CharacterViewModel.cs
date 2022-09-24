@@ -3,7 +3,7 @@ using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
-using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
+using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 using System.ComponentModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels

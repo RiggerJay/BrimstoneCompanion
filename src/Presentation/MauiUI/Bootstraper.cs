@@ -4,9 +4,10 @@ using RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 using RedSpartan.BrimstoneCompanion.MauiUI.Services;
 using RedSpartan.BrimstoneCompanion.MauiUI.ViewModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
-using RedSpartan.BrimstoneCompanion.AppLayer.Services;
 using MediatR;
 using CommunityToolkit.Mvvm.Messaging;
+using RedSpartan.BrimstoneCompanion.Infrastructure;
+using RedSpartan.BrimstoneCompanion.Infrastructure.Services;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI
 {
@@ -14,7 +15,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
     {
         internal static MauiAppBuilder ConfigureApplication(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddMediatR(typeof(App));
+            mauiAppBuilder.Services.AddMediatR(typeof(NavigationKeys));
 
             mauiAppBuilder.Services.AddSingleton<INavigationService, MauiNavigationService>();
             mauiAppBuilder.Services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
@@ -22,6 +23,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddSingleton<IPopupService, MauiNavigationService>();
             mauiAppBuilder.Services.AddSingleton<ITextResource, TextResourceService>();
             mauiAppBuilder.Services.AddSingleton<ICharacterService, CharacterService>();
+            mauiAppBuilder.Services.AddSingleton(AppRouting.Current);
             mauiAppBuilder.Services.AddSingleton<ApplicationState>();
             mauiAppBuilder.Services.AddSingleton<ShellViewModel>();
 

@@ -227,7 +227,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public static ObservableCharacter New(Character character) => new(character);
 
-        internal static ObservableCharacter New() => new(new Character());
+        public static ObservableCharacter New() => new(new Character());
 
         public void UpdateMoney(int? value)
         {

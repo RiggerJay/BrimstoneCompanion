@@ -4,7 +4,8 @@ using MediatR;
 using Newtonsoft.Json;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
-using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
+using RedSpartan.BrimstoneCompanion.Infrastructure;
+using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {

@@ -1,21 +1,39 @@
 ﻿using CommunityToolkit.Maui.Core;
+using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI
 {
-    internal static class AppRouting
+    public sealed class AppRouting : IAppRouting
     {
-        private static readonly Dictionary<string, (Type Page, Type ViewModel, bool IsPopup)> _mapper = new();
+        private static readonly Lazy<IAppRouting> lazy =
+            new(() => new AppRouting());
 
-        internal static Type GetPage(string route)
+        public static IAppRouting Current { get { return lazy.Value; } }
+
+        private AppRouting()
+        {
+        }
+
+        private readonly Dictionary<string, (Type Page, Type ViewModel, bool IsPopup)> _mapper = new();
+
+        public Type GetPage(string route)
         {
             return _mapper[route].Page;
         }
 
-        internal static bool IsPopup(string route)
+        public bool IsPopup(string route)
         {
             return _mapper[route].IsPopup;
         }
 
+        public void Register(string route, Type page, Type viewModel, bool IsPopup)
+        {
+            _mapper.Add(route, new(page, viewModel, IsPopup));
+        }
+    }
+
+    public static class AppRoutingRegister
+    {
         internal static void RegisterPage<TPage, TViewModel>(this MauiAppBuilder mauiAppBuilder, string route)
             where TPage : ContentPage
             where TViewModel : class
@@ -25,7 +43,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
 
             Routing.RegisterRoute(route, typeof(TPage));
 
-            Register(route, typeof(TPage), typeof(TViewModel), false);
+            AppRouting.Current.Register(route, typeof(TPage), typeof(TViewModel), false);
         }
 
         internal static void RegisterPopup<TPage, TViewModel>(this MauiAppBuilder mauiAppBuilder, string route)
@@ -35,12 +53,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddTransient<TPage>();
             mauiAppBuilder.Services.AddTransient<TViewModel>();
 
-            Register(route, typeof(TPage), typeof(TViewModel), true);
-        }
-
-        private static void Register(string route, Type page, Type viewModel, bool IsPopup)
-        {
-            _mapper.Add(route, new(page, viewModel, IsPopup));
+            AppRouting.Current.Register(route, typeof(TPage), typeof(TViewModel), true);
         }
     }
 }

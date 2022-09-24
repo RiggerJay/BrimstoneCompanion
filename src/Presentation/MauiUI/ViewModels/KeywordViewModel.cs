@@ -1,15 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
-using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
-using RedSpartan.BrimstoneCompanion.MauiUI.CQRS;
+using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
     public partial class KeywordViewModel : ViewModelBase
     {
         private readonly IMediator _mediator;
-        private ObservableCharacter _character;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(SaveAndCloseCommand))]

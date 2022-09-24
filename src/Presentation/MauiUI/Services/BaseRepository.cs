@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+using RedSpartan.BrimstoneCompanion.Infrastructure;
 using System.Text;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Services

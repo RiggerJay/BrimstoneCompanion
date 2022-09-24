@@ -22,7 +22,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TextResource {
+    public class TextResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RedSpartan.BrimstoneCompanion.AppLayer.Resources.TextResource", typeof(TextResource).Assembly);
@@ -51,7 +51,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Agility.
         /// </summary>
-        internal static string AGI {
+        public static string AGI {
             get {
                 return ResourceManager.GetString("AGI", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Combat.
         /// </summary>
-        internal static string CBT {
+        public static string CBT {
             get {
                 return ResourceManager.GetString("CBT", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cunning.
         /// </summary>
-        internal static string CNG {
+        public static string CNG {
             get {
                 return ResourceManager.GetString("CNG", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Corruption.
         /// </summary>
-        internal static string CPT {
+        public static string CPT {
             get {
                 return ResourceManager.GetString("CPT", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Defence.
         /// </summary>
-        internal static string DEF {
+        public static string DEF {
             get {
                 return ResourceManager.GetString("DEF", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dark Stone.
         /// </summary>
-        internal static string DKS {
+        public static string DKS {
             get {
                 return ResourceManager.GetString("DKS", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Dollars.
         /// </summary>
-        internal static string DLR {
+        public static string DLR {
             get {
                 return ResourceManager.GetString("DLR", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Experience.
         /// </summary>
-        internal static string EXP {
+        public static string EXP {
             get {
                 return ResourceManager.GetString("EXP", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Grit.
         /// </summary>
-        internal static string GRT {
+        public static string GRT {
             get {
                 return ResourceManager.GetString("GRT", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Health.
         /// </summary>
-        internal static string HLT {
+        public static string HLT {
             get {
                 return ResourceManager.GetString("HLT", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Horror.
         /// </summary>
-        internal static string HRR {
+        public static string HRR {
             get {
                 return ResourceManager.GetString("HRR", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Heavy.
         /// </summary>
-        internal static string HVY {
+        public static string HVY {
             get {
                 return ResourceManager.GetString("HVY", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Initiative.
         /// </summary>
-        internal static string INT {
+        public static string INT {
             get {
                 return ResourceManager.GetString("INT", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Lore.
         /// </summary>
-        internal static string LOR {
+        public static string LOR {
             get {
                 return ResourceManager.GetString("LOR", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Luck.
         /// </summary>
-        internal static string LUK {
+        public static string LUK {
             get {
                 return ResourceManager.GetString("LUK", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Melee.
         /// </summary>
-        internal static string MLE {
+        public static string MLE {
             get {
                 return ResourceManager.GetString("MLE", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Ranged.
         /// </summary>
-        internal static string RNG {
+        public static string RNG {
             get {
                 return ResourceManager.GetString("RNG", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Sanity.
         /// </summary>
-        internal static string SAN {
+        public static string SAN {
             get {
                 return ResourceManager.GetString("SAN", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Spirit.
         /// </summary>
-        internal static string SPT {
+        public static string SPT {
             get {
                 return ResourceManager.GetString("SPT", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Strength.
         /// </summary>
-        internal static string STR {
+        public static string STR {
             get {
                 return ResourceManager.GetString("STR", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Willpower.
         /// </summary>
-        internal static string WIL {
+        public static string WIL {
             get {
                 return ResourceManager.GetString("WIL", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Wounds.
         /// </summary>
-        internal static string WND {
+        public static string WND {
             get {
                 return ResourceManager.GetString("WND", resourceCulture);
             }

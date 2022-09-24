@@ -78,6 +78,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Application\AppLayer.csproj" />
+	  <ProjectReference Include="..\..\CQRS\Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
