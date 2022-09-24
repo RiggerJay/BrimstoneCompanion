@@ -45,9 +45,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public ObservableAttribute Initiative => GetAttribute(AttributeNames.INITIATIVE);
         public ObservableAttribute Melee => GetAttribute(AttributeNames.MELEE);
 
-        public ObservableAttribute Wounds => GetAttribute(AttributeNames.WOUNDS);
         public ObservableAttribute Health => GetAttribute(AttributeNames.HEALTH);
-        public ObservableAttribute Horror => GetAttribute(AttributeNames.HORROR);
         public ObservableAttribute Sanity => GetAttribute(AttributeNames.SANITY);
         public ObservableAttribute Defence => GetAttribute(AttributeNames.DEFENCE);
         public ObservableAttribute Willpower => GetAttribute(AttributeNames.WILLPOWER);
@@ -150,9 +148,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             OnPropertyChanged(nameof(Initiative));
             OnPropertyChanged(nameof(Melee));
 
-            OnPropertyChanged(nameof(Wounds));
             OnPropertyChanged(nameof(Health));
-            OnPropertyChanged(nameof(Horror));
             OnPropertyChanged(nameof(Sanity));
             OnPropertyChanged(nameof(Defence));
             OnPropertyChanged(nameof(Willpower));

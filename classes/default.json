@@ -1,0 +1,61 @@
+{
+  "Attributes": {
+    "EXP": {},
+    "GRT": {
+      "Value": 1,
+      "MaxValue": 2
+    },
+    "CPT": {
+      "MaxValue": 5
+    },
+    "HVY": {
+      "MaxValue": 7
+    },
+    "AGI": {
+      "Value": 2
+    },
+    "CNG": {
+      "Value": 2
+    },
+    "SPT": {
+      "Value": 2
+    },
+    "STR": {
+      "Value": 2
+    },
+    "LOR": {
+      "Value": 2
+    },
+    "LUK": {
+      "Value": 2
+    },
+    "CBT": {
+      "Value": 2
+    },
+    "INT": {
+      "Value": 5
+    },
+    "MLE": {
+      "Value": 4
+    },
+    "RNG": {
+      "Value": 4
+    },
+    "HLT": {
+      "Value": 10,
+      "MaxValue": 10
+    },
+    "SAN": {
+      "Value": 10,
+      "MaxValue": 10
+    },
+    "DEF": {
+      "Value": 4
+    },
+    "WIL": {
+      "Value": 4
+    },
+    "DLR": {},
+    "DKS": {}
+  }
+}

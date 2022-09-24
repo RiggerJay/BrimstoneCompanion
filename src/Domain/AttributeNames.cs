@@ -17,10 +17,8 @@ namespace RedSpartan.BrimstoneCompanion.Domain
         public const string COMBAT = "CBT";
         public const string INITIATIVE = "INT";
         public const string MELEE = "MLE";
-        public const string RANGE = "RNG";
-        public const string WOUNDS = "WND";
+        public const string RANGE = "RNG";        
         public const string HEALTH = "HLT";
-        public const string HORROR = "HRR";
         public const string SANITY = "SAN";
         public const string DEFENCE = "DEF";
         public const string WILLPOWER = "WIL";
@@ -31,7 +29,7 @@ namespace RedSpartan.BrimstoneCompanion.Domain
 
         private static IList<string> StringValues()
         {
-            return typeof(AttributeNames).GetAllPublicConstantValues<string>();
+            return typeof(AttributeNames).GetAllPublicConstantValues<string>().OrderBy(x => x).ToList();
         }
 
         /*return new List<string>

@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
+namespace RedSpartan.BrimstoneCompanion.MauiUI.Platforms.iOS;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

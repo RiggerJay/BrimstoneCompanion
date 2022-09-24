@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
+namespace RedSpartan.BrimstoneCompanion.MauiUI.Platforms.Android;
 
 [Application]
 public class MainApplication : MauiApplication

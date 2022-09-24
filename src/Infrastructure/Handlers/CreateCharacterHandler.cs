@@ -16,7 +16,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 
         public async Task<ObservableCharacter> Handle(CreateCharacterRequest request, CancellationToken cancellationToken)
         {
-            return await _service.NewAsync(request.Name, request.Role);
+            return await _service.CreateAsync(request.Name, request.Role);
         }
     }
 }

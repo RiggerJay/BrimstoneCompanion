@@ -7,12 +7,14 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
     {
         Task SaveAsync(ObservableCharacter character);
 
-        bool Delete(ObservableCharacter character);
+        Task<bool> DeleteAsync(ObservableCharacter character);
 
         Task<ObservableCollection<ObservableCharacter>> GetAllAsync();
 
-        Task Initialise();
+        Task InitialiseAsync();
 
-        Task<ObservableCharacter> NewAsync(string name, string role);
+        Task<ObservableCharacter> CreateAsync(string name, string role);
+
+        Task<bool> IsValid(ObservableCharacter character);
     }
 }

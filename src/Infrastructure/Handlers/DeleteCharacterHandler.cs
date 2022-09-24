@@ -13,19 +13,19 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
             _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        public Task<bool> Handle(DeleteCharacterRequest request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteCharacterRequest request, CancellationToken cancellationToken)
         {
             var success = false;
             try
             {
-                success = _service.Delete(request.Character);
+                success = await _service.DeleteAsync(request.Character);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
 
-            return Task.FromResult(success);
+            return success;
         }
     }
 }

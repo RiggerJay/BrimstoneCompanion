@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
+namespace RedSpartan.BrimstoneCompanion.MauiUI.Platforms.MacCatalyst;
 
 public class Program
 {

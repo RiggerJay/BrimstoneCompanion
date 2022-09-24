@@ -18,14 +18,14 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public bool Delete(ObservableCharacter character)
+        public Task<bool> DeleteAsync(ObservableCharacter character)
         {
             if (_repository.Delete(character.Id))
             {
                 _characters.Remove(character);
-                return true;
+                return Task.FromResult(true);
             }
-            return false;
+            return Task.FromResult(false);
         }
 
         public async Task<ObservableCollection<ObservableCharacter>> GetAllAsync()
@@ -36,7 +36,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             }
             if (_characters.Count == 0)
             {
-                await Initialise();
+                await InitialiseAsync();
             }
             return _characters;
         }
@@ -46,7 +46,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             await _repository.SaveAsync(character.GetModel(), character.Id);
         }
 
-        public Task<ObservableCharacter> NewAsync(string name, string role)
+        public Task<ObservableCharacter> CreateAsync(string name, string role)
         {
             var character = new ObservableCharacter(name, role);
 
@@ -71,9 +71,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             character.SetAttribute(AttributeNames.INITIATIVE, 8);
             character.SetAttribute(AttributeNames.MELEE, 4);
             character.SetAttribute(AttributeNames.RANGE, 4);
-            character.SetAttribute(AttributeNames.WOUNDS, 0, 10);
             character.SetAttribute(AttributeNames.HEALTH, 10, 10);
-            character.SetAttribute(AttributeNames.HORROR, 2);
             character.SetAttribute(AttributeNames.SANITY, 10, 10);
             character.SetAttribute(AttributeNames.DEFENCE, 4);
             character.SetAttribute(AttributeNames.WILLPOWER, 4);
@@ -81,7 +79,9 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             character.SetAttribute(AttributeNames.DARKSTONE, 0);
         }
 
-        public async Task Initialise()
+
+
+        public async Task InitialiseAsync()
         {
             if (_initialised)
             {
@@ -101,6 +101,13 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             }
             _initialising = false;
             _initialised = true;
+        }
+
+        public Task<bool> IsValid(ObservableCharacter character)
+        {
+            
+
+            return Task.FromResult(true);
         }
     }
 }

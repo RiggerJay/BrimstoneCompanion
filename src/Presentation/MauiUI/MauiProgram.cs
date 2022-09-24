@@ -1,7 +1,6 @@
-﻿using RedSpartan.BrimstoneCompanion.MauiUI;
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
 
-namespace RedSpartan.BrimstoneCompanion.Presentation.MauiUI;
+namespace RedSpartan.BrimstoneCompanion.MauiUI;
 
 public static class MauiProgram
 {

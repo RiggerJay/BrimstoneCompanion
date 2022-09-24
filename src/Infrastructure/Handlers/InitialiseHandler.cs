@@ -15,7 +15,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 
         public async Task<Unit> Handle(InitialiseRequest request, CancellationToken cancellationToken)
         {
-            await _service.Initialise();
+            await _service.InitialiseAsync();
             return Unit.Value;
         }
     }
