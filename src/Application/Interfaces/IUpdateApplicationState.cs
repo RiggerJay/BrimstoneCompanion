@@ -4,6 +4,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 {
     public interface IUpdateApplicationState
     {
-        bool UpdateCharacter(ObservableCharacter character);
+        Task<bool> UpdateCharacterAsync(ObservableCharacter character);
     }
 }

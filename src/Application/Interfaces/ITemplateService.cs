@@ -2,7 +2,7 @@
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 {
-    public interface ITemplateCharacter
+    public interface ITemplateService
     {
         Task<Template> Get(string role);
     }

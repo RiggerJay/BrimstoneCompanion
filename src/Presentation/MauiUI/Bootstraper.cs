@@ -23,7 +23,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddSingleton<IPopupService, MauiNavigationService>();
             mauiAppBuilder.Services.AddSingleton<ITextResource, TextResourceService>();
             mauiAppBuilder.Services.AddSingleton<ICharacterService, CharacterService>();
-            mauiAppBuilder.Services.AddSingleton<ITemplateCharacter, MauiTemplateCharacter>();
+            mauiAppBuilder.Services.AddSingleton<ITemplateService, LocalTemplateService>();
             mauiAppBuilder.Services.AddSingleton(AppRouting.Current);
             mauiAppBuilder.Services.AddSingleton<ApplicationState>();
             mauiAppBuilder.Services.AddSingleton<ShellViewModel>();

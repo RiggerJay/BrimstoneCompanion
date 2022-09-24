@@ -10,11 +10,11 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
         private bool _initialising = false;
         private bool _initialised = false;
         private readonly IRepository<Character> _repository;
-        private readonly ITemplateCharacter _templateCharacter;
+        private readonly ITemplateService _templateCharacter;
         private readonly ObservableCollection<ObservableCharacter> _characters = new();
 
         public CharacterService(IRepository<Character> repository
-            , ITemplateCharacter templateCharacter)
+            , ITemplateService templateCharacter)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _templateCharacter = templateCharacter ?? throw new ArgumentNullException(nameof(templateCharacter));
@@ -52,20 +52,26 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
         {
             var character = new ObservableCharacter(name, role);
 
-            UpdateCharacter(character, await _templateCharacter.Get(role));
+            if(UpdateCharacter(character, await _templateCharacter.Get(role)))
+            {
+                await SaveAsync(character);
+            }
 
             return character;
         }
 
-        private static void UpdateCharacter(ObservableCharacter character, Template template)
+        private static bool UpdateCharacter(ObservableCharacter character, Template template)
         {
+            var updated = false;
             foreach (var attribute in template.Attributes)
             {
                 if (!character.Attributes.ContainsKey(attribute.Key))
                 {
-                    character.Attributes.Add(attribute.Key, ObservableAttribute.New(character, attribute.Key, attribute.Value));
+                    character.AddAttribute(attribute.Key, attribute.Value.Value, attribute.Value.MaxValue);
+                    updated = true;
                 }
             }
+            return updated;
         }
 
         public async Task InitialiseAsync()
@@ -90,18 +96,12 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             _initialised = true;
         }
 
-        public async Task<bool> IsValid(ObservableCharacter character)
+        public async Task<bool> UpdateAsync(ObservableCharacter character)
         {
-            var template = await _templateCharacter.Get(character.Class);
-
-            foreach (var attribute in template.Attributes)
+            if(UpdateCharacter(character, await _templateCharacter.Get(character.Class)))
             {
-                if (!character.Attributes.ContainsKey(attribute.Key))
-                {
-                    return false;
-                }
+                await SaveAsync(character);
             }
-
             return true;
         }
     }

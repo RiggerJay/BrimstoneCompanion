@@ -70,6 +70,15 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sidebag.
+        /// </summary>
+        public static string BAG {
+            get {
+                return ResourceManager.GetString("BAG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Combat.
         /// </summary>
         public static string CBT {

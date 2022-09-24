@@ -1,6 +1,5 @@
 ﻿using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -93,7 +92,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public ObservableAttribute GetAttribute(string name)
         {
-            SetAttribute(name, 0);
+            AddAttribute(name, 0);
 
             return Attributes[name];
         }
@@ -103,13 +102,17 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             OnPropertyChanged(nameof(ConcatKeywords));
         }
 
-        public void SetAttribute(string name, int value, int? maxValue = null)
+        public void AddAttribute(string name, int value, int? maxValue = null)
+        {
+            AddAttribute(name, new AttributeValue { Value = value, MaxValue = maxValue });
+        }
+
+        public void AddAttribute(string name, AttributeValue attribute)
         {
             if (!Attributes.ContainsKey(name))
             {
-                ObservableAttribute attribute = ObservableAttribute.New(this, name, value, maxValue);
-                Attributes.Add(name, attribute);
-                Model.Attributes.Add(name, attribute.GetModel());
+                Attributes.Add(name, ObservableAttribute.New(this, name, attribute));
+                Model.Attributes.Add(name, attribute);
             }
         }
 

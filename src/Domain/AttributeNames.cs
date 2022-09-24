@@ -24,6 +24,7 @@ namespace RedSpartan.BrimstoneCompanion.Domain
         public const string WILLPOWER = "WIL";
         public const string DOLLARS = "DLR";
         public const string DARKSTONE = "DKS";
+        public const string SIDEBAG = "BAG";
 
         public static IList<string> Strings { get; } = new Lazy<IList<string>>(StringValues()).Value;
 
@@ -31,31 +32,5 @@ namespace RedSpartan.BrimstoneCompanion.Domain
         {
             return typeof(AttributeNames).GetAllPublicConstantValues<string>().OrderBy(x => x).ToList();
         }
-
-        /*return new List<string>
-        {
-            XP,
-            GRIT,
-            CORRUPTION,
-            HEAVY,
-            AGILITY,
-            CUNNING,
-            SPIRIT,
-            STRENGTH,
-            LORE,
-            LUCK,
-            COMBAT,
-            INITIATIVE,
-            MELEE,
-            RANGE,
-            WOUNDS,
-            HEALTH,
-            HORROR,
-            SANITY,
-            DEFENCE,
-            WILLPOWER,
-            DOLLARS,
-            DARKSTONE
-        };*/
     }
 }

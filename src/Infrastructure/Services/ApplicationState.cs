@@ -6,8 +6,14 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
 {
     public class ApplicationState : ObservableObject, IApplicationState, IUpdateApplicationState
     {
+        private readonly ICharacterService _characterService;
         private ObservableCharacter _character = ObservableCharacter.New();
         private bool _characterLoaded = false;
+
+        public ApplicationState(ICharacterService characterService)
+        {
+            _characterService = characterService ?? throw new ArgumentNullException(nameof(characterService));
+        }
 
         public ObservableCharacter Character
         {
@@ -21,10 +27,15 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             private set => SetProperty(ref _characterLoaded, value);
         }
 
-        public bool UpdateCharacter(ObservableCharacter character)
+        public async Task<bool> UpdateCharacterAsync(ObservableCharacter character)
         {
-            Character = character;
-            return CharacterLoaded = true;
+            if (await _characterService.UpdateAsync(character))
+            {
+                Character = character;
+                return CharacterLoaded = true;
+            }
+
+            return false;
         }
     }
 }

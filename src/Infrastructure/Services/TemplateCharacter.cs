@@ -3,7 +3,7 @@ using RedSpartan.BrimstoneCompanion.Domain.Models;
 
 namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
 {
-    public class TemplateCharacter : ITemplateCharacter
+    public class TemplateCharacter : ITemplateService
     {
         public Task<Template> Get(string role)
         {

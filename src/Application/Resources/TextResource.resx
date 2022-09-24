@@ -120,6 +120,9 @@
   <data name="AGI" xml:space="preserve">
     <value>Agility</value>
   </data>
+  <data name="BAG" xml:space="preserve">
+    <value>Sidebag</value>
+  </data>
   <data name="CBT" xml:space="preserve">
     <value>Combat</value>
   </data>
