@@ -68,6 +68,7 @@
 	  <None Remove="Resources\Images\icon_lvlup.png" />
 	  <None Remove="Resources\Images\icon_saddle.png" />
 	  <None Remove="Resources\Images\key.png" />
+	  <None Remove="Resources\Raw\default.json" />
 	</ItemGroup>
 
 	<ItemGroup>

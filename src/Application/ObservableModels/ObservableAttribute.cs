@@ -71,9 +71,9 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
         }
 
-        internal static ObservableAttribute New(ObservableCharacter parent, string name, AttributeValue attribute) => new(parent, name, attribute);
+        public static ObservableAttribute New(ObservableCharacter parent, string name, AttributeValue attribute) => new(parent, name, attribute);
 
-        internal static ObservableAttribute New(ObservableCharacter parent, string name, int value, int? maxvalue = null) => new(parent, name, new AttributeValue()
+        public static ObservableAttribute New(ObservableCharacter parent, string name, int value, int? maxvalue = null) => new(parent, name, new AttributeValue()
         {
             Value = value,
             MaxValue = maxvalue

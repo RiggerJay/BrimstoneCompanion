@@ -1,6 +1,5 @@
 ﻿using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
-using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using System.Collections.ObjectModel;
 
@@ -11,11 +10,14 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
         private bool _initialising = false;
         private bool _initialised = false;
         private readonly IRepository<Character> _repository;
+        private readonly ITemplateCharacter _templateCharacter;
         private readonly ObservableCollection<ObservableCharacter> _characters = new();
 
-        public CharacterService(IRepository<Character> repository)
+        public CharacterService(IRepository<Character> repository
+            , ITemplateCharacter templateCharacter)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _templateCharacter = templateCharacter ?? throw new ArgumentNullException(nameof(templateCharacter));
         }
 
         public Task<bool> DeleteAsync(ObservableCharacter character)
@@ -46,40 +48,25 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             await _repository.SaveAsync(character.GetModel(), character.Id);
         }
 
-        public Task<ObservableCharacter> CreateAsync(string name, string role)
+        public async Task<ObservableCharacter> CreateAsync(string name, string role)
         {
             var character = new ObservableCharacter(name, role);
 
-            SetAttributes(character);
+            UpdateCharacter(character, await _templateCharacter.Get(role));
 
-            return Task.FromResult(character);
+            return character;
         }
 
-        private static void SetAttributes(ObservableCharacter character)
+        private static void UpdateCharacter(ObservableCharacter character, Template template)
         {
-            character.SetAttribute(AttributeNames.XP, 0);
-            character.SetAttribute(AttributeNames.GRIT, 1, 2);
-            character.SetAttribute(AttributeNames.CORRUPTION, 0, 5);
-            character.SetAttribute(AttributeNames.HEAVY, 0, 5);
-            character.SetAttribute(AttributeNames.AGILITY, 2);
-            character.SetAttribute(AttributeNames.CUNNING, 2);
-            character.SetAttribute(AttributeNames.SPIRIT, 2);
-            character.SetAttribute(AttributeNames.STRENGTH, 2);
-            character.SetAttribute(AttributeNames.LORE, 2);
-            character.SetAttribute(AttributeNames.LUCK, 2);
-            character.SetAttribute(AttributeNames.COMBAT, 2);
-            character.SetAttribute(AttributeNames.INITIATIVE, 8);
-            character.SetAttribute(AttributeNames.MELEE, 4);
-            character.SetAttribute(AttributeNames.RANGE, 4);
-            character.SetAttribute(AttributeNames.HEALTH, 10, 10);
-            character.SetAttribute(AttributeNames.SANITY, 10, 10);
-            character.SetAttribute(AttributeNames.DEFENCE, 4);
-            character.SetAttribute(AttributeNames.WILLPOWER, 4);
-            character.SetAttribute(AttributeNames.DOLLARS, 0);
-            character.SetAttribute(AttributeNames.DARKSTONE, 0);
+            foreach (var attribute in template.Attributes)
+            {
+                if (!character.Attributes.ContainsKey(attribute.Key))
+                {
+                    character.Attributes.Add(attribute.Key, ObservableAttribute.New(character, attribute.Key, attribute.Value));
+                }
+            }
         }
-
-
 
         public async Task InitialiseAsync()
         {
@@ -103,11 +90,19 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             _initialised = true;
         }
 
-        public Task<bool> IsValid(ObservableCharacter character)
+        public async Task<bool> IsValid(ObservableCharacter character)
         {
-            
+            var template = await _templateCharacter.Get(character.Class);
 
-            return Task.FromResult(true);
+            foreach (var attribute in template.Attributes)
+            {
+                if (!character.Attributes.ContainsKey(attribute.Key))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
