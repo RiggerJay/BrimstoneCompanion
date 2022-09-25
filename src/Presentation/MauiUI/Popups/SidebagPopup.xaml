@@ -30,29 +30,36 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2" />
 
-            <Label
-                Text="Required XP"
-                VerticalOptions="CenterAndExpand"
-                Grid.Row="2"
-                Grid.Column="0" />
+            <CollectionView
+                ItemsSource="{Binding Tokens}"
+                ItemSizingStrategy="MeasureFirstItem"
+                HeightRequest="300"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2" />
 
-            <Frame CornerRadius="5"
-                   Margin="10,5"
-                   Padding="5,0"
-                   Grid.Row="2"
-                   Grid.Column="1">
+            <Frame 
+                CornerRadius="5"
+                Margin="10,5"
+                Padding="5,0"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
                 <Entry
-                    Keyboard="Numeric"
-                    Placeholder="Required XP" />
+                    Text="{Binding Token}"
+                    WidthRequest="300"
+                    Keyboard="Text"
+                    Placeholder="Token" />
             </Frame>
 
             <Button
-                Text="Save"
+                Text="Add"
                 Padding="0,5"
                 Margin="2"
-                Command="{Binding SaveAndCloseCommand}"
+                Command="{Binding AddTokenCommand}"
                 Grid.Row="3"
-                Grid.Column="1" />
+                Grid.Column="0"
+                Grid.ColumnSpan="2" />
         </Grid>
     </Border>
 </toolkit:Popup>

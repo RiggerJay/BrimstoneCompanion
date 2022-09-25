@@ -4,9 +4,9 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
     public class ObservableToken : ObservableModel<Token>
     {
-        private ObservableToken(Token model) : base(model)
-        {
-        }
+        private ObservableToken(Token model) : base(model) { }
+
+        public ObservableToken(string name) : this(new Token { Name = name }) { }
 
         public string Name
         {
@@ -20,6 +20,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Description, value, Model, (model, _value) => model.Description = _value);
         }
 
-        internal static ObservableToken New(Token token) => New(token);
+        public static ObservableToken New(string token) => new (token);
+
+        internal static ObservableToken New(Token token) => new (token);
     }
 }
