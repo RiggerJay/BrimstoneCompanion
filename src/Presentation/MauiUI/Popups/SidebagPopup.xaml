@@ -5,7 +5,8 @@
                xmlns:converters="clr-namespace:RedSpartan.BrimstoneCompanion.MauiUI.Converters"
                xmlns:s="clr-namespace:System;assembly=mscorlib"
                Color="Transparent"
-               x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.SidebagPopup">
+               x:Class="RedSpartan.BrimstoneCompanion.MauiUI.Popups.SidebagPopup"
+               x:Name="ThisPopup">
     <Border
         Padding="10"
         HorizontalOptions="Center">
@@ -32,22 +33,70 @@
 
             <CollectionView
                 ItemsSource="{Binding Tokens}"
-                ItemSizingStrategy="MeasureFirstItem"
-                HeightRequest="300"
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="250"
+                Margin="16,0"
                 Grid.Row="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="2" />
+                Grid.ColumnSpan="2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame 
+                            Padding="10,5"
+                            WidthRequest="200">
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Label 
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource BrownDark}"
+                                    HorizontalOptions="StartAndExpand"/>
+                                <Image 
+                                    Source="icon_bin.png"
+                                    HeightRequest="30"
+                                    HorizontalOptions="End">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                            Command="{Binding BindingContext.DeleteTokenCommand, Source={Reference ThisPopup}}"
+                                            CommandParameter="{Binding .}"
+                                            Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Image.GestureRecognizers>
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior 
+                                            TintColor="{StaticResource BrownDark}" />
+                                    </Image.Behaviors>
+                                </Image>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
             <Frame 
                 CornerRadius="5"
                 Margin="10,5"
                 Padding="5,0"
+                IsVisible="{Binding AtCapacity}"
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
+                <Label
+                    Text="Bag is full"
+                    TextColor="{StaticResource BrownDark}"
+                    Padding="5,10"
+                    WidthRequest="200" />
+            </Frame>
+            
+            <Frame 
+                CornerRadius="5"
+                Margin="10,5"
+                Padding="5,0"
+                IsVisible="{Binding NotAtCapacity}"
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2">
                 <Entry
                     Text="{Binding Token}"
-                    WidthRequest="300"
+                    WidthRequest="200"
                     Keyboard="Text"
                     Placeholder="Token" />
             </Frame>

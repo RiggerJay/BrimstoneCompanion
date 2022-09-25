@@ -16,7 +16,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(AddTokenCommand))]
-        private string _token;
+        private string _token = string.Empty;
 
         public SidebagViewModel(IMediator mediator
             , IApplicationState state)
@@ -29,20 +29,39 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public ObservableCollection<ObservableToken> Tokens => Character.Tokens;
 
+        public ObservableAttribute SidebagAttribute => Character.GetAttribute(AttributeNames.SIDEBAG);
+
+        public bool NotAtCapacity => Tokens.Count < SidebagAttribute.CurrentMaxValue;
+        public bool AtCapacity => !NotAtCapacity;
+
         public void Reset()
         {
         }
         
         [RelayCommand(CanExecute = nameof(CanAddToken))]
-        private void AddToken()
+        private async Task AddToken()
         {
-            if (Tokens.Count < Character.GetAttribute(AttributeNames.SIDEBAG).MaxValue)
+            if (NotAtCapacity)
             {
                 Tokens.Add(ObservableToken.New(Token));
+                await _mediator.Send(SaveCharacterRequest.Save());
+                Token = string.Empty;
+                OnPropertyChanged(nameof(NotAtCapacity));
+                OnPropertyChanged(nameof(AtCapacity));
             }
         }
 
-        private bool CanAddToken() => !string.IsNullOrWhiteSpace(Token);
+        private bool CanAddToken() => NotAtCapacity
+            && !string.IsNullOrWhiteSpace(Token);
+
+        [RelayCommand]
+        private async Task DeleteToken(ObservableToken token)
+        {
+            Tokens.Remove(token);
+            await _mediator.Send(SaveCharacterRequest.Save());
+            OnPropertyChanged(nameof(NotAtCapacity));
+            OnPropertyChanged(nameof(AtCapacity));
+        }
 
         [RelayCommand]
         private async Task SaveAndClose()

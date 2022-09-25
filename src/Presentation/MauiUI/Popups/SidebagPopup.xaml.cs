@@ -1,15 +1,13 @@
-using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
-using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
-using RedSpartan.BrimstoneCompanion.Domain.Models;
+using RedSpartan.BrimstoneCompanion.MauiUI.Utilities;
 using RedSpartan.BrimstoneCompanion.MauiUI.ViewModels;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.Popups;
 
 public partial class SidebagPopup : CommunityToolkit.Maui.Views.Popup
 {
-    private readonly LevelUpViewModel _viewModel;
+    private readonly SidebagViewModel _viewModel;
 
-    public SidebagPopup(LevelUpViewModel viewModel)
+    public SidebagPopup(SidebagViewModel viewModel)
     {
         BindingContext = _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 
@@ -19,5 +17,12 @@ public partial class SidebagPopup : CommunityToolkit.Maui.Views.Popup
     protected override void OnDismissedByTappingOutsideOfPopup()
     {
         base.OnDismissedByTappingOutsideOfPopup();
+
+        _viewModel.Reset();
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+    {
+        await sender.Bounce();
     }
 }
