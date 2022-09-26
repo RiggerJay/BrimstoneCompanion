@@ -42,9 +42,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
-        public void Reset()
+        public async void Reset()
         {
-            _attribute.Value = _originalValue;
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, _originalValue, Attribute.MaxValue));
         }
 
         [RelayCommand]
@@ -55,14 +55,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 return;
             }
 
-            Attribute.Value = (int)UpdateValue;
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, UpdateValue.Value, Attribute.MaxValue));
+
             await _mediator.Send(NavRequest.Close(true));
         }
 
         [RelayCommand]
         private async Task UpdateAttribute(bool addition = true)
         {
-            Attribute.Value += GetValue(UpdateValue, addition);
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, GetValue(UpdateValue, addition), Attribute.MaxValue));
 
             await _mediator.Send(NavRequest.Close(true));
         }

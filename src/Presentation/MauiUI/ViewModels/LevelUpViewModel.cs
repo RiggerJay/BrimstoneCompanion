@@ -31,7 +31,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 if (SetProperty(ref _character, value))
                 {
-                    CurrentXP = _character.GetAttribute(AttributeNames.XP);
+                    CurrentXP = _character.Attributes[AttributeNames.XP];
                     RequiredXP = _character.Level * 500;
                 }
             }
@@ -40,10 +40,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand(CanExecute = nameof(CanSave))]
         public async Task SaveAndClose()
         {
-            CurrentXP.Value -= RequiredXP;
-            Character.Level += 1;
-            Character.AddNote($"Made it to Level {Character.Level}");
-            await _mediator.Send(NavRequest.Close(true));
+            if (await _mediator.Send(LevelUpCharacterRequest.With(CurrentXP, CurrentXP.Value - RequiredXP)))
+            {
+                await _mediator.Send(NavRequest.Close(true));
+            }
         }
 
         private bool CanSave() => CurrentXP?.Value >= RequiredXP;

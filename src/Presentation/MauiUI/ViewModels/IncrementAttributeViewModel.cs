@@ -46,15 +46,14 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
-        public void Reset()
+        public async void Reset()
         {
             if (Attribute == null)
             {
                 return;
             }
 
-            Attribute.Value = _originalValue;
-            Attribute.MaxValue = _originalMaxValue;
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, _originalValue, _originalMaxValue));
         }
 
         [RelayCommand]
@@ -64,30 +63,24 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         }
 
         [RelayCommand]
-        private void IncrementValue(bool addition = true)
+        private async Task IncrementValue(bool addition = true)
         {
             if (Attribute == null)
             {
                 return;
             }
-
-            Attribute.Value += addition ? 1 : -1;
-
-            OnPropertyChanged(nameof(Value));
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value + (addition ? 1 : -1), Attribute.MaxValue));
         }
 
         [RelayCommand]
-        private void IncrementMaxValue(bool addition = true)
+        private async Task IncrementMaxValue(bool addition = true)
         {
             if (Attribute == null)
             {
                 return;
             }
 
-            Attribute.MaxValue += addition ? 1 : -1;
-
-            OnPropertyChanged(nameof(MaxValue));
-            OnPropertyChanged(nameof(Value));
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value, Attribute.MaxValue + (addition ? 1 : -1)));
         }
     }
 }

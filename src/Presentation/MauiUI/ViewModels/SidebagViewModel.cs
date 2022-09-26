@@ -29,7 +29,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public ObservableCollection<ObservableToken> Tokens => Character.Tokens;
 
-        public ObservableAttribute SidebagAttribute => Character.GetAttribute(AttributeNames.SIDEBAG);
+        public ObservableAttribute SidebagAttribute => Character.Attributes[AttributeNames.SIDEBAG];
 
         public bool NotAtCapacity => Tokens.Count < SidebagAttribute.CurrentMaxValue;
         public bool AtCapacity => !NotAtCapacity;
@@ -37,7 +37,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public void Reset()
         {
         }
-        
+
         [RelayCommand(CanExecute = nameof(CanAddToken))]
         private async Task AddToken()
         {

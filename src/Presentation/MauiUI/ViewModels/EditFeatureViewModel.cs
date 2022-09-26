@@ -143,8 +143,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             UpdateProperties(Keys);
 
-            _state.Character.UpdateKeywords();
-            _state.Character.WeightChanged();
+            //TODO: update this
+            /*_state.Character.UpdateKeywords();
+            _state.Character.WeightChanged();*/
             await _mediator.Send(SaveCharacterRequest.Save());
             _saved = true;
             await _mediator.Send(NavRequest.Close());
@@ -172,7 +173,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", $"You will sell this Feature for ${Feature.Value}.")))
             {
                 _messenger.Send(RemoveFeature.With(Feature));
-                _state.Character.UpdateMoney(Feature.Value);
+                //_state.Character.UpdateMoney(Feature.Value);
                 await _mediator.Send(SaveCharacterRequest.Save());
                 await _mediator.Send(NavRequest.Close());
             }
@@ -182,7 +183,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             foreach (var key in keys)
             {
-                _state.Character.ValueChanged(key);
+                //_state.Character.ValueChanged(key);
             }
         }
 
@@ -194,7 +195,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
             SaveState(_backup, _feature);
             _feature.PropertiesChanged();
-            _state.Character.WeightChanged();
+            //_state.Character.WeightChanged();
         }
 
         public static void SaveState(ObservableFeature from, ObservableFeature to)

@@ -13,12 +13,12 @@ namespace RedSpartan.BrimstoneCompanion.Domain.Models
         [DefaultValue("")]
         public string Class { get; set; } = string.Empty;
 
+        [DefaultValue((byte)1)]
+        public byte Level { get; set; } = 1;
+
         public IList<Keyword> Keywords { get; set; } = new List<Keyword>();
 
         public IList<Token> Tokens { get; set; } = new List<Token>();
-
-        [DefaultValue((byte)1)]
-        public byte Level { get; set; } = 1;
 
         public IDictionary<string, AttributeValue> Attributes { get; set; }
             = new Dictionary<string, AttributeValue>();

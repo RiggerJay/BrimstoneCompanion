@@ -164,7 +164,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 return null;
             }
 
-            return Character.GetAttribute(name);
+            return Character.Attributes[name];
         }
 
         private Task SaveCharacterAsync() =>

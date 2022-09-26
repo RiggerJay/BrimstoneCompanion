@@ -1,56 +1,33 @@
-﻿using RedSpartan.BrimstoneCompanion.Domain;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 {
-    public class ObservableCharacter : ObservableModel<Character>
+    public partial class ObservableCharacter : ObservableModel<Character>
     {
+        [ObservableProperty]
+        private int _currentWeight;
+
         public ObservableCharacter(string name, string role)
             : this(new Character { Name = name, Class = role })
         { }
 
         private ObservableCharacter(Character character) : base(character)
         {
-            foreach (var attribute in Model.Attributes)
-            {
-                Attributes.Add(attribute.Key, ObservableAttribute.New(this, attribute.Key, attribute.Value));
-            }
+            InitialiseAttributes();
 
-            foreach (var feature in Model.Features)
-            {
-                Features.Add(ObservableFeature.New(feature));
-            }
+            InitialiseFeatures();
 
-            Features.CollectionChanged += Features_CollectionChanged;
+            InitialiseNotes();
 
-            foreach (var note in Model.Notes)
-            {
-                Notes.Add(ObservableNote.New(note));
-            }
+            InitialiseKeywords();
 
-            Notes.CollectionChanged += Notes_CollectionChanged;
-
-            if (Model.Keywords == null)
-            {
-                Model.Keywords = new List<Keyword>();
-            }
-
-            foreach (var keyword in Model.Keywords)
-            {
-                Keywords.Add(ObservableKeyword.New(keyword));
-            }
-
-            Keywords.CollectionChanged += Keywords_CollectionChanged;
-
-            foreach (var token in Model.Tokens)
-            {
-                Tokens.Add(ObservableToken.New(token));
-            }
-
-            Tokens.CollectionChanged += Tokens_CollectionChanged;
+            InitialiseTokens();
         }
+
+        #region Properties
 
         public string Id
         {
@@ -76,7 +53,12 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Level, value, Model, (model, _value) => model.Level = _value);
         }
 
-        public int CurrentWeight => GetAttribute(AttributeNames.HEAVY).Value + Features.Sum(x => x.Weight);
+        //TODO: set the weight
+        //public int CurrentWeight => GetAttribute(AttributeNames.HEAVY).Value + Features.Sum(x => x.Weight);
+
+        #endregion Properties
+
+        #region Collections
 
         public ObservableCollection<ObservableKeyword> Keywords { get; } = new ObservableCollection<ObservableKeyword>();
 
@@ -90,7 +72,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public ObservableCollection<ObservableNote> Notes { get; set; } = new ObservableCollection<ObservableNote>();
 
-        public ObservableAttribute GetAttribute(string name)
+        #endregion Collections
+
+        #region Methods
+
+        /*public ObservableAttribute GetAttribute(string name)
         {
             AddAttribute(name, 0);
 
@@ -111,7 +97,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         {
             if (!Attributes.ContainsKey(name))
             {
-                Attributes.Add(name, ObservableAttribute.New(this, name, attribute));
+                Attributes.Add(name, ObservableAttribute.New(name, attribute));
                 Model.Attributes.Add(name, attribute);
             }
         }
@@ -135,46 +121,102 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             Notes.Add(ObservableNote.New(note));
         }
 
+        public void UpdateMoney(int? value)
+        {
+            if (!value.HasValue)
+            {
+                return;
+            }
+            GetAttribute(AttributeNames.DOLLARS).Value += (int)value;
+
+            ValueChanged(AttributeNames.DOLLARS);
+        }
+        */
+
+        public static ObservableCharacter New(Character character) => new(character);
+
+        public static ObservableCharacter New() => new(new Character());
+
+        #endregion Methods
+
+        #region Model Construction
+
+        private void InitialiseAttributes()
+        {
+            if (Model.Attributes is null)
+            {
+                Model.Attributes = new Dictionary<string, AttributeValue>();
+            }
+
+            foreach (var attribute in Model.Attributes)
+            {
+                Attributes.Add(attribute.Key, ObservableAttribute.New(attribute.Key, attribute.Value));
+            }
+        }
+
+        private void InitialiseFeatures()
+        {
+            if (Model.Features is null)
+            {
+                Model.Features = new List<Feature>();
+            }
+
+            foreach (var feature in Model.Features)
+            {
+                Features.Add(ObservableFeature.New(feature));
+            }
+
+            Features.CollectionChanged += Features_CollectionChanged;
+        }
+
+        private void InitialiseNotes()
+        {
+            if (Model.Notes is null)
+            {
+                Model.Notes = new List<Note>();
+            }
+
+            foreach (var note in Model.Notes)
+            {
+                Notes.Add(ObservableNote.New(note));
+            }
+
+            Notes.CollectionChanged += Notes_CollectionChanged;
+        }
+
+        private void InitialiseKeywords()
+        {
+            if (Model.Keywords is null)
+            {
+                Model.Keywords = new List<Keyword>();
+            }
+
+            foreach (var keyword in Model.Keywords)
+            {
+                Keywords.Add(ObservableKeyword.New(keyword));
+            }
+
+            Keywords.CollectionChanged += Keywords_CollectionChanged;
+        }
+
+        private void InitialiseTokens()
+        {
+            if (Model.Tokens is null)
+            {
+                Model.Tokens = new List<Token>();
+            }
+
+            foreach (var token in Model.Tokens)
+            {
+                Tokens.Add(ObservableToken.New(token));
+            }
+
+            Tokens.CollectionChanged += Tokens_CollectionChanged;
+        }
+
         private void Features_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
         {
-            switch (args.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    if (args.NewItems == null)
-                    {
-                        return;
-                    }
-                    foreach (var item in args.NewItems)
-                    {
-                        if (item is ObservableFeature feature)
-                        {
-                            Model.Features.Add(feature.GetModel());
-                            foreach (var prop in feature.Properties)
-                            {
-                                ValueChanged(prop.Key);
-                            }
-                        }
-                    }
-                    break;
-
-                case NotifyCollectionChangedAction.Remove:
-                    if (args.OldItems == null)
-                    {
-                        return;
-                    }
-                    foreach (var item in args.OldItems)
-                    {
-                        if (item is ObservableFeature feature)
-                        {
-                            Model.Features.Remove(feature.GetModel());
-                            foreach (var prop in feature.Properties)
-                            {
-                                ValueChanged(prop.Key);
-                            }
-                        }
-                    }
-                    break;
-            }
+            SubscribeToCollection<Feature, ObservableModel<Feature>>(args, Model.Features);
         }
 
         private void Notes_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
@@ -228,19 +270,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
         }
 
-        public static ObservableCharacter New(Character character) => new(character);
-
-        public static ObservableCharacter New() => new(new Character());
-
-        public void UpdateMoney(int? value)
-        {
-            if (!value.HasValue)
-            {
-                return;
-            }
-            GetAttribute(AttributeNames.DOLLARS).Value += (int)value;
-
-            ValueChanged(AttributeNames.DOLLARS);
-        }
+        #endregion Model Construction
     }
 }

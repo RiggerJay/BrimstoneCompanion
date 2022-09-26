@@ -53,7 +53,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             keys.AddRange(feature.Properties.Select(x => x.Key));
             UpdateProperties(keys);
-            Character.UpdateKeywords();
+
+            //TODO: update this
+            //Character.UpdateKeywords();
         }
 
         [RelayCommand]
@@ -66,7 +68,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             foreach (var key in keys)
             {
-                Character.ValueChanged(key);
+                //Character.ValueChanged(key);
             }
         }
 
