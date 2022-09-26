@@ -1,16 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentAssertions;
+using Infrastructure.Tests.Data;
+using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
+using RedSpartan.BrimstoneCompanion.Domain.Models;
+using RedSpartan.BrimstoneCompanion.Infrastructure.Utilities;
 
 namespace Infrastructure.Tests.Utilities
 {
     public class CharacterUtilitiesTests
     {
-        [Fact]
-        public void Test1()
+        private const string key = "A";
+
+        [Theory]
+        [MemberData(nameof(TestDataGenerator.GetCurrentValueFromDataGenerator), MemberType = typeof(TestDataGenerator))]
+        public void ObservableAttribute_GetCurrentMaxValue_ReturnsExpectedValue(Character model, int expected)
         {
+            // Arrange
+            // Act
+            var character = ObservableCharacter.New(model);
+
+            // Assert
+            character.Attributes[key].CurrentValue.Should().Be(0);
+            character.UpdateAttributeCurrentValues(key).Attributes[key].CurrentValue.Should().Be(expected);
         }
     }
 }

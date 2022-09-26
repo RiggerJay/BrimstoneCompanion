@@ -10,8 +10,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Utilities
             {
                 return character;
             }
-
-            attribute.SetValue(attribute.Value, attribute.GetMaxValue(character));
+            attribute.SetValue(attribute.Value, attribute.GetCurrentValue(character));
             return character;
         }
     }

@@ -21,7 +21,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
             request.Attribute.SetValue(request.Value, request.Attribute.GetCurrentValue(_applicationState.Character));
             request.Attribute.SetMaxValue(request.MaxValue, 0);
 
-            return true;
+            return Task.FromResult(true);
         }
     }
 }
