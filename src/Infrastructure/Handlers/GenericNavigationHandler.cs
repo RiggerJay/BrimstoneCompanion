@@ -4,12 +4,12 @@ using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 
 namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 {
-    public class GenericNavigationHandler<TResponse> : IRequestHandler<NavRequest<TResponse>, TResponse>
+    public abstract class GenericNavigationHandler<TResponse> : IRequestHandler<NavRequest<TResponse>, TResponse>
     {
         private readonly INavigationService _service;
         private readonly IAppRouting _appRouting;
 
-        public GenericNavigationHandler(INavigationService service
+        protected GenericNavigationHandler(INavigationService service
             , IAppRouting appRouting)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
@@ -28,8 +28,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
                 return await _service.PushAsync<TResponse>(_appRouting.GetPage(request.Route), request.Paramaters);
             }
 
-            //TODO: use specific Exception
-            throw new NotImplementedException();
+            throw new InvalidOperationException();
         }
     }
 }
