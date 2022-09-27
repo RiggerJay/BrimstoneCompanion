@@ -16,8 +16,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 
         public Task<bool> Handle(UpdateAttributeValueRequest request, CancellationToken cancellationToken)
         {
-            request.Attribute.SetValue(request.Value, request.Attribute.GetCurrentValue(_applicationState.Character));
-            request.Attribute.SetMaxValue(request.MaxValue, 0);
+            request.Attribute.SetValue(request.Value, request.Attribute.GetCurrentValue(request.Value, _applicationState.Character));
 
             return Task.FromResult(true);
         }

@@ -11,6 +11,7 @@ namespace Infrastructure.Tests.Handlers
     public class InitialiseHandlerTests
     {
         private readonly IFixture _fixture;
+
         public InitialiseHandlerTests()
         {
             _fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
@@ -23,7 +24,7 @@ namespace Infrastructure.Tests.Handlers
 
             // Act
             Action action = () => { new InitialiseHandler(null); };
-            
+
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
         }

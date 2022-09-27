@@ -11,6 +11,7 @@ namespace Infrastructure.Tests.Handlers
     public class CreateCharacterHandlerTests
     {
         private readonly IFixture _fixture;
+
         public CreateCharacterHandlerTests()
         {
             _fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
@@ -23,7 +24,7 @@ namespace Infrastructure.Tests.Handlers
 
             // Act
             Action action = () => { new CreateCharacterHandler(null); };
-            
+
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
         }

@@ -24,7 +24,7 @@ namespace Infrastructure.Tests.Handlers
 
             // Act
             Action action = () => { new QueryCharacterHandler(null); };
-            
+
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
         }

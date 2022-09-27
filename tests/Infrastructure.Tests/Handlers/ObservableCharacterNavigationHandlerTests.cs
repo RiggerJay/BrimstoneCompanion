@@ -12,6 +12,7 @@ namespace Infrastructure.Tests.Handlers
     public class ObservableCharacterNavigationHandlerTests
     {
         private readonly IFixture _fixture;
+
         public ObservableCharacterNavigationHandlerTests()
         {
             _fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
@@ -67,7 +68,7 @@ namespace Infrastructure.Tests.Handlers
             var appRouting = _fixture.Freeze<Fake<IAppRouting>>();
             var handler = _fixture.Create<ObservableCharacterNavigationHandler>();
             var request = _fixture.Create<NavRequest<ObservableCharacter>>();
-            
+
             A.CallTo(() => appRouting.FakedObject.IsPopup(request.Route)).Returns(true);
             A.CallTo(() => appRouting.FakedObject.GetPage(request.Route)).Returns(typeof(bool));
             A.CallTo(() => navigationService.FakedObject.PushAsync<ObservableCharacter>(typeof(bool), request.Paramaters))

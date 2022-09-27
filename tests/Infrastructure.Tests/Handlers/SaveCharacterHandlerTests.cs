@@ -26,7 +26,7 @@ namespace Infrastructure.Tests.Handlers
 
             // Act
             Action action = () => { new SaveCharacterHandler(null, state.FakedObject); };
-            
+
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
         }
@@ -55,7 +55,7 @@ namespace Infrastructure.Tests.Handlers
             var character = _fixture.Create<ObservableCharacter>();
 
             // Act
-            A.CallTo(()=> state.FakedObject.Character).Returns(character);
+            A.CallTo(() => state.FakedObject.Character).Returns(character);
             _ = await handler.Handle(request, CancellationToken.None);
 
             // Assert

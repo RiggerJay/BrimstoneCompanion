@@ -11,6 +11,7 @@ namespace Infrastructure.Tests.Handlers
     public class DeleteCharacterHandlerTests
     {
         private readonly IFixture _fixture;
+
         public DeleteCharacterHandlerTests()
         {
             _fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
@@ -23,7 +24,7 @@ namespace Infrastructure.Tests.Handlers
 
             // Act
             Action action = () => { new DeleteCharacterHandler(null); };
-            
+
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
         }

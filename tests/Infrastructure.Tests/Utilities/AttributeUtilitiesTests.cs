@@ -19,7 +19,7 @@ namespace Infrastructure.Tests.Utilities
             var character = ObservableCharacter.New(model);
 
             //Assert
-            character.Attributes[key].GetCurrentValue(character).Should().Be(expected);
+            character.Attributes[key].GetCurrentValue(character.Attributes[key].Value, character).Should().Be(expected);
         }
 
         [Theory]

@@ -8,11 +8,11 @@ using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 
 namespace Infrastructure.Tests.Handlers
 {
-    public class BoolNavigationHandlerTests
+    public class StringNavigationHandlerTests
     {
         private readonly IFixture _fixture;
 
-        public BoolNavigationHandlerTests()
+        public StringNavigationHandlerTests()
         {
             _fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
         }
@@ -23,7 +23,7 @@ namespace Infrastructure.Tests.Handlers
             // Arrange
 
             // Act
-            Action action = () => { new BoolNavigationHandler(null, _fixture.Create<IAppRouting>()); };
+            Action action = () => { new StringNavigationHandler(null, _fixture.Create<IAppRouting>()); };
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
@@ -35,7 +35,7 @@ namespace Infrastructure.Tests.Handlers
             // Arrange
 
             // Act
-            Action action = () => { new BoolNavigationHandler(_fixture.Create<INavigationService>(), null); };
+            Action action = () => { new StringNavigationHandler(_fixture.Create<INavigationService>(), null); };
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
@@ -47,15 +47,16 @@ namespace Infrastructure.Tests.Handlers
             // Arrange
             var navigationService = _fixture.Freeze<Fake<INavigationService>>();
             var appRouting = _fixture.Freeze<Fake<IAppRouting>>();
-            var handler = _fixture.Create<BoolNavigationHandler>();
-            var request = NavRequest<bool>.Close(true);
+            var handler = _fixture.Create<StringNavigationHandler>();
+            var expected = _fixture.Create<string>();
+            var request = NavRequest<string>.Close(expected);
 
             // Act
             var results = await handler.Handle(request, CancellationToken.None);
 
             // Assert
-            A.CallTo(() => navigationService.FakedObject.Pop(true)).MustHaveHappened();
-            results.Should().BeTrue();
+            A.CallTo(() => navigationService.FakedObject.Pop(expected)).MustHaveHappened();
+            results.Should().Be(expected);
         }
 
         [Fact]
@@ -64,19 +65,20 @@ namespace Infrastructure.Tests.Handlers
             // Arrange
             var navigationService = _fixture.Freeze<Fake<INavigationService>>();
             var appRouting = _fixture.Freeze<Fake<IAppRouting>>();
-            var handler = _fixture.Create<BoolNavigationHandler>();
-            var request = _fixture.Create<NavRequest<bool>>();
+            var handler = _fixture.Create<StringNavigationHandler>();
+            var expected = _fixture.Create<string>();
+            var request = _fixture.Create<NavRequest<string>>();
 
             A.CallTo(() => appRouting.FakedObject.IsPopup(request.Route)).Returns(true);
             A.CallTo(() => appRouting.FakedObject.GetPage(request.Route)).Returns(typeof(bool));
-            A.CallTo(() => navigationService.FakedObject.PushAsync<bool>(typeof(bool), request.Paramaters)).Returns(true);
+            A.CallTo(() => navigationService.FakedObject.PushAsync<string>(typeof(bool), request.Paramaters)).Returns(expected);
 
             // Act
             var results = await handler.Handle(request, CancellationToken.None);
 
             // Assert
-            A.CallTo(() => navigationService.FakedObject.PushAsync<bool>(typeof(bool), request.Paramaters)).MustHaveHappened();
-            results.Should().BeTrue();
+            A.CallTo(() => navigationService.FakedObject.PushAsync<string>(typeof(bool), request.Paramaters)).MustHaveHappened();
+            results.Should().Be(expected);
         }
 
         [Fact]
@@ -85,8 +87,8 @@ namespace Infrastructure.Tests.Handlers
             // Arrange
             _ = _fixture.Freeze<Fake<INavigationService>>();
             var appRouting = _fixture.Freeze<Fake<IAppRouting>>();
-            var handler = _fixture.Create<BoolNavigationHandler>();
-            var request = _fixture.Create<NavRequest<bool>>();
+            var handler = _fixture.Create<StringNavigationHandler>();
+            var request = _fixture.Create<NavRequest<string>>();
 
             A.CallTo(() => appRouting.FakedObject.IsPopup(request.Route)).Returns(false);
 
