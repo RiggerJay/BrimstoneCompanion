@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
-using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Utilities;
-using System;
 
 namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 {
