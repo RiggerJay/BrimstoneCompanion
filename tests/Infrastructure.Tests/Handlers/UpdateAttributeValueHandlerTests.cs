@@ -8,6 +8,7 @@ using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Handlers;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
+using System.ComponentModel;
 
 namespace Infrastructure.Tests.Handlers
 {
@@ -34,13 +35,14 @@ namespace Infrastructure.Tests.Handlers
 
         [Theory]
         [MemberData(nameof(TestDataGenerator.GetCurrentValueFromDataGenerator), MemberType = typeof(TestDataGenerator))]
-        public async Task ACallTo_Handle_CalculatesAttribute(Character model, int expected)
+        public async Task ACallTo_Handle_CalculatesAttributeA(Character model, int expected)
         {
             // Arrange
             var service = _fixture.Freeze<Fake<IApplicationState>>();
             var handler = _fixture.Create<UpdateAttributeValueHandler>();
             var character = ObservableCharacter.New(model);
             var attribute = character.Attributes["A"];
+            using var monitor = attribute.Monitor();
 
             // Act
             var value = attribute.Value + 2;
@@ -52,8 +54,13 @@ namespace Infrastructure.Tests.Handlers
             var result = await handler.Handle(request, CancellationToken.None);
 
             // Assert
+            result.Should().BeTrue();
             attribute.Value.Should().Be(value);
             attribute.CurrentValue.Should().Be(expected + 2);
+            monitor.Should().RaisePropertyChangeFor((m) => m.Value);
+            monitor.Should().RaisePropertyChangeFor((m) => m.CurrentValue);
+            monitor.Should().NotRaisePropertyChangeFor((m) => m.MaxValue);
+            monitor.Should().NotRaisePropertyChangeFor((m) => m.CurrentMaxValue);
         }
     }
 }
