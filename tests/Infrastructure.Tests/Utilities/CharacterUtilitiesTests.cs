@@ -11,7 +11,7 @@ namespace Infrastructure.Tests.Utilities
         private const string key = "A";
 
         [Theory]
-        [MemberData(nameof(TestDataGenerator.GetCurrentValueFromDataGenerator), MemberType = typeof(TestDataGenerator))]
+        [MemberData(nameof(TestDataGenerator.GetCurrentValue), MemberType = typeof(TestDataGenerator))]
         public void ObservableCharacter_UpdateAttributeCurrentValues_ReturnsExpectedValue(Character model, int expected)
         {
             // Arrange

@@ -8,7 +8,6 @@ using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Handlers;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
-using System.ComponentModel;
 
 namespace Infrastructure.Tests.Handlers
 {
@@ -34,8 +33,8 @@ namespace Infrastructure.Tests.Handlers
         }
 
         [Theory]
-        [MemberData(nameof(TestDataGenerator.GetCurrentValueFromDataGenerator), MemberType = typeof(TestDataGenerator))]
-        public async Task ACallTo_Handle_CalculatesAttributeA(Character model, int expected)
+        [MemberData(nameof(TestDataGenerator.GetCurrentValueWithMax), MemberType = typeof(TestDataGenerator))]
+        public async Task ACallTo_Handle_CalculatesAttributeAWithoutMaxValue(Character model, int add, int expectedValue, bool valueChanged, int expectedCurrentValue)
         {
             // Arrange
             var service = _fixture.Freeze<Fake<IApplicationState>>();
@@ -45,22 +44,26 @@ namespace Infrastructure.Tests.Handlers
             using var monitor = attribute.Monitor();
 
             // Act
-            var value = attribute.Value + 2;
+            var value = attribute.Value + add;
             A.CallTo(() => service.FakedObject.Character).Returns(character);
             var request = UpdateAttributeValueRequest.With(attribute, value, null);
-
-            attribute.Value.Should().Be(value - 2);
-
             var result = await handler.Handle(request, CancellationToken.None);
 
             // Assert
             result.Should().BeTrue();
-            attribute.Value.Should().Be(value);
-            attribute.CurrentValue.Should().Be(expected + 2);
-            monitor.Should().RaisePropertyChangeFor((m) => m.Value);
-            monitor.Should().RaisePropertyChangeFor((m) => m.CurrentValue);
-            monitor.Should().NotRaisePropertyChangeFor((m) => m.MaxValue);
-            monitor.Should().NotRaisePropertyChangeFor((m) => m.CurrentMaxValue);
+            attribute.Value.Should().Be(expectedValue);
+            attribute.CurrentValue.Should().Be(expectedCurrentValue);
+            if (valueChanged)
+            {
+                monitor.Should().RaisePropertyChangeFor(m => m.Value);
+            }
+            else
+            {
+                monitor.Should().NotRaisePropertyChangeFor(m => m.Value);
+            }
+            monitor.Should().RaisePropertyChangeFor(m => m.CurrentValue);
+            monitor.Should().NotRaisePropertyChangeFor(m => m.MaxValue);
+            monitor.Should().NotRaisePropertyChangeFor(m => m.CurrentMaxValue);
         }
     }
 }

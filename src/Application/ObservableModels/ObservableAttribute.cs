@@ -40,12 +40,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             get => _currentMaxValue;
             private set => SetProperty(ref _currentMaxValue, value, () => OnPropertyChanged(nameof(HasCurrentMaxValue)));
         }
-
-        //public int CurrentValue => HasMaxValue ? Value : Value + _parent.Features.SelectMany(x => x.Properties.Where(prop => prop.Key == Key).Select(prop => prop.Value)).Sum();
-
-        //public int? CurrentMaxValue => HasMaxValue ? MaxValue + _parent.Features.SelectMany(x => x.Properties.Where(prop => prop.Key == Key).Select(prop => prop.Value)).Sum() : MaxValue;
-
-        public bool HasCurrentValue => Value != CurrentValue;
+                public bool HasCurrentValue => Value != CurrentValue;
 
         public bool HasCurrentMaxValue => HasMaxValue && MaxValue != CurrentMaxValue;
 

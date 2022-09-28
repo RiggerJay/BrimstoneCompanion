@@ -11,7 +11,7 @@ namespace Infrastructure.Tests.Utilities
         private const string key = "A";
 
         [Theory]
-        [MemberData(nameof(TestDataGenerator.GetCurrentValueFromDataGenerator), MemberType = typeof(TestDataGenerator))]
+        [MemberData(nameof(TestDataGenerator.GetCurrentValue), MemberType = typeof(TestDataGenerator))]
         public void ObservableAttribute_GetCurrentValue_ReturnsExpectedValue(Character model, int expected)
         {
             // Arrange
@@ -23,7 +23,7 @@ namespace Infrastructure.Tests.Utilities
         }
 
         [Theory]
-        [MemberData(nameof(TestDataGenerator.GetCurrentMaxValueFromDataGenerator), MemberType = typeof(TestDataGenerator))]
+        [MemberData(nameof(TestDataGenerator.GetCurrentMaxValue), MemberType = typeof(TestDataGenerator))]
         public void ObservableAttribute_GetCurrentMaxValue_ReturnsExpectedValue(Character model, int expected)
         {
             // Arrange
