@@ -46,7 +46,7 @@ namespace Infrastructure.Tests.Handlers
             // Act
             var value = attribute.Value + add;
             A.CallTo(() => service.FakedObject.Character).Returns(character);
-            var request = UpdateAttributeValueRequest.With(attribute, value, null);
+            var request = UpdateAttributeValueRequest.With(attribute, value);
             var result = await handler.Handle(request, CancellationToken.None);
 
             // Assert

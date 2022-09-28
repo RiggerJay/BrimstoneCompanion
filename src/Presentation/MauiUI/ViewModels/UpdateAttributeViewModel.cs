@@ -44,7 +44,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public async void Reset()
         {
-            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, _originalValue, Attribute.MaxValue));
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, _originalValue));
         }
 
         [RelayCommand]
@@ -55,7 +55,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 return;
             }
 
-            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, UpdateValue.Value, Attribute.MaxValue));
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, UpdateValue.Value));
 
             await _mediator.Send(NavRequest.Close(true));
         }
@@ -63,7 +63,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         private async Task UpdateAttribute(bool addition = true)
         {
-            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, GetValue(UpdateValue, addition), Attribute.MaxValue));
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, GetValue(UpdateValue, addition)));
 
             await _mediator.Send(NavRequest.Close(true));
         }

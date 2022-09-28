@@ -52,8 +52,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 return;
             }
-
-            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, _originalValue, _originalMaxValue));
+            // TODO: Fix this 
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, _originalValue));
         }
 
         [RelayCommand]
@@ -69,7 +69,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 return;
             }
-            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value + (addition ? 1 : -1), Attribute.MaxValue));
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value + (addition ? 1 : -1)));
         }
 
         [RelayCommand]
@@ -79,8 +79,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 return;
             }
-
-            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value, Attribute.MaxValue + (addition ? 1 : -1)));
+            //TODO: Fix this
+            //await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value, Attribute.MaxValue + (addition ? 1 : -1)));
         }
     }
 }

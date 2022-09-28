@@ -27,7 +27,9 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
                 if (!character.Attributes.ContainsKey(attribute.Key))
                 {
                     character.Attributes.Add(attribute.Key, ObservableAttribute.New(attribute.Key, attribute.Value.Value, attribute.Value.MaxValue));
-                    character.UpdateAttributeCurrentValues(attribute.Key);
+                    //character.UpdateAttributeCurrentValues(attribute.Key);
+                    // TODO: fix this
+                    throw new NotImplementedException();
                     _updated = true;
                 }
             }
