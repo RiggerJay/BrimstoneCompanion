@@ -105,7 +105,7 @@ namespace Infrastructure.Tests.Data
                 1
             };
         }
-        
+
         public static IEnumerable<object[]> GetCurrentValueWithMax()
         {
             yield return new object[]
@@ -138,10 +138,9 @@ namespace Infrastructure.Tests.Data
                         }
                     }
                 },
-                0,
-                3,
-                false,
+                6,
                 9,
+                15
             };
 
             yield return new object[]
@@ -176,7 +175,6 @@ namespace Infrastructure.Tests.Data
                 },
                 0,
                 3,
-                false,
                 3
             };
 
@@ -212,7 +210,6 @@ namespace Infrastructure.Tests.Data
                 },
                 0,
                 3,
-                false,
                 1
             };
 
@@ -248,8 +245,7 @@ namespace Infrastructure.Tests.Data
                 },
                 2,
                 5,
-                true,
-                10
+                5
             };
 
             yield return new object[]
@@ -284,7 +280,6 @@ namespace Infrastructure.Tests.Data
                 },
                 3,
                 4,
-                true,
                 4
             };
 
@@ -319,9 +314,8 @@ namespace Infrastructure.Tests.Data
                     }
                 },
                 2,
-                3,
-                true,
-                3
+                2,
+                2
             };
         }
 
