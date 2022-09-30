@@ -25,13 +25,9 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
             {
                 if (!character.Attributes.ContainsKey(attribute.Key))
                 {
-                    character.Attributes.Add(attribute.Key, ObservableAttribute.New(attribute.Key, attribute.Value.Value, attribute.Value.MaxValue));
+                    character.Attributes.Add(attribute.Key, ObservableAttribute.New(attribute.Key, attribute.Value.Value, attribute.Value.MaxValue, character.Features));
                     _updated = true;
                 }
-            }
-            foreach (var attribute in character.Attributes)
-            {
-                attribute.Value.SetCurrentValues(character.Features);
             }
         }
     }

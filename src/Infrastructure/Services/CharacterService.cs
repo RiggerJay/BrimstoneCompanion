@@ -88,8 +88,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             {
                 if (!character.Attributes.ContainsKey(attributeValue.Key))
                 {
-                    var attribute = ObservableAttribute.New(attributeValue.Key, attributeValue.Value.Value, attributeValue.Value.MaxValue);
-                    attribute.SetCurrentValues(character.Features);
+                    var attribute = ObservableAttribute.New(attributeValue.Key, attributeValue.Value.Value, attributeValue.Value.MaxValue, character.Features);
                     character.Attributes.Add(attributeValue.Key, attribute);
                     _updated = true;
                 }

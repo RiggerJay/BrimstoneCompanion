@@ -48,17 +48,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public bool HasMaxValue => MaxValue.HasValue;
 
-        public void SetCurrentValues(IList<ObservableFeature> features)
-        {
-            if (MaxValue.HasValue)
-            {
-                CurrentValue = Value;
-                CurrentMaxValue = MaxValue.Value + features.GetFeatureCount(Key);
-                return;
-            }
-            CurrentValue = Value + features.GetFeatureCount(Key);
-        }
-
         public void SetValue(int value, IList<ObservableFeature> features)
         {
             if (!CurrentMaxValue.HasValue)
@@ -91,12 +80,31 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
         }
 
-        public static ObservableAttribute New(string name, AttributeValue attribute) => new(name, attribute);
-
-        public static ObservableAttribute New(string name, int value, int? maxvalue = null) => new(name, new AttributeValue()
+        private void SetCurrentValues(IList<ObservableFeature> features)
         {
-            Value = value,
-            MaxValue = maxvalue
-        });
+            if (MaxValue.HasValue)
+            {
+                CurrentValue = Value;
+                CurrentMaxValue = MaxValue.Value + features.GetFeatureCount(Key);
+                return;
+            }
+            CurrentValue = Value + features.GetFeatureCount(Key);
+        }
+
+        public static ObservableAttribute New(string name, AttributeValue attribute, IList<ObservableFeature> features)
+        {
+            var model = new ObservableAttribute(name, attribute);
+            model.SetCurrentValues(features);
+            return model;
+        }
+
+        public static ObservableAttribute New(string name, int value, int? maxvalue, IList<ObservableFeature> features) =>
+            New(name,
+                new AttributeValue()
+                {
+                    Value = value,
+                    MaxValue = maxvalue
+                },
+                features);
     }
 }

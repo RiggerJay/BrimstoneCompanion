@@ -4,6 +4,7 @@ using AutoFixture.AutoFakeItEasy;
 using FluentAssertions;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
+using System.Threading;
 
 namespace AppLayer.Tests.ObservableModels
 {
@@ -14,11 +15,13 @@ namespace AppLayer.Tests.ObservableModels
         private const string _key = "A";
         private const int _value = 20;
         private const int _maxValue = 20;
+        private readonly IList<ObservableFeature> _features;
 
         public ObservableAttributeTests()
         {
             _fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
             _attribute = _fixture.Create<AttributeValue>();
+            _features = _fixture.Create<IList<ObservableFeature>>();
         }
 
         [Fact]
@@ -27,7 +30,7 @@ namespace AppLayer.Tests.ObservableModels
             // Arrange
 
             // Act
-            Action action = () => { ObservableAttribute.New(null, _attribute); };
+            Action action = () => { ObservableAttribute.New(null, _attribute, _features); };
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
@@ -40,7 +43,7 @@ namespace AppLayer.Tests.ObservableModels
             var attribute = _fixture.Create<AttributeValue>();
 
             // Act
-            Action action = () => { ObservableAttribute.New(string.Empty, _attribute); };
+            Action action = () => { ObservableAttribute.New(string.Empty, _attribute, _features); };
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
@@ -52,7 +55,7 @@ namespace AppLayer.Tests.ObservableModels
             // Arrange
 
             // Act
-            Action action = () => { ObservableAttribute.New(_key, null); };
+            Action action = () => { ObservableAttribute.New(_key, null, _features); };
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();
@@ -65,20 +68,14 @@ namespace AppLayer.Tests.ObservableModels
             // Arrange
             _attribute.MaxValue = null;
             _attribute.Value = _value;
-            var attribute = ObservableAttribute.New(_key, _attribute);
-            var monitor = attribute.Monitor();
 
             // Act
             var features = list.Select(x => ObservableFeature.New(x)).ToList();
-            attribute.SetCurrentValues(features);
+            var attribute = ObservableAttribute.New(_key, _attribute, features);
 
             // Assert
             attribute.CurrentValue.Should().Be(_value + total);
             attribute.CurrentMaxValue.Should().BeNull();
-            monitor.Should().RaisePropertyChangeFor(x => x.CurrentValue);
-            monitor.Should().RaisePropertyChangeFor(x => x.HasCurrentValue);
-            monitor.Should().NotRaisePropertyChangeFor(x => x.CurrentMaxValue);
-            monitor.Should().NotRaisePropertyChangeFor(x => x.HasCurrentMaxValue);
         }
 
         [Theory]
@@ -88,20 +85,14 @@ namespace AppLayer.Tests.ObservableModels
             // Arrange
             _attribute.MaxValue = _maxValue;
             _attribute.Value = _value;
-            var attribute = ObservableAttribute.New(_key, _attribute);
-            using var monitor = attribute.Monitor();
 
             // Act
             var features = list.Select(x => ObservableFeature.New(x)).ToList();
-            attribute.SetCurrentValues(features);
+            var attribute = ObservableAttribute.New(_key, _attribute, features);
 
             // Assert
             attribute.CurrentValue.Should().Be(_value);
             attribute.CurrentMaxValue.Should().Be(_maxValue + total);
-            monitor.Should().RaisePropertyChangeFor(x => x.CurrentValue);
-            monitor.Should().RaisePropertyChangeFor(x => x.HasCurrentValue);
-            monitor.Should().RaisePropertyChangeFor(x => x.CurrentMaxValue);
-            monitor.Should().RaisePropertyChangeFor(x => x.HasCurrentMaxValue);
         }
 
         [Theory]
@@ -110,11 +101,11 @@ namespace AppLayer.Tests.ObservableModels
         {
             // Arrange
             _attribute.MaxValue = null;
-            var attribute = ObservableAttribute.New(_key, _attribute);
+            var features = list.Select(x => ObservableFeature.New(x)).ToList();
+            var attribute = ObservableAttribute.New(_key, _attribute, features);
             using var monitor = attribute.Monitor();
 
             // Act
-            var features = list.Select(x => ObservableFeature.New(x)).ToList();
             attribute.SetValue(_value, features);
 
             // Assert
@@ -124,6 +115,8 @@ namespace AppLayer.Tests.ObservableModels
             monitor.Should().RaisePropertyChangeFor(x => x.Value);
             monitor.Should().RaisePropertyChangeFor(x => x.CurrentValue);
             monitor.Should().RaisePropertyChangeFor(x => x.HasCurrentValue);
+            monitor.Should().NotRaisePropertyChangeFor(x => x.MaxValue);
+            monitor.Should().NotRaisePropertyChangeFor(x => x.HasMaxValue);
             monitor.Should().NotRaisePropertyChangeFor(x => x.CurrentMaxValue);
             monitor.Should().NotRaisePropertyChangeFor(x => x.HasCurrentMaxValue);
         }
@@ -134,9 +127,8 @@ namespace AppLayer.Tests.ObservableModels
         {
             // Arrange
             _attribute.MaxValue = 1;
-            var attribute = ObservableAttribute.New(_key, _attribute);
             var features = list.Select(x => ObservableFeature.New(x)).ToList();
-            attribute.SetCurrentValues(features);
+            var attribute = ObservableAttribute.New(_key, _attribute, features);
             using var monitor = attribute.Monitor();
 
             // Act
@@ -163,9 +155,8 @@ namespace AppLayer.Tests.ObservableModels
             // Arrange
             _attribute.Value = _value;
             _attribute.MaxValue = 10;
-            var attribute = ObservableAttribute.New(_key, _attribute);
             var features = list.Select(x => ObservableFeature.New(x)).ToList();
-            attribute.SetCurrentValues(features);
+            var attribute = ObservableAttribute.New(_key, _attribute, features);
             using var monitor = attribute.Monitor();
 
             // Act
@@ -192,9 +183,8 @@ namespace AppLayer.Tests.ObservableModels
             // Arrange
             _attribute.Value = _value;
             _attribute.MaxValue = _maxValue;
-            var attribute = ObservableAttribute.New(_key, _attribute);
             var features = list.Select(x => ObservableFeature.New(x)).ToList();
-            attribute.SetCurrentValues(features);
+            var attribute = ObservableAttribute.New(_key, _attribute, features);
             using var monitor = attribute.Monitor();
 
             // Act

@@ -97,9 +97,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
             foreach (var attributeValue in Model.Attributes)
             {
-                var attribute = ObservableAttribute.New(attributeValue.Key, attributeValue.Value);
-                attribute.SetCurrentValues(Features);
-                Attributes.Add(attributeValue.Key, attribute);
+                Attributes.Add(attributeValue.Key, ObservableAttribute.New(attributeValue.Key, attributeValue.Value, Features));
             }
         }
 
