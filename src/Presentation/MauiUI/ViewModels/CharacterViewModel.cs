@@ -163,8 +163,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 return null;
             }
-
-            return Character.Attributes[name];
+            //TODO: Add validation here
+            return Character.Attributes.First(x => x.Key == name);
         }
 
         private Task SaveCharacterAsync() =>

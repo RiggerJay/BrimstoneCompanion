@@ -31,7 +31,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 if (SetProperty(ref _character, value))
                 {
-                    CurrentXP = _character.Attributes[AttributeNames.XP];
+                    CurrentXP = _character.Attributes.First(x => x.Key == AttributeNames.XP);
                     RequiredXP = _character.Level * 500;
                 }
             }

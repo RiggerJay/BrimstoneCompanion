@@ -40,7 +40,7 @@ namespace Infrastructure.Tests.Handlers
             var service = _fixture.Freeze<Fake<IApplicationState>>();
             var handler = _fixture.Create<UpdateAttributeValueHandler>();
             var character = ObservableCharacter.New(model);
-            var attribute = character.Attributes["A"];
+            var attribute = character.Attributes.First(x => x.Key == "A");
 
             // Act
             var value = attribute.Value + add;

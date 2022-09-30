@@ -29,7 +29,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public ObservableCollection<ObservableToken> Tokens => Character.Tokens;
 
-        public ObservableAttribute SidebagAttribute => Character.Attributes[AttributeNames.SIDEBAG];
+        public ObservableAttribute SidebagAttribute => Character.Attributes.First(x => x.Key == AttributeNames.SIDEBAG);
 
         public bool NotAtCapacity => Tokens.Count < SidebagAttribute.CurrentMaxValue;
         public bool AtCapacity => !NotAtCapacity;

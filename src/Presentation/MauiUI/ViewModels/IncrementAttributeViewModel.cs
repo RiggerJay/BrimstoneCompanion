@@ -11,7 +11,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly IMediator _mediator;
         private readonly ITextResource _textResource;
 
-        private ObservableAttribute? _attribute;
+        private ObservableAttribute _attribute;
 
         private int _originalValue;
         private int? _originalMaxValue;
@@ -31,7 +31,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public string Name => _textResource.GetValue(Attribute?.Key ?? string.Empty);
 
-        public ObservableAttribute? Attribute
+        public ObservableAttribute Attribute
         {
             get => _attribute;
             set
@@ -39,9 +39,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 SetProperty(ref _attribute, value);
                 _originalValue = _attribute.Value;
                 _originalMaxValue = _attribute.MaxValue;
-                OnPropertyChanged(nameof(Value));
-                OnPropertyChanged(nameof(MaxValue));
-                OnPropertyChanged(nameof(HasMaxValue));
                 OnPropertyChanged(nameof(Name));
             }
         }
@@ -52,8 +49,12 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 return;
             }
-            // TODO: Fix this 
             await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, _originalValue));
+
+            if (_originalMaxValue.HasValue)
+            {
+                await _mediator.Send(UpdateAttributeMaxValueRequest.With(Attribute, _originalMaxValue.Value));
+            }
         }
 
         [RelayCommand]
@@ -75,12 +76,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         private async Task IncrementMaxValue(bool addition = true)
         {
-            if (Attribute == null)
+            if (Attribute == null || !Attribute.MaxValue.HasValue)
             {
                 return;
             }
-            //TODO: Fix this
-            //await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value, Attribute.MaxValue + (addition ? 1 : -1)));
+            await _mediator.Send(UpdateAttributeMaxValueRequest.With(Attribute, Attribute.MaxValue.Value + (addition ? 1 : -1)));
         }
     }
 }

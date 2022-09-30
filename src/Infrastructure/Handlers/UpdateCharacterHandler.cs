@@ -2,6 +2,7 @@
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 {
@@ -23,9 +24,9 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
         {
             foreach (var attribute in template.Attributes)
             {
-                if (!character.Attributes.ContainsKey(attribute.Key))
+                if (!character.Attributes.Any(x => x.Key == attribute.Key))
                 {
-                    character.Attributes.Add(attribute.Key, ObservableAttribute.New(attribute.Key, attribute.Value.Value, attribute.Value.MaxValue, character.Features));
+                    character.Attributes.Add(ObservableAttribute.New(attribute.Key, attribute.Value.Value, attribute.Value.MaxValue, character.Features));
                     _updated = true;
                 }
             }

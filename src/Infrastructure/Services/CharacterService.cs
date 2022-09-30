@@ -86,10 +86,10 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             var template = await _templateCharacter.Get(character.Class);
             foreach (var attributeValue in template.Attributes)
             {
-                if (!character.Attributes.ContainsKey(attributeValue.Key))
+                if (!character.Attributes.Any(x => x.Key == attributeValue.Key))
                 {
                     var attribute = ObservableAttribute.New(attributeValue.Key, attributeValue.Value.Value, attributeValue.Value.MaxValue, character.Features);
-                    character.Attributes.Add(attributeValue.Key, attribute);
+                    character.Attributes.Add(attribute);
                     _updated = true;
                 }
             }

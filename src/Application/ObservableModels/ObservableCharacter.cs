@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -68,7 +69,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public ObservableCollection<ObservableToken> Tokens { get; } = new ObservableCollection<ObservableToken>();
 
-        public IDictionary<string, ObservableAttribute> Attributes { get; } = new Dictionary<string, ObservableAttribute>();
+        public ObservableCollection<ObservableAttribute> Attributes { get; } = new ObservableCollection<ObservableAttribute>();
 
         public ObservableCollection<ObservableFeature> Features { get; set; } = new ObservableCollection<ObservableFeature>();
 
@@ -88,19 +89,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         #region Model Construction
 
-        private void InitialiseAttributes()
-        {
-            if (Model.Attributes is null)
-            {
-                Model.Attributes = new Dictionary<string, AttributeValue>();
-            }
-
-            foreach (var attributeValue in Model.Attributes)
-            {
-                Attributes.Add(attributeValue.Key, ObservableAttribute.New(attributeValue.Key, attributeValue.Value, Features));
-            }
-        }
-
         private void InitialiseFeatures()
         {
             if (Model.Features is null)
@@ -114,6 +102,21 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
 
             Features.CollectionChanged += Features_CollectionChanged;
+        }
+
+        private void InitialiseAttributes()
+        {
+            if (Model.Attributes is null)
+            {
+                Model.Attributes = new Dictionary<string, AttributeValue>();
+            }
+
+            foreach (var attributeValue in Model.Attributes)
+            {
+                Attributes.Add(ObservableAttribute.New(attributeValue.Key, attributeValue.Value, Features));
+            }
+
+            Attributes.CollectionChanged += Attributes_CollectionChanged;
         }
 
         private void InitialiseNotes()
@@ -159,6 +162,47 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
 
             Tokens.CollectionChanged += Tokens_CollectionChanged;
+        }
+
+        private void Attributes_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
+        {
+            switch (args.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    if (args.NewItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.NewItems)
+                    {
+                        if (item is ObservableAttribute model)
+                        {
+                            if (Model.Attributes.ContainsKey(model.Key))
+                            {
+                                Model.Attributes[model.Key] = model.GetModel();
+                            }
+                            else
+                            {
+                                Model.Attributes.Add(model.Key, model.GetModel());
+                            }
+                        }
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    if (args.OldItems == null)
+                    {
+                        return;
+                    }
+                    foreach (var item in args.OldItems)
+                    {
+                        if (item is ObservableAttribute model)
+                        {
+                            Model.Attributes.Remove(model.Key);
+                        }
+                    }
+                    break;
+            }
         }
 
         private void Features_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
