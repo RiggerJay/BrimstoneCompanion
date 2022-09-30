@@ -129,6 +129,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             await _mediator.Send(AddFeatureRequest.With(Feature));
 
+            await _mediator.Send(SaveCharacterRequest.Save());
+
             await _mediator.Send(NavRequest.Close());
         }
     }
