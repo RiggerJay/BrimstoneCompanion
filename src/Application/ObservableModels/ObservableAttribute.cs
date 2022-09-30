@@ -80,7 +80,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             }
         }
 
-        private void SetCurrentValues(IList<ObservableFeature> features)
+        public void SetCurrentValues(IList<ObservableFeature> features)
         {
             if (MaxValue.HasValue)
             {

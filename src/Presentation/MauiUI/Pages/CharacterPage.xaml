@@ -137,13 +137,13 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Experience.CurrentValue}"
-                    FontSize="{Binding Experience.CurrentValue, Converter={StaticResource StringToSize}}"
+                    Text="{Binding EXP.CurrentValue}"
+                    FontSize="{Binding EXP.CurrentValue, Converter={StaticResource StringToSize}}"
                     Style="{StaticResource PurpleBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding UpdateAttributeCommand}"
-                        CommandParameter="{Binding Experience}" />
+                        CommandParameter="{Binding EXP}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -159,13 +159,13 @@
                 Grid.Column="8"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Dollars.CurrentValue, StringFormat='${0}'}"
-                    FontSize="{Binding Dollars.CurrentValue, Converter={StaticResource StringToSize},ConverterParameter='1'}"
+                    Text="{Binding DLR.CurrentValue, StringFormat='${0}'}"
+                    FontSize="{Binding DLR.CurrentValue, Converter={StaticResource StringToSize},ConverterParameter='1'}"
                     Style="{StaticResource GreenBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding UpdateAttributeCommand}"
-                        CommandParameter="{Binding Dollars}" />
+                        CommandParameter="{Binding DLR}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -186,7 +186,7 @@
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Heavy}" />
+                        CommandParameter="{Binding HVY}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -196,7 +196,7 @@
                 Grid.Column="15"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Heavy.CurrentMaxValue}"
+                    Text="{Binding HVY.CurrentMaxValue}"
                     Style="{StaticResource SmallBrownBodyLabel}" />
             </Frame>
 
@@ -236,12 +236,12 @@
                 Grid.Column="3"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Agility.CurrentValue}"
+                    Text="{Binding AGI.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Agility}" />
+                        CommandParameter="{Binding AGI}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -249,12 +249,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Agility.HasCurrentValue}"
+                IsVisible="{Binding AGI.HasCurrentValue}"
                 Grid.Row="5"
                 Grid.Column="3"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Agility.Value}"
+                    Text="{Binding AGI.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -270,12 +270,12 @@
                 Grid.Column="9"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Cunning.CurrentValue}"
+                    Text="{Binding CNG.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Cunning}" />
+                        CommandParameter="{Binding CNG}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -283,12 +283,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Cunning.HasCurrentValue}"
+                IsVisible="{Binding CNG.HasCurrentValue}"
                 Grid.Row="5"
                 Grid.Column="9"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Cunning.Value}"
+                    Text="{Binding CNG.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -304,13 +304,13 @@
                 Grid.Column="15"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Spirit.CurrentValue}"
+                    Text="{Binding SPT.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}">
                 </Label>
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Spirit}" />
+                        CommandParameter="{Binding SPT}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -318,12 +318,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Spirit.HasCurrentValue}"
+                IsVisible="{Binding SPT.HasCurrentValue}"
                 Grid.Row="5"
                 Grid.Column="15"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Spirit.Value}"
+                    Text="{Binding SPT.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -343,12 +343,12 @@
                 Grid.Column="3"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Strength.CurrentValue}"
+                    Text="{Binding STR.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Strength}" />
+                        CommandParameter="{Binding STR}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -356,12 +356,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Strength.HasCurrentValue}"
+                IsVisible="{Binding STR.HasCurrentValue}"
                 Grid.Row="7"
                 Grid.Column="3"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Strength.Value}"
+                    Text="{Binding STR.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -377,12 +377,12 @@
                 Grid.Column="9"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Lore.CurrentValue}"
+                    Text="{Binding LOR.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Lore}" />
+                        CommandParameter="{Binding LOR}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -390,12 +390,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Lore.HasCurrentValue}"
+                IsVisible="{Binding LOR.HasCurrentValue}"
                 Grid.Row="7"
                 Grid.Column="9"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Lore.Value}"
+                    Text="{Binding LOR.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -411,12 +411,12 @@
                 Grid.Column="15"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Luck.CurrentValue}"
+                    Text="{Binding LUK.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Luck}" />
+                        CommandParameter="{Binding LUK}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -424,12 +424,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Luck.HasCurrentValue}"
+                IsVisible="{Binding LUK.HasCurrentValue}"
                 Grid.Row="7"
                 Grid.Column="15"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Luck.Value}"
+                    Text="{Binding LUK.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -471,12 +471,12 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Range.CurrentValue, StringFormat='+{0}'}"
+                    Text="{Binding RNG.CurrentValue, StringFormat='+{0}'}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Range}" />
+                        CommandParameter="{Binding RNG}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -493,12 +493,12 @@
                 Grid.Column="6"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Melee.CurrentValue, StringFormat='+{0}'}"
+                    Text="{Binding MLE.CurrentValue, StringFormat='+{0}'}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Melee}" />
+                        CommandParameter="{Binding MLE}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -514,12 +514,12 @@
                 Grid.Column="12"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Combat.CurrentValue}"
+                    Text="{Binding CBT.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Combat}" />
+                        CommandParameter="{Binding CBT}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -527,12 +527,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Combat.HasCurrentValue}"
+                IsVisible="{Binding CBT.HasCurrentValue}"
                 Grid.Row="10"
                 Grid.Column="12"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Combat.Value}"
+                    Text="{Binding CBT.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -548,12 +548,12 @@
                 Grid.Column="17"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Initiative.CurrentValue}"
+                    Text="{Binding INT.CurrentValue}"
                     Style="{StaticResource YellowBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Initiative}" />
+                        CommandParameter="{Binding INT}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -561,12 +561,12 @@
                 Style="{StaticResource SmallYellowFrame}"
                 HorizontalOptions="End"
                 Margin="-6,-4"
-                IsVisible="{Binding Initiative.HasCurrentValue}"
+                IsVisible="{Binding INT.HasCurrentValue}"
                 Grid.Row="10"
                 Grid.Column="17"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Initiative.Value}"
+                    Text="{Binding INT.Value}"
                     Style="{StaticResource SmallYellowBodyLabel}" />
             </Frame>
 
@@ -595,12 +595,12 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="5">
                 <Label
-                    Text="{Binding Health.CurrentValue}"
+                    Text="{Binding HLT.CurrentValue}"
                     Style="{StaticResource RedBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Health}" />
+                        CommandParameter="{Binding HLT}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -610,7 +610,7 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="5">
                 <Label
-                    Text="{Binding Health.CurrentMaxValue}"
+                    Text="{Binding HLT.CurrentMaxValue}"
                     Style="{StaticResource SmallRedBodyLabel}" />
             </Frame>
 
@@ -627,12 +627,12 @@
                 Grid.Column="6"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Defence.CurrentValue, StringFormat='+{0}'}"
+                    Text="{Binding DEF.CurrentValue, StringFormat='+{0}'}"
                     Style="{StaticResource RedBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Defence}" />
+                        CommandParameter="{Binding DEF}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -648,12 +648,12 @@
                 Grid.Column="12"
                 Grid.ColumnSpan="5">
                 <Label
-                    Text="{Binding Sanity.CurrentValue}"
+                    Text="{Binding SAN.CurrentValue}"
                     Style="{StaticResource BlueBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Sanity}" />
+                        CommandParameter="{Binding SAN}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -670,7 +670,7 @@
                 Grid.Column="12"
                 Grid.ColumnSpan="5">
                 <Label
-                    Text="{Binding Sanity.CurrentMaxValue}"
+                    Text="{Binding SAN.CurrentMaxValue}"
                     Style="{StaticResource SmallBlueBodyLabel}" />
             </Frame>
 
@@ -687,12 +687,12 @@
                 Grid.Column="17"
                 Grid.ColumnSpan="4">
                 <Label
-                    Text="{Binding Willpower.CurrentValue, StringFormat='+{0}'}"
+                    Text="{Binding WIL.CurrentValue, StringFormat='+{0}'}"
                     Style="{StaticResource BlueBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Willpower}" />
+                        CommandParameter="{Binding WIL}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -721,12 +721,12 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Grit.CurrentValue}"
+                    Text="{Binding GRT.CurrentValue}"
                     Style="{StaticResource BrownBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Grit}" />
+                        CommandParameter="{Binding GRT}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -736,7 +736,7 @@
                 Grid.Column="2"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Grit.CurrentMaxValue}"
+                    Text="{Binding GRT.CurrentMaxValue}"
                     Style="{StaticResource SmallBrownBodyLabel}" />
             </Frame>
 
@@ -752,12 +752,12 @@
                 Grid.Column="8"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Corruption.CurrentValue}"
+                    Text="{Binding CPT.CurrentValue}"
                     Style="{StaticResource GreenBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding Corruption}" />
+                        CommandParameter="{Binding CPT}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -767,7 +767,7 @@
                 Grid.Column="8"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding Corruption.CurrentMaxValue}"
+                    Text="{Binding CPT.CurrentMaxValue}"
                     Style="{StaticResource SmallGreenBodyLabel}" />
             </Frame>
 
@@ -783,12 +783,12 @@
                 Grid.Column="14"
                 Grid.ColumnSpan="6">
                 <Label
-                    Text="{Binding DarkStone.CurrentValue}"
+                    Text="{Binding DKS.CurrentValue}"
                     Style="{StaticResource PurpleBodyLabel}" />
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer
                         Command="{Binding IncrementAttributeCommand}"
-                        CommandParameter="{Binding DarkStone}" />
+                        CommandParameter="{Binding DKS}" />
                 </Frame.GestureRecognizers>
             </Frame>
 
@@ -805,7 +805,7 @@
                 Background="{StaticResource GradientOdd}" />
 
             <CollectionView
-                ItemsSource="{Binding Character.ConcatKeywords}"
+                ItemsSource="{Binding Keywords}"
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
                 ItemsLayout="HorizontalGrid, 2"

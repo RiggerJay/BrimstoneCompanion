@@ -127,22 +127,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             EnterKeyword();
 
-            UpdateProperties(Feature.Properties.Select(x => x.Key));
-            //TODO: Fix this
-            /*_state.Character.Features.Add(Feature);
-            _state.Character.WeightChanged();
-            _state.Character.UpdateKeywords();
-            await _mediator.Send(SaveCharacterRequest.Save());
+            await _mediator.Send(AddFeatureRequest.With(Feature));
 
-            await _mediator.Send(NavRequest.Close());*/
-        }
-
-        private void UpdateProperties(IEnumerable<string> keys)
-        {
-            foreach (var key in keys)
-            {
-                //_state.Character.ValueChanged(key);
-            }
+            await _mediator.Send(NavRequest.Close());
         }
     }
 }

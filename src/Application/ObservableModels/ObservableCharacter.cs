@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -28,6 +27,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             InitialiseKeywords();
 
             InitialiseTokens();
+
+            InitialiseWeight();
         }
 
         #region Properties
@@ -58,9 +59,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public bool Initialised => _initialised;
 
-        //TODO: set the weight
-        //public int CurrentWeight => GetAttribute(AttributeNames.HEAVY).Value + Features.Sum(x => x.Weight);
-
         #endregion Properties
 
         #region Collections
@@ -72,8 +70,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         public ObservableCollection<ObservableAttribute> Attributes { get; } = new ObservableCollection<ObservableAttribute>();
 
         public ObservableCollection<ObservableFeature> Features { get; set; } = new ObservableCollection<ObservableFeature>();
-
-        public IList<ObservableKeyword> ConcatKeywords => Keywords.Concat(Features.SelectMany(x => x.Keywords)).ToList();
 
         public ObservableCollection<ObservableNote> Notes { get; set; } = new ObservableCollection<ObservableNote>();
 
@@ -164,6 +160,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             Tokens.CollectionChanged += Tokens_CollectionChanged;
         }
 
+        private void InitialiseWeight()
+        {
+            CurrentWeight = Features.Sum(x => x.Weight);
+        }
+
         private void Attributes_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
         {
             switch (args.Action)
@@ -218,7 +219,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         private void Keywords_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
         {
             SubscribeToCollection<Keyword, ObservableModel<Keyword>>(args, Model.Keywords);
-            OnPropertyChanged(nameof(ConcatKeywords));
         }
 
         private void Tokens_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)

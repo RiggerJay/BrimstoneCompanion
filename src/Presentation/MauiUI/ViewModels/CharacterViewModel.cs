@@ -1,9 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain;
+using RedSpartan.BrimstoneCompanion.Infrastructure.Messages;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
@@ -13,45 +16,57 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly IApplicationState _state;
+        private readonly IMessenger _messenger;
 
-        public CharacterViewModel(IMediator mediator, IApplicationState state)
+        public CharacterViewModel(IMediator mediator
+            , IApplicationState state
+            , IMessenger messenger)
         {
             Title = "Character";
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _state = state ?? throw new ArgumentNullException(nameof(state));
+            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
             _state.PropertyChanged += State_PropertyChanged;
+
+            _messenger.Register<KeywordMessage>(this, KeywordMessageHandle);
+            _messenger.Register<PropertyChangedMessage>(this, PropertyChangedMessageHandle);
+
+            Keywords = new ObservableCollection<ObservableKeyword>();
+            RefillKeywords();
         }
 
         public ObservableCharacter Character => _state.Character;
 
         public bool CharacterLoaded => _state.CharacterLoaded;
 
+        public ObservableCollection<ObservableKeyword> Keywords { get; }
+
         #region Observable Attribute
 
-        public ObservableAttribute Experience => GetAttribute(AttributeNames.XP);
-        public ObservableAttribute Grit => GetAttribute(AttributeNames.GRIT);
-        public ObservableAttribute Corruption => GetAttribute(AttributeNames.CORRUPTION);
-        public ObservableAttribute Heavy => GetAttribute(AttributeNames.HEAVY);
+        public ObservableAttribute EXP => GetAttribute(AttributeNames.XP);
+        public ObservableAttribute GRT => GetAttribute(AttributeNames.GRIT);
+        public ObservableAttribute CPT => GetAttribute(AttributeNames.CORRUPTION);
+        public ObservableAttribute HVY => GetAttribute(AttributeNames.HEAVY);
 
-        public ObservableAttribute Agility => GetAttribute(AttributeNames.AGILITY);
-        public ObservableAttribute Cunning => GetAttribute(AttributeNames.CUNNING);
-        public ObservableAttribute Spirit => GetAttribute(AttributeNames.SPIRIT);
-        public ObservableAttribute Strength => GetAttribute(AttributeNames.STRENGTH);
-        public ObservableAttribute Lore => GetAttribute(AttributeNames.LORE);
-        public ObservableAttribute Luck => GetAttribute(AttributeNames.LUCK);
+        public ObservableAttribute AGI => GetAttribute(AttributeNames.AGILITY);
+        public ObservableAttribute CNG => GetAttribute(AttributeNames.CUNNING);
+        public ObservableAttribute SPT => GetAttribute(AttributeNames.SPIRIT);
+        public ObservableAttribute STR => GetAttribute(AttributeNames.STRENGTH);
+        public ObservableAttribute LOR => GetAttribute(AttributeNames.LORE);
+        public ObservableAttribute LUK => GetAttribute(AttributeNames.LUCK);
 
-        public ObservableAttribute Combat => GetAttribute(AttributeNames.COMBAT);
-        public ObservableAttribute Range => GetAttribute(AttributeNames.RANGE);
-        public ObservableAttribute Initiative => GetAttribute(AttributeNames.INITIATIVE);
-        public ObservableAttribute Melee => GetAttribute(AttributeNames.MELEE);
+        public ObservableAttribute CBT => GetAttribute(AttributeNames.COMBAT);
+        public ObservableAttribute RNG => GetAttribute(AttributeNames.RANGE);
+        public ObservableAttribute INT => GetAttribute(AttributeNames.INITIATIVE);
+        public ObservableAttribute MLE => GetAttribute(AttributeNames.MELEE);
 
-        public ObservableAttribute Health => GetAttribute(AttributeNames.HEALTH);
-        public ObservableAttribute Sanity => GetAttribute(AttributeNames.SANITY);
-        public ObservableAttribute Defence => GetAttribute(AttributeNames.DEFENCE);
-        public ObservableAttribute Willpower => GetAttribute(AttributeNames.WILLPOWER);
+        public ObservableAttribute HLT => GetAttribute(AttributeNames.HEALTH);
+        public ObservableAttribute SAN => GetAttribute(AttributeNames.SANITY);
+        public ObservableAttribute DEF => GetAttribute(AttributeNames.DEFENCE);
+        public ObservableAttribute WIL => GetAttribute(AttributeNames.WILLPOWER);
 
-        public ObservableAttribute Dollars => GetAttribute(AttributeNames.DOLLARS);
-        public ObservableAttribute DarkStone => GetAttribute(AttributeNames.DARKSTONE);
+        public ObservableAttribute DLR => GetAttribute(AttributeNames.DOLLARS);
+        public ObservableAttribute DKS => GetAttribute(AttributeNames.DARKSTONE);
 
         #endregion Observable Attribute
 
@@ -98,7 +113,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             var keyword = await _mediator.Send(NavRequest.Keyword());
             if (!string.IsNullOrWhiteSpace(keyword))
             {
-                Character.Keywords.Add(ObservableKeyword.New(keyword, true));
+                AddKeyword(ObservableKeyword.New(keyword, true));
                 await SaveCharacterAsync();
             }
         }
@@ -129,32 +144,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         [RelayCommand]
         public async Task ShowSidebag() => await _mediator.Send(NavRequest.ShowSidebag());
 
-        public void AttributesChanged()
+        private void KeywordMessageHandle(object recipient, KeywordMessage message)
         {
-            OnPropertyChanged(nameof(Experience));
-            OnPropertyChanged(nameof(Grit));
-            OnPropertyChanged(nameof(Corruption));
-            OnPropertyChanged(nameof(Heavy));
+            if (message.AddedKeyword)
+            {
+                AddKeyword(message.Keyword);
+            }
+        }
 
-            OnPropertyChanged(nameof(Agility));
-            OnPropertyChanged(nameof(Cunning));
-            OnPropertyChanged(nameof(Spirit));
-            OnPropertyChanged(nameof(Strength));
-            OnPropertyChanged(nameof(Lore));
-            OnPropertyChanged(nameof(Luck));
-
-            OnPropertyChanged(nameof(Combat));
-            OnPropertyChanged(nameof(Range));
-            OnPropertyChanged(nameof(Initiative));
-            OnPropertyChanged(nameof(Melee));
-
-            OnPropertyChanged(nameof(Health));
-            OnPropertyChanged(nameof(Sanity));
-            OnPropertyChanged(nameof(Defence));
-            OnPropertyChanged(nameof(Willpower));
-
-            OnPropertyChanged(nameof(Dollars));
-            OnPropertyChanged(nameof(DarkStone));
+        private void PropertyChangedMessageHandle(object recipient, PropertyChangedMessage message)
+        {
+            OnPropertyChanged(message.Name);
         }
 
         private ObservableAttribute GetAttribute(string name)
@@ -163,7 +163,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 return null;
             }
-            //TODO: Add validation here
             return Character.Attributes.First(x => x.Key == name);
         }
 
@@ -177,6 +176,34 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 OnPropertyChanged(nameof(Character));
                 OnPropertyChanged(nameof(CharacterLoaded));
                 AttributesChanged();
+                RefillKeywords();
+            }
+        }
+
+        private void RefillKeywords()
+        {
+            Keywords.Clear();
+            foreach (var keyword in Character.Keywords)
+            {
+                Keywords.Add(keyword);
+            }
+            foreach (var keyword in Character.Features.SelectMany(x => x.Keywords))
+            {
+                Keywords.Add(keyword);
+            }
+        }
+
+        private void AddKeyword(ObservableKeyword observableKeyword)
+        {
+            Character.Keywords.Add(observableKeyword);
+            Keywords.Add(observableKeyword);
+        }
+
+        private void AttributesChanged()
+        {
+            foreach (var name in AttributeNames.Strings)
+            {
+                OnPropertyChanged(name);
             }
         }
     }
