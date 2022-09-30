@@ -10,15 +10,17 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
         [ObservableProperty]
         private int _currentWeight;
 
+        private bool _initialised = false;
+
         public ObservableCharacter(string name, string role)
             : this(new Character { Name = name, Class = role })
         { }
 
         private ObservableCharacter(Character character) : base(character)
         {
-            InitialiseAttributes();
-
             InitialiseFeatures();
+
+            InitialiseAttributes();
 
             InitialiseNotes();
 
@@ -53,6 +55,8 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             set => SetProperty(Model.Level, value, Model, (model, _value) => model.Level = _value);
         }
 
+        public bool Initialised => _initialised;
+
         //TODO: set the weight
         //public int CurrentWeight => GetAttribute(AttributeNames.HEAVY).Value + Features.Sum(x => x.Weight);
 
@@ -76,63 +80,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         #region Methods
 
-        /*public ObservableAttribute GetAttribute(string name)
-        {
-            AddAttribute(name, 0);
-
-            return Attributes[name];
-        }
-
-        public void UpdateKeywords()
-        {
-            OnPropertyChanged(nameof(ConcatKeywords));
-        }
-
-        public void AddAttribute(string name, int value, int? maxValue = null)
-        {
-            AddAttribute(name, new AttributeValue { Value = value, MaxValue = maxValue });
-        }
-
-        public void AddAttribute(string name, AttributeValue attribute)
-        {
-            if (!Attributes.ContainsKey(name))
-            {
-                Attributes.Add(name, ObservableAttribute.New(name, attribute));
-                Model.Attributes.Add(name, attribute);
-            }
-        }
-
-        public void ValueChanged(string key)
-        {
-            if (Attributes.ContainsKey(key))
-            {
-                Attributes[key].OnValueChanged();
-                if (key == AttributeNames.HEAVY)
-                {
-                    OnPropertyChanged(nameof(CurrentWeight));
-                }
-            }
-        }
-
-        public void WeightChanged() => OnPropertyChanged(nameof(CurrentWeight));
-
-        public void AddNote(string note)
-        {
-            Notes.Add(ObservableNote.New(note));
-        }
-
-        public void UpdateMoney(int? value)
-        {
-            if (!value.HasValue)
-            {
-                return;
-            }
-            GetAttribute(AttributeNames.DOLLARS).Value += (int)value;
-
-            ValueChanged(AttributeNames.DOLLARS);
-        }
-        */
-
         public static ObservableCharacter New(Character character) => new(character);
 
         public static ObservableCharacter New() => new(new Character());
@@ -148,9 +95,11 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
                 Model.Attributes = new Dictionary<string, AttributeValue>();
             }
 
-            foreach (var attribute in Model.Attributes)
+            foreach (var attributeValue in Model.Attributes)
             {
-                Attributes.Add(attribute.Key, ObservableAttribute.New(attribute.Key, attribute.Value));
+                var attribute = ObservableAttribute.New(attributeValue.Key, attributeValue.Value);
+                attribute.SetCurrentValues(Features);
+                Attributes.Add(attributeValue.Key, attribute);
             }
         }
 

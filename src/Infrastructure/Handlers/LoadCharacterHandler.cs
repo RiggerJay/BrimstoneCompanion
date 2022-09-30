@@ -23,7 +23,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 
         public async Task<Unit> Handle(LoadCharacterRequest request, CancellationToken cancellationToken)
         {
-            if (await _updateApplicationState.UpdateCharacterAsync(request.Character))
+            if (await _updateApplicationState.SetCharacterAsync(request.Character))
             {
                 _messenger.Send(CharacterLoaded.Successful());
                 await _service.NavigateToAsync("//tabbar/character");

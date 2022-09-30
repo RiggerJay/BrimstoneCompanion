@@ -15,6 +15,7 @@ namespace Infrastructure.Tests.Handlers
     public class LoadCharacterHandlerTests
     {
         private readonly IFixture _fixture;
+
         public LoadCharacterHandlerTests()
         {
             _fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
@@ -73,7 +74,7 @@ namespace Infrastructure.Tests.Handlers
             var request = _fixture.Create<LoadCharacterRequest>();
 
             // Act
-            A.CallTo(() => updateApplicationState.FakedObject.UpdateCharacterAsync(request.Character)).Returns(true);
+            A.CallTo(() => updateApplicationState.FakedObject.SetCharacterAsync(request.Character)).Returns(true);
 
             _ = await handler.Handle(request, CancellationToken.None);
 
@@ -92,7 +93,7 @@ namespace Infrastructure.Tests.Handlers
             var request = _fixture.Create<LoadCharacterRequest>();
 
             // Act
-            A.CallTo(() => updateApplicationState.FakedObject.UpdateCharacterAsync(request.Character)).Returns(false);
+            A.CallTo(() => updateApplicationState.FakedObject.SetCharacterAsync(request.Character)).Returns(false);
 
             _ = await handler.Handle(request, CancellationToken.None);
 

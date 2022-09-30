@@ -2,7 +2,6 @@
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
-using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 using System.Collections.ObjectModel;
 
 namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
@@ -13,16 +12,13 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
         private bool _initialised = false;
         private readonly IRepository<Character> _repository;
         private readonly ITemplateService _templateCharacter;
-        private readonly IMediator _mediator;
         private readonly ObservableCollection<ObservableCharacter> _characters = new();
 
         public CharacterService(IRepository<Character> repository
-            , ITemplateService templateCharacter
-            , IMediator mediator)
+            , ITemplateService templateCharacter)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _templateCharacter = templateCharacter ?? throw new ArgumentNullException(nameof(templateCharacter));
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         public Task<bool> DeleteAsync(ObservableCharacter character)
@@ -57,10 +53,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
         {
             var character = new ObservableCharacter(name, role);
 
-            if (await UpdateCharacter(character))
-            {
-                await SaveAsync(character);
-            }
+            await UpdateCharacterFromTemplate(character);
 
             return character;
         }
@@ -76,11 +69,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             {
                 try
                 {
-                    var observableCharacter = ObservableCharacter.New(character);
-                    if (await UpdateCharacter(observableCharacter))
-                    {
-                        _characters.Add(observableCharacter);
-                    }
+                    _characters.Add(ObservableCharacter.New(character));
                 }
                 catch (Exception ex)
                 {
@@ -91,16 +80,25 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             _initialised = true;
         }
 
-        public async Task<bool> UpdateAsync(ObservableCharacter character)
+        public async Task UpdateCharacterFromTemplate(ObservableCharacter character)
         {
-            if (await UpdateCharacter(character))
+            var _updated = false;
+            var template = await _templateCharacter.Get(character.Class);
+            foreach (var attributeValue in template.Attributes)
+            {
+                if (!character.Attributes.ContainsKey(attributeValue.Key))
+                {
+                    var attribute = ObservableAttribute.New(attributeValue.Key, attributeValue.Value.Value, attributeValue.Value.MaxValue);
+                    attribute.SetCurrentValues(character.Features);
+                    character.Attributes.Add(attributeValue.Key, attribute);
+                    _updated = true;
+                }
+            }
+
+            if (_updated)
             {
                 await SaveAsync(character);
             }
-            return true;
         }
-
-        private async Task<bool> UpdateCharacter(ObservableCharacter character) =>
-            await _mediator.Send(UpdateCharacterRequest.With(character, await _templateCharacter.Get(character.Class)));
     }
 }

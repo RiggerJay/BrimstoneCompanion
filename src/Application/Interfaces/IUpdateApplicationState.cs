@@ -1,9 +1,10 @@
 ﻿using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
+using System.ComponentModel;
 
 namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 {
-    public interface IUpdateApplicationState
+    public interface IUpdateApplicationState : INotifyPropertyChanged, INotifyPropertyChanging
     {
-        Task<bool> UpdateCharacterAsync(ObservableCharacter character);
+        Task<bool> SetCharacterAsync(ObservableCharacter character);
     }
 }
