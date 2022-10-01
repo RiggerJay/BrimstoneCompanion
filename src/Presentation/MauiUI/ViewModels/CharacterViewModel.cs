@@ -113,7 +113,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             var keyword = await _mediator.Send(NavRequest.Keyword());
             if (!string.IsNullOrWhiteSpace(keyword))
             {
-                AddKeyword(ObservableKeyword.New(keyword, true));
+                var word = ObservableKeyword.New(keyword, true);
+                Character.Keywords.Add(word);
+                Keywords.Add(word);
                 await SaveCharacterAsync();
             }
         }
@@ -131,6 +133,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 && Character.Keywords.Contains(keyword))
             {
                 Character.Keywords.Remove(keyword);
+                Keywords.Remove(keyword);
                 await SaveCharacterAsync();
             }
         }
@@ -148,7 +151,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (message.AddedKeyword)
             {
-                AddKeyword(message.Keyword);
+                Keywords.Add(message.Keyword);
             }
         }
 
@@ -191,12 +194,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 Keywords.Add(keyword);
             }
-        }
-
-        private void AddKeyword(ObservableKeyword observableKeyword)
-        {
-            Character.Keywords.Add(observableKeyword);
-            Keywords.Add(observableKeyword);
         }
 
         private void AttributesChanged()
