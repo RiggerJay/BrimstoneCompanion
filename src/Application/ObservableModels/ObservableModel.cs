@@ -19,7 +19,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         protected TObservedModel Model => _model;
 
-        public bool SetProperty<TModel, T>(T oldValue, T newValue, TModel model, Action<TModel, T> callback, Action action, [CallerMemberName] string? propertyName = null)
+        protected bool SetProperty<TModel, T>(T oldValue, T newValue, TModel model, Action<TModel, T> callback, Action action, [CallerMemberName] string? propertyName = null)
             where TModel : class
         {
             var result = SetProperty(oldValue, newValue, model, callback, propertyName);
@@ -30,7 +30,7 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
             return result;
         }
 
-        public bool SetProperty<T>(ref T oldValue, T newValue, Action action, [CallerMemberName] string? propertyName = null)
+        protected bool SetProperty<T>(ref T oldValue, T newValue, Action action, [CallerMemberName] string? propertyName = null)
         {
             var result = SetProperty(ref oldValue, newValue, propertyName);
             if (result)

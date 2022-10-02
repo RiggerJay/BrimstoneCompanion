@@ -8,6 +8,7 @@ using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Messages;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
+using static Android.Content.ClipData;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -19,6 +20,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly ITextResource _textResource;
         private readonly IApplicationState _state;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
+        private readonly IList<string> _keys = new List<string>();
 
         private bool _saved = false;
 
@@ -73,8 +75,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public IList<string> Properties { get; } = new List<string>();
 
-        public List<string> Keys { get; } = new List<string>();
-
         public string Keyword
         {
             get => _keyword;
@@ -96,12 +96,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (CanEnterKeyword())
             {
-                Feature.Keywords.Add(ObservableKeyword.New(Keyword.Trim(), false));
+                var keyword = ObservableKeyword.New(Keyword.Trim(), false);
+                Feature.Keywords.Add(keyword);
+                _messenger.Send(KeywordMessage.Added(keyword));
                 Keyword = string.Empty;
             }
         }
 
-        private bool CanEnterKeyword() => !string.IsNullOrWhiteSpace(_keyword);
+        private bool CanEnterKeyword()
+            => !string.IsNullOrWhiteSpace(_keyword);
 
         [RelayCommand(CanExecute = nameof(CanEnterProperty))]
         private void EnterProperty()
@@ -110,6 +113,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 && int.TryParse(Value, out int value))
             {
                 Feature.AddProperty(_properties[SelectedProperty], value);
+                AddKey(_properties[SelectedProperty]);
 
                 Value = string.Empty;
                 SelectedProperty = string.Empty;
@@ -122,11 +126,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         [RelayCommand]
         public void DeleteProperty(ObservableProp prop)
-            => Feature.Properties.Remove(prop);
+        {
+            Feature.Properties.Remove(prop);
+            AddKey(prop.Key);
+        }
 
         [RelayCommand]
-        public void DeleteKeyword(ObservableKeyword keyword) =>
+        public void DeleteKeyword(ObservableKeyword keyword)
+        {
             Feature.Keywords.Remove(keyword);
+            _messenger.Send(KeywordMessage.Remove(keyword));
+        }
 
         [RelayCommand]
         public async Task SaveAndClose()
@@ -135,18 +145,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             Feature.Value = int.TryParse(Cost, out int value) ? value : 0;
 
+            _state.Character.CurrentWeight -= _backup.Weight;
+            _state.Character.CurrentWeight += Feature.Weight;
+
             EnterProperty();
 
             EnterKeyword();
 
-            Keys.AddRange(Feature.Properties.Select(x => x.Key));
-
-            UpdateProperties(Keys);
-
-            //TODO: update this
-            /*_state.Character.UpdateKeywords();
-            _state.Character.WeightChanged();*/
             await _mediator.Send(SaveCharacterRequest.Save());
+
+            await _mediator.Send(RefreshAttributesRequest.With(_keys));
+
             _saved = true;
             await _mediator.Send(NavRequest.Close());
         }
@@ -179,14 +188,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
         }
 
-        private void UpdateProperties(IEnumerable<string> keys)
-        {
-            foreach (var key in keys)
-            {
-                //_state.Character.ValueChanged(key);
-            }
-        }
-
         public void Reset()
         {
             if (_saved)
@@ -194,29 +195,38 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 return;
             }
             SaveState(_backup, _feature);
-            _feature.PropertiesChanged();
-            //_state.Character.WeightChanged();
         }
 
-        public static void SaveState(ObservableFeature from, ObservableFeature to)
+        public void SaveState(ObservableFeature from, ObservableFeature to)
         {
             to.Name = from.Name;
             to.Details = from.Details;
             to.Quantity = from.Quantity;
             to.Value = from.Value;
+            to.Weight = from.Weight;
             to.FeatureType = from.FeatureType;
             to.NextAdventure = from.NextAdventure;
 
+            foreach (var item in to.Properties)
+            {
+                AddKey(item.Key);
+            }
             to.Properties.Clear();
             foreach (var item in from.Properties)
             {
                 to.AddProperty(item.Key, item.Value);
+                AddKey(item.Key);
             }
 
+            foreach (var item in to.Keywords)
+            {
+                _messenger.Send(KeywordMessage.Remove(item));
+            }
             to.Keywords.Clear();
             foreach (var item in from.Keywords)
             {
                 to.AddKeyword(item.Word);
+                _messenger.Send(KeywordMessage.Added(item));
             }
         }
 
@@ -227,11 +237,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 Weight = feature.Weight == 0 ? string.Empty : feature.Weight.ToString();
                 Cost = feature.Value == 0 ? string.Empty : feature.Value.ToString();
 
-                Keys.Clear();
-
-                Keys.AddRange(_feature.Properties.Select(x => x.Key));
-
                 SaveState(_feature, _backup);
+            }
+        }
+
+        private void AddKey(string key)
+        {
+            if (!_keys.Contains(key))
+            {
+                _keys.Add(key);
             }
         }
     }

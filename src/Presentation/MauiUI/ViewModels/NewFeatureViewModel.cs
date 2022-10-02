@@ -58,6 +58,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public IList<string> Properties { get; } = new List<string>();
 
+        public IList<string> PropertiesChanged { get; } = new List<string>();
+
         public string Keyword
         {
             get => _keyword;
@@ -93,7 +95,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 && int.TryParse(Value, out int value))
             {
                 Feature.AddProperty(_properties[SelectedProperty], value);
-
+                PropertiesChanged.Add(_properties[SelectedProperty]);
                 Value = string.Empty;
                 SelectedProperty = string.Empty;
             }

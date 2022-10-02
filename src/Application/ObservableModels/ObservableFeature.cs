@@ -73,8 +73,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels
 
         public ObservableCollection<ObservableKeyword> Keywords { get; } = new();
 
-        public void PropertiesChanged() => OnPropertyChanged(nameof(Properties));
-
         private void Properties_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs args)
         {
             switch (args.Action)

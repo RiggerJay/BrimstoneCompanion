@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
-using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Messages;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 
@@ -35,8 +34,6 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
                 var attribute = _applicationState.Character.Attributes.First(x => x.Key == prop.Key);
 
                 attribute.SetCurrentValues(_applicationState.Character.Features);
-
-                _messenger.Send(PropertyChangedMessage.With(prop.Key));
             }
 
             return Task.FromResult(true);

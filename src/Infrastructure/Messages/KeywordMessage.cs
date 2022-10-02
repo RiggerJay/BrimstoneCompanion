@@ -15,5 +15,7 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Messages
         }
 
         public static KeywordMessage Added(ObservableKeyword keyword) => new(keyword, true);
+
+        public static KeywordMessage Remove(ObservableKeyword keyword) => new(keyword, false);
     }
 }

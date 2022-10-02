@@ -29,7 +29,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             _state.PropertyChanged += State_PropertyChanged;
 
             _messenger.Register<KeywordMessage>(this, KeywordMessageHandle);
-            _messenger.Register<PropertyChangedMessage>(this, PropertyChangedMessageHandle);
 
             Keywords = new ObservableCollection<ObservableKeyword>();
             RefillKeywords();
@@ -149,15 +148,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         private void KeywordMessageHandle(object recipient, KeywordMessage message)
         {
-            if (message.AddedKeyword)
+            if (message.AddedKeyword
+                && !Keywords.Contains(message.Keyword))
             {
                 Keywords.Add(message.Keyword);
             }
-        }
-
-        private void PropertyChangedMessageHandle(object recipient, PropertyChangedMessage message)
-        {
-            OnPropertyChanged(message.Name);
+            else
+            {
+                Keywords.Remove(message.Keyword);
+            }
         }
 
         private ObservableAttribute GetAttribute(string name)
