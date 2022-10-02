@@ -17,7 +17,7 @@ namespace RedSpartan.BrimstoneCompanion.Domain
         public const string COMBAT = "CBT";
         public const string INITIATIVE = "INT";
         public const string MELEE = "MLE";
-        public const string RANGE = "RNG";        
+        public const string RANGE = "RNG";
         public const string HEALTH = "HLT";
         public const string SANITY = "SAN";
         public const string DEFENCE = "DEF";
@@ -25,6 +25,8 @@ namespace RedSpartan.BrimstoneCompanion.Domain
         public const string DOLLARS = "DLR";
         public const string DARKSTONE = "DKS";
         public const string SIDEBAG = "BAG";
+        public const string ARMOUR = "ARM";
+        public const string SPIRITARMOUR = "SAR";
 
         public static IList<string> Strings { get; } = new Lazy<IList<string>>(StringValues()).Value;
 

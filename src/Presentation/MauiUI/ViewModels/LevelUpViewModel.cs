@@ -42,6 +42,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (await _mediator.Send(LevelUpCharacterRequest.With(CurrentXP, CurrentXP.Value - RequiredXP)))
             {
+                await _mediator.Send(SaveCharacterRequest.Save());
                 await _mediator.Send(NavRequest.Close(true));
             }
         }

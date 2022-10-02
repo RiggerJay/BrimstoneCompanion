@@ -120,6 +120,9 @@
   <data name="AGI" xml:space="preserve">
     <value>Agility</value>
   </data>
+  <data name="ARM" xml:space="preserve">
+    <value>Armour</value>
+  </data>
   <data name="BAG" xml:space="preserve">
     <value>Sidebag</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="SAN" xml:space="preserve">
     <value>Sanity</value>
+  </data>
+  <data name="SAR" xml:space="preserve">
+    <value>Spirit Armour</value>
   </data>
   <data name="SPT" xml:space="preserve">
     <value>Spirit</value>

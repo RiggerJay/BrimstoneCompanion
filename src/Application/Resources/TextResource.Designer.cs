@@ -70,6 +70,15 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Armour.
+        /// </summary>
+        public static string ARM {
+            get {
+                return ResourceManager.GetString("ARM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sidebag.
         /// </summary>
         public static string BAG {
@@ -228,6 +237,15 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         public static string SAN {
             get {
                 return ResourceManager.GetString("SAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spirit Armour.
+        /// </summary>
+        public static string SAR {
+            get {
+                return ResourceManager.GetString("SAR", resourceCulture);
             }
         }
         

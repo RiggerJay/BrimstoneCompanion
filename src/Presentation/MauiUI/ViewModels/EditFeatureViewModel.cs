@@ -8,7 +8,6 @@ using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Messages;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
-using static Android.Content.ClipData;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 {
@@ -165,6 +164,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
             {
+                //TODO: Create handler for Feature removal
                 _messenger.Send(RemoveFeature.With(Feature));
                 await _mediator.Send(SaveCharacterRequest.Save());
                 await _mediator.Send(NavRequest.Close());

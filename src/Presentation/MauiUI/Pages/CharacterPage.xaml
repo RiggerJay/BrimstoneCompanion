@@ -636,6 +636,24 @@
                 </Frame.GestureRecognizers>
             </Frame>
 
+            <Frame
+                Style="{StaticResource SmallRedFrame}"
+                IsVisible="{Binding ARM.HasCurrentValue}"
+                CornerRadius="20"
+                HeightRequest="30"
+                WidthRequest="30"
+                Padding="0"
+                Margin="-5"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                Grid.Row="12"
+                Grid.Column="6"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding ARM.CurrentValue, StringFormat='+{0}'}"
+                    Style="{StaticResource SmallRedBodyLabel}" />
+            </Frame>
+
             <Label
                 Text="Sanity"
                 Style="{StaticResource BaseTitleLabel}"
@@ -694,6 +712,24 @@
                         Command="{Binding IncrementAttributeCommand}"
                         CommandParameter="{Binding WIL}" />
                 </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame
+                Style="{StaticResource SmallBlueFrame}"
+                IsVisible="{Binding SAR.HasCurrentValue}"
+                CornerRadius="20"
+                HeightRequest="30"
+                WidthRequest="30"
+                Padding="0"
+                Margin="-5"
+                VerticalOptions="Start"
+                HorizontalOptions="End"
+                Grid.Row="12"
+                Grid.Column="17"
+                Grid.ColumnSpan="4">
+                <Label
+                    Text="{Binding SAR.CurrentValue, StringFormat='+{0}'}"
+                    Style="{StaticResource SmallBlueBodyLabel}" />
             </Frame>
 
             <!-- Eighth Row-->

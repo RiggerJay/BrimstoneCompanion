@@ -66,6 +66,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public ObservableAttribute DLR => GetAttribute(AttributeNames.DOLLARS);
         public ObservableAttribute DKS => GetAttribute(AttributeNames.DARKSTONE);
+        public ObservableAttribute ARM => GetAttribute(AttributeNames.ARMOUR);
+        public ObservableAttribute SAR => GetAttribute(AttributeNames.SPIRITARMOUR);
 
         #endregion Observable Attribute
 
@@ -149,11 +151,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private void KeywordMessageHandle(object recipient, KeywordMessage message)
         {
             if (message.AddedKeyword
-                && !Keywords.Contains(message.Keyword))
+                && !Keywords.Any(x => x.Word == message.Keyword.Word))
             {
                 Keywords.Add(message.Keyword);
             }
-            else
+            else if(!message.AddedKeyword)
             {
                 Keywords.Remove(message.Keyword);
             }
