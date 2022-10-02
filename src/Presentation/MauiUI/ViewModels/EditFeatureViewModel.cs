@@ -97,7 +97,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             {
                 var keyword = ObservableKeyword.New(Keyword.Trim(), false);
                 Feature.Keywords.Add(keyword);
-                _messenger.Send(KeywordMessage.Added(keyword));
                 Keyword = string.Empty;
             }
         }
@@ -134,7 +133,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         public void DeleteKeyword(ObservableKeyword keyword)
         {
             Feature.Keywords.Remove(keyword);
-            _messenger.Send(KeywordMessage.Remove(keyword));
         }
 
         [RelayCommand]
@@ -155,6 +153,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             await _mediator.Send(RefreshAttributesRequest.With(_keys));
 
+            _messenger.Send(KeywordMessage.Changed());
+
             _saved = true;
             await _mediator.Send(NavRequest.Close());
         }
@@ -164,11 +164,15 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         {
             if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", "You will lose this Feature for good.")))
             {
-                //TODO: Create handler for Feature removal
-                _messenger.Send(RemoveFeature.With(Feature));
-                await _mediator.Send(SaveCharacterRequest.Save());
-                await _mediator.Send(NavRequest.Close());
+                await RemoveFeatureAsync();
             }
+        }
+
+        private async Task RemoveFeatureAsync()
+        {
+            await _mediator.Send(RemoveFeatureRequest.With(Feature));
+            await _mediator.Send(SaveCharacterRequest.Save());
+            await _mediator.Send(NavRequest.Close());
         }
 
         [RelayCommand]
@@ -181,10 +185,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             if (await _mediator.Send(BoolAlertRequest.WithTitleAndMessage("Are you sure?", $"You will sell this Feature for ${Feature.Value}.")))
             {
-                _messenger.Send(RemoveFeature.With(Feature));
-                //_state.Character.UpdateMoney(Feature.Value);
-                await _mediator.Send(SaveCharacterRequest.Save());
-                await _mediator.Send(NavRequest.Close());
+                await _mediator.Send(UpdateMoneyRequest.WithValue(Feature.Value.Value));
+                await RemoveFeatureAsync();
             }
         }
 
@@ -218,15 +220,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 AddKey(item.Key);
             }
 
-            foreach (var item in to.Keywords)
-            {
-                _messenger.Send(KeywordMessage.Remove(item));
-            }
             to.Keywords.Clear();
             foreach (var item in from.Keywords)
             {
                 to.AddKeyword(item.Word);
-                _messenger.Send(KeywordMessage.Added(item));
             }
         }
 

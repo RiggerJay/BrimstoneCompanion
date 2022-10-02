@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Messages;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
+using RedSpartan.BrimstoneCompanion.Infrastructure.Services;
 
 namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 {
@@ -22,11 +24,6 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
         {
             _applicationState.Character.Features.Add(request.Feature);
 
-            foreach (var keyword in request.Feature.Keywords)
-            {
-                _messenger.Send(KeywordMessage.Added(keyword));
-            }
-
             _applicationState.Character.CurrentWeight += request.Feature.Weight;
 
             foreach (var prop in request.Feature.Properties)
@@ -34,7 +31,20 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
                 var attribute = _applicationState.Character.Attributes.First(x => x.Key == prop.Key);
 
                 attribute.SetCurrentValues(_applicationState.Character.Features);
+
+                if(attribute.Key == AttributeNames.SIDEBAG
+                    && _applicationState.Character.Tokens.Count > attribute.CurrentMaxValue)
+                {
+                    var count = _applicationState.Character.Tokens.Count - attribute.CurrentMaxValue;
+                    while (count != 0)
+                    {
+                        _applicationState.Character.Tokens.RemoveAt(_applicationState.Character.Tokens.Count - 1);
+                        count--;
+                    }
+                }
             }
+
+            _messenger.Send(KeywordMessage.Changed());
 
             return Task.FromResult(true);
         }

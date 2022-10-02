@@ -4,18 +4,13 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Messages
 {
     public class KeywordMessage
     {
-        public bool AddedKeyword { get; }
+        public bool KeywordsChanged { get; }
 
-        public ObservableKeyword Keyword { get; }
-
-        private KeywordMessage(ObservableKeyword keyword, bool keywordAdded)
+        private KeywordMessage(bool keywordsChanged)
         {
-            Keyword = keyword;
-            AddedKeyword = keywordAdded;
+            KeywordsChanged = keywordsChanged;
         }
 
-        public static KeywordMessage Added(ObservableKeyword keyword) => new(keyword, true);
-
-        public static KeywordMessage Remove(ObservableKeyword keyword) => new(keyword, false);
+        public static KeywordMessage Changed() => new(true);
     }
 }

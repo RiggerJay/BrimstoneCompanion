@@ -150,15 +150,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         private void KeywordMessageHandle(object recipient, KeywordMessage message)
         {
-            if (message.AddedKeyword
-                && !Keywords.Any(x => x.Word == message.Keyword.Word))
-            {
-                Keywords.Add(message.Keyword);
-            }
-            else if(!message.AddedKeyword)
-            {
-                Keywords.Remove(message.Keyword);
-            }
+            RefillKeywords();
         }
 
         private ObservableAttribute GetAttribute(string name)
@@ -189,9 +181,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             Keywords.Clear();
             foreach (var keyword in Character.Keywords)
             {
-                Keywords.Add(keyword);
+                AddKeyword(keyword);
             }
             foreach (var keyword in Character.Features.SelectMany(x => x.Keywords))
+            {
+                AddKeyword(keyword);
+            }
+        }
+
+        private void AddKeyword(ObservableKeyword keyword)
+        {
+            if (!Keywords.Any(x => x.Word == keyword.Word))
             {
                 Keywords.Add(keyword);
             }

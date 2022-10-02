@@ -1,10 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
-using RedSpartan.BrimstoneCompanion.Infrastructure.Messages;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,22 +13,17 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly IApplicationState _state;
-        private readonly IMessenger _messenger;
 
         [ObservableProperty]
         private ObservableFeature? _selectedFeature;
 
         public FeaturesViewModel(IMediator mediator
-            , IApplicationState state
-            , IMessenger messenger)
+            , IApplicationState state)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _state = state ?? throw new ArgumentNullException(nameof(state));
-            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
             _state.PropertyChanged += State_PropertyChanged;
-
-            _messenger.Register<RemoveFeature>(this, HandleRemoveFeature);
         }
 
         public ObservableCollection<ObservableFeature> Features => Character.Features;
@@ -80,11 +73,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
                 OnPropertyChanged(nameof(CharacterLoaded));
                 OnPropertyChanged(nameof(Features));
             }
-        }
-
-        private void HandleRemoveFeature(object recipient, RemoveFeature message)
-        {
-            Features.Remove(message.Feature);
         }
     }
 }
