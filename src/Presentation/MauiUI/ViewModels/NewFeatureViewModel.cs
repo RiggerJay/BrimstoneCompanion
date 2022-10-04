@@ -13,7 +13,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
     {
         private readonly IMediator _mediator;
         private readonly ITextResource _textResource;
-        private readonly IApplicationState _state;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         [ObservableProperty]
@@ -33,12 +32,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private string _keyword;
 
         public NewFeatureViewModel(IMediator mediator
-            , ITextResource textResource
-            , IApplicationState state)
+            , ITextResource textResource)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _textResource = textResource ?? throw new ArgumentNullException(nameof(textResource));
-            _state = state ?? throw new ArgumentNullException(nameof(state));
             UpdateProperties();
         }
 
@@ -129,7 +126,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
             EnterKeyword();
 
-            await _mediator.Send(AddFeatureRequest.With(Feature));
+            await _mediator.Send(CreateFeatureRequest.With(Feature));
 
             await _mediator.Send(SaveCharacterRequest.Save());
 

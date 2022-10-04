@@ -20,7 +20,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
         private readonly IApplicationState _state;
         private readonly IDictionary<string, string> _properties = new Dictionary<string, string>();
         private readonly IList<string> _keys = new List<string>();
-
         private bool _saved = false;
 
         [ObservableProperty]
