@@ -4,7 +4,6 @@ using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.Domain;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Messages;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Requests;
-using RedSpartan.BrimstoneCompanion.Infrastructure.Services;
 
 namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 {
