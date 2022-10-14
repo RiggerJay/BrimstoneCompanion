@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 
@@ -6,13 +7,19 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 {
     public class LocalTemplateService : ITemplateService
     {
+        private readonly ILogger _logger;
+        public LocalTemplateService(ILogger logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         public async Task<Template> Get(string role)
         {
             var json = await LoadRoleAsset("default");
             return JsonConvert.DeserializeObject<Template>(json) ?? new Template();
         }
 
-        private static async Task<string> LoadRoleAsset(string role)
+        private async Task<string> LoadRoleAsset(string role)
         {
             try
             {
@@ -23,9 +30,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
             }
             catch (Exception ex)
             {
-                return "";
+                _logger.LogError(ex, "Failed to load role asset");
             }
-
+            return "";
         }
     }
 }

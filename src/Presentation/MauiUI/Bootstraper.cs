@@ -34,6 +34,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.Services.AddSingleton(FileSystem.Current);
 
             mauiAppBuilder.Services.AddTransient<TabAppShell>();
+            mauiAppBuilder.Services.AddTransient<ExceptionPage>();
 
             mauiAppBuilder.RegisterPage<CharacterPage, CharacterViewModel>(NavigationKeys.CHARACTER);
             mauiAppBuilder.RegisterPage<CharacterSelectorPage, CharacterSelectorViewModel>(NavigationKeys.CHARACTER_SELECTOR);

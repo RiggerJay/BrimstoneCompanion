@@ -12,7 +12,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Converters
             {
                 return e.ToString();
             }
-            return null;
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

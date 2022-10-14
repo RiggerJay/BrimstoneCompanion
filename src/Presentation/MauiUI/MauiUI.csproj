@@ -9,6 +9,7 @@
 		<RootNamespace>RedSpartan.BrimstoneCompanion.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
+		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
@@ -75,6 +76,11 @@
 	  <PackageReference Include="CommunityToolkit.Maui" Version="1.2.0" />
 	  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	  <PackageReference Include="Sentry.Maui" Version="3.22.0-preview.3" />
+	  <PackageReference Include="Serilog" Version="2.12.0" />
+	  <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+	  <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+	  <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00947" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -83,7 +89,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\BasicPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\EditFeaturePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ExceptionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\NewFeaturePage.xaml">
@@ -191,6 +203,24 @@
 	  <Compile Update="Popups\UpdateAttributePopup.xaml.cs">
 	    <DependentUpon>UpdateAttributePopup.xaml</DependentUpon>
 	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+	  <PackageReference Include="Serilog.Sinks.Xamarin">
+	    <Version>1.0.0-dev-00104-fd287b7</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-ios'">
+	  <PackageReference Include="Serilog.Sinks.Xamarin">
+	    <Version>1.0.0-dev-00104-fd287b7</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">
+	  <PackageReference Include="Serilog.Sinks.Xamarin">
+	    <Version>1.0.0-dev-00104-fd287b7</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 </Project>

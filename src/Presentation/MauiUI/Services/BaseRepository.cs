@@ -41,7 +41,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine(ex.Message);
-                    File.Delete(file);
                 }
             }
 

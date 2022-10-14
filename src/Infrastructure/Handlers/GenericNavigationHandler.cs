@@ -18,9 +18,19 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Handlers
 
         public async Task<TResponse> Handle(NavRequest<TResponse> request, CancellationToken cancellationToken)
         {
+            if(request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
             if (request.Route == NavigationKeys.BACK)
             {
                 _service.Pop(request.Response);
+
+                if(request.Response == null)
+                {
+                    throw new NullReferenceException("Response is Null");
+                }
+
                 return request.Response;
             }
             else if (_appRouting.IsPopup(request.Route))

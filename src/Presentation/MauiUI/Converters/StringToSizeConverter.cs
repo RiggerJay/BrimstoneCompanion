@@ -6,7 +6,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string str = value.ToString();
+            string str = value?.ToString() ?? string.Empty;
             _ = int.TryParse(parameter?.ToString() ?? string.Empty, out int len);
 
             len += str.Length;

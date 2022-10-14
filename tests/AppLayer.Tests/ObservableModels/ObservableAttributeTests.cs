@@ -4,7 +4,6 @@ using AutoFixture.AutoFakeItEasy;
 using FluentAssertions;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
-using System.Threading;
 
 namespace AppLayer.Tests.ObservableModels
 {
@@ -55,7 +54,7 @@ namespace AppLayer.Tests.ObservableModels
             // Arrange
 
             // Act
-            Action action = () => { ObservableAttribute.New(_key, null, _features); };
+            Action action = () => ObservableAttribute.New(_key, null, _features);
 
             // Assert
             action.Should().ThrowExactly<ArgumentNullException>();

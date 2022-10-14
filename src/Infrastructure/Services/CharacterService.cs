@@ -8,7 +8,6 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
 {
     public class CharacterService : ICharacterService
     {
-        private bool _initialising = false;
         private bool _initialised = false;
         private readonly IRepository<Character> _repository;
         private readonly ITemplateService _templateCharacter;
@@ -33,13 +32,20 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
 
         public async Task<ObservableCollection<ObservableCharacter>> GetAllAsync()
         {
-            while (_initialising)
+            foreach (var character in await _repository.GetAsync())
             {
-                await Task.Delay(100);
-            }
-            if (_characters.Count == 0)
-            {
-                await InitialiseAsync();
+                try
+                {
+                    var observableCharacter = ObservableCharacter.New(character);
+                    if (!_characters.Any(x => x.Id == observableCharacter.Id))
+                    {
+                        _characters.Add(observableCharacter);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
             }
             return _characters;
         }
@@ -56,28 +62,6 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
             await UpdateCharacterFromTemplate(character);
 
             return character;
-        }
-
-        public async Task InitialiseAsync()
-        {
-            if (_initialised)
-            {
-                return;
-            }
-            _initialising = true;
-            foreach (var character in await _repository.GetAsync())
-            {
-                try
-                {
-                    _characters.Add(ObservableCharacter.New(character));
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
-                }
-            }
-            _initialising = false;
-            _initialised = true;
         }
 
         public async Task UpdateCharacterFromTemplate(ObservableCharacter character)

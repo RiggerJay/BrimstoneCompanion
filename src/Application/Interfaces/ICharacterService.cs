@@ -11,8 +11,6 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Interfaces
 
         Task<ObservableCollection<ObservableCharacter>> GetAllAsync();
 
-        Task InitialiseAsync();
-
         Task<ObservableCharacter> CreateAsync(string name, string role);
 
         Task UpdateCharacterFromTemplate(ObservableCharacter character);
