@@ -1,5 +1,4 @@
-﻿using MediatR;
-using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
+﻿using RedSpartan.BrimstoneCompanion.AppLayer.Interfaces;
 using RedSpartan.BrimstoneCompanion.AppLayer.ObservableModels;
 using RedSpartan.BrimstoneCompanion.Domain.Models;
 using System.Collections.ObjectModel;
@@ -8,7 +7,6 @@ namespace RedSpartan.BrimstoneCompanion.Infrastructure.Services
 {
     public class CharacterService : ICharacterService
     {
-        private bool _initialised = false;
         private readonly IRepository<Character> _repository;
         private readonly ITemplateService _templateCharacter;
         private readonly ObservableCollection<ObservableCharacter> _characters = new();

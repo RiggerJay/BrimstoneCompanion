@@ -8,6 +8,7 @@ using MediatR;
 using CommunityToolkit.Mvvm.Messaging;
 using RedSpartan.BrimstoneCompanion.Infrastructure;
 using RedSpartan.BrimstoneCompanion.Infrastructure.Services;
+using System.Reflection;
 
 namespace RedSpartan.BrimstoneCompanion.MauiUI
 {
@@ -15,8 +16,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
     {
         internal static MauiAppBuilder ConfigureApplication(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddMediatR(typeof(NavigationKeys));
-
             mauiAppBuilder.Services.AddSingleton<INavigationService, MauiNavigationService>();
             mauiAppBuilder.Services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
             mauiAppBuilder.Services.AddSingleton<IAlertService, MauiNavigationService>();
@@ -53,6 +52,8 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI
             mauiAppBuilder.RegisterPopup<ExportPopup, ExportViewModel>(NavigationKeys.CHARACTER_EXPORT);
             mauiAppBuilder.RegisterPopup<ImportPopup, ImportViewModel>(NavigationKeys.CHARACTER_IMPORT);
             mauiAppBuilder.RegisterPopup<KeywordPopup, KeywordViewModel>(NavigationKeys.KEYWORD);
+
+            mauiAppBuilder.Services.AddMediatR(typeof(NavigationKeys).GetTypeInfo().Assembly);
 
             return mauiAppBuilder;
         }

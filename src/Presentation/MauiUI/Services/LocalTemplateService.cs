@@ -7,10 +7,10 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
 {
     public class LocalTemplateService : ITemplateService
     {
-        private readonly ILogger _logger;
-        public LocalTemplateService(ILogger logger)
+        //private readonly ILogger _logger;
+        public LocalTemplateService()
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            //_logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         public async Task<Template> Get(string role)
@@ -30,7 +30,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to load role asset");
+                //_logger.LogError(ex, "Failed to load role asset");
             }
             return "";
         }
