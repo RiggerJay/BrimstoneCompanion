@@ -87,6 +87,9 @@
 
     <Style TargetType="Editor">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Dark}}" />
+        <Setter Property="IsTextPredictionEnabled" Value="True" />
+        <Setter Property="FontAutoScalingEnabled" Value="True" />
+        <Setter Property="IsSpellCheckEnabled" Value="True" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
@@ -107,6 +110,8 @@
 
     <Style TargetType="Entry">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource Dark}}" />
+        <Setter Property="IsTextPredictionEnabled" Value="True" />
+        <Setter Property="IsSpellCheckEnabled" Value="True" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />

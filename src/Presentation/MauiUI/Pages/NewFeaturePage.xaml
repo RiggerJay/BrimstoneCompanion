@@ -68,8 +68,7 @@
                     Text="{Binding Feature.Details}"
                     HeightRequest="100"
                     Keyboard="Chat"
-                    Placeholder="Details"
-                    HorizontalOptions="FillAndExpand" />
+                    Placeholder="Enter Details" />
             </Frame>
 
             <Label
