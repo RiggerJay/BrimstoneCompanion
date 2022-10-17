@@ -11,11 +11,11 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CreateCommand))]
-        private string _name;
+        private string _name = string.Empty;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(CreateCommand))]
-        private string _class;
+        private string _class = string.Empty;
 
         public NewCharacterViewModel(IMediator mediator)
         {
