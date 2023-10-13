@@ -259,6 +259,15 @@ namespace RedSpartan.BrimstoneCompanion.AppLayer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strike.
+        /// </summary>
+        public static string STK {
+            get {
+                return ResourceManager.GetString("STK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strength.
         /// </summary>
         public static string STR {

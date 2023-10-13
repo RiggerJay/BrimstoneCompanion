@@ -73,6 +73,18 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value + (addition ? 1 : -1)));
         }
 
+
+        [RelayCommand]
+        private async Task IncrementAndClose(bool addition = true)
+        {
+            if (Attribute == null)
+            {
+                return;
+            }
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value + (addition ? 1 : -1)));
+            await _mediator.Send(NavRequest.Close(true));
+        }
+
         [RelayCommand]
         private async Task IncrementMaxValue(bool addition = true)
         {

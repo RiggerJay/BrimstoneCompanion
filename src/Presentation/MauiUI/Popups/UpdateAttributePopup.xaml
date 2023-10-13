@@ -15,9 +15,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -28,7 +32,7 @@
                 WidthRequest="300"
                 Grid.Row="0"
                 Grid.Column="0"
-                Grid.ColumnSpan="2">
+                Grid.ColumnSpan="5">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span
@@ -44,42 +48,116 @@
                    Padding="5,0"
                    Grid.Row="1"
                    Grid.Column="0"
-                   Grid.ColumnSpan="2">
+                   Grid.ColumnSpan="5">
                 <Entry
                     Text="{Binding UpdateValue}"
                     Keyboard="Numeric"
                     Placeholder="Value" />
             </Frame>
 
-            <Button
-                Text="-"
+            <Button Text="-"
                 Command="{Binding UpdateAttributeCommand}"
                 Style="{StaticResource RedIncrementer}"
                 Grid.Row="2"
                 Grid.Column="0">
                 <Button.CommandParameter>
-                    <s:Boolean>False</s:Boolean>
+                    <s:Int32>-1</s:Int32>
                 </Button.CommandParameter>
             </Button>
 
-            <Button
-                Text="+"
+            <Button Text="5"
+                Command="{Binding UpdateAttributeCommand}"
+                Style="{StaticResource RedIncrementer}"
+                Grid.Row="2"
+                Grid.Column="1">
+                <Button.CommandParameter>
+                    <s:Int32>-5</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+            <Button Text="10"
+                    Command="{Binding UpdateAttributeCommand}"
+                    Style="{StaticResource RedIncrementer}"
+                    Grid.Row="2"
+                    Grid.Column="2">
+                <Button.CommandParameter>
+                    <s:Int32>-10</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+            <Button Text="50"
+                    Command="{Binding UpdateAttributeCommand}"
+                    Style="{StaticResource RedIncrementer}"
+                    Grid.Row="2"
+                    Grid.Column="3">
+                <Button.CommandParameter>
+                    <s:Int32>-50</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+            <Button Text="100"
+                    Command="{Binding UpdateAttributeCommand}"
+                    Style="{StaticResource RedIncrementer}"
+                    Grid.Row="2"
+                    Grid.Column="4">
+                <Button.CommandParameter>
+                    <s:Int32>-100</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button Text="+"
                 Command="{Binding UpdateAttributeCommand}"
                 Style="{StaticResource GreenIncrementer}"
-                Grid.Row="2"
-                Grid.Column="3">
+                Grid.Row="3"
+                Grid.Column="0">
                 <Button.CommandParameter>
-                    <s:Boolean>True</s:Boolean>
+                    <s:Int32>1</s:Int32>
                 </Button.CommandParameter>
             </Button>
 
-            <Button
-                Text="Overwrite"
+            <Button Text="5"
+                Command="{Binding UpdateAttributeCommand}"
+                Style="{StaticResource GreenIncrementer}"
+                Grid.Row="3"
+                Grid.Column="1">
+                <Button.CommandParameter>
+                    <s:Int32>5</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button Text="10"
+                Command="{Binding UpdateAttributeCommand}"
+                Style="{StaticResource GreenIncrementer}"
+                Grid.Row="3"
+                Grid.Column="2">
+                <Button.CommandParameter>
+                    <s:Int32>10</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button Text="50"
+                Command="{Binding UpdateAttributeCommand}"
+                Style="{StaticResource GreenIncrementer}"
+                Grid.Row="3"
+                Grid.Column="3">
+                <Button.CommandParameter>
+                    <s:Int32>50</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button Text="100"
+                Command="{Binding UpdateAttributeCommand}"
+                Style="{StaticResource GreenIncrementer}"
+                Grid.Row="3"
+                Grid.Column="4">
+                <Button.CommandParameter>
+                    <s:Int32>100</s:Int32>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button Text="Overwrite"
                 WidthRequest="100"
                 Padding="0,5"
                 Margin="2"
                 Command="{Binding OverwriteCommand}"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="2" />
         </Grid>

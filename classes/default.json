@@ -57,6 +57,9 @@
     },
     "DLR": {},
     "DKS": {},
+    "STK": {
+      "MaxValue": 4
+    },
     "BAG": {
       "MaxValue": 5
     },

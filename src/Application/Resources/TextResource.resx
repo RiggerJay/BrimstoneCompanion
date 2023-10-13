@@ -141,6 +141,9 @@
   <data name="DKS" xml:space="preserve">
     <value>Dark Stone</value>
   </data>
+	<data name="STK" xml:space="preserve">
+    <value>Strike</value>
+  </data>
   <data name="DLR" xml:space="preserve">
     <value>Dollars</value>
   </data>

@@ -29,5 +29,8 @@ namespace RedSpartan.BrimstoneCompanion.Domain.Models
 
         [DefaultValue(false)]
         public bool NextAdventure { get; set; } = false;
+
+        [DefaultValue("")]
+        public string ImagePath { get; set; } = string.Empty;
     }
 }

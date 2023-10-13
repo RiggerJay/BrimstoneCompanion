@@ -60,15 +60,33 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             await _mediator.Send(NavRequest.Close(true));
         }
 
-        [RelayCommand]
+     /*   [RelayCommand]
         private async Task UpdateAttribute(bool addition = true)
         {
             await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value + GetValue(UpdateValue, addition)));
 
             await _mediator.Send(NavRequest.Close(true));
+        }*/
+
+        [RelayCommand]
+        private async Task UpdateAttribute(int amount = 0)
+        {
+            await _mediator.Send(UpdateAttributeValueRequest.With(Attribute, Attribute.Value + GetValue(UpdateValue, amount)));
+
+            await _mediator.Send(NavRequest.Close(true));
         }
 
-        private static int GetValue(int? updateValue, bool addition)
+       private static int GetValue(int? updateValue, int amount)
+        {
+            if (updateValue == null)
+            {
+                return amount;
+            }
+
+            return (int)updateValue +amount;
+        }
+
+  /*      private static int GetValue(int? updateValue, bool addition)
         {
             if (updateValue == null)
             {
@@ -76,6 +94,6 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             }
 
             return addition ? (int)updateValue : (int)updateValue * -1;
-        }
+        }*/
     }
 }

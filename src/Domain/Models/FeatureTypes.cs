@@ -8,6 +8,7 @@
         Injury,
         Madness,
         LevelUp,
+        Ability,
         Other
     }
 }

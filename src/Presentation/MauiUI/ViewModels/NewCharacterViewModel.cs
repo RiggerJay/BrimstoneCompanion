@@ -25,6 +25,7 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
 
         public IList<string> Classes { get; } = new List<string>
         {
+            "Hero",
             "Assassin",
             "Bandito",
             "Cowboy",
@@ -47,7 +48,9 @@ namespace RedSpartan.BrimstoneCompanion.MauiUI.ViewModels
             "Sorceress",
             "Traveling Monk",
             "U.S. Marshal",
-            "Wandering Samurai"
+            "Wandering Samurai",
+            "Specialist",
+            "Sargent",
         };
 
         public AsyncRelayCommand CreateCommand { get; }

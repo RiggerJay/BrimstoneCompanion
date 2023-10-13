@@ -24,6 +24,7 @@ namespace RedSpartan.BrimstoneCompanion.Domain
         public const string WILLPOWER = "WIL";
         public const string DOLLARS = "DLR";
         public const string DARKSTONE = "DKS";
+        public const string STRIKE = "STK";
         public const string SIDEBAG = "BAG";
         public const string ARMOUR = "ARM";
         public const string SPIRITARMOUR = "SAR";

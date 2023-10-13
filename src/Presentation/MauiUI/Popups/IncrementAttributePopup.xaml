@@ -34,8 +34,7 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="4" />
 
-            <Button
-                Text="-"
+            <Button Text="-"
                 Command="{Binding IncrementMaxValueCommand}"
                 Style="{StaticResource RedIncrementer}"
                 IsVisible="{Binding Attribute.HasMaxValue}"
@@ -46,8 +45,7 @@
                 </Button.CommandParameter>
             </Button>
 
-            <Label
-                Text="Max"
+   <Label Text="Max"
                 IsVisible="{Binding Attribute.HasMaxValue}"
                 HorizontalOptions="StartAndExpand"
                 VerticalOptions="CenterAndExpand"
@@ -69,8 +67,7 @@
                     VerticalOptions="CenterAndExpand" />
             </Frame>
 
-            <Button
-                Text="+"
+            <Button Text="+"
                 Command="{Binding IncrementMaxValueCommand}"
                 Style="{StaticResource GreenIncrementer}"
                 IsVisible="{Binding Attribute.HasMaxValue}"
@@ -81,8 +78,7 @@
                 </Button.CommandParameter>
             </Button>
 
-            <Button
-                Text="-"
+            <Button Text="-"
                 Command="{Binding IncrementValueCommand}"
                 Style="{StaticResource RedIncrementer}"
                 Grid.Row="2"
@@ -92,9 +88,8 @@
                 </Button.CommandParameter>
             </Button>
 
-            <Label
-                Text="Current"
-                HorizontalOptions="Center"
+            <Label Text="Current"
+                HorizontalOptions="StartAndExpand"
                 VerticalOptions="CenterAndExpand"
                 Grid.Row="2"
                 Grid.Column="1" />
@@ -112,8 +107,7 @@
                     VerticalOptions="CenterAndExpand" />
             </Frame>
 
-            <Button
-                Text="+"
+            <Button Text="+"
                 Command="{Binding IncrementValueCommand}"
                 Style="{StaticResource GreenIncrementer}"
                 Grid.Row="2"
@@ -123,15 +117,35 @@
                 </Button.CommandParameter>
             </Button>
 
-            <Button
-                Text="Save"
+            <Button Text="-"
+                Command="{Binding IncrementAndCloseCommand}"
+                Style="{StaticResource RedIncrementer}"
+                Grid.Row="3"
+                Grid.Column="0">
+                <Button.CommandParameter>
+                    <s:Boolean>False</s:Boolean>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button Text="Save"
                 WidthRequest="100"
                 Padding="0,5"
                 Margin="2"
                 Command="{Binding SaveAndCloseCommand}"
                 Grid.Row="3"
                 Grid.Column="1"
-                Grid.ColumnSpan="2" />
+                Grid.ColumnSpan="3" />
+
+            <Button Text="+"
+                Command="{Binding IncrementAndCloseCommand}"
+                Style="{StaticResource GreenIncrementer}"
+                Grid.Row="3"
+                Grid.Column="3">
+                <Button.CommandParameter>
+                    <s:Boolean>True</s:Boolean>
+                </Button.CommandParameter>
+            </Button>
+            
         </Grid>
     </Border>
 </toolkit:Popup>
